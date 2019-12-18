@@ -1,0 +1,11 @@
+uuid: d76cc276-6597-4d0a-bde6-eb57bff39ea0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_business_states
+id: node.silai_business_states
+target_entity_type_id: node
+target_bundle: silai_business_states
+default_langcode: site_default
+language_alterable: false

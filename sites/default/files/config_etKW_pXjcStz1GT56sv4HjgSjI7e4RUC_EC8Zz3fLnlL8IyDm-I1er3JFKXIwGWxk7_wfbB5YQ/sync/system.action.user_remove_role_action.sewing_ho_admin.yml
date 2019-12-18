@@ -1,0 +1,14 @@
+uuid: 46b5fe58-5b40-42f8-b7ff-dbde25f575ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_ho_admin
+  module:
+    - user
+id: user_remove_role_action.sewing_ho_admin
+label: 'Remove the Sewing HO Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sewing_ho_admin

@@ -1,0 +1,22 @@
+uuid: 6aba4509-456a-4997-9020-f88a0a8e6701
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_agreements
+id: node.manage_agreements.status
+field_name: status
+entity_type: node
+bundle: manage_agreements
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

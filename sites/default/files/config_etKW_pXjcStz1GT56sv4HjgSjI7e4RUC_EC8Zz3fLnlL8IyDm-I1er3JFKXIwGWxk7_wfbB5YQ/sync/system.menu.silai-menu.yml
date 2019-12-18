@@ -1,0 +1,8 @@
+uuid: 581ca978-22b9-4c9c-a417-4d7b5658401a
+langcode: en
+status: true
+dependencies: {  }
+id: silai-menu
+label: 'Silai Menu'
+description: 'Silai Menu'
+locked: false

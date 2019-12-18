@@ -1,0 +1,33 @@
+21 Feb 2019 02:46 PM - Row No.- 2 - Error- NCR1 - Location Code is not exist.
+--------------------------
+21 Feb 2019 02:40 PM - Row No.- 2 - Error- NCR1 - Location Code is not exist.
+--------------------------
+21 Feb 2019 02:39 PM - Row No.- 2 - Error- NCR1 - Location Code is not exist.
+--------------------------
+21 Feb 2019 02:37 PM - Row No.- 2 - Error- NCR1 - Location Code is not exist.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 9 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 8 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 7 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 6 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 5 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 4 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 3 Error- 43514 - Week From and End Date already Used.
+--------------------------
+21 Feb 2019 02:28 PM - Row No.- 2 Error- NCR1 - Location Code is not exist.
+--------------------------
+21 Feb 2019 02:26 PM - Row No.- 9 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 8 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 7 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 6 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 5 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 4 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 3 Error- 43514 - Week From and End Date already Used.
+21 Feb 2019 02:26 PM - Row No.- 2 Error- NCR1 - Location Code is not exist.
+21 Feb 2019 02:16 PM - Row No.9 Error-43514 - Week From and End Date already Used.

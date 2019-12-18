@@ -1,0 +1,29 @@
+uuid: 9c673c2b-89f5-4df1-8a75-f9c249179991
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_area_range
+    - node.type.sewing_school
+    - taxonomy.vocabulary.area_range
+id: node.sewing_school.field_sewing_area_range
+field_name: field_sewing_area_range
+entity_type: node
+bundle: sewing_school
+label: 'Area Range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      area_range: area_range
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

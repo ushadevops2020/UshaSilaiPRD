@@ -1,0 +1,33 @@
+uuid: 07c67592-02ab-4402-bb8e-4c49c1b0c584
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_course_type
+    - node.type.manage_sewing_students
+    - taxonomy.vocabulary.course_type_sewing
+  content:
+    - 'taxonomy_term:course_type_sewing:387e78d0-e621-4ece-a4b9-c36cad72306c'
+id: node.manage_sewing_students.field_sewing_course_type
+field_name: field_sewing_course_type
+entity_type: node
+bundle: manage_sewing_students
+label: 'Course Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 387e78d0-e621-4ece-a4b9-c36cad72306c
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      course_type_sewing: course_type_sewing
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

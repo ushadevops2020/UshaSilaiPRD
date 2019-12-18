@@ -1,0 +1,42 @@
+1)  IND13972 - Districe Code is not exist. In Row Number : 2
+2)  IND13972 - Districe Code is not exist. In Row Number : 3
+3)  IND13972 - Districe Code is not exist. In Row Number : 4
+4)  IND13972 - Districe Code is not exist. In Row Number : 5
+5)  IND13972 - Districe Code is not exist. In Row Number : 6
+6)  IND13972 - Districe Code is not exist. In Row Number : 7
+7)  IND13972 - Districe Code is not exist. In Row Number : 8
+8)  IND13967 - Districe Code is not exist. In Row Number : 9
+9)  IND13967 - Districe Code is not exist. In Row Number : 10
+10)  IND13967 - Districe Code is not exist. In Row Number : 11
+11)  IND13967 - Districe Code is not exist. In Row Number : 12
+12)  IND13967 - Districe Code is not exist. In Row Number : 13
+13)  IND13967 - Districe Code is not exist. In Row Number : 14
+14)  IND13967 - Districe Code is not exist. In Row Number : 15
+15)  IND13967 - Districe Code is not exist. In Row Number : 16
+16)  IND13967 - Districe Code is not exist. In Row Number : 17
+17)  IND13967 - Districe Code is not exist. In Row Number : 18
+18)  IND13967 - Districe Code is not exist. In Row Number : 19
+19)  IND13967 - Districe Code is not exist. In Row Number : 20
+20)  IND13967 - Districe Code is not exist. In Row Number : 21
+21)  IND13967 - Districe Code is not exist. In Row Number : 22
+22)  IND13967 - Districe Code is not exist. In Row Number : 23
+23)  IND13967 - Districe Code is not exist. In Row Number : 24
+24)  IND13967 - Districe Code is not exist. In Row Number : 25
+25)  IND13967 - Districe Code is not exist. In Row Number : 26
+26)  IND13967 - Districe Code is not exist. In Row Number : 27
+27)  IND 13969 - Districe Code is not exist. In Row Number : 28
+28)  IND 13969 - Districe Code is not exist. In Row Number : 29
+29)  IND 13969 - Districe Code is not exist. In Row Number : 30
+30)  IND 13964 - Districe Code is not exist. In Row Number : 31
+31)  IND 13964 - Districe Code is not exist. In Row Number : 32
+32)  IND 13964 - Districe Code is not exist. In Row Number : 33
+33)  IND 13964 - Districe Code is not exist. In Row Number : 34
+34)  IND 13964 - Districe Code is not exist. In Row Number : 35
+35)  IND 13964 - Districe Code is not exist. In Row Number : 36
+36)  IND 13964 - Districe Code is not exist. In Row Number : 37
+37)  IND 13964 - Districe Code is not exist. In Row Number : 38
+38)  IND 13964 - Districe Code is not exist. In Row Number : 39
+39)  IND 13964 - Districe Code is not exist. In Row Number : 40
+40)  IND 13964 - Districe Code is not exist. In Row Number : 41
+41)  IND 13964 - Districe Code is not exist. In Row Number : 42
+42)  IND 13964 - Districe Code is not exist. In Row Number : 43

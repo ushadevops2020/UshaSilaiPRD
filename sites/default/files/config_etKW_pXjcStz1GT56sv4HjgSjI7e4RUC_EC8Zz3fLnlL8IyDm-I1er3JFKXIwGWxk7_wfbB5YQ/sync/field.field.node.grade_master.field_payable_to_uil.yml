@@ -1,0 +1,23 @@
+uuid: f1601b51-67a7-4d33-a62e-1397c55a9c09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payable_to_uil
+    - node.type.grade_master
+id: node.grade_master.field_payable_to_uil
+field_name: field_payable_to_uil
+entity_type: node
+bundle: grade_master
+label: 'Course FEES PAYABLE TO UIL (In %)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,63 @@
+silai_reports.silai_school_count_report:
+  path: '/silai-school-count-report' 
+  defaults:
+    _title: 'School Count Report'
+    _controller: '\Drupal\silai_reports\Controller\SilaiSchoolCountReportController::silaiSchoolCountReport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user' 
+    
+silai_reports.silai_training_trainee_feedback_report:
+  path: '/silai-training-trainee-feedback-report' 
+  defaults:
+    _title: 'Training - Trainee Feedback Report'
+    _controller: '\Drupal\silai_reports\Controller\SilaiTrainingReportController::silaiTrainingTraineeFeedbackReport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user+pc' 
+    
+silai_reports.silai_school_count_report_pc:
+  path: '/silai-school-count-report-pc' 
+  defaults:
+    _title: 'School Count Report'
+    _controller: '\Drupal\silai_reports\Controller\SilaiSchoolCountPcController::silaiSchoolCountPcReport'
+  requirements:
+    _role: 'administrator+pc'
+    
+silai_reports.silai_learner_export_in_folder:
+  path: '/silai-learner-export-in-folder' 
+  defaults:
+    _title: 'Learner Export'
+    _controller: '\Drupal\silai_reports\Controller\SilaiExportController::silaiLearnerExport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user+pc' 
+    
+silai_reports.silai_school_export_in_folder:
+  path: '/silai-school-export-in-folder' 
+  defaults:
+    _title: 'School Export'
+    _controller: '\Drupal\silai_reports\Controller\SilaiExportController::silaiSchoolExport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user+pc' 
+    
+silai_reports.silai_monthly_mis_export_in_folder:
+  path: '/silai-monthly-mis-export-in-folder' 
+  defaults:
+    _title: 'Monthly MIS Export'
+    _controller: '\Drupal\silai_reports\Controller\SilaiExportController::silaiMonthlyMISExport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user+pc' 
+    
+silai_reports.silai_school_survey_export_in_folder: 
+  path: '/silai-school-survey-export-in-folder' 
+  defaults:
+    _title: 'School Servey Export'
+    _controller: '\Drupal\silai_reports\Controller\SilaiExportController::silaiSchoolServeyExport'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user+pc'
+
+silai_reports.silai_consolidated_mis_report:
+  path: '/silai-consolidated-mis-report' 
+  defaults:
+    _title: 'Consolidated MIS Report'
+    _controller: '\Drupal\silai_reports\Controller\SilaiConsolidatedMISReportController::silaiConsolidatedMISReport'
+  requirements:
+    _role: 'administrator++silai_ho_admin+silai_ho_user+pc'    

@@ -1,0 +1,343 @@
+uuid: d55105f4-6051-40db-837c-2c98504f1654
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_learners_manage.field_address_1
+    - field.field.node.silai_learners_manage.field_address_2
+    - field.field.node.silai_learners_manage.field_age
+    - field.field.node.silai_learners_manage.field_association_social_group
+    - field.field.node.silai_learners_manage.field_comment
+    - field.field.node.silai_learners_manage.field_course_completion_date
+    - field.field.node.silai_learners_manage.field_do_after_learning_school
+    - field.field.node.silai_learners_manage.field_domain_access
+    - field.field.node.silai_learners_manage.field_domain_all_affiliates
+    - field.field.node.silai_learners_manage.field_educational_qualification
+    - field.field.node.silai_learners_manage.field_father_husband_name
+    - field.field.node.silai_learners_manage.field_female_member_in_household
+    - field.field.node.silai_learners_manage.field_landline_number
+    - field.field.node.silai_learners_manage.field_learner_id
+    - field.field.node.silai_learners_manage.field_male_members_in_household
+    - field.field.node.silai_learners_manage.field_marital_status
+    - field.field.node.silai_learners_manage.field_mobile_number
+    - field.field.node.silai_learners_manage.field_monthly_fee_for_course
+    - field.field.node.silai_learners_manage.field_monthly_income_of_househol
+    - field.field.node.silai_learners_manage.field_mother_name
+    - field.field.node.silai_learners_manage.field_occupation_of_father_husba
+    - field.field.node.silai_learners_manage.field_occupation_of_mother
+    - field.field.node.silai_learners_manage.field_pin_code
+    - field.field.node.silai_learners_manage.field_sewing_machine_at_home
+    - field.field.node.silai_learners_manage.field_silai_block
+    - field.field.node.silai_learners_manage.field_silai_course_code
+    - field.field.node.silai_learners_manage.field_silai_date_of_enrollment
+    - field.field.node.silai_learners_manage.field_silai_district
+    - field.field.node.silai_learners_manage.field_silai_school
+    - field.field.node.silai_learners_manage.field_silai_school_name
+    - field.field.node.silai_learners_manage.field_you_received_certificate
+    - node.type.silai_learners_manage
+  module:
+    - datetime
+    - field_hidden
+    - maxlength
+    - path
+id: node.silai_learners_manage.default
+targetEntityType: node
+bundle: silai_learners_manage
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_address_2:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_age:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_association_social_group:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_comment:
+    weight: 38
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: field_hidden_string_textarea
+    region: content
+  field_course_completion_date:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_do_after_learning_school:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_domain_access:
+    type: options_buttons
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_domain_all_affiliates:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 34
+    third_party_settings: {  }
+    region: content
+  field_educational_qualification:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_father_husband_name:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 50
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_female_member_in_household:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_landline_number:
+    weight: 19
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 11
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_learner_id:
+    weight: 36
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_male_members_in_household:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_marital_status:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_mobile_number:
+    weight: 18
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 11
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_monthly_fee_for_course:
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_monthly_income_of_househol:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_mother_name:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 50
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_occupation_of_father_husba:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_occupation_of_mother:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_pin_code:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_machine_at_home:
+    weight: 20
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_silai_block:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_course_code:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_date_of_enrollment:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_silai_district:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_school:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_silai_school_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_you_received_certificate:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  langcode:
+    type: language_select
+    weight: 27
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    weight: 39
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 32
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 30
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 35
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 31
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: null
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  uid:
+    type: entity_reference_autocomplete
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden:
+  field_address_1: true

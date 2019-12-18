@@ -1,0 +1,14 @@
+uuid: 7b2893da-6cb2-4f21-ade6-4c8f3a0cbaf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_ho_admin
+  module:
+    - user
+id: user_add_role_action.silai_ho_admin
+label: 'Add the Silai HO Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: silai_ho_admin

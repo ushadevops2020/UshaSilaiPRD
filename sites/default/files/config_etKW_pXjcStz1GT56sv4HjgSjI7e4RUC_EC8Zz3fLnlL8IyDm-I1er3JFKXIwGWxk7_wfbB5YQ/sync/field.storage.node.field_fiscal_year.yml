@@ -1,0 +1,33 @@
+uuid: dbdb712f-9e71-4fbe-8550-6db69193fefe
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_fiscal_year
+field_name: field_fiscal_year
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: '2015 - 2016'
+    -
+      value: '2'
+      label: '2016 - 2017'
+    -
+      value: '3'
+      label: '2017 - 2018'
+    -
+      value: '4'
+      label: '2018 - 2019'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

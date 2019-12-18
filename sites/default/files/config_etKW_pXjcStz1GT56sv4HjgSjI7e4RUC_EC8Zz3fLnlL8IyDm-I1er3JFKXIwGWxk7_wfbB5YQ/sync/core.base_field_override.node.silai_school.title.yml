@@ -1,0 +1,18 @@
+uuid: 2b0640c6-0bae-4feb-a10a-41d996acad9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_school
+id: node.silai_school.title
+field_name: title
+entity_type: node
+bundle: silai_school
+label: 'School Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

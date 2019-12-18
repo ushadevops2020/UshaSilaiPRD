@@ -1,0 +1,21 @@
+uuid: 37e817e2-ae69-43aa-9519-3f9b35a60583
+langcode: en
+status: 1
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_district_selectlist
+field_name: field_sewing_district_selectlist
+entity_type: node
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: sewing_allowed_values_district
+module: options
+locked: false
+cardinality: 1
+translatable: 1
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

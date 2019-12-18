@@ -1,0 +1,20 @@
+uuid: 94dc6384-d78b-4fe8-be11-a627133354a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_sewing_area_range
+field_name: field_sewing_area_range
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

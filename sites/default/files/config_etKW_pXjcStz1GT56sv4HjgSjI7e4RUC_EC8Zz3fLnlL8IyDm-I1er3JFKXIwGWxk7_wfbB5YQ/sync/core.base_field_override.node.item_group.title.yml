@@ -1,0 +1,18 @@
+uuid: aec29a99-0d82-4e9a-b19d-6c91145de792
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.item_group
+id: node.item_group.title
+field_name: title
+entity_type: node
+bundle: item_group
+label: 'Item Group Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,49 @@
+uuid: ee5b76d0-a6cb-45df-878b-dca3795ebf57
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.trainer_silai.field_domain_access
+    - field.field.node.trainer_silai.field_domain_all_affiliates
+    - field.field.node.trainer_silai.field_silai_basic_info
+    - field.field.node.trainer_silai.field_silai_town_city
+    - field.field.node.trainer_silai.field_silai_trainer_code
+    - field.field.node.trainer_silai.field_silai_trainer_contact_no
+    - field.field.node.trainer_silai.field_silai_trainer_district
+    - field.field.node.trainer_silai.field_silai_trainer_email_id
+    - field.field.node.trainer_silai.field_silai_trainer_state
+    - node.type.trainer_silai
+  module:
+    - user
+id: node.trainer_silai.teaser
+targetEntityType: node
+bundle: trainer_silai
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_silai_basic_info: true
+  field_silai_town_city: true
+  field_silai_trainer_code: true
+  field_silai_trainer_contact_no: true
+  field_silai_trainer_district: true
+  field_silai_trainer_email_id: true
+  field_silai_trainer_state: true
+  langcode: true

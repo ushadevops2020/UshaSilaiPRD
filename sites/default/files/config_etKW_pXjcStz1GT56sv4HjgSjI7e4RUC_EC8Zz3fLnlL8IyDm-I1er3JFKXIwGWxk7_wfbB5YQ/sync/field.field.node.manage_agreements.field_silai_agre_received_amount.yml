@@ -1,0 +1,21 @@
+uuid: 01d79a19-4699-409a-a6ae-46c01c46d219
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_agre_received_amount
+    - node.type.manage_agreements
+id: node.manage_agreements.field_silai_agre_received_amount
+field_name: field_silai_agre_received_amount
+entity_type: node
+bundle: manage_agreements
+label: 'Received Amount'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string

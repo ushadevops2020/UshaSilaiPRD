@@ -1,0 +1,21 @@
+uuid: 2e7d5dad-fe90-4361-8323-cc3394ac99f8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sewing_area_in_sqft
+field_name: field_sewing_area_in_sqft
+entity_type: node
+type: string
+settings:
+  max_length: 4
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,37 @@
+uuid: 5c18ab56-2c0f-49e8-9c48-055ad4c45549
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.sewing_gallery.body
+    - field.field.node.sewing_gallery.field_domain_access
+    - field.field.node.sewing_gallery.field_domain_all_affiliates
+    - node.type.sewing_gallery
+  module:
+    - text
+    - user
+id: node.sewing_gallery.teaser
+targetEntityType: node
+bundle: sewing_gallery
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_sewing_gallery_location: true
+  field_sewing_image: true
+  langcode: true

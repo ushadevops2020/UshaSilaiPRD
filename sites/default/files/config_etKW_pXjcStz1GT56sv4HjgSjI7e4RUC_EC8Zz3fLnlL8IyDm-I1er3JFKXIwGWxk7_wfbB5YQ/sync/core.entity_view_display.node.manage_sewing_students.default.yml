@@ -1,0 +1,453 @@
+uuid: 3e61837c-56ab-4e14-8585-54d27895d856
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.manage_sewing_students.field_address_1
+    - field.field.node.manage_sewing_students.field_address_2
+    - field.field.node.manage_sewing_students.field_address_3
+    - field.field.node.manage_sewing_students.field_date_of_certificate_issued
+    - field.field.node.manage_sewing_students.field_date_of_certificate_print
+    - field.field.node.manage_sewing_students.field_domain_access
+    - field.field.node.manage_sewing_students.field_domain_all_affiliates
+    - field.field.node.manage_sewing_students.field_existing_sewing_machine_br
+    - field.field.node.manage_sewing_students.field_future_plan_after_course
+    - field.field.node.manage_sewing_students.field_location
+    - field.field.node.manage_sewing_students.field_pin_code
+    - field.field.node.manage_sewing_students.field_school_name_sewing
+    - field.field.node.manage_sewing_students.field_school_type
+    - field.field.node.manage_sewing_students.field_sew_course_completion_date
+    - field.field.node.manage_sewing_students.field_sewing_certificate_issued
+    - field.field.node.manage_sewing_students.field_sewing_certificate_print
+    - field.field.node.manage_sewing_students.field_sewing_course_code_list
+    - field.field.node.manage_sewing_students.field_sewing_course_duration
+    - field.field.node.manage_sewing_students.field_sewing_course_fee_due
+    - field.field.node.manage_sewing_students.field_sewing_course_fee_out
+    - field.field.node.manage_sewing_students.field_sewing_course_fee_received
+    - field.field.node.manage_sewing_students.field_sewing_course_name
+    - field.field.node.manage_sewing_students.field_sewing_course_start_date
+    - field.field.node.manage_sewing_students.field_sewing_course_type
+    - field.field.node.manage_sewing_students.field_sewing_date_of_birth
+    - field.field.node.manage_sewing_students.field_sewing_district_selectlist
+    - field.field.node.manage_sewing_students.field_sewing_email_address
+    - field.field.node.manage_sewing_students.field_sewing_exam_appearance
+    - field.field.node.manage_sewing_students.field_sewing_exam_result
+    - field.field.node.manage_sewing_students.field_sewing_exit_code
+    - field.field.node.manage_sewing_students.field_sewing_father_name
+    - field.field.node.manage_sewing_students.field_sewing_financial_year
+    - field.field.node.manage_sewing_students.field_sewing_gender
+    - field.field.node.manage_sewing_students.field_sewing_grades
+    - field.field.node.manage_sewing_students.field_sewing_location_selectlist
+    - field.field.node.manage_sewing_students.field_sewing_marital_status
+    - field.field.node.manage_sewing_students.field_sewing_mobile_no
+    - field.field.node.manage_sewing_students.field_sewing_model_make
+    - field.field.node.manage_sewing_students.field_sewing_model_of_sm
+    - field.field.node.manage_sewing_students.field_sewing_phone_no
+    - field.field.node.manage_sewing_students.field_sewing_qualification
+    - field.field.node.manage_sewing_students.field_sewing_result_date
+    - field.field.node.manage_sewing_students.field_sewing_school_code_list
+    - field.field.node.manage_sewing_students.field_sewing_time_to_buy
+    - field.field.node.manage_sewing_students.field_sewing_want_to_buy_new
+    - field.field.node.manage_sewing_students.field_student_admission_date
+    - field.field.node.manage_sewing_students.field_student_admission_no
+    - field.field.node.manage_sewing_students.field_student_status
+    - field.field.node.manage_sewing_students.field_town_city
+    - node.type.manage_sewing_students
+  module:
+    - datetime
+    - options
+    - user
+id: node.manage_sewing_students.default
+targetEntityType: node
+bundle: manage_sewing_students
+mode: default
+content:
+  field_address_1:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_address_2:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_address_3:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_date_of_certificate_issued:
+    weight: 140
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_of_certificate_print:
+    weight: 138
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_existing_sewing_machine_br:
+    weight: 151
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_future_plan_after_course:
+    weight: 147
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_location:
+    weight: 125
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_pin_code:
+    weight: 115
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_school_name_sewing:
+    weight: 149
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_school_type:
+    weight: 121
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sew_course_completion_date:
+    weight: 155
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sewing_certificate_issued:
+    weight: 139
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_certificate_print:
+    weight: 137
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_course_code_list:
+    weight: 127
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_course_duration:
+    weight: 130
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_course_fee_due:
+    weight: 131
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_course_fee_out:
+    weight: 133
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_course_fee_received:
+    weight: 132
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_course_name:
+    weight: 129
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_course_start_date:
+    weight: 128
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sewing_course_type:
+    weight: 126
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_date_of_birth:
+    weight: 114
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sewing_district_selectlist:
+    weight: 120
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_email_address:
+    weight: 118
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_exam_appearance:
+    weight: 150
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_exam_result:
+    weight: 134
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_exit_code:
+    weight: 148
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_father_name:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_financial_year:
+    weight: 124
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_gender:
+    weight: 112
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_grades:
+    weight: 136
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_location_selectlist:
+    weight: 119
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_marital_status:
+    weight: 113
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_mobile_no:
+    weight: 116
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_model_make:
+    weight: 152
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_model_of_sm:
+    weight: 143
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_phone_no:
+    weight: 117
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_qualification:
+    weight: 123
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_result_date:
+    weight: 135
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sewing_school_code_list:
+    weight: 122
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_time_to_buy:
+    weight: 146
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_sewing_want_to_buy_new:
+    weight: 144
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_student_admission_date:
+    weight: 103
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_student_admission_no:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_student_status:
+    weight: 153
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_town_city:
+    weight: 154
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

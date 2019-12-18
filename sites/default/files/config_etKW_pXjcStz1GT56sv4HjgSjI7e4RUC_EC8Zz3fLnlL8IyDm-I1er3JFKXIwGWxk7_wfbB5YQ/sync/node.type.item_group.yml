@@ -1,0 +1,18 @@
+uuid: ccc7aba9-7f2d-4fb6-a146-ee086b3e2e4f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - sewing-menu
+    parent: 'sewing-menu:'
+name: 'Item Group'
+type: item_group
+description: 'Item Group for Sewing'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

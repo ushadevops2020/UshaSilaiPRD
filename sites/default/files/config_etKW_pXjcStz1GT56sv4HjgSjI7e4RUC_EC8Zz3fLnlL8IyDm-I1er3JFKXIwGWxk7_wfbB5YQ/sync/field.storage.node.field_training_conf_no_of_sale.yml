@@ -1,0 +1,21 @@
+uuid: a6a6269b-4ac8-40f7-ae37-a8f5bbb16121
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_training_conf_no_of_sale
+field_name: field_training_conf_no_of_sale
+entity_type: node
+type: string
+settings:
+  max_length: 8
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

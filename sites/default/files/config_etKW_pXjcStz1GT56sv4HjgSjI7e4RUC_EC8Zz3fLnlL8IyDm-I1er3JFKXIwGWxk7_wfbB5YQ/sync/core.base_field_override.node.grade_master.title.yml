@@ -1,0 +1,18 @@
+uuid: dc6cc625-f9b0-417a-aba8-2258e774dabd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.grade_master
+id: node.grade_master.title
+field_name: title
+entity_type: node
+bundle: grade_master
+label: 'Fee Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

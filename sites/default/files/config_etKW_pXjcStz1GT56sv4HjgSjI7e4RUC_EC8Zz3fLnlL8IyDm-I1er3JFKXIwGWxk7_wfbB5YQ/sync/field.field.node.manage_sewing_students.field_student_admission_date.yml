@@ -1,0 +1,24 @@
+uuid: 591bb33e-c48a-4fa1-83b9-ae9bb06b226b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_admission_date
+    - node.type.manage_sewing_students
+  module:
+    - datetime
+id: node.manage_sewing_students.field_student_admission_date
+field_name: field_student_admission_date
+entity_type: node
+bundle: manage_sewing_students
+label: 'Admission Date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

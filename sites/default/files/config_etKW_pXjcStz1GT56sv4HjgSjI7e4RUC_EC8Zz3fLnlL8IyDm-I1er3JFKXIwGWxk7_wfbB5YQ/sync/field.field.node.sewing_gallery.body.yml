@@ -1,0 +1,22 @@
+uuid: 16bb829b-7558-41bd-83d0-bdcc8e20c749
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.sewing_gallery
+  module:
+    - text
+id: node.sewing_gallery.body
+field_name: body
+entity_type: node
+bundle: sewing_gallery
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

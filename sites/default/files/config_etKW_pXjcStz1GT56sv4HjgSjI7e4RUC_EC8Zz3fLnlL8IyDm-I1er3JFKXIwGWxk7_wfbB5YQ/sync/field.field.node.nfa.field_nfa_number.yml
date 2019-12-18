@@ -1,0 +1,19 @@
+uuid: 781d7d3f-4882-4935-ac80-08c18dc813f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nfa_number
+    - node.type.nfa
+id: node.nfa.field_nfa_number
+field_name: field_nfa_number
+entity_type: node
+bundle: nfa
+label: 'NFA Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

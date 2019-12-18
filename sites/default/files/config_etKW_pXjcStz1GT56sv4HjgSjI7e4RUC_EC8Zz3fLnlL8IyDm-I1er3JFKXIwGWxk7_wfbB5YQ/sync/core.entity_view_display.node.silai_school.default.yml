@@ -1,0 +1,224 @@
+uuid: eaec8c31-2b88-45dc-8037-15c1bcd9cc71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_school.field_date_of_basic_training
+    - field.field.node.silai_school.field_date_open_of_silai_school
+    - field.field.node.silai_school.field_domain_access
+    - field.field.node.silai_school.field_domain_all_affiliates
+    - field.field.node.silai_school.field_have_received_certificate
+    - field.field.node.silai_school.field_name_of_ngo
+    - field.field.node.silai_school.field_school_code
+    - field.field.node.silai_school.field_school_financial_year
+    - field.field.node.silai_school.field_school_type
+    - field.field.node.silai_school.field_sil_school_approval_status
+    - field.field.node.silai_school.field_sil_school_status_remarks
+    - field.field.node.silai_school.field_silai_block
+    - field.field.node.silai_school.field_silai_business_state
+    - field.field.node.silai_school.field_silai_district
+    - field.field.node.silai_school.field_silai_is_asso_social_grop
+    - field.field.node.silai_school.field_silai_learner_id
+    - field.field.node.silai_school.field_silai_location
+    - field.field.node.silai_school.field_silai_school_address
+    - field.field.node.silai_school.field_silai_teacher_age
+    - field.field.node.silai_school.field_silai_teacher_education
+    - field.field.node.silai_school.field_silai_teacher_user_id
+    - field.field.node.silai_school.field_silai_town
+    - field.field.node.silai_school.field_silai_village
+    - node.type.silai_school
+  module:
+    - datetime
+    - options
+    - user
+id: node.silai_school.default
+targetEntityType: node
+bundle: silai_school
+mode: default
+content:
+  field_date_of_basic_training:
+    weight: 114
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_open_of_silai_school:
+    weight: 115
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
+    third_party_settings: {  }
+    type: datetime_custom
+    region: content
+  field_have_received_certificate:
+    weight: 116
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_name_of_ngo:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_school_code:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_school_financial_year:
+    weight: 127
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_school_type:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sil_school_approval_status:
+    weight: 124
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sil_school_status_remarks:
+    weight: 125
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_block:
+    weight: 121
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_business_state:
+    weight: 118
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_district:
+    weight: 119
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_is_asso_social_grop:
+    weight: 112
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_silai_learner_id:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_location:
+    weight: 126
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_school_address:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_silai_teacher_age:
+    weight: 108
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_silai_teacher_education:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_silai_teacher_user_id:
+    weight: 117
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_town:
+    weight: 120
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_village:
+    weight: 122
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

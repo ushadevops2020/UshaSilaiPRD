@@ -1,0 +1,9 @@
+1) UAPSS111040016 - Admission Number does not exist. In excel file row number : 4
+2) UAPSS111040017 - Admission Number does not exist. In excel file row number : 5
+3)  - Payment Mode text is wrong. In excel file row number : 7
+4)  - Payment Mode text is wrong. In excel file row number : 9
+5) UAPSS111110001 - Admission Number does not exist. In excel file row number : 14
+6) UAPSS111110002 - Admission Number does not exist. In excel file row number : 15
+7) UAPSS111110003 - Admission Number does not exist. In excel file row number : 16
+8)  - Payment Mode text is wrong. In excel file row number : 18
+9)  - Payment Mode text is wrong. In excel file row number : 19

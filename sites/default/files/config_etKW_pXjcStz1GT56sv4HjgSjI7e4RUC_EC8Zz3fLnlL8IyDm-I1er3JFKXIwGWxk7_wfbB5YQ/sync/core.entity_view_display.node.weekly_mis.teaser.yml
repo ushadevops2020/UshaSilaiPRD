@@ -1,0 +1,45 @@
+uuid: 3eb54eb0-6d2c-4c14-81fc-42735b49cc00
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.weekly_mis.body
+    - field.field.node.weekly_mis.field_domain_access
+    - field.field.node.weekly_mis.field_domain_all_affiliates
+    - node.type.weekly_mis
+  module:
+    - text
+    - user
+id: node.weekly_mis.teaser
+targetEntityType: node
+bundle: weekly_mis
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

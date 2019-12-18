@@ -1,0 +1,18 @@
+uuid: f0496a51-603c-42d5-8608-4cc4f15bb659
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'sewing indian states'
+type: sewing_indian_states
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,11 @@
+uuid: 1b2102fb-5c46-4a0e-8383-aabdd3f6b5df
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.time_to_buy
+id: taxonomy_term.time_to_buy
+target_entity_type_id: taxonomy_term
+target_bundle: time_to_buy
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,22 @@
+uuid: 973efea3-4764-4dff-bc12-01b5323ecedc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.grade_master
+id: node.grade_master.promote
+field_name: promote
+entity_type: node
+bundle: grade_master
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

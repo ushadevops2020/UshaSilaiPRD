@@ -1,0 +1,22 @@
+uuid: e9877942-1706-4ea7-9ea3-d846eabc1b1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_countries
+id: node.manage_countries.promote
+field_name: promote
+entity_type: node
+bundle: manage_countries
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

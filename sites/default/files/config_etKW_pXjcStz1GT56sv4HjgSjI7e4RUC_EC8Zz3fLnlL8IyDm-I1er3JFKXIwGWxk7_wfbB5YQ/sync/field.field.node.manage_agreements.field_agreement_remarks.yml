@@ -1,0 +1,19 @@
+uuid: 54352480-ca2c-49c7-b249-64d25ffe653f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agreement_remarks
+    - node.type.manage_agreements
+id: node.manage_agreements.field_agreement_remarks
+field_name: field_agreement_remarks
+entity_type: node
+bundle: manage_agreements
+label: REMARKS
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

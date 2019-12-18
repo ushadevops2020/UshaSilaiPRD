@@ -1,0 +1,21 @@
+uuid: 326fb9b8-9afa-4a2a-bf94-350560114c5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_school_approval_date
+    - node.type.sewing_school
+  module:
+    - datetime
+id: node.sewing_school.field_school_approval_date
+field_name: field_school_approval_date
+entity_type: node
+bundle: sewing_school
+label: 'School Approval Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

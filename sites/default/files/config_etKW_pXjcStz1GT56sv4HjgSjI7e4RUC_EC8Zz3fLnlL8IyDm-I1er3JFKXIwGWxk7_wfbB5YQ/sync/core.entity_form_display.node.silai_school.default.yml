@@ -1,0 +1,291 @@
+uuid: 6745231b-50fe-4a57-87ef-20788ad19670
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_school.field_date_of_basic_training
+    - field.field.node.silai_school.field_date_open_of_silai_school
+    - field.field.node.silai_school.field_domain_access
+    - field.field.node.silai_school.field_domain_all_affiliates
+    - field.field.node.silai_school.field_have_received_certificate
+    - field.field.node.silai_school.field_name_of_ngo
+    - field.field.node.silai_school.field_school_code
+    - field.field.node.silai_school.field_school_financial_year
+    - field.field.node.silai_school.field_school_type
+    - field.field.node.silai_school.field_sil_school_approval_status
+    - field.field.node.silai_school.field_sil_school_status_remarks
+    - field.field.node.silai_school.field_silai_block
+    - field.field.node.silai_school.field_silai_business_state
+    - field.field.node.silai_school.field_silai_district
+    - field.field.node.silai_school.field_silai_is_asso_social_grop
+    - field.field.node.silai_school.field_silai_learner_id
+    - field.field.node.silai_school.field_silai_location
+    - field.field.node.silai_school.field_silai_school_address
+    - field.field.node.silai_school.field_silai_teacher_age
+    - field.field.node.silai_school.field_silai_teacher_education
+    - field.field.node.silai_school.field_silai_teacher_user_id
+    - field.field.node.silai_school.field_silai_town
+    - field.field.node.silai_school.field_silai_village
+    - node.type.silai_school
+  module:
+    - datetime
+    - maxlength
+    - path
+id: node.silai_school.default
+targetEntityType: node
+bundle: silai_school
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 17
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_date_of_basic_training:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date_open_of_silai_school:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_domain_access:
+    type: options_buttons
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_domain_all_affiliates:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 22
+    third_party_settings: {  }
+    region: content
+  field_have_received_certificate:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_name_of_ngo:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_school_code:
+    weight: 35
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 10
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_school_financial_year:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_school_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sil_school_approval_status:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sil_school_status_remarks:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_silai_block:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_business_state:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_district:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_is_asso_social_grop:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_silai_learner_id:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 30
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+      conditional_fields:
+        9e096e98-7185-47a2-9ea4-be625bbd2613:
+          dependee: field_school_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '141'
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: silai_school
+    type: string_textfield
+    region: content
+  field_silai_location:
+    weight: 34
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_silai_school_address:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 300
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+        maxlength_js_truncate_html: false
+    type: string_textarea
+    region: content
+  field_silai_teacher_age:
+    weight: 13
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_silai_teacher_education:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_teacher_user_id:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_silai_town:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_silai_village:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  langcode:
+    type: language_select
+    weight: 15
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 18
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 23
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 19
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 30
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  uid:
+    type: entity_reference_autocomplete
+    weight: 16
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

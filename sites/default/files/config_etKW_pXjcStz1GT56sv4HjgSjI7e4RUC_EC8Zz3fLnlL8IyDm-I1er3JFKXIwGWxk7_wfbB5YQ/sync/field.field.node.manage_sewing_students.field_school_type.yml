@@ -1,0 +1,29 @@
+uuid: 0e30809c-18ad-4145-b436-d75e26b412f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_school_type
+    - node.type.manage_sewing_students
+    - node.type.school_type_master
+id: node.manage_sewing_students.field_school_type
+field_name: field_school_type
+entity_type: node
+bundle: manage_sewing_students
+label: 'School Type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      school_type_master: school_type_master
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

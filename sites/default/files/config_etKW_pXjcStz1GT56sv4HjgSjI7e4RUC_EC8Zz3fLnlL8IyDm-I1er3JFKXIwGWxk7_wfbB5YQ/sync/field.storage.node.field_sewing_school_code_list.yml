@@ -1,0 +1,19 @@
+uuid: 1cd95c83-14c5-40c1-b402-ee5baeb4a158
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sewing_school_code_list
+field_name: field_sewing_school_code_list
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

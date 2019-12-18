@@ -1,0 +1,6 @@
+1) 0 - Service Tax amount Field is blank. In excel file row number : 2
+2) 0 - Service Tax amount Field is blank. In excel file row number : 3
+3) 0 - Service Tax amount Field is blank. In excel file row number : 4
+4) 0 - Service Tax amount Field is blank. In excel file row number : 5
+5) 0 - Service Tax amount Field is blank. In excel file row number : 6
+6) 0 - Service Tax amount Field is blank. In excel file row number : 7

@@ -1,0 +1,22 @@
+uuid: 494ff7e3-0999-4844-af20-0698450d4178
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_villages
+id: node.silai_villages.promote
+field_name: promote
+entity_type: node
+bundle: silai_villages
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

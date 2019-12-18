@@ -1,0 +1,19 @@
+uuid: 11ab3917-374e-4175-a267-dbd0f5cee43f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_grade_name
+    - node.type.grades
+id: node.grades.field_grade_name
+field_name: field_grade_name
+entity_type: node
+bundle: grades
+label: 'Grade Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

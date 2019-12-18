@@ -1,0 +1,29 @@
+uuid: 664b0914-871c-4e1c-9453-6b9cd0ad01f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ngo_location
+    - node.type.manage_silai_locations
+    - node.type.ngo
+id: node.ngo.field_ngo_location
+field_name: field_ngo_location
+entity_type: node
+bundle: ngo
+label: Location
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_silai_locations: manage_silai_locations
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

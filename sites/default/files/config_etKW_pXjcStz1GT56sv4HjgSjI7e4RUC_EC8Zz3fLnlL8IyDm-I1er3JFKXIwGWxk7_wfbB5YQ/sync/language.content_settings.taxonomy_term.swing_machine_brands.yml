@@ -1,0 +1,11 @@
+uuid: 79887f06-e7fb-4ba5-9068-dae4f4be8ca1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.swing_machine_brands
+id: taxonomy_term.swing_machine_brands
+target_entity_type_id: taxonomy_term
+target_bundle: swing_machine_brands
+default_langcode: site_default
+language_alterable: false

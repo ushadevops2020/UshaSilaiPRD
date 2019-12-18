@@ -1,0 +1,51 @@
+uuid: 0b9b75e3-a3ee-407b-8d8e-dd525fa05432
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_school_type_master.field_domain_access
+    - field.field.node.silai_school_type_master.field_domain_all_affiliates
+    - field.field.node.silai_school_type_master.field_school_type_description
+    - field.field.node.silai_school_type_master.field_silai_school_type_code
+    - node.type.silai_school_type_master
+  module:
+    - user
+id: node.silai_school_type_master.default
+targetEntityType: node
+bundle: silai_school_type_master
+mode: default
+content:
+  field_school_type_description:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_silai_school_type_code:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

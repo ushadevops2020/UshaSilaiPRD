@@ -1,0 +1,11 @@
+uuid: 67333a07-cf74-4943-b19e-f4f9da7431ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.inventory_status_messages
+id: taxonomy_term.inventory_status_messages
+target_entity_type_id: taxonomy_term
+target_bundle: inventory_status_messages
+default_langcode: site_default
+language_alterable: false

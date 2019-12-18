@@ -1,0 +1,14 @@
+uuid: d11303cc-b760-4c2b-b4cb-832bf884be7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_dealer
+  module:
+    - user
+id: user_remove_role_action.silai_dealer
+label: 'Remove the Silai Dealer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: silai_dealer

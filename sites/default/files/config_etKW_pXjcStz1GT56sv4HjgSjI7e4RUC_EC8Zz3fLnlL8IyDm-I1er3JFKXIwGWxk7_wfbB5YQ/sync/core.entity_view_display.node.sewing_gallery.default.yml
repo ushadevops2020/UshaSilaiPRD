@@ -1,0 +1,53 @@
+uuid: b09f082f-ce72-4d5e-bbec-2495c287e392
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sewing_gallery.body
+    - field.field.node.sewing_gallery.field_domain_access
+    - field.field.node.sewing_gallery.field_domain_all_affiliates
+    - field.field.node.sewing_gallery.field_sewing_gallery_location
+    - field.field.node.sewing_gallery.field_sewing_image
+    - node.type.sewing_gallery
+  module:
+    - image
+    - text
+    - user
+id: node.sewing_gallery.default
+targetEntityType: node
+bundle: sewing_gallery
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_sewing_gallery_location:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

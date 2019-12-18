@@ -1,0 +1,19 @@
+uuid: 08103c95-04e5-4289-a9ca-749e1f9b6de0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_teacher_user_id
+    - node.type.silai_school
+id: node.silai_school.field_silai_teacher_user_id
+field_name: field_silai_teacher_user_id
+entity_type: node
+bundle: silai_school
+label: 'User Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

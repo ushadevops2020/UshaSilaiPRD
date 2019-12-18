@@ -1,0 +1,22 @@
+uuid: d9731a3f-3500-432e-849c-a864718030dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_town
+id: node.silai_town.promote
+field_name: promote
+entity_type: node
+bundle: silai_town
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

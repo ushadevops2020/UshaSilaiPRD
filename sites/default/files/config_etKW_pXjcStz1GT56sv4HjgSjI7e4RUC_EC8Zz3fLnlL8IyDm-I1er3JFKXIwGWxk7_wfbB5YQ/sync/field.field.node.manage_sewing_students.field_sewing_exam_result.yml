@@ -1,0 +1,21 @@
+uuid: d350830b-5384-4ed6-bfea-b8fab5eee3d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_exam_result
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_exam_result
+field_name: field_sewing_exam_result
+entity_type: node
+bundle: manage_sewing_students
+label: 'Exam Result'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

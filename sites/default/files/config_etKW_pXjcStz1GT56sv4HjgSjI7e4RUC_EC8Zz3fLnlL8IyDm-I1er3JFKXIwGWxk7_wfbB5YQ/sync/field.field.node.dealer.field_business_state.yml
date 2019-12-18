@@ -1,0 +1,29 @@
+uuid: 51efc129-de01-4bde-a186-f220effb6df7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_business_state
+    - node.type.dealer
+    - node.type.manage_business_states
+id: node.dealer.field_business_state
+field_name: field_business_state
+entity_type: node
+bundle: dealer
+label: State
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_business_states: manage_business_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

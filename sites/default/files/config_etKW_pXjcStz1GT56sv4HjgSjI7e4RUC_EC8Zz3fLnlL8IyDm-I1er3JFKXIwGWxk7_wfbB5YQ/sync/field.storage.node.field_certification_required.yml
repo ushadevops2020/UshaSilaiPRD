@@ -1,0 +1,27 @@
+uuid: 7b931213-5a2e-4b78-bb91-7f049c876783
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_certification_required
+field_name: field_certification_required
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: 'Yes'
+    -
+      value: '0'
+      label: 'No'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

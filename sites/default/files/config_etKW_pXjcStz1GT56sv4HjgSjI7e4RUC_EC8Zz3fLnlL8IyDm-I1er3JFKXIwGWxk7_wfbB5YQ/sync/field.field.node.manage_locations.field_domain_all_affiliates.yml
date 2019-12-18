@@ -1,0 +1,21 @@
+uuid: b36ebe88-c3f3-41e1-b4e5-819587d4828d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.manage_locations
+id: node.manage_locations.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: manage_locations
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

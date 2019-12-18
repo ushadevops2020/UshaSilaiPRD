@@ -1,0 +1,14 @@
+uuid: d7212289-9530-46e7-b13e-21751171546b
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_silai_tk
+  module:
+    - domain_access
+id: domain_access_add_editor_action.usha_silai_tk
+label: 'Add editors to the Silai domain'
+type: user
+plugin: domain_access_add_editor_action
+configuration:
+  domain_id: usha_silai_tk

@@ -1,0 +1,22 @@
+uuid: cb3490a7-980d-49d0-9143-3ce8077fbb7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_agreements
+id: node.manage_agreements.promote
+field_name: promote
+entity_type: node
+bundle: manage_agreements
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,22 @@
+uuid: bc195cb7-74ca-4521-9109-308944cf408c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_silai_countries
+id: node.manage_silai_countries.promote
+field_name: promote
+entity_type: node
+bundle: manage_silai_countries
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

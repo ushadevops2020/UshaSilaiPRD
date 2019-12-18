@@ -1,0 +1,11 @@
+<div style="height:400px;" class="message">
+	<div id="read-message">
+		<h3><b>Subject:</b> {{ subject }}</h3>
+		</br>
+		<h4><b>Message:</b> <br><br>{{ message | raw }}</h4>
+		</br>
+		{% if filepath is not empty %}
+		<h4><b>File: </b> <a target="_blank" href={{ filepath }} download> <i class="fa fa-paperclip" aria-hidden="true"></i>  Click to download</a></h4> 
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,20 @@
+uuid: bae44ef5-fc48-4df6-9c77-a0c393ea3ef8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_teacher_age
+field_name: field_silai_teacher_age
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

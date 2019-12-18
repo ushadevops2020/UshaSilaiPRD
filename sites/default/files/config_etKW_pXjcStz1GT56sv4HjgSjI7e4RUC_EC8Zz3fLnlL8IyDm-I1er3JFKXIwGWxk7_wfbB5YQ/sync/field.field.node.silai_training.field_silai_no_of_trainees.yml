@@ -1,0 +1,23 @@
+uuid: a074876e-5139-425a-90bd-f4fd37ea9d79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_no_of_trainees
+    - node.type.silai_training
+id: node.silai_training.field_silai_no_of_trainees
+field_name: field_silai_no_of_trainees
+entity_type: node
+bundle: silai_training
+label: 'No of trainees'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

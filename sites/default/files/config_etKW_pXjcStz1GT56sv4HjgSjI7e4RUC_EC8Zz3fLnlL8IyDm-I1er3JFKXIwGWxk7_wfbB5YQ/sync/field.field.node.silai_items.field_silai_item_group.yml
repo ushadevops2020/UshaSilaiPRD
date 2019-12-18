@@ -1,0 +1,29 @@
+uuid: 8049d454-101f-4768-9933-1bd0ab119997
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_item_group
+    - node.type.silai_item_group
+    - node.type.silai_items
+id: node.silai_items.field_silai_item_group
+field_name: field_silai_item_group
+entity_type: node
+bundle: silai_items
+label: 'Item Group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_item_group: silai_item_group
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

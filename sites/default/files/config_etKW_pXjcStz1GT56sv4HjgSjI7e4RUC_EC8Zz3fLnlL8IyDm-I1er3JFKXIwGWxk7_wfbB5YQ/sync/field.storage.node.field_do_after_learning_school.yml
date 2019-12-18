@@ -1,0 +1,63 @@
+uuid: e4ff6edf-ec91-4cf0-86fa-409d7b17921b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_do_after_learning_school
+field_name: field_do_after_learning_school
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '6'
+      label: 'Become a trainer'
+    -
+      value: '9'
+      label: Business
+    -
+      value: '2'
+      label: Earning
+    -
+      value: '13'
+      label: 'Fashion Designing'
+    -
+      value: '7'
+      label: Hobby
+    -
+      value: '5'
+      label: 'Look for a advance training'
+    -
+      value: '10'
+      label: 'Open a Boutique'
+    -
+      value: '11'
+      label: 'Open a Silai School'
+    -
+      value: '1'
+      label: 'Private Job'
+    -
+      value: '4'
+      label: 'Self dependent'
+    -
+      value: '14'
+      label: 'Social work'
+    -
+      value: '12'
+      label: Study
+    -
+      value: '8'
+      label: 'Support our family'
+    -
+      value: '3'
+      label: Tailoring
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

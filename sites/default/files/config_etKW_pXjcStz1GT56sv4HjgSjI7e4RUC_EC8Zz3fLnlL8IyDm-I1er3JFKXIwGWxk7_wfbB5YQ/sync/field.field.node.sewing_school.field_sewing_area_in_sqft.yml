@@ -1,0 +1,19 @@
+uuid: 0175c401-320f-4cb4-8908-18df1a1c71b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_area_in_sqft
+    - node.type.sewing_school
+id: node.sewing_school.field_sewing_area_in_sqft
+field_name: field_sewing_area_in_sqft
+entity_type: node
+bundle: sewing_school
+label: 'Area (in sqft.)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

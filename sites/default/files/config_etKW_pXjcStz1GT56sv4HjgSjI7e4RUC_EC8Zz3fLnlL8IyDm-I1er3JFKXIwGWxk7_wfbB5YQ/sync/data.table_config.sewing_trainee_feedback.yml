@@ -1,0 +1,161 @@
+uuid: 019c55f0-ccb2-44c5-812a-80448bf85785
+langcode: en
+status: true
+dependencies: {  }
+id: sewing_trainee_feedback
+title: sewing_trainee_feedback
+table_schema:
+  -
+    name: trainee_nid
+    label: 'Trainee node id'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_communication
+    label: Communication
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_entrepreneurship
+    label: Entrepreneurship
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_creativity
+    label: Creativity
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_problem_solving
+    label: 'Problem Solving'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_confidence
+    label: Confidence
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_leadership_quality
+    label: 'Leadership Quality'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_functional_numeracy
+    label: 'Functional Numeracy'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_measurement_skills
+    label: 'Measurement Skills'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_drafting
+    label: Drafting
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_pattern_making
+    label: 'Pattern Making'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_cutting
+    label: Cutting
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_quality_of_stitching
+    label: 'Quality of Stitching'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_embroidery_skills
+    label: 'Embroidery Skills'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_willing_learn_new_things
+    label: 'Willing to learn new things'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_willingness_travel_within_district
+    label: 'Willingness to travel within district'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: r_average_rating
+    label: 'Average Rating'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

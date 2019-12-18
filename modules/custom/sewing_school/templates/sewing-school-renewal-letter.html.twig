@@ -1,0 +1,65 @@
+<script>
+function printPage() {
+  window.print();
+}
+</script>
+<button onclick="printPage()" id='print'><i class="fa fa-print" aria-hidden="true"></i> PRINT</button>
+<table width="100%" style="margin-top:130px;">
+	<tr>
+		<td align="center" colspan="3">
+			<h4 style="text-transform: uppercase;">RENEWAL LETTER FOR AFFILIATION TO SEWING SCHOOL NETWORK OF<br>usha international Ltd.</h4>
+		</td>
+	</tr>
+
+	<tr>
+		<td><h4><b>Ref: {{dataArray.schoolCode}}</b></h4></td>
+		<td align="center"><h4 style="padding: 15px 0px;"><b>School Grade: {{dataArray.grade}}</b></h4></td>
+		<td align="right"><h4><b>Date: {{dataArray.currentDate}}</b></h4></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<p>{{dataArray.schoolTitle}}<br> 
+			{{dataArray.address_1}}<br>
+			{{dataArray.address_2}}<br>
+			{{dataArray.address_3}}<br></p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<br>
+			Dear {{dataArray.proprietorName}},<br><br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<p>
+			We are pleased to renew your affiliation to Sewing School Network of Usha International Ltd. for a period of one year.
+			</p>
+			<p>
+			The renewal shall be effective from {{dataArray.renewalPrevDate}} to {{dataArray.renewalDate}}.
+			</p>
+			<p>
+			Kindly note that this renewal and its continuation is subject to your complying with the company policies as detailed in the agreement.
+			</p>
+			<p>
+			Kindly further note that this renewal is subject to sole discretion of the company without setting any precedent and is liable to be withdrawn at any time without assigning any reason thereof.
+			</p>
+			<p>
+			All other clauses of our original offer remain in effect.
+			</p>
+			<p>
+			This letter is being sent to you in duplicate. Kindly sign one copy in token of your acceptance and send back to us.
+			</p>
+			Thanking You,
+			<br><br><br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<h4 style="font-weight:bold;">
+				({{dataArray.national_sewing_head_name}})<br>
+				National Head - Sewing Schools
+			</h4>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,12 @@
+type: module
+name: 'Audit Log'
+type: module
+description: 'Provides a framework with swappable storage for logging entity audit events.'
+package: 'Audit Log'
+# core: 8.x
+
+# Information added by Drupal.org packaging script on 2018-04-10
+version: '8.x-2.0-alpha1'
+core: '8.x'
+project: 'audit_log'
+datestamp: 1523363591

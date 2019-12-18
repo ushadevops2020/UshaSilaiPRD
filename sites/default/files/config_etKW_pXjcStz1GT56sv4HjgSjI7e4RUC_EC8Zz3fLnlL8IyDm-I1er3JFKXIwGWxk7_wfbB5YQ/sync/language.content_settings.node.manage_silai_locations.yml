@@ -1,0 +1,11 @@
+uuid: 894bf912-808f-468e-87e3-6c58eaced2c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_silai_locations
+id: node.manage_silai_locations
+target_entity_type_id: node
+target_bundle: manage_silai_locations
+default_langcode: site_default
+language_alterable: false

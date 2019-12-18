@@ -1,0 +1,29 @@
+uuid: cac31b9c-04e4-4a3b-8d6d-21d878d84200
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_district
+    - node.type.silai_blocks
+    - node.type.silai_district
+id: node.silai_blocks.field_silai_district
+field_name: field_silai_district
+entity_type: node
+bundle: silai_blocks
+label: 'Assign District'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_district: silai_district
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

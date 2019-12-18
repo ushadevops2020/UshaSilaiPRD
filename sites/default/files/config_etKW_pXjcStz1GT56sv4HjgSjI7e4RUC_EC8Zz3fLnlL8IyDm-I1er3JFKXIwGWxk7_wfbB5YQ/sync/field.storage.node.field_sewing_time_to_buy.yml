@@ -1,0 +1,39 @@
+uuid: dcb8594e-56da-46b6-8e6c-0ee84fd8bac3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_time_to_buy
+field_name: field_sewing_time_to_buy
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Immediate
+    -
+      value: '2'
+      label: 'Within three months'
+    -
+      value: '3'
+      label: 'After three months'
+    -
+      value: '4'
+      label: 'After four months'
+    -
+      value: '6'
+      label: 'After six months'
+    -
+      value: '9'
+      label: 'After nine months'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

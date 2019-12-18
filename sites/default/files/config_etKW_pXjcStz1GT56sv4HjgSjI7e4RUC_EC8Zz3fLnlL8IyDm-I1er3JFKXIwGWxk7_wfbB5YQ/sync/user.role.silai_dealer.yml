@@ -1,0 +1,11 @@
+uuid: 6cf43cfb-088c-43e2-90ba-0bb2f0b87573
+langcode: en
+status: true
+dependencies: {  }
+id: silai_dealer
+label: 'Silai Dealer'
+weight: 9
+is_admin: null
+permissions:
+  - 'administer audit log entities'
+  - 'create content_workflow workflow_transition'

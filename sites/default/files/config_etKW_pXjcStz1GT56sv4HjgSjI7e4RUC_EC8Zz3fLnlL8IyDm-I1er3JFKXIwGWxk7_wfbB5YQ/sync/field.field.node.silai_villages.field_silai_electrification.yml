@@ -1,0 +1,21 @@
+uuid: 14b42a8b-d8cc-45ba-8a11-5105e448c673
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_electrification
+    - node.type.silai_villages
+  module:
+    - options
+id: node.silai_villages.field_silai_electrification
+field_name: field_silai_electrification
+entity_type: node
+bundle: silai_villages
+label: Electrification
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

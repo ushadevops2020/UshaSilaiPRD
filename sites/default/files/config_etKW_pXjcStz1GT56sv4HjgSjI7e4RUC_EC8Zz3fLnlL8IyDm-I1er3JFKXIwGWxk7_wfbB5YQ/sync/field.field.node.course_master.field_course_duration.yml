@@ -1,0 +1,29 @@
+uuid: 8c8eee68-b4ab-441c-a933-de2bf81b8db2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_duration
+    - node.type.course_duration_master
+    - node.type.course_master
+id: node.course_master.field_course_duration
+field_name: field_course_duration
+entity_type: node
+bundle: course_master
+label: 'Course Duration'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      course_duration_master: course_duration_master
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

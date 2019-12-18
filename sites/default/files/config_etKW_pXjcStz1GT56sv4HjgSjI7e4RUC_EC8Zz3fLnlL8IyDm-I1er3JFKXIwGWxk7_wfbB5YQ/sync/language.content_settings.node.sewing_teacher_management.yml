@@ -1,0 +1,11 @@
+uuid: 6fbbe812-1e44-4f09-8b55-291fbcf79d7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management
+target_entity_type_id: node
+target_bundle: sewing_teacher_management
+default_langcode: site_default
+language_alterable: false

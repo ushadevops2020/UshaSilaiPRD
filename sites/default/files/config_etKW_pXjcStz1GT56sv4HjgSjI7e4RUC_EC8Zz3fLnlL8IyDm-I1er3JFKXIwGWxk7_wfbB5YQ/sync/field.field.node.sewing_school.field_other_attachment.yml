@@ -1,0 +1,27 @@
+uuid: 3efb3a5e-3df0-4744-8bd3-78a97091f8c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_other_attachment
+    - node.type.sewing_school
+  module:
+    - file
+id: node.sewing_school.field_other_attachment
+field_name: field_other_attachment
+entity_type: node
+bundle: sewing_school
+label: 'Other Attachment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png jpg jpeg pdf doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

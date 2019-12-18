@@ -1,0 +1,142 @@
+uuid: 38b75b0f-0e96-45d0-9987-8ea6426e4256
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_villages.field_domain_access
+    - field.field.node.silai_villages.field_domain_all_affiliates
+    - field.field.node.silai_villages.field_nearest_place_distance
+    - field.field.node.silai_villages.field_silai_block
+    - field.field.node.silai_villages.field_silai_district
+    - field.field.node.silai_villages.field_silai_electrification
+    - field.field.node.silai_villages.field_silai_near_by_place
+    - field.field.node.silai_villages.field_silai_no_of_households
+    - field.field.node.silai_villages.field_silai_pin_code
+    - field.field.node.silai_villages.field_silai_post_office
+    - field.field.node.silai_villages.field_silai_town
+    - field.field.node.silai_villages.field_silai_vilage_poplation
+    - field.field.node.silai_villages.field_silai_vill_other_details
+    - field.field.node.silai_villages.field_silai_village_code
+    - node.type.silai_villages
+  module:
+    - options
+    - user
+id: node.silai_villages.default
+targetEntityType: node
+bundle: silai_villages
+mode: default
+content:
+  field_nearest_place_distance:
+    weight: 113
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_silai_block:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_district:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_electrification:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_silai_near_by_place:
+    weight: 112
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_no_of_households:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_pin_code:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_post_office:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_town:
+    weight: 107
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_vilage_poplation:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_vill_other_details:
+    weight: 111
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_silai_village_code:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

@@ -1,0 +1,336 @@
+{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' or role == 'pc' or role == 'ngo_admin' %}
+<input type="hidden" id="chart_user_role" value="{{ role }}">
+<div class="row" id="dashboard_section">
+	<div class="col-lg-9 col-sm-12">
+		<!-- School Chart Section Start-->
+		<div class="panel no-schools" id="school_chart_main"> 
+			<div class="panel-body">
+				<div id="school_chart_main1"> 
+					<div class="floatl">
+						<div class="school-count"><!--{{ SchoolCount }}--></div>
+						<div class="school-head">Usha Silai Schools</div>
+					</div>	
+					<div class="filter-location floatr form-group">
+						{% if role == 'ngo_admin' %}
+							<!--select name="school_district_filter" id="school_district_filter" class="form-control">
+								<option value=''>- Select a District -</option>
+							</select-->
+						{% endif %}
+						{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'pc' or role == 'silai_ho_user' or role == 'ngo_admin' %}
+							<select name="school_location_filter" id="school_location_filter" class="form-control">
+								<option value=''>- Select a Location -</option>
+							</select>
+						{% endif %}
+						<select id="school_time_filter" class="form-control">
+							<!--option value=''>- Select a Year -</option>
+							<option value="2019">2019</option>
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2016">2015</option>
+							<option value="2016">2014</option-->
+						</select> 
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="school_chart"></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- School Chart Section End-->
+		<!-- Agreement Chart Section Start-->
+		<div class="panel agreement-panel"  id="agreement_chart_main" style="display:none;">
+			<div class="panel-body">
+				<div id="agreement_chart_main1">
+					<div class="floatl">
+						<div class="agreement-count"><!--{{ pendingAgreementamount }}--></div>
+						<div class="agreement-head">Agreement Amount: Due vs Paid</div>
+					</div> 
+					<div class="filter-location floatr form-group">
+						<select id="agreement_location_filter" class="form-control">
+							<option value=''>- Select a value -</option>
+						</select>
+					
+						<select id="agreement_time_filter" class="form-control">
+							<option value="">- Select a value -</option>
+						</select>
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="agreement_chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Agreement Chart Section End-->
+		<!-- Learner Chart Section Start-->
+		<div class="panel" id="learner_chart_main">
+			<div class="panel-body loaction-panel">
+				<div id="learner_chart_main1"> 
+					<div class="floatl">
+						<div class="learner-count"><!--{{ noOfActiveLearners }}--></div>
+						<div class="learner-head">Learners: Total Enrolled vs Course Completed</div>
+					</div> 
+					<div class="filter-location floatr form-group">
+						<select id="learner_location_filter" class="form-control">
+							<option value="">- Select a value -</option>
+						</select>
+					
+						<select id="learner_time_filter" class="form-control">
+							<!--option value="">- Select a value -</option>
+							<option value="2019">2019</option>
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2016">2015</option>
+							<option value="2016">2014</option-->
+						</select>
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="learner_chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Learner Chart Section End-->
+		<!-- MIS Chart Section Start-->
+		<div class="panel" id="mis_chart_main" style="display:none;">
+			<div class="panel-body">
+				<div id="mis_chart_main1">
+					<div class="floatl">
+						<div class="mis-count"><!--{{ totalPendingMIS }}--></div>
+						<div class="mis-head">MIS: Pending vs Submitted</div>
+					</div>
+					<div class="filter-location floatr form-group">
+						<select id="mis_type_filter" class="form-control">
+							<!--option value="">- Select a value -</option-->
+							{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' %}
+								<option value="weekly">Weekly</option>
+							{% endif %}
+							<option value="monthly">Monthly</option>
+							<option value="quarterly">Quarterly</option>
+						</select>
+						<select id="mis_time_filter" class="form-control">
+							<option value="">- Select a value -</option>
+						</select>
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="mis_chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		<!-- MIS Chart Section End-->
+		<!-- School Click Section Start -->
+		<div class="col-lg-6 col-sm-6 p-mob-0">
+			<div class="panel schools">
+				<div class="panel-body p-0">
+					<div id="no_of_school" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/school-count-active.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/school-count.png" class="active-img">
+						</div>
+						<div class="media-body"><h1 id="schoolChartDataCount"><!--{{ SchoolCount }}--></h1>Usha Silai Schools</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- School Click Section Start -->
+		<!-- Learner Click Section Start -->
+		<div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel learners-panel">
+				<div class="panel-body p-0">
+					<div id="no_of_active_lerner" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/learner.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/learner-active.png" class="active-img">
+						</div>
+						<div class="media-body"><h1 id="learnerChartDataCount"><!-- {{ noOfActiveLearners }} --></h1>Silai School Learners</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Learner Click Section End -->
+		<!-- Agreement Click Section Start -->
+		{% if role == 'silai_ho_admin' %}
+		<div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel agreement">
+				<div class="panel-body p-0">
+					<div id="pending_agreement_amount" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/agreement.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/agreement-active.png" class="active-img">
+						</div>
+						<div class="media-body"><h1>{{ pendingAgreementamount }}</h1>Agreement Amount Status</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<!-- Agreement Click Section End -->
+		
+		<!-- MIS Click Section Start -->
+		{% if role == 'silai_ho_admin' %}
+		{# <div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel mis-pending">
+				<div class="panel-body p-0">
+					<div id="no_of_pending_mis" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/warning-active.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/warning.png" class="active-img">
+						</div>
+						<div class="media-body"><h1>{{ totalPendingMIS }}</h1>No. of MIS Pending</div>
+					</div>
+				</div>
+			</div>
+		</div> #}
+		{% endif %}
+		<!-- MIS Click Section End -->
+		<!-- Village Coverd Section Start -->
+		<div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel total-village">
+				<div class="panel-body p-0">
+					<div id="no_of_village" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/Village.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/Village.png" class="active-img">
+						</div>
+						<div class="media-body"><h1>{{ totalVillage }}</h1>Villages Covered</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Village Coverd Section End -->
+		<!-- Associated NGO Partners Section Start -->
+		<div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel total-ngo-partners">
+				<div class="panel-body p-0">
+					<div id="no_of_ngo_partners" class="media">
+						<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/partner-logo.png" class="inactive-img">
+							<img src="/themes/contrib/silai_lte_theme/images/partner-logo.png" class="active-img">
+						</div>
+						<div class="media-body"><h1>{{ totalNgoPartners }}</h1>Associated NGO Partners</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Associated NGO Partners Section End -->
+		
+		</div>
+		<div class="row">
+			
+		<!-- Total Silai Machine Section Start -->
+		{% if  role != 'ngo_admin' %}
+		<div class="col-lg-6 col-sm-6  p-mob-0">
+			<div class="panel">
+				<div class="panel-body p-0">
+					<div id="machine_section">
+						<div class="col-lg-12 machine-filter">
+							<div class="filter-location form-group">
+								<select id="machine_location_filter" class="form-control">
+									<option value="">Location</option>
+								</select>
+								<select id="machine_time_filter" class="form-control">
+									<!--option value="">- Till Now -</option-->
+									<!--option value="2018-2019">FY 2018-2019</option>
+									<option value="2017-2018">FY 2017-2018</option>
+									<option value="2016-2018">FY 2016-2018</option-->
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="media">
+								<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/machine.png"></div>
+								<div class="media-body">
+									<h1><div id="machine_sold"></div></h1> Total Machines Sold
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<!-- Total Silai Machine Section End -->
+		<!-- Inventory Section Start -->
+		{% if  role != 'ngo_admin' %}
+		<div class="col-lg-6 col-sm-6 p-mob-0">
+			<div class="panel inventory-section">
+				<div class="panel-body p-0">
+					<div id="inventory_section">
+						<div class="col-lg-12 inventory_section-filter">
+							<div class="filter-location form-group">
+								<select id="inventory_location_filter" class="form-control">
+									<option value="">Location</option>
+								</select>
+								<select id="invontery_user_role_filter" class="form-control">
+									<!--option value="">- Select a Role -</option-->
+									{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' %}
+										<option value="pc">PC</option>
+									{% endif %}
+									{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' or role == 'pc' %}
+										<option value="ngo_admin">NGO</option>
+									{% endif %}
+									{% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' or role == 'pc' or role == 'ngo_admin' %}
+										<option value="silai_school_admin">School</option>
+									{% endif %}
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="media">
+								<div class="media-left"><img src="/themes/contrib/silai_lte_theme/images/storage.png"></div>
+								<div class="media-body">
+									<h1><div id="pending_inventory"></div></h1>Inventory Pending
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<!-- Inventory Section end-->
+		</div>
+	</div>
+
+
+
+	<div class="col-lg-3 col-sm-12">
+		
+		<div class="panel gallery">
+			<div class="panel-heading">Gallery</div>
+			<div class="panel-body p-t-0">
+				{{ viewSliderGalleryRender }}
+			</div>
+		</div>
+		<div class="panel notice-board">
+			<div class="panel-heading">Notice Board</div>
+			<div class="panel-body p-t-0">
+				{% if role == 'ngo_admin' or role == 'pc' %}
+					{{ viewReceiveMsgRender }}
+				{% endif %}
+				{% if role == 'silai_ho_admin' or role == 'silai_ho_user' or role == 'administrator' %}
+					{{ viewSendMsgRender }}
+				{% endif %}
+				<!--ul>
+					<li>
+						<h4>Event Information</h4>
+						<p>Lorem ipsum dolor lorem ipsum dolor sit  dolor Lorem ipsum sit  dolor ipsum dolor lorem.</p>
+						<p class="date-news">26 Jan 2019</p>
+					</li>
+					<li>
+						<h4>Event Information</h4>
+						<p>Lorem ipsum dolor lorem ipsum dolor sit  dolor Lorem ipsum sit  dolor ipsum dolor lorem.</p>
+						<p class="date-news">26 Jan 2019</p>
+					</li>
+				</ul-->
+			</div>
+		</div>
+	</div>
+</div>
+{% else %}
+	<script type="text/javascript">
+		window.location = "/";
+	</script>
+{% endif %}

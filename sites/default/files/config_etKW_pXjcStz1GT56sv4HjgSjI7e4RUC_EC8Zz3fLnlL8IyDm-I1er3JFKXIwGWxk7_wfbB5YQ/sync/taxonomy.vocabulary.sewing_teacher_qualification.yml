@@ -1,0 +1,9 @@
+uuid: 7fe1d402-cb18-4edb-8de1-4af350b3833d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Sewing Teacher Qualification'
+vid: sewing_teacher_qualification
+description: 'Allows to select the qualification of the teacher from the list.'
+hierarchy: 0
+weight: 0

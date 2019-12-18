@@ -1,0 +1,11 @@
+uuid: 245941b4-2fc1-4b5a-8caf-30e5a1146431
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_town
+id: node.silai_town
+target_entity_type_id: node
+target_bundle: silai_town
+default_langcode: site_default
+language_alterable: false

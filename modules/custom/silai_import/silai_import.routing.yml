@@ -1,0 +1,71 @@
+silai_import.silai_districts_bulk_import_form:
+ path: '/districts_bulk_import'
+ defaults:
+   _title: 'District Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::districtsBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+
+silai_import.silai_blocks_bulk_import_form:
+ path: '/blocks_bulk_import'
+ defaults:
+   _title: 'Blocks Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::blocksBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+
+silai_import.silai_village_bulk_import_form:
+ path: '/village_bulk_import'
+ defaults:
+   _title: 'Village Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::villageBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+
+silai_import.silai_ngo_bulk_import_form:
+ path: '/ngo_bulk_import' 
+ defaults:
+   _title: 'NGO Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::ngoBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+
+silai_import.silai_nfa_bulk_import_form:
+ path: '/nfa_bulk_import' 
+ defaults:
+   _title: 'NFA Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::nfaBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+
+silai_import.silai_agreement_bulk_import_form:
+ path: '/agreement_bulk_import' 
+ defaults:
+   _title: 'Agreement Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::agreementBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin' 
+   
+silai_import.silai_school_bulk_import_form:
+ path: '/school_bulk_import' 
+ defaults:
+   _title: 'School Bulk Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::schoolBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin'
+
+silai_import.silai_school_bulk_update_form:
+ path: '/school_bulk_update' 
+ defaults:
+   _title: 'School Bulk Update'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::schoolBulkUpdateForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin'  
+
+silai_import.silai_school_survey_questionnaire_bulk_import_form:
+ path: '/school_survey_questionnaire_bulk_import' 
+ defaults:
+   _title: 'Bulk School Survey Questionnaire Import'
+   _controller: '\Drupal\silai_import\Controller\SilaiImportController::schoolSurveyBulkImportForm'
+ requirements:
+   _role: 'administrator+silai_ho_admin'     

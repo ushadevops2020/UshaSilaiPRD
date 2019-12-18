@@ -1,0 +1,45 @@
+uuid: 56c54db2-9c37-4782-9b87-f2f813cc4cf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_towns.field_business_state
+    - field.field.node.manage_towns.field_country
+    - field.field.node.manage_towns.field_district
+    - field.field.node.manage_towns.field_domain_access
+    - field.field.node.manage_towns.field_domain_all_affiliates
+    - field.field.node.manage_towns.field_location
+    - field.field.node.manage_towns.field_town_code
+    - node.type.manage_towns
+  module:
+    - user
+id: node.manage_towns.teaser
+targetEntityType: node
+bundle: manage_towns
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_business_state: true
+  field_country: true
+  field_district: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_location: true
+  field_town_code: true
+  langcode: true

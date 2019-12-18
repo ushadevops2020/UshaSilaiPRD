@@ -1,0 +1,19 @@
+uuid: 4a0624b7-dc27-47d0-bc38-5a8927439b86
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_description
+field_name: field_silai_description
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

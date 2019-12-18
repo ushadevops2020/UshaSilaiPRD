@@ -1,0 +1,2883 @@
+#silai-school #logo img{
+  /*max-height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);*/
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+}
+
+#silai-school #logo .logo-lg, #silai-school #logo .logo-mini{
+  position:relative;
+  height:50px;
+}
+
+#silai-school .login-box .logo-lg > img {
+  max-width: 100%;
+}
+
+
+body{background: #e7ebee;}
+body, html {
+    height: 100%;
+    margin: 0;}
+.m-t-0{margin-top:0px!important; }
+.m-b-0{margin-bottom:0px!important; }
+.m-0{margin:0px!important; }
+.m-t-15{margin-top:15px!important; }
+.p-0{padding: 0px!important;}
+.p-l-0{padding-left: 0px!important;}
+.p-r-0{padding-right: 0px!important;}
+.p-t-0{padding-top:0px!important;}
+#silai-school input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d3cfc8;
+    position: relative;
+    margin-top:0px;
+    outline: none;
+}
+#silai-school .login-form .checkbox span {
+    line-height: 24px;
+    padding-left: 15px;
+}
+#silai-school input[type="checkbox"]:checked:focus{
+    border-left: 1px solid #d3cfc8!important;outline: none;
+}
+#silai-school input[type="checkbox"]:focus {
+    border-left: 1px solid #d3cfc8 !important;outline: none;
+}
+#silai-school input[type="checkbox"]:checked::after {
+    content: "\f00c" ;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px \0;
+    color: #e31f24;
+    color: #e31f24 \0;
+}
+#silai-school .header {
+    margin-bottom: 0px;
+    min-height: 70px;
+}
+#silai-school .header .navbar-brand {
+    float: left;
+    height: 70px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+#silai-school .header .navbar-nav li {
+    border: 1px solid #d7dadd;
+    border-bottom: none;
+    border-right: none;
+    border-top: 0px;
+}
+#silai-school .header a.navbar-brand {
+    width: 20rem;
+    text-align: center;
+    border-right: 1px solid #e6e4e4;
+}
+#silai-school .header .navbar-nav li a {
+    height: 70px;line-height: 40px;    padding: 15px 30px;
+}
+#silai-school .header .navbar-right li a{line-height: inherit;}
+
+#silai-school .header .navbar-right li a img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+#silai-school .header .navbar-right li span{float: right;}
+#silai-school .header a.navbar-brand {
+    width: 25rem;
+    text-align: center;
+}
+#silai-school li.text-right.logged-in-user{position: relative;}
+#silai-school li.text-right.logged-in-user img {
+    /* position: absolute; */
+    /* right: 10px; */
+    /* top: 22%; */
+    /* width: 40px; */
+    /* height: 40px; */
+    /* display: block; */
+    float: right;
+    width: 40px;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+#silai-school li.text-right.logged-in-user a {
+    padding-right: 10px;
+}
+#silai-school .Search img {
+    position: absolute;
+    right: 30px;
+    top: 30%;
+}
+#silai-school .Search .form-control {
+    height: 54px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    border: none;
+}
+#silai-school .Search .form-group {
+    width: 100%;
+    position: relative;
+}
+
+
+#silai-school .Search .form-group input {
+    width: 100%;
+    display: inline-block;
+    background: #e7ebee;
+    border-radius: 25px;
+}
+#silai-school .Search i {color: #828a9b;}
+#silai-school .sidemenu {
+    width: 25rem;
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: calc(100vh - 72px);
+    border-radius: 0px;
+    overflow: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    z-index: 111;
+}
+#silai-school .sidemenu .container-fluid {
+    padding: 0px;
+    margin: 0;
+}
+#silai-school .sidemenu ul.nav.navbar-nav {
+    width: 100%;
+}
+#silai-school .sidemenu ul.navbar-nav li {
+    display: block;
+    float: none;
+    color: #6a707e;
+}
+#silai-school .sidemenu ul.navbar-nav li.active a {
+    color: #de1f24;
+    font-weight: 500;
+    background-color: #e7ebee;
+    border-left: 8px solid #de1f24;
+}
+#silai-school .sidemenu ul.navbar-nav li.active a:hover{color: #de1f24}
+#silai-school .sidemenu ul.navbar-nav li a:hover{color: #de1f24}
+#silai-school .sidemenu ul.navbar-nav li a {
+    padding-left: 24px;
+    font-size: 15px;
+    line-height: 35px;
+}
+#silai-school .navbar-default .navbar-nav>li>a {
+    color: #6a707e;
+}
+
+
+#silai-school .wrapper {
+    margin-left: 25rem;
+    margin-top: 72px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#silai-school ul.date-wise-data {
+    padding: 0;
+    list-style: none;
+}
+
+#silai-school .col-sm-2half{width: 20%;}
+#silai-school .dashboard-numbers .panel{background:#0072c6b0;color: #fff}
+#silai-school .dashboard-numbers .panel .panel-heading {
+    font-size: 40px;
+    padding: 10px 15px 0px;
+}
+#silai-school .dashboard-numbers .panel .panel-body {
+    font-size: 20px;
+    padding: 0px 15px 10px 15px;
+}
+#silai-school .welcome-row {
+    background: #fff;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    padding: 10px 0px;
+    margin-bottom: 45px;
+    background-repeat: no-repeat;
+    margin-left: 0;
+    margin-right: 0;
+}
+#silai-school .welcome-row h2 {
+    color: #6a707e;
+}
+#silai-school .welcome-row h2 strong{color: }
+#silai-school .welcome-row h5{color: #6a707e;}
+#silai-school form.navbar-form.navbar-left.Search {
+    width: 40%;
+}
+#silai-school li.notification span {
+    background: #de1f23;
+    width: 25px;
+    border-radius: 50%;
+    height: 25px;
+    text-align: center;
+    line-height: 27px;
+    position: absolute;
+    left: 44px;
+    top: 11px;
+    color: #fff;
+}
+#silai-school li.notification {
+    position: relative;
+}
+#silai-school li.text-right.logged-in-user {
+    position: relative;
+}
+#silai-school li.logged-in-user a {
+    display: block;
+    float: left;
+}
+#silai-school .header .navbar-brand img {
+    margin: 0 auto;
+}
+#silai-school li.notification i {
+    margin-top: 7px;
+}
+#silai-school li.logged-in-user a i {
+    margin-top: 14px;
+}
+#silai-school .navbar-header{padding-left: 15px;}
+#silai-school .panel.tab-container-data {
+    height: 350px;
+    margin-bottom: 45px;
+}
+#silai-school .panel.total-revenue {
+    border-top: 8px solid #4bb266;
+    position: relative;
+    border-radius: 0px;
+}
+#silai-school .panel.active-schools {
+    border-top: 8px solid #ffa726;
+    position: relative;
+    border-radius: 0px;
+}
+#silai-school .panel.number-student {
+    border-top: 8px solid #42a5f5;
+    position: relative;
+    border-radius: 0px;
+}
+#silai-school .panel.notice-board {
+    border-top: 8px solid #42a5f5;
+    position: relative;
+    border-radius: 0px;
+	min-height: 448px;			   
+}
+
+#silai-school .panel.machine-sold {
+    border-top: 8px solid #9575cd;
+    position: relative;
+    border-radius: 0px;
+}
+#silai-school .panel.gallery {
+    border-top: 8px solid #f06292;
+    position: relative;
+    border-radius: 0px;
+    min-height: 385px;
+    height: 385px;
+    /* margin-top: 30px; */
+}
+#silai-school .gallery h1, #silai-school .notice-period h1 {
+    margin: 0;
+}
+
+#silai-school .icon-cont {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    height: 80px;
+    line-height: 66px;
+    position: absolute;
+    right: -15px;
+    top: -30px;
+    box-shadow: 1px 2px 4px 0px #0000003b;
+}
+#silai-school .col-sm-5 {
+    width: 44.666667%;
+}
+#silai-school .custom-tabs a {
+    text-decoration: none;
+    color: #3d3d3d;
+}
+#silai-school .custom-tabs .panel {
+    margin-bottom: 50px;
+    
+}
+#silai-school .panel.tab-container-data .tab-pane {
+    height: 350px;
+    overflow: auto;
+    padding: 10px;
+}
+#silai-school div#revenue.active {
+    border-color: #4bb266;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+#silai-school div#activeSchools.active{
+    border-color: #ffa726;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+#silai-school div#numberStudent.active{
+    border-color: #42a5f5;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+#silai-school div#machineSold.active{
+    border-color: #9575cd;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+#silai-school .panel.gallery p {
+    padding: 0 15px;
+}
+#silai-school .custom-tabs li{list-style: none}
+#silai-school .count, #silai-school .panel-title {
+    font-size: 22px;
+}
+#silai-school li.active .total-revenue a, #silai-school li.active .active-schools a, #silai-school li.active .number-student a, #silai-school li.active .machine-sold a {
+    color: #fff;
+}
+#silai-school li.active .total-revenue {
+    background: #4bb266;
+}
+#silai-school li.active .active-schools {
+    background: #ffa726;
+}
+#silai-school li.active .number-student {
+    background: #42a5f5;
+}
+#silai-school li.active .machine-sold {
+    background: #9575cd;
+}
+
+
+#silai-school a#menu-toggle {
+    margin: 15px 0px;
+    color: dimgrey;
+    font-size: 16px;
+}
+#silai-school.path-frontpage .panel .panel-heading img {
+    margin: 0 auto;
+    width: 320px;
+}
+#silai-school.path-frontpage {
+    background: url(../images/login-bg.jpg);
+    height: 100%;
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#silai-school.path-frontpage .panel {
+    position: absolute;
+    right: 5vh;
+    top: 13vh;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    background: transparent;
+    left: 0px;
+}
+#silai-school.path-frontpage .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+#silai-school.path-frontpage .panel .panel-body h1 {
+    margin: 0 auto;
+    width: 250px;
+    position: absolute;
+    background: #fff;
+    border: 1px dashed #7f7f7f;
+    left: 0;
+    right: 0;
+    top: -30px;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Marker Felt';
+    font-weight: 100;
+    font-style: normal;
+    color: #000;
+}
+#silai-school.path-frontpage input[type=checkbox]{margin-top: 0px;}
+@font-face {
+    font-family: 'Marker Felt';
+    src: url('../fonts/MarkerFeltThin.eot');
+    src: url('../fonts/MarkerFeltThin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/MarkerFeltThin.woff2') format('woff2'),
+        url('../fonts/MarkerFeltThin.woff') format('woff'),
+        url('../fonts/MarkerFeltThin.ttf') format('truetype'),
+        url('../fonts/MarkerFeltThin.svg#MarkerFeltThin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+#silai-school .login-form {
+    width: 80%;
+    margin: 0 auto;
+}
+#silai-school.path-frontpage .panel .panel-body div.form-group:first-child .form-control {
+    border-bottom: none;
+}
+#silai-school.path-frontpage .panel .panel-body .form-control {
+    border-color: #d3cfc8;
+    border-radius: 0px;
+    height: 64px;
+   
+    margin: 0px auto;
+        padding-left: 70px;
+}
+#silai-school.path-frontpage label.option[for="edit-persistent-login"] {
+    display: inline !important;
+    margin: 0px 10px;
+}
+#silai-school.path-frontpage input[id="edit-name"] {
+    background: url(../images/icon-2.png);
+    background-repeat: no-repeat;
+    background-position: 22px 14px;
+}
+#silai-school.path-frontpage input[type=password] {
+    background: url(../images/icon-3.png);
+    background-repeat: no-repeat;
+    background-position: 22px 14px;
+}
+#silai-school.path-frontpage input[type="text"]:active, .path-frontpage input[type="text"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 8px solid #e31f24 !important;
+}
+#silai-school.path-frontpage a{color: #0071d0;}
+#silai-school.path-frontpage input[type="password"]:active, .path-frontpage input[type="password"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 8px solid #e31f24 !important;
+}
+#silai-school img.scissors {
+    position: absolute;
+    left: -14px;
+    z-index: 1;
+}
+#silai-school.path-frontpage .form-actions{
+    position: absolute;
+    margin: 0px auto;
+    left: 0px;
+    right: 0px;
+    bottom: -22px;
+    text-align: center;
+}
+#silai-school.path-frontpage .form-actions #edit-submit {
+    background: #000302!important;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 25px;
+    width: 250px;
+    border-color: #000302;
+    outline: none;
+}
+#silai-school .btn-default.focus, #silai-school .btn-default:focus{outline: none;}
+#silai-school.path-frontpage form#user-login-form .description, #silai-school.path-frontpage form#user-login-form label {
+    display: none;
+}
+#silai-school.path-frontpage form#user-login-form .form-type-password {
+    margin-top: 0px;margin-bottom: 0px;
+}
+#silai-school.path-frontpage form#user-login-form .form-item-name {
+    margin-bottom: 0px;
+}
+#silai-school.path-frontpage .nav-tabs-custom {
+    box-shadow: none;
+
+}
+#silai-school.path-frontpage .login-page .tab-content {
+    padding: 0px;
+}
+.skin-blue .sidebar a {
+    color: #6a707e!important;
+    border-bottom: 1px solid #ebecee;
+
+}
+.skin-blue .sidebar a i{display: none;}
+.sidebar-menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+}
+.skin-blue .sidebar-menu li:hover a, .skin-blue .sidebar-menu li.active a {
+    color: #de1f23!important;
+    background: #e7ebee!important;
+    border-left: 3px solid #de1f23;
+}
+.skin-blue .sidebar-menu li.active a {
+    border-left-color: #de1f23!important;
+}
+.skin-blue .sidebar-menu li .treeview-menu.menu-open {
+    margin: 0 0px;
+    background: #ffffff!important;
+    padding: 0;
+}
+.skin-blue .sidebar-menu li.active .treeview-menu.menu-open a {
+    border-left-color: #fff !important;
+    background: #fff !important;
+    color: #6a707e!important;
+    padding-left: 40px;
+}
+aside.main-sidebar {
+    position: fixed;
+    left: 0px;
+    top: 72px;
+    bottom:0px
+}
+/* header css starts */
+#silai-school .main-header .logo{height: 70px!important;}
+#silai-school #logo img {
+    margin-top: 10px;
+}
+#silai-school.skin-blue .main-header .navbar {
+    background-color: #ffffff!important;
+}
+#silai-school.skin-blue .main-header .logo {
+    background-color: #ffffff!important;
+    border-right: 1px solid #ebecee;
+}
+#silai-school .content-wrapper {
+    min-height: 100%;
+    background-color: #e7ebee!important;
+    z-index: 800;
+    clear: both;
+    margin-top: 70px;
+}
+#silai-school.skin-blue .wrapper, #silai-school.skin-blue .main-sidebar, #silai-school.skin-blue .left-side {
+    background-color: #ffffff!important;    border-right: 1px solid #efefef;
+    /*height: calc(100vh - 72px);*/
+    overflow: auto;
+    min-height: inherit;
+    padding: 0px;
+}
+
+#silai-school .main-header {
+    position: fixed;
+    max-height: 100px;
+    z-index: 1030;
+    border-bottom: 1px solid #efefef;
+    left: 0px;
+    right: 0px;
+    padding: 0px 15px;
+}
+#silai-school.skin-blue .main-header .navbar .sidebar-toggle {
+    color: #de1f23!important;
+    font-size: 29px!important;
+}
+#silai-school.skin-blue .main-header .navbar .nav>li>a {
+    color: #6a707e!important;
+}
+body{color: #6a707e!important;}
+#silai-school .skin-blue .sidebar a {
+    color: #6a707e!important;
+    border-bottom: 1px solid #ebecee;
+
+}
+#silai-school .skin-blue .sidebar a i{display: none;}
+#silai-school .sidebar-menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+}
+#silai-school h1.page-title {
+    margin-top: 0px;padding: 10px;
+}
+#silai-school .skin-blue .sidebar-menu li:hover a, #silai-school .skin-blue .sidebar-menu li.active a {
+    color: #de1f23!important;
+    background: #e7ebee!important;
+    border-left: 3px solid #de1f23;
+}
+#silai-school table.views-table thead th {
+    background: #d5dbe2;
+}
+#silai-school table.views-table.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f6f7f8;
+}
+#silai-school table.views-table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+#silai-school a.button {
+    background: #de1f23;
+    color: #fff;
+    padding: 12px 35px;
+    font-weight: bold;
+}
+
+#silai-school .skin-blue .sidebar-menu li.active a {
+    border-left-color: #de1f23!important;
+}
+#silai-school .skin-blue .sidebar-menu li .treeview-menu.menu-open {
+    margin: 0 0px;
+    background: #ffffff!important;
+    padding: 0;
+}
+#silai-school .skin-blue .sidebar-menu li.active .treeview-menu.menu-open a {
+    border-left-color: #fff !important;
+    background: #fff !important;
+    color: #6a707e!important;
+    padding-left: 40px;
+}
+#silai-school .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #c3cddc;
+}
+/*
+#silai-school #edit-actions {
+    width: 100%;
+}*/
+#silai-school input#edit-submit {
+    padding: 9px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+#silai-school input[type="submit"] {
+    padding: 9px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+#silai-school .view-header{text-align: right;}
+
+#silai-school table thead th {
+    background: #d5dbe2;
+    color: #252b37;
+    text-transform: uppercase;
+    border: none!important;
+}
+#silai-school .table thead th a {
+    color: #252b37;
+}
+#silai-school .table {
+    border: 1px solid #c3cddc;
+    margin: 0px 0;
+    /* white-space: nowrap; */
+}
+#silai-school .table thead tr th, #silai-school .table  tbody tr th, #silai-school .table tfoot tr th, #silai-school .table thead tr td, #silai-school .table tbody tr td, #silai-school .table tfoot tr td {
+    border-bottom: 1px solid #c3cddc;border-right: none;border-left: none;vertical-align: top;
+}
+
+#silai-school section.page-title h1.page-title {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 21px;
+    
+}
+.node-silai-school-form .field--name-field-silai-is-asso-social-grop {
+    vertical-align: bottom;
+}
+.path-add-monthly-mis .form-item-feedback, .path-add-monthly-mis .form-item-remark, .path-add-monthly-mis .form-item-enquiry {width:100%!important;}
+#silai-school table.table tbody tr:nth-child(even) {
+    background: #f6f7f8;
+}
+#silai-school table.table thead th{
+    border-bottom: 1px solid #c3cddc;
+}
+#silai-school table.table td a {
+    color: #6a707e;
+}
+#silai-school .csv-feed.views-data-export-feed {
+    display: block;
+	margin-top: -18px;
+}
+#silai-school .views-header-section {
+    display: block;
+    margin: 10px 0px 20px 20px;
+    float: right;
+}
+#silai-school .views-header-section a {
+    padding: 10px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#silai-school .header-feed-icon {
+    position: relative;
+    clear: both;
+}
+#silai-school.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: #de1f23 !important;
+    color: #fff !important;
+}
+#silai-school.skin-blue .views-header-section a:hover {
+    background: #c5181c;
+    color: #ffffff;
+   
+}
+input[type="submit"]:hover {
+    background: #c5181c!important;
+    color: #ffffff;
+    border: 1px solid #c5181c;
+    border-width: 1px;
+}
+.csv-feed .feed-icon {
+    background-image: url(../images/csv.png);
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: right;
+}
+.csv-feed:nth-child(2) .feed-icon {
+    background-image: url(../images/survey-csv.png);
+    width: 172px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    float: right;
+	margin-top: -22px;
+}
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+    clear: both;
+}
+.skin-blue .sidebar-menu li .treeview-menu {
+    margin: 0px!important;
+    background: #ffffff!important;
+}
+.skin-blue .sidebar-menu li .treeview-menu li a{
+    padding-left:40px;
+}
+.sidebar-menu li ul li{background: #fff;border-left: none;color: green;}
+li.logged-in-user.stting-logout a {
+    padding: 20px 10px!important;
+}
+#silai-school.skin-blue .sidebar-menu li.active ul li a {
+    border-left: none !important;color: #6a707e!important;background: none !important;
+}
+#silai-school section.page-title.row {
+    background: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+   
+}
+.skin-blue .sidebar-menu li .treeview-menu li.active a {
+    background: #e7ebee !important;
+    border-left: none;
+    color: #6a707e!important;
+    font-weight: bold;
+}
+
+.skin-blue .sidebar-menu li .treeview-menu li a {
+    background: #fff !important;
+color: #6a707e!important;
+    border-left: none;
+}
+.sidebar-menu li.treeview a::after {
+    content: "\f0d7";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 10px;
+}
+.sidebar-menu li.treeview.active ul li a::after {
+    content: none;
+}
+.sidebar-menu li.treeview ul.treeview-menu li.treeview a::after {
+    content: "\f0d7";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 10px;
+}
+.sidebar-menu li.treeview.active ul.treeview-menu li.treeview ul.treeview-menu li a::after {
+    content: none;
+}
+.sidebar-menu li.treeview.active ul.treeview-menu li.treeview ul.treeview-menu li a {
+    font-weight: normal;padding-left: 60px;
+}
+.sidebar-menu li.treeview ul.treeview-menu li.treeview.active ul.treeview-menu li.active a {
+    background: #e7ebee !important;
+    font-weight: bold;
+}
+
+
+
+/* custom styling header ends */
+
+
+/*Listing page css starts*/
+.path-silai-countries-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-countries-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-countries-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-school-type-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-school-type-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-school-type-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-dealers-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-dealers-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+  
+}
+.path-silai-dealers-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-receive-message-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-receive-message-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-states-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-states-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-states-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-districts-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-districts-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-districts-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-towns-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-towns-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-towns-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-blocks-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-blocks-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-blocks-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-villages-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-villages-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-villages-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-locations-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-locations-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-locations-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-users-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    margin-top: 0px;
+    vertical-align: top;
+}
+.path-silai-users-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-silai-users-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+
+.path-manage-silai-trainers .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-silai-manage-school-ngo .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-ngo-users-list .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-ngo-users-list #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-school-ngo #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-school-ngo .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-manage-silai-trainers .views-exposed-form .form-item label, .path-manage-silai-ngo .views-exposed-form .form-item label, .path-silai-manage-items .views-exposed-form .form-item label, .path-manage-inventory-ngo .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-manage-silai-trainers .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-items .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-manage-inventory-ngo .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-manage-inventory-ngo .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-items .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+
+.path-manage-inventory .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-manage-inventory .views-element-container table{white-space: nowrap;}
+.path-manage-inventory .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-item-groups .views-exposed-form .form-item, .path-silai-manage-training-feedback .views-exposed-form .form-item, .path-manage-silai-ngo .views-exposed-form .form-item, .path-silai-manage-school .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-manage-silai-ngo .views-exposed-form details {
+    border: 1px solid #de1f23;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #de1f23;
+    color: #fff;
+}
+.path-manage-silai-ngo .views-exposed-form details summary{padding: 10px;}
+.path-manage-silai-ngo .views-exposed-form details a{color: #fff}
+.path-manage-silai-ngo .views-exposed-form details .details-wrapper {
+    padding: 10px;
+    background: #fff;
+}
+.path-silai-manage-item-groups .views-exposed-form #edit-actions, .path-silai-manage-school .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-manage-inventory-pc .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-manage-inventory-pc .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-silai-manage-school-pc .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-silai-manage-school-pc .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-agreements-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    vertical-align: top;
+    display: inline-block;
+}
+.path-agreements-listing .views-exposed-form details {
+    border: 1px solid #de1f23;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #de1f23;
+    color: #fff;
+}
+.path-agreements-listing .views-exposed-form details summary{padding: 10px;}
+.path-agreements-listing .views-exposed-form details summary a{color: #fff;}
+.path-agreements-listing .views-exposed-form details .details-wrapper {
+    padding: 10px;
+    background: #fff;
+}
+
+.path-agreements-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-agreements-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.silai-custom-school-survey-quetionnaire .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.silai-custom-school-survey-quetionnaire .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+#before_household_section, div#after_household_section, #children_section, #children_row>div {
+    float: left;
+    width: 100%;
+    margin-right: 15px;
+    display: block;
+    margin-top: 10px;
+    background: #f5f5f5;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.node-silai-villages-edit-form .field--name-field-silai-village-code{display:none;}
+div#before_household_section .form-item {
+    width: 30%;
+    display: inline-block;
+}
+div#after_household_section .form-item {
+    width: 30%!important;
+    display: inline-block;
+}
+div#children_section {
+    clear: both;
+}
+.add-row-btn {
+    background: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.delete-row-btn {
+    background: #808080;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 10px;
+}
+#before_household_section .form-item{width: 100%;}
+div#after_household_section .form-item{width: 100%;}
+.path-nfa-listing .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-nfa-listing .views-exposed-form .form-item input[type="date"].form-control, .path-nfa-listing .views-exposed-form .form-item input[type="time"].form-control, .path-nfa-listing .views-exposed-form .form-item input[type="datetime-local"].form-control, .path-nfa-listing .views-exposed-form .form-item input[type="month"].form-control {
+    line-height: 22px;
+}
+.path-silai-dealers-listing .views-exposed-form details a {
+    color: #fff;
+}
+
+.path-school-survey-quetionnaire  .form-item, .path-school-survey-quetionnaire #ajax-wrapper{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    vertical-align: top;
+    display: inline-block;
+}
+.path-school-survey-quetionnaire #ajax-wrapper .form-item{width: 100%;}
+.path-school-survey-quetionnaire fieldset{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-school-survey-quetionnaire fieldset .form-type-radio {
+    display: inline-block;
+    margin-right: 10px;
+    width: 43%;
+}
+.path-school-survey-quetionnaire fieldset .form-type-radio label{
+        vertical-align: top;
+    margin-left: 5px;
+}
+.path-nfa-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-ngo-agreements-listing .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-ngo-agreements-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-ngo-agreements-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-learners-listing .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-learners-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-learners-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-pc-learners-listing .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-pc-learners-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-pc-learners-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-ho-learners-listing .views-exposed-form .form-item{
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-ho-learners-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-ho-learners-listing .views-exposed-form #edit-actions{
+    display: inline-block;vertical-align: bottom;
+}
+.path-weekly-mis-list  .form-item {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-weekly-mis-list .views-exposed-form #edit-actions {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 38px;
+}
+.sample-file-download a {
+    padding: 7px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+    color: #fff!important;
+    float: right;
+}
+.path-bulk-import input#edit-import-file-upload {
+    border: none;
+    padding-left: 0px;
+}
+/*Listing page css ends*/
+
+.form-item-status-value .option {
+vertical-align: super;
+}
+.payment_btn {
+    color: #3c8dbc !important;
+}
+input[type="date"]:after {
+    content: " \f073 ";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* add countries css starts*/
+.node-silai-inventory-form .form-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-item-group-form .form-wrapper, .node-silai-item-group-edit-form .form-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;vertical-align: top;
+}
+.node-silai-inventory-form .form-wrapper label,  .node-silai-item-group-form .form-wrapper label, .node-silai-item-group-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-inventory-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-ngo-edit-form .field--name-field-partner-type, .node-ngo-edit-form .field--name-title, .node-ngo-edit-form .field--name-field-ngo-location{width: 30%;vertical-align: top;
+    display: inline-block;
+    margin-right: 15px;}
+.node-silai-inventory-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+#silai-school .node-manage-silai-countries-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+#silai-school .node-manage-silai-countries-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add countries css ends*/
+.node-silai-items-form .form-wrapper, .node-silai-training-form .form-wrapper, .node-silai-training-edit-form .form-wrapper, .node-silai-items-edit-form .form-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-items-form .field--name-field-silai-items-description {
+    width: 100%;}
+.node-silai-items-form .form-wrapper label, .node-silai-training-form .form-wrapper label, .node-silai-training-edit-form .form-wrapper label{
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-training-form .form-wrapper .label,  .node-silai-training-edit-form .form-wrapper .label {
+    color: #6a707e!important;
+    font-size: 100%!important;text-transform: uppercase;padding-left: 0px;
+}
+/* add district css starts*/
+#silai-school .node-silai-district-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+#silai-school .node-silai-district-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add district css ends */
+
+.node-silai-learners-manage-edit-form  .form-wrapper label, .node-silai-learners-manage-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-learners-manage-edit-form  .form-wrapper, .node-silai-learners-manage-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+/* add business states css starts*/
+.forward-inventory-form  .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.forward-inventory-form a.addschool-row {
+    border: 1px solid #de1f23;
+    padding: 9px 30px;
+    color: #de1f23;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.node-silai-business-states-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-business-states-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add business states css ends*/
+
+/* add  locations css starts*/
+
+.node-manage-silai-locations-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-silai-locations-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add locations css ends*/
+
+/* add  dealer css starts*/
+
+.node-silai-dealer-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-dealer-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add dealer    css ends*/
+
+/* add  blocks-listing css starts*/
+
+.node-silai-blocks-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-blocks-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add blocks-listing css ends*/
+
+/* add  town css starts*/
+
+.node-silai-town-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-town-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add town css ends*/
+
+/* add school-type-master css starts*/
+.node-silai-school-type-master-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-silai-school-type-master-form  #edit-field-school-type-description-wrapper{
+    width: 100%;float: right;margin: 0px;clear: both;
+}
+.node-silai-school-type-master-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add school-type-master css ends */
+
+
+/* add trainer css starts */
+.node-trainer-silai-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-trainer-silai-form .field--name-field-trainer-marital-status, .node-trainer-silai-form .field--name-field-trainer-gender{
+    vertical-align: top;
+}
+ .node-trainer-silai-form #edit-field-silai-basic-info-wrapper{
+    width: 100%;float: right;margin: 0px;clear: both;
+}
+.node-trainer-silai-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add trainer css ends */
+
+.path-manage-silai-trainers .views-exposed-form details {
+    border: 1px solid #de1f23;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #de1f23;
+    color: #fff;
+}
+.path-manage-silai-trainers .views-exposed-form details summary {
+    padding: 10px;
+}
+.path-manage-silai-trainers .views-exposed-form details summary a{color: #fff;}
+.path-manage-silai-trainers .details-wrapper {
+    background: #fff;
+}
+.path-silai-users-listing .views-exposed-form details {
+    border: 1px solid #de1f23;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #de1f23;
+    color: #fff;
+}
+.path-silai-users-listing .views-exposed-form details summary {
+    padding: 10px;
+}
+.path-silai-users-listing .views-exposed-form details summary a{
+    color: #fff;
+}
+.path-silai-users-listing .details-wrapper {
+    background: #fff;
+}
+
+.path-silai-dealers-listing .views-exposed-form details {
+    border: 1px solid #de1f23;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #de1f23;
+    color: #fff;
+}
+.path-silai-dealers-listing .views-exposed-form details summary {
+    padding: 10px;
+}
+.path-silai-dealers-listing .details-wrapper {
+    background: #fff;
+}
+/* add village form css starts*/
+.node-silai-villages-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.path-monthly-quarterly-mis-list .form-item{
+    width: 30%;display: inline-block;margin-right: 15px;
+}
+.path-monthly-quarterly-mis-list .views-exposed-form #edit-actions {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 38px;
+}
+.node-silai-villages-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-villages-form .field--name-field-silai-vill-other-details {
+    width: 100%;
+    margin: 0px;
+    display: block;
+    float: right;
+}
+/* add village form css ends */
+
+/* edit countries css starts*/
+
+.node-manage-silai-countries-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-silai-countries-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit countries css ends*/
+
+/* edit location css starts*/
+
+.node-manage-silai-locations-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-silai-locations-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit location css ends*/
+
+/* edit blocks-listing css starts*/
+
+.node-silai-blocks-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-blocks-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit blocks-listing css ends*/
+
+/* edit silai-school-type-master css starts*/
+.node-silai-school-type-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-silai-school-type-master-edit-form .field--name-field-school-type-description {
+    width: 100%;
+    float: right;
+    clear: both;
+    margin-right: 0px;
+}
+.node-silai-school-type-master-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit silai-school-type-master css ends*/
+
+
+/* edit trainer css starts*/
+.node-trainer-silai-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-trainer-silai-edit-form .field--name-field-silai-basic-info {
+    width: 100%;
+    float: right;
+    clear: both;
+    margin-right: 0px;
+}
+.node-trainer-silai-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-trainer-silai-edit-form div#edit-field-silai-basic-info-wrapper {
+    width: 100%;
+    display: block;
+    margin-right: 0px;
+}
+/* edit trainer css ends */
+
+
+
+/* manage states css starts*/
+
+.node-silai-business-states-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-business-states-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage states css ends*/
+
+/* manage district css starts*/
+
+.node-silai-district-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-district-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage district css ends*/
+
+
+/* manage town css starts*/
+
+.node-silai-town-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-town-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage town css ends*/
+
+
+
+/* manage village css starts*/
+
+.node-silai-villages-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-villages-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-villages-edit-form .field--name-field-silai-vill-other-details{
+    width:100%;float: right;margin: 0px;
+}
+/* manage village css ends*/
+
+/* manage dealer css starts*/
+.node-silai-dealer-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-silai-dealer-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage dealer css ends*/
+
+
+
+.path-silai-users-listing .ui-dialog .ui-dialog-titlebar {
+    font-weight: bold;
+    background: #de1f23;
+    border-style: solid;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-color: #de1f23;
+    color: #ffff;
+    padding: 15px;
+}
+.path-silai-users-listing .modal-form-user-add-form .form-item {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-silai-users-listing .ui-dialog .ui-dialog-buttonpane {
+    margin-top: 0;
+    background: #ffffff;
+    padding: 0.3em 1em;
+    border-width: 1px 0 0 0;
+    border-color: #fff;
+}
+.path-silai-users-listing .ui-dialog .ui-dialog-buttonpane button {
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.entity-meta{display: none;}
+.vertical-tabs {
+    display: none;
+}
+
+
+
+.hide-user-location{
+    display: none;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    font-weight: bold;
+    background: #de1f23!important;
+    border-style: solid!important;
+    border-radius: 0!important;
+    border-width: 0 0 1px 0!important;
+    border-color: #de1f23!important;
+    color: #ffff!important;
+    padding: 15px!important;
+}
+#wrapper_modal_forgot_password_form .form-item {
+    width: 50%;
+    margin-right: 15px;
+    display: inline-block;
+}
+#wrapper_modal_forgot_password_form .form-item label{
+    text-transform: uppercase;
+}
+
+#wrapper_modal_forgot_password_form input[type="text"]:active, #wrapper_modal_forgot_password_form input[type="text"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 1px solid #d3cfc8 !important;
+    border: 1px solid #d3cfc8 !important;
+}
+.ui-dialog .ui-dialog-buttonpane {
+    margin-top: 0;
+    background: #ffffff;
+    padding: 0.3em 1em;
+    border-width: 1px 0 0 0;
+    border-color: #fff;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons .form-actions {
+    position: inherit!important;
+}
+label.option[for="edit-persistent-login"] {
+    display: inline !important;
+    margin: 0px 10px;
+}
+a.pull-right.use-ajax.forgot_password {
+    position: absolute;
+    right: 60px;
+    bottom: 90px;
+	display: none;
+}
+.toolbar .toolbar-bar, .toolbar .toolbar-tray {
+    z-index: 811 !important;
+}
+
+.messages--error a{display: none;}
+
+fieldset > legend {
+    border-bottom: none !important;
+}
+.entity-meta{display: none;}
+
+div.counter{display:none;}
+
+.node-silai-training-form .field--name-title{display: none;}
+.node-silai-training-edit-form .field--name-title{display: none !important;}
+.node-silai-training-form .field--name-field-silai-no-of-trainees{display: none;}
+.node-silai-training-edit-form .field--name-field-silai-no-of-trainees{display: none !important;}
+.node-silai-trainee-form .field--name-field-silai-trainer-id{display: none;}
+.node-silai-trainee-edit-form .field--name-field-silai-trainer-id{display: none !important;}
+.ui-dialog {
+    width: 70% !important;
+    left: 0px !important;
+    right: 0px;
+    margin: 0px auto;
+    top: 40% !important;
+    transform: translate(0,-50%);
+}
+.node-ngo-form .form-item, .field--name-field-address-1, .field--name-field-address-2, .field--name-field-silai-pin-code, .field--name-field-pan-no, .field--name-field-account-no, .field--name-field-bank-name, .field--name-field-ifsc-code, .field--name-field-branch-address-1, .field--name-field-branch-address-2, .field--name-field-gstn-registered, .field--name-field-gstn-no{width: 30%;display: inline-block;margin-right: 15px;}
+.node-ngo-form .field--name-field-partner-type, .node-ngo-form .field--name-title, .node-ngo-form .field--name-field-ngo-location{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-ngo-form .field--name-field-partner-type .form-item, .node-ngo-form .field--name-title .form-item, .node-ngo-form .field--name-field-ngo-location .form-item, .field--name-field-address-1 .form-item, .field--name-field-address-2 .form-item, .field--name-field-silai-pin-code .form-item, .field--name-field-pan-no .form-item, .field--name-field-account-no .form-item, .field--name-field-bank-name .form-item, .field--name-field-ifsc-code .form-item, .field--name-field-branch-address-1 .form-item, .field--name-field-branch-address-2 .form-item, .field--name-field-gstn-registered .form-item, .field--name-field-gstn-no .form-item{width: 100%;}
+.field--name-body, .field--name-body .form-item {
+    width: 100%;
+}
+.node-silai-school-form .form-wrapper {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-agreements-listing-pc .form-item {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+  vertical-align: top;
+    
+}
+.path-nfa-listing-pc .form-item {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+  
+    
+}
+.silai-learner-bulk-import {
+    margin: 10px 0px;
+}
+.path-agreements-listing-pc #edit-actions {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 38px;
+}
+.path-agreements-listing-pc  #edit-actions{    display: block;
+    vertical-align: bottom;
+    margin-top: 38px;}
+.path-agreements-listing-pc  #edit-actions{    display: block;
+    vertical-align: bottom;
+    margin-top: 38px;}
+.field--name-field-silai-is-asso-social-grop .form-type-radio {
+    display: inline-block;
+    width: inherit !important;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+.node-silai-school-form .field--name-field-school-code{display: none;}
+.form-item-field-first-name, .form-item-field-last-name, .form-item-field-user-name, .form-item-field-user-password, .form-item-field-user-email, .form-item-field-user-contact-no{
+        width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.node-silai-school-edit-form .form-wrapper {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;vertical-align: top;
+}
+.node-silai-school-edit-form div#edit-actions {
+    width: 100%;
+}
+
+.field--name-field-silai-is-asso-social-grop .form-item{width: 100%;margin-top: 0px;}
+.node-silai-school-edit-form .form-item-field-have-received-certificate{margin-top: 0px;}
+.field--name-field-silai-is-govt-benefited .form-item{width: 100%;margin-top: 0px}
+.field--name-field-silai-school-address {
+    width: 100% !important;
+    float: right;
+    margin: 0px !important;
+}
+.field--name-field-date-of-basic-training .label, .field--name-field-date-open-of-silai-school .label {
+    display: inline;
+    font-size: inherit;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #6a707e;
+    text-transform: uppercase;
+    word-break: break-word;
+    white-space: normal;
+}
+
+span.fieldset-legend {
+    color: #6a707e;
+    text-transform: uppercase;
+    font-size: 100%;
+}
+
+
+body#silai-school {
+    background-color: #e7ebee!important;
+}
+.node-manage-agreements-form .label {
+    font-size: 100%;
+    color: #333333;
+    padding-left: 0px;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+}
+.label {
+    font-size: 100%!important;
+    color: #6a707e!important;
+    padding-left: 0px!important;
+    max-width: 100%!important;
+    margin-bottom: 5px!important;
+    font-weight: 700!important;
+    display: block!important;
+    text-align: left!important;
+    font-family: inherit;
+}
+.node-manage-agreements-edit-form .label {
+    font-size: 100%;
+    color: #333333;
+    padding-left: 0px;
+}
+.node-manage-agreements-form .form-wrapper, .node-nfa-form .form-wrapper, .node-manage-agreements-edit-form .form-wrapper, .node-nfa-edit-form .form-wrapper {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+}
+input[type="file"] {
+    height: inherit;
+}
+.node-manage-agreements-form .form-wrapper{margin-top: 15px;}
+input[type="date"].form-control, input[type="time"].form-control, input[type="datetime-local"].form-control, input[type="month"].form-control {
+    line-height: inherit!important;
+}
+.node-manage-agreements-form .field--name-field-agreement-id{display:none;}
+.node-manage-agreements-edit-form .field--name-field-agreement-id{display:none;}
+.node-silai-blocks-form .field--name-field-silai-block-code{display:none;}
+.node-silai-blocks-edit-form .field--name-field-silai-block-code{display:none;}
+.node-manage-agreements-form .form-wrapper.field--name-field-agreement-remarks, .node-manage-agreements-edit-form .form-wrapper.field--name-field-agreement-remarks {
+    width: 100%;
+}
+.node-manage-agreements-form .form-wrapper.field--name-status {
+    width: 100%;
+}
+.node-manage-agreements-form .form-wrapper.field--name-status label.option[for="edit-status-value"] {
+    vertical-align: super;
+    margin-left: 10px;
+}
+.node-nfa-form .form-wrapper.field--name-status {
+    width: 100%;
+}
+ .node-nfa-form .form-wrapper.field--name-status label.option[for="edit-status-value"] {
+    vertical-align: super;
+    margin-left: 10px;
+}
+
+#node-silai-school-edit-form .field--name-field-silai-location {
+    /* display : none !important; */
+}
+
+#node-silai-school-form .field--name-field-silai-location {
+    display : none !important;
+}
+.ui-button .ui-icon {
+    background-image: url(/core/assets/vendor/jquery.ui/themes/base/images/ui-icons_ffffff_256x240.png)!important/*{iconsDefault}*/;
+}
+.field--name-status, .form-item-status-value{width: 100%!important;}
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: none;
+    overflow: inherit;
+}
+.silai-custom-agreement-payment-details-form .form-item{
+        width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.silai-custom-agreement-payment-details-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+div#drupal-modal {
+    padding: 0px 10px;
+    max-height: 450px !important;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+    border-top: 1px solid #eee;background: #fff;
+}
+.node-silai-trainee-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-silai-trainee-form .form-wrapper, .node-silai-trainee-edit-form .form-wrapper {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.rating-parent-div {
+    padding: 0px;
+    clear: both;
+    float: left;
+    border-top: 1px solid #ccc;
+}
+.rating-parent-div .form-item {
+    border: 1px solid #ccc;
+    padding: 15px 5px;
+    margin: 0px;
+    width: 50%;
+    float: left;
+    border-top: none;
+    min-height: 80px;
+}
+.rating-parent-div .form-item .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+.rating-parent-div .form-item label{
+    display: inline-block;
+    width: 47%;
+    text-align: left;
+    float: left;
+}
+.rating-input {
+    display: inline-block !important;
+    width: 47%!important;
+    text-align: right;
+    float: right;
+    padding: 0px !important;
+}
+.accept-inventory-form .form-item{
+        width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.forwarded-summary {
+    width: 100% !important;
+    padding: 10px;
+    height: inherit !important;
+}
+div#item-summary table {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+div#item-summary table td, div#item-summary table th{
+    padding: 10px;border: 1px solid #ccc;
+}
+div#item-summary table th {
+    background: #eee;
+}
+
+.action-link {
+    color: #3c8dbc !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.ui-dialog .ui-dialog-title {
+    float: left;
+    margin: 0;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.forward-inventory-form a.remCF {
+    border: 1px solid #de1f23;
+    padding: 9px 30px;
+    color: #de1f23;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+.forward-inventory-form a.addCF {
+    border: 1px solid #de1f23;
+    padding: 9px 30px;
+    color: #de1f23;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#edit-field-ngo-user-id-wrapper{
+    display: none;
+}
+
+body#silai-school.path-dashboard .tab-content {
+    background: #e7ebee;
+}
+.floatr{float: right;}
+.filter-location select {
+    display: inline;
+    width: 210px;
+    margin-right: 10px;
+    border-radius: 25px !important;
+    background: #e7ebee;
+    border: none;
+}
+.no-schools {
+    border: 1px solid darkorange !important;
+}
+.floatl{float: left;}
+div#no_of_school.floatl div {
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+}
+div#no_of_school.floatl .school-count {
+    font-size: 40px;
+}
+div#school_chart {
+    margin-top: 10px;
+}
+
+.school-head {
+    font-size: 20px;
+}
+.panel.schools {
+    border: 2px solid darkorange;cursor: pointer;
+}
+.panel.schools .media-left {
+    background: darkorange;
+    padding: 20px;
+    vertical-align: middle;
+}
+div#no_of_school .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+div#no_of_school .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+
+.panel.agreement {
+    border: 2px solid #de1f24;cursor: pointer;
+}
+
+div.agreement .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+div.agreement .media-left {
+    background: #DE1F24;
+    padding: 20px;
+    vertical-align: middle;
+}
+div.agreement .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+}
+
+.panel.learners-panel{
+    border: 2px solid #5CAF5F;cursor: pointer;
+}
+
+div.learners-panel .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+div.learners-panel .media-left {
+    background: #5CAF5F;
+    padding: 20px;
+    vertical-align: middle;
+}
+div.learners-panel .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+.panel.mis-pending{
+    border: 2px solid #21AFC5;cursor: pointer;
+}
+
+div.mis-pending .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+div.mis-pending .media-left {
+    background: #21AFC5;
+    padding: 20px;
+    vertical-align: middle;
+}
+div.mis-pending .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+}
+.filter-location.form-group {
+    margin: 0px;
+}
+.path-dashboard  .nav-tabs-custom {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: none;
+    border-radius: 3px;
+}
+.machine-filter{background: #9030AB;min-height: 64px;}
+.machine-filter .filter-location select {
+    background: #fff;
+    width: 45%;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+div#machine_section .media-left {
+    padding: 20px;
+    vertical-align: middle;
+}
+div#machine_section .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+}
+div#machine_section .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+.inventory_section-filter{background: #955D08;}
+.inventory_section-filter .filter-location select {
+    background: #fff;
+    width: 46%;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+.inventory-section .media-left {
+    padding: 20px;
+    vertical-align: middle;
+}
+.inventory-section .media-body h1 {
+    margin-top: 0px;
+    font-size: 40px;
+}
+.inventory-section .media-body {
+    padding: 20px;
+    font-size: 20px;
+    color: #434343;
+}
+.agreement-panel{border:1px solid #DE1F24!important;}
+.loaction-panel{border:1px solid #5CAF5F!important;}
+.panel.notice-board ul {
+    padding: 0px;
+    list-style: none;
+}
+.panel.notice-board .panel-heading {
+    font-size: 22px;
+    color: #42a5f5;padding-bottom: 0px;
+}
+.panel.notice-board .panel-body h4{color: #434343;font-weight: 400;}
+p.date-news {
+    color: #989898;
+    font-size: 12px;
+}
+.panel.notice-board .panel-body p{margin-bottom: 5px;}
+.panel.notice-board ul li {
+    border-bottom: 1px solid #E4E4E4;
+}
+.panel.gallery .panel-heading {
+    font-size: 22px;
+    color: #f06292;
+	padding: 5px 15px;
+}
+.panel.gallery .item img {
+    width: 100%;
+}
+
+.panel.schools.active .panel-body {
+    background: darkorange;
+}
+.panel.schools.active .media-left {
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.panel.schools.active img.inactive-img {
+    display: none;
+}
+.panel.schools.active img.active-img {
+    display: block;
+}
+.panel.schools img.active-img {
+    display: none;
+}
+.panel.schools.active .media-body{color: #fff!important;}
+
+
+/* 2 */
+
+.panel.agreement.active .panel-body {
+    background: #de1f24;
+}
+.panel.agreement.active .media-left {
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.panel.agreement.active img.inactive-img {
+    display: none;
+}
+.panel.agreement.active img.active-img {
+    display: block;
+}
+.panel.agreement img.active-img {
+    display: none;
+}
+.panel.agreement.active .media-body{color: #fff!important;}
+
+
+/* 3 */
+
+.panel.learners-panel.active .panel-body {
+    background: #5CAF5F;
+}
+.panel.learners-panel.active .media-left {
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.panel.learners-panel.active img.inactive-img {
+    display: none;
+}
+.panel.learners-panel.active img.active-img {
+    display: block;
+}
+.panel.learners-panel img.active-img {
+    display: none;
+}
+.panel.learners-panel.active .media-body{color: #fff!important;}
+
+/* 4 */
+
+.panel.mis-pending.active .panel-body {
+    background: #21AFC5;
+}
+.panel.mis-pending.active .media-left {
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.panel.mis-pending.active img.inactive-img {
+    display: none;
+}
+.panel.mis-pending.active img.active-img {
+    display: block;
+}
+.panel.mis-pending img.active-img {
+    display: none;
+}
+.panel.mis-pending.active .media-body{color: #fff!important;}
+
+.panel.agreement.active {
+    box-shadow: 0px 0px 4px 1px #DE1F24;
+}
+.panel.mis-pending.active{
+    box-shadow: 0px 0px 4px 1px #21AFC5;
+}
+.panel.learners-panel.active {
+     box-shadow: 0px 0px 4px 1px #5CAF5F;
+}
+.panel.schools.active {
+    box-shadow: 0px 0px 4px 1px darkorange;border: none;
+}
+.path-add-weekly-mis .form-item{width: 30%;display: inline-block;margin-right: 15px;}
+.path-add-monthly-mis .form-item{width: 30%;display: inline-block;margin-right: 15px;}
+.path-add-monthly-mis .form-type-textarea{width: 100%;display: inline-block;margin-right:0px;}
+.add-monthly-mis-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 0px;
+    vertical-align: top;
+}
+.add-monthly-mis-form .form-item.form-type-radio{width: 40%;display: inline-block;margin-right: 15px;}
+.inventory_section-filter {
+    min-height: 64px!important;
+}
+.mis-import-form {
+    margin-top: 10px;
+}
+.panel.gallery .views_slideshow_cycle_teaser_section {
+    width: 100% !important;
+    /* height: auto !important; */
+}
+.panel.gallery .views_slideshow_cycle_slide{
+    width: 100% !important;
+    height: 200px !important;
+}
+.panel.gallery .views-field-field-image img{
+    width: 100% !important;
+    height: auto !important;
+}
+div#school_chart_main1 .school-count, div#agreement_chart_main1 .agreement-count, div#learner_chart_main1 .learner-count, div#mis_chart_main1 .mis-count {
+    display: inline-block;
+    font-size: 37px;
+    color: #434343;
+}
+div#school_chart_main1 .school-head, div#agreement_chart_main1 .agreement-head, div#learner_chart_main1 .learner-head, div#mis_chart_main1 .mis-head {
+    display: inline-block;
+    font-size: 24px;
+    color: #434343;
+    margin-left: 10px;
+}
+
+input[type=email]:focus, input[type=text]:focus, textarea:focus, input[type=date]:focus, input[type=number]:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1)!important;
+  border: 1px solid rgba(81, 203, 238, 1)!important;
+}
+select{
+    border-color: #c3cddc;
+}
+form .error{
+    border-color: red!important;
+}
+#node-ngo-form #edit-status-wrapper{
+    display: none;
+}
+
+.node-silai-villages-form .field--name-field-silai-village-code {display:none !important;}
+.node-silai-villages-edit-form .field--name-field-silai-village-code {display:none !important;}
+.form-type-managed-file .description{display:none;}
+.node-trainer-silai-form .field--name-field-silai-trainer-code{display:none;}
+.node-trainer-silai-edit-form .field--name-field-silai-trainer-code{display:none;}
+
+.modal-approve-reject-form .form-item {
+    width: 30%;
+}
+div#edit-field-have-received-certificate-wrapper .form-item{
+    margin: 0px;
+}
+
+.path-school-survey-quetionnaire .js-form-item-appliances-in-the-home.form-item-appliances-in-the-home{
+    vertical-align: middle;
+}
+.path-school-survey-quetionnaire .form-item-additional-notes {
+    vertical-align: top;
+}
+.silai-custom-school-survey-quetionnaire legend, .path-school-survey-quetionnaire label, .path-school-survey-quetionnaire fieldset .fieldset-legend  {
+    
+
+}
+.node-ngo-form #edit-field-ngo-secondry-mobile-no-wrapper, .node-ngo-form #edit-field-silai-pin-code-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-ngo-form #edit-field-ngo-secondry-mobile-no-wrapper .form-item, .node-ngo-form #edit-field-silai-pin-code-wrapper .form-item{
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-ngo-form #edit-field-ngo-vendor-code-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-ngo-form #edit-field-ngo-vendor-code-wrapper .form-item, .node-ngo-form .field--name-field-ngo-remarks .form-item{
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-ngo-edit-form #edit-field-ngo-secondry-mobile-no-wrapper, .node-ngo-edit-form #edit-field-silai-pin-code-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-ngo-edit-form #edit-field-ngo-vendor-code-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.node-trainer-silai-form .alphanumeric.form-wrapper{width: 30%;}
+
+.path-gallery .views-field-field-image .field-content a{display: block;}
+.path-gallery .views-field-field-image .field-content a img{width: 100%;}
+.path-gallery .views-view-grid .views-col {
+    width: 18%!important;
+    margin-right: 15px;
+    border: 1px solid #dadada;
+    margin-bottom: 10px;
+}
+
+.path-gallery .views-view-grid .views-col .views-field.views-field-title {
+    padding: 10px;
+    text-align: center;
+    background: #eee;
+}
+
+.node-trainer-silai-form .field--name-field-training-start-date {
+    margin-top: 13px;
+}
+
+
+.node-silai-item-group-form .field--name-field-silai-description, .node-silai-item-group-edit-form .field--name-field-silai-description{width: 100%;}
+.node-silai-school-type-master-form .form-type-textarea{width: 100%;}
+
+.node-silai-items-edit-form .field--name-field-silai-items-description{width: 100%;}
+
+.node-trainer-silai-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-trainer-silai-edit-form .field--name-field-trainer-lang-known{vertical-align: top;}
+.node-ngo-edit-form #edit-field-gstn-no-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.path-ho-admin-weekly-mis-list .views-exposed-form .form-item{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.path-ho-admin-weekly-mis-list .views-exposed-form #edit-actions{vertical-align: bottom;display: inline-block;;margin-top: 38px;}
+.add-weekly-mis-form .js-form-type-textarea{width: 100%;}
+
+
+.node-silai-learners-manage-form .field--name-field-learner-id{vertical-align: top;}
+
+.silai-learner-bulk-import .form-file{height: inherit;}
+
+.node-manage-agreements-form  .form-item, .node-manage-agreements-edit-form .form-item, .node-nfa-form .form-item, .node-nfa-edit-form .form-item{margin-top: 0px;}
+.node-silai-training-form .form-item{margin-top: 0px;}
+.node-silai-training-form .form-wrapper{vertical-align: top;margin-top: 15px;}
+
+
+.node-silai-learners-manage-form .form-item{margin-top: 0px;}
+.node-silai-learners-manage-form .form-wrapper{margin-top: 15px;vertical-align: top;}
+.node-silai-school-form .form-wrapper{}
+.node-silai-school-form .form-item{margin-top: 0px;}
+
+
+
+
+.path-dashboard .panel.notice-board .panel-body h4 {
+    font-weight: bold !important;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.path-dashboard .panel.notice-board .views-row {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 10px;
+}
+.path-dashboard a.read-more {
+    display: block;
+    margin: 15px auto 10px;
+    text-align: center;
+    width: 100px;
+    background: #42a5f5;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+.path-dashboard footer a {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    width: 100px;
+    background: #f06292;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+	margin-top: 0px;			 
+}
+
+
+
+.path-dashboard .user-panel.user-panel-custom{display: none;}
+.path-dashboard .content{padding: 0px;}
+aside.main-sidebar .user-panel {
+    display: none;
+}
+.forward-inventory-form .form-submit {
+    float: right;
+    margin-bottom: 10px;
+}
+#schooltype_info{
+    font-size: 11px;
+    /*float: right;
+    width: 116px;
+    top: 49px;
+    z-index: 1;
+    position: inherit;
+    line-height: 17px;*/
+}
+li.pager__item.is-active a {
+    background: #de1f23 !important;
+    color: #fff; 
+}
+.pager li a {
+    display: inline-block!important;
+    padding: 5px 14px!important;
+    background-color: #e7ebee!important;
+    border: 1px solid #ddd!important;
+    border-radius: 0px!important;
+}
+li.pager__item a {
+    color: #000;
+}
+
+
+
+		/* CSS added by Akash */
+
+.path-dashboard .schools div#no_of_school .media-body, .path-dashboard .agreement div#pending_agreement_amount .media-body ,
+.path-dashboard .learners-panel div#no_of_active_lerner .media-body, .path-dashboard .mis-pending div#no_of_pending_mis .media-body {padding: 14px; font-size: 19px;}
+
+.path-dashboard #dashboard_section .panel#mis_chart_main{border: 1px solid #21AFC5!important;}
+
+.path-dashboard #dashboard_section .no-schools#school_chart_main, .path-dashboard #dashboard_section .agreement-panel#agreement_chart_main,
+.path-dashboard #dashboard_section #learner_chart_main .loaction-panel, .path-dashboard #dashboard_section .panel#mis_chart_main
+{height: 385px;}
+ 
+.path-dashboard #dashboard_section .panel.gallery{margin: 0px 0px 20px;}
+.path-dashboard #dashboard_section .panel.gallery .views-field-field-image img{width: 100%;  height: 200px;}
+
+.path-dashboard #dashboard_section .panel.gallery .views-view-grid .views-col{padding: 0px 10px;}
+
+.path-dashboard #dashboard_section .panel.gallery footer a{    display: block;
+    margin: 10px auto;
+    text-align: center;
+    width: 100px;
+    background: #f06292;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 10px;}
+a.sidebar-toggle{display: none;}
+.views-header-section button{
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+}
+
+		/* CSS added for production  Start*/
+
+.total-village .panel-body .media .media-body, .total-village .panel-body .media .media-left{padding: 20px; vertical-align: middle;}
+.total-village .panel-body .media .media-left img.inactive-img{display:none;}
+.total-village.panel {border-top: 8px solid #21afc5; border-radius: 0px;}
+.total-village .panel-body .media .media-body h1 {margin-top: 0px; font-size: 40px;}
+.total-village .panel-body .media .media-body{padding: 13px; font-size: 20px; color: #434343;}
+.total-village.panel {
+    border: 2px solid #21afc5;
+    border-radius: 0px;
+	margin-bottom: 21px;
+}
+
+.total-ngo-partners .panel-body .media .media-body, .total-ngo-partners .panel-body .media .media-left{padding: 13px; vertical-align: middle;}
+.total-ngo-partners .panel-body .media .media-left img.inactive-img{display:none;}
+.total-ngo-partners.panel {border-top: 8px solid #42a5f5; border-radius: 0px;}
+.total-ngo-partners .panel-body .media .media-body h1 {margin-top: 0px; font-size: 40px;}
+.total-ngo-partners .panel-body .media .media-body{padding: 13px; font-size: 20px; color: #434343;}
+
+.total-ngo-partners.panel .media-left {
+    background: #42a5f5;
+}
+.total-ngo-partners .panel-body .media h1 {
+    margin-top: 0px;
+    font-size: 40px;
+}
+.total-ngo-partners.panel {
+    border: 2px solid #42a5f5;
+    border-radius: 0px;
+}
+.views-element-container .views-exposed-form{padding: 10px; border: 2px solid #eee; margin-bottom: 15px;}
+.views-element-container .views-header-section a {float: right; margin-bottom: 15px; margin-left: 10px;}
+.views-header-section .display-result-summary {float: left; padding-top: 10px; padding-right: 15px; color: #333; font-size: 16px;}
+.csv-feed .feed-icon {margin-top: 0px; margin-right: 10px;}
+.path-silai-add-new-feedback .csv-feed .feed-icon {margin-top: 0px; margin-right: 10px;}
+.views-element-container .views-header-section {float: none!important; margin: 0px!important;}
+.views-element-container .header-feed-icon{clear: none!important;}
+
+
+        /* CSS added for production  End*/
+        
+.path-ho-learners-listing .csv-feed .feed-icon,
+.path-ho-monthly-quarterly-mis-list .csv-feed .feed-icon,
+.path-agreements-listing-pc .csv-feed .feed-icon,
+.path-nfa-listing-pc .csv-feed .feed-icon,
+.path-manage-inventory-ngo .csv-feed .feed-icon,
+.path-manage-inventory-pc .csv-feed .feed-icon {margin-top: 0px; margin-right: 10px;}
+.path-silai-manage-school .csv-feed .feed-icon {margin-top: -18px; margin-right: 10px;}
+.path-silai-manage-school-pc .csv-feed .feed-icon {margin-top: -18px; margin-right: 10px;}
+.path-ho-monthly-quarterly-mis-list .csv-feed .feed-icon,
+.path-pc-learners-listing .csv-feed .feed-icon {margin-top: -20px; margin-right: 10px;}
+.path-learners-listing .csv-feed .feed-icon {margin-top: -20px; margin-right: 10px;} 
+.path-ho-learners-listing .csv-feed .feed-icon {margin-top: -20px; margin-right: 10px;} 
+
+.path-picture-upload .views-exposed-form .form-item{width: 25%;margin-right: 15px;display: inline-block;}
+.path-picture-upload .views-exposed-form .form-actions {
+    display: inline;
+    line-height: 108px;
+}
+
+.panel.total-village .media-left {
+    background: #21afc5;
+    padding: 20px;
+    vertical-align: middle;
+										   
+					
+					   
+}
+.path-picture-upload .csv-feed .feed-icon {
+    margin-top: 0px;
+    margin-right: 10px;
+}
+.path-weekly-mis-list .mis-import-form .sample-file-download {
+    float: left;
+    width: 100%;
+}
+.path-weekly-mis-list .form-item-import-file {
+    width: 60%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-sent-message-list .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.path-sent-message-list .form-item-message{width: 100%;}
+.path-sent-message-list div#edit-actions {
+    display: inline-block;
+    margin-top: 34px;
+}
+.path-ho-monthly-quarterly-mis-list .form-item{width: 30%;display: inline-block;margin-right: 15px; height: 75px;}
+.path-ho-monthly-quarterly-mis-list div#edit-actions {
+    display: inline-block;
+    margin-top: 34px;
+}
+
+
+.views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 4px 6px;
+    border: none;
+    margin: 5px;
+}
+input[type="file"] {
+    border: none;
+}
+.path-learners-listing .silai-learner-bulk-import .form-item-import-file{width: 60%;display: inline-block;}
+
+.form-type-managed-file .node-nfa-form .field--name-field-document-upload{width: 60%;}
+
+.node-nfa-form .field--name-field-document-upload.form-wrapper, .node-nfa-edit-form .field--name-field-document-upload.form-wrapper{width: 60%;} 
+
+.path-monthly-quarterly-mis-list .form-type-managed-file.form-item{width: 100%;}
+
+.node-manage-agreements-form .field--name-field-document-upload.form-wrapper{width: 100%;}
+.global-hidden-field{display:none!important;}
+input[type=submit]:focus { 
+    background: #3c8dbc!important;
+    color: #fff;
+}
+.js-form-item-created, .js-form-item-created-1{
+	width : 30%;
+	margin-right: 15px;
+}
+.sample-file-download {
+    margin-top: 15px;
+}
+a.silai-school-transfer i {
+    color: #d44950;
+}
+.silai-school-transfer-form {
+    padding-bottom: 15px;
+}
+.path-silai-training-trainee-feedback-report a.export-link {
+    background-image: url(../images/csv.png);
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    float: right;
+}
+.path-silai-consolidated-mis-report a.export-link {
+    background-image: url(../images/csv.png);
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: right;
+}

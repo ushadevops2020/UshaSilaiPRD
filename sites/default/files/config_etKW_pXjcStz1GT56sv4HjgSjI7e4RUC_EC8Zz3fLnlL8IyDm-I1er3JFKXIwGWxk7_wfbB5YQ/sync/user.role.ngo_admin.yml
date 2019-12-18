@@ -1,0 +1,32 @@
+uuid: cc77b0e3-0827-48f5-b75f-3d89a534b96a
+langcode: en
+status: true
+dependencies: {  }
+id: ngo_admin
+label: 'Silai NGO Admin'
+weight: 5
+is_admin: null
+permissions:
+  - 'add audit log entities'
+  - 'administer audit log entities'
+  - 'bypass node access'
+  - 'create content_workflow workflow_transition'
+  - 'create silai_learners_manage content'
+  - 'create silai_school content'
+  - 'create silai_school content on assigned domains'
+  - 'delete any silai_learners_manage content'
+  - 'delete any silai_school content'
+  - 'delete own silai_learners_manage content'
+  - 'delete own silai_school content'
+  - 'delete silai_school content on assigned domains'
+  - 'edit any silai_learners_manage content'
+  - 'edit any silai_school content'
+  - 'edit own ngo content'
+  - 'edit own silai_learners_manage content'
+  - 'edit own silai_school content'
+  - 'update silai_school content on assigned domains'
+  - 'view any unpublished content'
+  - 'view audit log entities'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view unpublished domain content'

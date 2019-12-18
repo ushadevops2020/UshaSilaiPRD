@@ -1,0 +1,77 @@
+uuid: 63d0a3ca-0183-4a39-8471-7236ebf1d160
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_trainee.field_domain_access
+    - field.field.node.silai_trainee.field_domain_all_affiliates
+    - field.field.node.silai_trainee.field_silai_contact_number
+    - field.field.node.silai_trainee.field_silai_email_id
+    - field.field.node.silai_trainee.field_silai_remark
+    - field.field.node.silai_trainee.field_silai_trainer_id
+    - field.field.node.silai_trainee.field_training_school_code
+    - node.type.silai_trainee
+  module:
+    - user
+id: node.silai_trainee.default
+targetEntityType: node
+bundle: silai_trainee
+mode: default
+content:
+  field_silai_contact_number:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_email_id:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_silai_remark:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_silai_trainer_id:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_school_code:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

@@ -1,0 +1,29 @@
+uuid: ae49eb65-6393-44cd-9358-06916cdc9094
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_trainer_district
+    - node.type.silai_district
+    - node.type.trainer_silai
+id: node.trainer_silai.field_silai_trainer_district
+field_name: field_silai_trainer_district
+entity_type: node
+bundle: trainer_silai
+label: District
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_district: silai_district
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

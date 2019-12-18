@@ -1,0 +1,21 @@
+uuid: a595943b-786b-418a-bd2e-90b6eaf4306b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_training
+    - node.type.sewing_teacher_management
+  module:
+    - options
+id: node.sewing_teacher_management.field_sewing_teacher_training
+field_name: field_sewing_teacher_training
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Training Received'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

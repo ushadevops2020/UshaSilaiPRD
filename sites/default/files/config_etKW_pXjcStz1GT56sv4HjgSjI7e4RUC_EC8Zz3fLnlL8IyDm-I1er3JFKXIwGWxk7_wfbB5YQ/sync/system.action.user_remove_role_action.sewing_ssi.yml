@@ -1,0 +1,14 @@
+uuid: 5923a80b-57e1-4441-96e1-2bc7b131e0c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_ssi
+  module:
+    - user
+id: user_remove_role_action.sewing_ssi
+label: 'Remove the Sewing SSI role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sewing_ssi

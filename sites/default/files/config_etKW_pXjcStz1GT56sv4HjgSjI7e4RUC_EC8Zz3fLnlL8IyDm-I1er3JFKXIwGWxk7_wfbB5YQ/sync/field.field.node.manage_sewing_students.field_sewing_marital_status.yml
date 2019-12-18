@@ -1,0 +1,21 @@
+uuid: ec1d49d5-90a9-46b5-936e-65859b8b03da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_marital_status
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_marital_status
+field_name: field_sewing_marital_status
+entity_type: node
+bundle: manage_sewing_students
+label: 'Marital Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

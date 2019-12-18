@@ -1,0 +1,19 @@
+uuid: 325cbdf6-81ec-4680-afc3-c9e17933bf58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inventory_courier
+    - node.type.manage_inventory
+id: node.manage_inventory.field_inventory_courier
+field_name: field_inventory_courier
+entity_type: node
+bundle: manage_inventory
+label: Courier
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

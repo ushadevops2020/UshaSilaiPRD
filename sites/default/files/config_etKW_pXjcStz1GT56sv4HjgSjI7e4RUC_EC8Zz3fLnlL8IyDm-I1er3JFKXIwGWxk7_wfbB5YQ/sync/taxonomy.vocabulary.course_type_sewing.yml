@@ -1,0 +1,9 @@
+uuid: 89d4c4da-b434-4f64-9db7-562dab5141c0
+langcode: en
+status: true
+dependencies: {  }
+name: 'Course Type Sewing'
+vid: course_type_sewing
+description: 'Course Type Sewing'
+hierarchy: 0
+weight: 0

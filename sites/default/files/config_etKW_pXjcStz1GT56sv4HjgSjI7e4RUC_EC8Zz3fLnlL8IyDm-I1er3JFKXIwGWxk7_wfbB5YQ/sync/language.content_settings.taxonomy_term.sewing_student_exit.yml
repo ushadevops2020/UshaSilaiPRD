@@ -1,0 +1,11 @@
+uuid: cb6ef830-b35e-4ba4-814b-754c29de505e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sewing_student_exit
+id: taxonomy_term.sewing_student_exit
+target_entity_type_id: taxonomy_term
+target_bundle: sewing_student_exit
+default_langcode: site_default
+language_alterable: false

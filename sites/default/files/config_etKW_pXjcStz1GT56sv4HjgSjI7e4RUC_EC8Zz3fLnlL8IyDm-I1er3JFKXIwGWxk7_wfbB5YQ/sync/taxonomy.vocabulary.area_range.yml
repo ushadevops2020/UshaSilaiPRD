@@ -1,0 +1,9 @@
+uuid: 3e0fac36-4269-4abb-9a1b-d253333c5d69
+langcode: en
+status: true
+dependencies: {  }
+name: 'Area Range'
+vid: area_range
+description: 'Sewing Area Range for School'
+hierarchy: 0
+weight: 0

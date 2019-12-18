@@ -1,0 +1,21 @@
+uuid: cb820559-f1c5-40f9-8157-2c8e043102bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_completion_date
+    - node.type.silai_learners_manage
+  module:
+    - datetime
+id: node.silai_learners_manage.field_course_completion_date
+field_name: field_course_completion_date
+entity_type: node
+bundle: silai_learners_manage
+label: 'Course completion date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,11 @@
+uuid: c95114a2-62db-4562-8fd4-7dd58d27db4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sewing_teacher_skill_level
+id: taxonomy_term.sewing_teacher_skill_level
+target_entity_type_id: taxonomy_term
+target_bundle: sewing_teacher_skill_level
+default_langcode: site_default
+language_alterable: false

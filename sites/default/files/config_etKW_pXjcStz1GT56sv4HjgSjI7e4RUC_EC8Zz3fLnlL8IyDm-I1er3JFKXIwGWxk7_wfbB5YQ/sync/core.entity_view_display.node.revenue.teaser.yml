@@ -1,0 +1,35 @@
+uuid: 04ad35ba-d9d7-4dcb-8a9b-00b0e84aabeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.revenue.field_domain_access
+    - field.field.node.revenue.field_domain_all_affiliates
+    - node.type.revenue
+  module:
+    - user
+id: node.revenue.teaser
+targetEntityType: node
+bundle: revenue
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

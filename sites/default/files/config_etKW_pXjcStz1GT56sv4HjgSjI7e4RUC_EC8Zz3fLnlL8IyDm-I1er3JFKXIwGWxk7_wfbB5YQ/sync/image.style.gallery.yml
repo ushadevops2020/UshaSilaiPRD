@@ -1,0 +1,15 @@
+uuid: 8448c43c-df5f-4c66-92dc-ae9967f7aff3
+langcode: en
+status: true
+dependencies: {  }
+name: gallery
+label: 'Gallery (294×362)'
+effects:
+  4619c309-42f3-4bfd-baa0-3b8d1cf0eb35:
+    uuid: 4619c309-42f3-4bfd-baa0-3b8d1cf0eb35
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 294
+      height: 362
+      anchor: center-center

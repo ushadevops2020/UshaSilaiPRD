@@ -1,0 +1,29 @@
+uuid: e556d55d-9bf3-47d2-88f7-cf5a3f8d16f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_school_code_list
+    - node.type.sewing_school
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.field_sewing_school_code_list
+field_name: field_sewing_school_code_list
+entity_type: node
+bundle: sewing_teacher_management
+label: 'School Code'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sewing_school: sewing_school
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

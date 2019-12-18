@@ -1,0 +1,71 @@
+uuid: 02c0d5d6-4f9c-48a4-b719-9dab595cba9d
+langcode: en
+status: true
+dependencies: {  }
+id: notifications
+title: notifications
+table_schema:
+  -
+    name: id
+    label: id
+    type: serial
+    size: big
+    length: ''
+    index: '1'
+    primary: '1'
+    unsigned: 0
+  -
+    name: sender_role
+    label: 'sender role'
+    type: varchar
+    size: normal
+    length: '50'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: receiver_role
+    label: 'receiver role'
+    type: varchar
+    size: normal
+    length: '50'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: location
+    label: location
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: message
+    label: message
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: created_at
+    label: 'created at'
+    type: varchar
+    size: normal
+    length: '50'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: created_by
+    label: created_by
+    type: varchar
+    size: normal
+    length: '50'
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

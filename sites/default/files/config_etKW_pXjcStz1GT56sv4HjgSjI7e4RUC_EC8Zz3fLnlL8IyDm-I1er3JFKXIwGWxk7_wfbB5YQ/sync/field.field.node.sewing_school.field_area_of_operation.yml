@@ -1,0 +1,29 @@
+uuid: d85e3172-3f05-44c0-9426-acce9b54bf61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area_of_operation
+    - node.type.sewing_school
+    - taxonomy.vocabulary.area_of_operation
+id: node.sewing_school.field_area_of_operation
+field_name: field_area_of_operation
+entity_type: node
+bundle: sewing_school
+label: 'Area of Operation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      area_of_operation: area_of_operation
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

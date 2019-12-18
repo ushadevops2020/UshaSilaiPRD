@@ -1,0 +1,18 @@
+uuid: 87aea040-8e19-48ac-8790-a670c01c014b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_states
+id: node.manage_states.title
+field_name: title
+entity_type: node
+bundle: manage_states
+label: 'Indian State Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

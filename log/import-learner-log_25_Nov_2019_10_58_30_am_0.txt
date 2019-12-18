@@ -1,0 +1,14 @@
+1) 20413 - Districe Code is not exist. In Row Number : 2
+2) 20413 - Districe Code is not exist. In Row Number : 3
+3) 20413 - Districe Code is not exist. In Row Number : 4
+4) 20413 - Districe Code is not exist. In Row Number : 5
+5) 20413 - Districe Code is not exist. In Row Number : 6
+6) 20413 - Districe Code is not exist. In Row Number : 7
+7) 20413 - Districe Code is not exist. In Row Number : 8
+8) 20413 - Districe Code is not exist. In Row Number : 9
+9) 20412 - Districe Code is not exist. In Row Number : 10
+10) 20412 - Districe Code is not exist. In Row Number : 11
+11) 20412 - Districe Code is not exist. In Row Number : 12
+12) 20412 - Districe Code is not exist. In Row Number : 13
+13) 20412 - Districe Code is not exist. In Row Number : 14
+14) 20412 - Districe Code is not exist. In Row Number : 15

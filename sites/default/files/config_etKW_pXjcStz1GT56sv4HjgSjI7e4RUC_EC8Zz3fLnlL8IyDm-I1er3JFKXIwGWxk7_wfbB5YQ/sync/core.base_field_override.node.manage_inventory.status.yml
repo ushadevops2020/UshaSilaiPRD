@@ -1,0 +1,22 @@
+uuid: 49cad809-42b1-4c35-9c9c-e7aa6d7468d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_inventory
+id: node.manage_inventory.status
+field_name: status
+entity_type: node
+bundle: manage_inventory
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

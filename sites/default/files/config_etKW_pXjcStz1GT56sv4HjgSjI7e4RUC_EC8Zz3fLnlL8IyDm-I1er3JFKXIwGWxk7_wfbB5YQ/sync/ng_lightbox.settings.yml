@@ -1,0 +1,7 @@
+patterns: /user/password
+default_width: 800
+lightbox_class: colorform
+skip_admin_paths: false
+renderer: drupal_colorbox
+_core:
+  default_config_hash: ySh6lmKUH2SCk5s532zkdNU9PeyNywkaFGVLbWBbRWY

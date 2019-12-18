@@ -1,0 +1,39 @@
+sewing_revenue.sewing_revenue_generate_fee_receipt:
+ path: '/generate-fee-receipt'
+ defaults:
+   _title: 'Generate Fee Receipt'
+   _form: '\Drupal\sewing_revenue\Form\GenerateFeeReceiptForm'
+ requirements:
+   _permission: 'access content'
+ 
+sewing_revenue.sewing_revenue_generate_fee_receipt_demo:
+ path: '/generate-fee-receipt-demo'
+ defaults:
+   _title: 'Generate Fee Receipt Demo'
+   _form: '\Drupal\sewing_revenue\Form\GenerateFeeReceiptFormDemo'
+ requirements:
+   _permission: 'access content'
+
+sewing_revenue.sewing_student_list:
+ path: '/get-sewing-student-by-schoolcode'
+ defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSewingStudentBySchoolCode'
+    _title: 'Sewing Student List'
+ requirements:
+    _permission: 'access content'
+
+sewing_revenue.sewing_revenue_print_fee_receipt:
+ path: '/print-fee-receipt'
+ defaults:
+    _title: 'Print Fee Receipt'
+    _controller: '\Drupal\sewing_revenue\Controller\SewingRevenueController::printFeeReceipt'
+ requirements:
+   _permission: 'access content'
+   
+sewing_revenue.sewing_revenue_print_fee_receipt_company_run:
+ path: '/print-fee-receipt-cr'
+ defaults:
+    _title: 'Print Fee Receipt'
+    _controller: '\Drupal\sewing_revenue\Controller\SewingRevenueController::printFeeReceiptForCompanyRun'
+ requirements:
+   _permission: 'access content'

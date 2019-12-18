@@ -1,0 +1,29 @@
+uuid: 894c1fee-2987-4056-9dcf-5e32703f9595
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_block
+    - node.type.silai_blocks
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.field_silai_block
+field_name: field_silai_block
+entity_type: node
+bundle: silai_learners_manage
+label: Block
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_blocks: silai_blocks
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

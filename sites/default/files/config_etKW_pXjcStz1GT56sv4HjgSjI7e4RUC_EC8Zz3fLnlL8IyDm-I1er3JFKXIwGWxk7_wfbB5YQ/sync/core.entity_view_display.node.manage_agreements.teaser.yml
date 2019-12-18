@@ -1,0 +1,45 @@
+uuid: 863e84d6-4ceb-4f5a-8888-5184b1273661
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_agreements.body
+    - field.field.node.manage_agreements.field_domain_access
+    - field.field.node.manage_agreements.field_domain_all_affiliates
+    - node.type.manage_agreements
+  module:
+    - text
+    - user
+id: node.manage_agreements.teaser
+targetEntityType: node
+bundle: manage_agreements
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

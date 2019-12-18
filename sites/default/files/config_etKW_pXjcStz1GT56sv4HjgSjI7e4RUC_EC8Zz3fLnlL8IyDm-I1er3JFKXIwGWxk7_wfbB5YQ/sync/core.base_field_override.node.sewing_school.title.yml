@@ -1,0 +1,18 @@
+uuid: 19f3c6ed-2cdd-4421-8fe1-499120162d9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_school
+id: node.sewing_school.title
+field_name: title
+entity_type: node
+bundle: sewing_school
+label: 'School Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 3a9730f7-4832-4e04-8b60-a439a55508a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_gender
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_gender
+field_name: field_sewing_gender
+entity_type: node
+bundle: manage_sewing_students
+label: Gender
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

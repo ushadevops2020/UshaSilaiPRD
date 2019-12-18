@@ -1,0 +1,19 @@
+uuid: 453e2de1-c479-47d8-bc8e-6518751796f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_vill_other_details
+    - node.type.silai_villages
+id: node.silai_villages.field_silai_vill_other_details
+field_name: field_silai_vill_other_details
+entity_type: node
+bundle: silai_villages
+label: 'Other Details'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

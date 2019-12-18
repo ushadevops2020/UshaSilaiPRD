@@ -1,0 +1,60 @@
+uuid: 8d73838d-ed41-4d62-9555-2c5ffc437db4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_items.field_domain_access
+    - field.field.node.silai_items.field_domain_all_affiliates
+    - field.field.node.silai_items.field_silai_item_code
+    - field.field.node.silai_items.field_silai_item_group
+    - field.field.node.silai_items.field_silai_items_description
+    - node.type.silai_items
+  module:
+    - user
+id: node.silai_items.default
+targetEntityType: node
+bundle: silai_items
+mode: default
+content:
+  field_silai_item_code:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_item_group:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_items_description:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

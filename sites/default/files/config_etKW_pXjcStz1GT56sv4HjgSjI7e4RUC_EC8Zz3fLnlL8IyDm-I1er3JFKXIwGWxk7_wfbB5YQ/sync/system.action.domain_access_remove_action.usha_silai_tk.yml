@@ -1,0 +1,14 @@
+uuid: 8336d0ff-3d7d-46b6-80a0-57727e65edf2
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_silai_tk
+  module:
+    - domain_access
+id: domain_access_remove_action.usha_silai_tk
+label: 'Remove selected content from the Silai domain'
+type: node
+plugin: domain_access_remove_action
+configuration:
+  domain_id: usha_silai_tk

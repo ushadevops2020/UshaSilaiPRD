@@ -1,0 +1,27 @@
+uuid: fbbadc1b-2bcb-41e0-b972-7c98d7c581fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_marital_status
+field_name: field_sewing_marital_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Unmarried
+    -
+      value: '2'
+      label: Married
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

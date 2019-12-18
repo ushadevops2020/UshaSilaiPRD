@@ -1,0 +1,29 @@
+uuid: e9a5ba13-4ed3-4d86-9cf3-ffb385c322e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_district
+    - node.type.silai_district
+    - node.type.silai_villages
+id: node.silai_villages.field_silai_district
+field_name: field_silai_district
+entity_type: node
+bundle: silai_villages
+label: 'Assign District'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_district: silai_district
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

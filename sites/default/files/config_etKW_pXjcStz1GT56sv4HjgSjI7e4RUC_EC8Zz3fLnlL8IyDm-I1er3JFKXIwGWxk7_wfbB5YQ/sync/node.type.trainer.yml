@@ -1,0 +1,18 @@
+uuid: 7119f6f3-dcdd-4291-8ffb-3db665a3c3e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - sewing-menu
+    parent: 'sewing-menu:'
+name: 'Sewing Trainer'
+type: trainer
+description: 'Sewing Trainer'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: true

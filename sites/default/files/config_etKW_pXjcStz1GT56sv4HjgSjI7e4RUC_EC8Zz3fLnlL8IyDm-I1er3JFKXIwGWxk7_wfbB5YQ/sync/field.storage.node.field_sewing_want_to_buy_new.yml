@@ -1,0 +1,27 @@
+uuid: c8aa28f4-f3be-4ce5-b66c-4977f8243466
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_want_to_buy_new
+field_name: field_sewing_want_to_buy_new
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: 'Yes'
+    -
+      value: '0'
+      label: 'No'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,52 @@
+<script>
+function printPage() {
+  window.print();
+}
+</script>
+<button onclick="printPage()" id='print'><i class="fa fa-print" aria-hidden="true"></i> Print this page</button>
+<table id="print-receipt" width="100%" style="border-collapse: collapse;" cellpadding="10">
+	<tr>
+		<td style="border-bottom: 1px solid #000;">
+			<span class="logo-mini">
+			  <img src="/{{directory}}/images/logo_tem.png" alt="Site Logo" style="max-width:100%;height:auto;max-height: 100%;">
+			</span>
+		<td style="border-bottom: 1px solid #000; font-size: 22px; font-weight: 600;">RECEIPT</td>
+		<td style="border-bottom: 1px solid #000;"></td>
+	</tr>
+	<tr>
+		<td><b>Receipt Number:</b> {{ receiptNo }}</td>
+		<td></td>
+		<td><b>Receipt Date:</b> {{ receiptDate }}</td>
+	</tr>
+	<tr>
+		<td colspan="3"><b>Service code:</b>{% if revenueTypeName == 'Company Run School' %} 999293 {% else %} 997336 {% endif %} - Other education &amp; training services and educational support services</td>
+	</tr>
+	<tr>
+		<td colspan="3"><b>School Code:</b> {{ schoolCode }}</td>
+	</tr>
+	<tr>
+		<td colspan="3"><b>Sap Code:</b> {{ sapCode }}</td>
+	</tr>
+	<tr>
+		<td colspan="3">{{ schoolName }}</td>
+	</tr>
+	<tr>
+		<td colspan="3">{{ address1 }}</td>
+	</tr>
+	<tr>
+		<td colspan="3">{{ address2 }}</td>
+	</tr>
+	<tr>
+		<td colspan="3">{{ address3 }}</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		<p>We acknowledge receipt your {{ type }} {% if type != 'Cash' %}No. {{ details }} {% endif %} dated {{ date }} for Rs. {{ netAmount }} ({{ netAmountWords }} only) {% if type != 'Cash' %}drawn on {{ bank }} account {% endif %} of {{ revenueType }} {% if type != 'Cash' %}which is being/will be deposited with our bank on ______________________</p>
+		<p> (Receipt is valid subject to clearance of {{ type }}) </p> {% endif %}
+		<br><br>
+		<p><b>For Usha International Limited.</b></p>
+		<br>
+		<p><b>Authorised Official</b></p>
+		</td>
+	</tr>
+</table>

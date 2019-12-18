@@ -1,0 +1,21 @@
+uuid: e33b3e6c-c1c0-488b-8c6f-e75172002bcd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.ngo
+id: node.ngo.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: ngo
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,27 @@
+uuid: 1ade97d4-3ee4-4173-887b-417b05bda7c5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_gstn_registered
+field_name: field_gstn_registered
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'No'
+      label: 'No'
+    -
+      value: 'Yes'
+      label: 'Yes'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

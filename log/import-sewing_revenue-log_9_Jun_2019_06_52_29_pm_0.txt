@@ -1,0 +1,3 @@
+1) UMAYAJ17040001 - Admission Number does not exist. In excel file row number : 111
+2) UMAYAJ17040003 - Admission Number does not exist. In excel file row number : 113
+3) UASGCC16120031 - Admission Number does not exist. In excel file row number : 767

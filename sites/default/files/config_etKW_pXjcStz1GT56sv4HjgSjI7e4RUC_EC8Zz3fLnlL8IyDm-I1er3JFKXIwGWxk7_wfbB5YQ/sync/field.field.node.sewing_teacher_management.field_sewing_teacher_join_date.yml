@@ -1,0 +1,21 @@
+uuid: 348eb92d-96f5-4483-b416-3fb885019ced
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_join_date
+    - node.type.sewing_teacher_management
+  module:
+    - datetime
+id: node.sewing_teacher_management.field_sewing_teacher_join_date
+field_name: field_sewing_teacher_join_date
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Date Of Joining'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

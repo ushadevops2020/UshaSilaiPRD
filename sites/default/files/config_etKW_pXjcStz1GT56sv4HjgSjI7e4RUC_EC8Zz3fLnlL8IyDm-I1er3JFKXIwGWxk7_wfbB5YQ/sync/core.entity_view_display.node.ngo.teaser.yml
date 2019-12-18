@@ -1,0 +1,67 @@
+uuid: 42551950-0008-4824-b532-f56de3e80cb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ngo.field_account_no
+    - field.field.node.ngo.field_address_1
+    - field.field.node.ngo.field_address_2
+    - field.field.node.ngo.field_bank_name
+    - field.field.node.ngo.field_branch_address_1
+    - field.field.node.ngo.field_branch_address_2
+    - field.field.node.ngo.field_domain_access
+    - field.field.node.ngo.field_domain_all_affiliates
+    - field.field.node.ngo.field_gstn_no
+    - field.field.node.ngo.field_gstn_registered
+    - field.field.node.ngo.field_ifsc_code
+    - field.field.node.ngo.field_ngo_location
+    - field.field.node.ngo.field_ngo_remarks
+    - field.field.node.ngo.field_ngo_secondry_mobile_no
+    - field.field.node.ngo.field_ngo_vendor_code
+    - field.field.node.ngo.field_pan_no
+    - field.field.node.ngo.field_partner_type
+    - field.field.node.ngo.field_silai_pin_code
+    - node.type.ngo
+  module:
+    - user
+id: node.ngo.teaser
+targetEntityType: node
+bundle: ngo
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_account_no: true
+  field_address_1: true
+  field_address_2: true
+  field_bank_name: true
+  field_branch_address_1: true
+  field_branch_address_2: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_gstn_no: true
+  field_gstn_registered: true
+  field_ifsc_code: true
+  field_ngo_location: true
+  field_ngo_remarks: true
+  field_ngo_secondry_mobile_no: true
+  field_ngo_vendor_code: true
+  field_pan_no: true
+  field_partner_type: true
+  field_silai_pin_code: true
+  langcode: true

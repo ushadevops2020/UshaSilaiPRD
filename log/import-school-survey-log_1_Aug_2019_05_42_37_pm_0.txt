@@ -1,0 +1,32 @@
+1) IND08053 - Teacher Id is not exist. In Row Number : 2022
+2) hindu - RELIGION is not valid in row number . 11332.
+3) IND10045 - Teacher Id is not exist. In Row Number : 12923
+4) IND10051 - Teacher Id is not exist. In Row Number : 12929
+5) IND13037 - Teacher Id is not exist. In Row Number : 15502
+6) IND13038 - Teacher Id is not exist. In Row Number : 15503
+7) IND13039 - Teacher Id is not exist. In Row Number : 15504
+8) IND13018 - Teacher Id is not exist. In Row Number : 15706
+9) IND13019 - Teacher Id is not exist. In Row Number : 15707
+10) IND18490 - Teacher Id is not exist. In Row Number : 16236
+11) IND18495 - Teacher Id is not exist. In Row Number : 16237
+12) IND18497 - Teacher Id is not exist. In Row Number : 16238
+13) IND18498 - Teacher Id is not exist. In Row Number : 16239
+14) IND18499 - Teacher Id is not exist. In Row Number : 16240
+15) IND18501 - Teacher Id is not exist. In Row Number : 16242
+16) IND22025 - Teacher Id is not exist. In Row Number : 16412
+17) IND22030 - Teacher Id is not exist. In Row Number : 16420
+18) IND24691 - Teacher Id is not exist. In Row Number : 16666
+19) IN241229 - Teacher Id is not exist. In Row Number : 16692
+20) IN241224 - Teacher Id is not exist. In Row Number : 16693
+21) IND24245 - Teacher Id is not exist. In Row Number : 16909
+22) IND24199 - Teacher Id is not exist. In Row Number : 16910
+23) hindu - RELIGION is not valid in row number . 19556.
+24) IND01280 - Teacher Id is not exist. In Row Number : 19568
+25) IND01062 - Teacher Id is not exist. In Row Number : 19569
+26) IND01063 - Teacher Id is not exist. In Row Number : 19571
+27) IND01064 - Teacher Id is not exist. In Row Number : 19573
+28) IND01065 - Teacher Id is not exist. In Row Number : 19575
+29) IND01066 - Teacher Id is not exist. In Row Number : 19577
+30) IND01067 - Teacher Id is not exist. In Row Number : 19579
+31) IND01068 - Teacher Id is not exist. In Row Number : 19581
+32) IND01069 - Teacher Id is not exist. In Row Number : 19583

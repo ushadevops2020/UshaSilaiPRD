@@ -1,0 +1,19 @@
+uuid: 2fe3c64f-22ca-4fc1-a457-ffb444b8c9f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_basic_info
+    - node.type.trainer_silai
+id: node.trainer_silai.field_silai_basic_info
+field_name: field_silai_basic_info
+entity_type: node
+bundle: trainer_silai
+label: 'Basic Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

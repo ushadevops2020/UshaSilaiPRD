@@ -1,0 +1,19 @@
+uuid: fd5c117a-7f36-4ecc-8a77-d6502334398b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_school_type_code
+    - node.type.school_type_master
+id: node.school_type_master.field_school_type_code
+field_name: field_school_type_code
+entity_type: node
+bundle: school_type_master
+label: 'School Type Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,4 @@
+services:
+ silai.master_data:
+   class: Drupal\silai\Services\MasterDataServices
+   arguments: [] 

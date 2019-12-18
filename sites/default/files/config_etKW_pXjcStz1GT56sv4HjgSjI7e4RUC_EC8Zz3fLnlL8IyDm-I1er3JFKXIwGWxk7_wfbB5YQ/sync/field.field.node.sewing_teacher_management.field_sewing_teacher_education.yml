@@ -1,0 +1,19 @@
+uuid: cd2e8dd8-c012-49f1-b912-d6972c2ec05a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_education
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.field_sewing_teacher_education
+field_name: field_sewing_teacher_education
+entity_type: node
+bundle: sewing_teacher_management
+label: 'University / College of Education'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

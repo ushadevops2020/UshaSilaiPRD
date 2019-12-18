@@ -1,0 +1,9 @@
+uuid: 297cde2f-6302-419c-bf10-360e4c81fde2
+langcode: en
+status: true
+dependencies: {  }
+name: 'Area of Operation'
+vid: area_of_operation
+description: ''
+hierarchy: 0
+weight: 0

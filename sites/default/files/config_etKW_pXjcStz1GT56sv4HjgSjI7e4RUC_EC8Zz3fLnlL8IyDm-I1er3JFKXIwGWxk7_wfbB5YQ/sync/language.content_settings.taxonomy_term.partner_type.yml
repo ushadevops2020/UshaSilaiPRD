@@ -1,0 +1,11 @@
+uuid: b20b90df-f154-4d0e-9180-de10b58b9c92
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.partner_type
+id: taxonomy_term.partner_type
+target_entity_type_id: taxonomy_term
+target_bundle: partner_type
+default_langcode: site_default
+language_alterable: false

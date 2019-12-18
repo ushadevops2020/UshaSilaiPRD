@@ -1,0 +1,45 @@
+uuid: 9662ba94-55d8-466d-b6a3-eec4603adb0e
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.common-menu
+  module:
+    - system
+    - user
+  theme:
+    - silai_lte_admin
+id: silai_lte_admin_commonmenu
+theme: silai_lte_admin
+region: sidebar
+weight: -7
+provider: null
+plugin: 'system_menu_block:common-menu'
+settings:
+  id: 'system_menu_block:common-menu'
+  label: 'Common Menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      silai_ho_admin: silai_ho_admin
+      silai_ho_user: silai_ho_user
+      ngo_admin: ngo_admin
+      pc: pc
+      silai_school_admin: silai_school_admin
+      silai_learner: silai_learner
+      silai_dealer: silai_dealer
+      sewing_ho_admin: sewing_ho_admin
+      sewing_ho_user: sewing_ho_user
+      sewing_ssi: sewing_ssi
+      sewing_school_admin: sewing_school_admin
+      sewing_school_teacher: sewing_school_teacher
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

@@ -1,0 +1,66 @@
+silai_api.login_api:
+  path: '/login-api'
+  defaults: { _controller: '\Drupal\silai_api\Controller\SilaiApiController::loginApi' }
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'
+silai_api.logout_api:
+  path: '/logout-api'
+  defaults:
+    _title: 'Get user profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::logoutApi'
+  requirements:
+    _permission: 'access content'     
+silai_api.profile_api:
+  path: '/profile-api'
+  defaults:
+    _title: 'Get user profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::schoolProfile'
+  requirements:
+    _permission: 'access content'
+silai_api.update_profile_api:
+  path: '/update-profile-api'
+  methods:  [POST]
+  defaults:
+    _title: Update profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::updateProfile'
+  requirements:
+    _access: 'TRUE'
+silai_api.inventory_list:
+  path: '/inventory-list-api'
+  defaults:
+    _title: 'Get user profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::schoolInventoryList'
+  requirements:
+    _permission: 'access content'
+silai_api.update_receive_inventory:
+  path: '/update-inventory-api'
+  methods:  [POST]
+  defaults:
+    _title: Update profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::updateSchoolInventory'
+  requirements:
+    _access: 'TRUE'
+silai_api.mis_data:
+  path: '/miss-api'
+  methods:  [POST]
+  defaults:
+    _title: Update profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::insertMisdata'
+  requirements:
+    _access: 'TRUE'
+silai_api.demo_api:
+  path: '/demo-api'
+  defaults:
+    _title: 'Get user profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::demoApi'
+  requirements:
+    _permission: 'access content'
+silai_api.force_update:
+  path: '/app-force-update'
+  defaults:
+    _title: 'Get user profile details'
+    _controller: '\Drupal\silai_api\Controller\SilaiApiController::appGetAPIDetail'
+  requirements:
+    _permission: 'access content'     
+

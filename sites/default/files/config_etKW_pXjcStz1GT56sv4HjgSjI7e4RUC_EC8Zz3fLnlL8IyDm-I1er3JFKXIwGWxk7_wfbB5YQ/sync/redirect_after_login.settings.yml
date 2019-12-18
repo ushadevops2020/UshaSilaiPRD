@@ -1,0 +1,16 @@
+login_redirection:
+  anonymous: null
+  authenticated: /
+  administrator: /
+  silai_ho_admin: /dashboard
+  silai_ho_user: /dashboard
+  ngo_admin: /dashboard
+  pc: /dashboard
+  silai_school_admin: /
+  silai_learner: /
+  silai_dealer: /
+  sewing_ho_admin: /sewing-dashboard
+  sewing_ho_user: /sewing-dashboard
+  sewing_ssi: /sewing-dashboard
+  sewing_school_admin: /sewing-dashboard-sa
+  sewing_school_teacher: /

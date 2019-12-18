@@ -1,0 +1,21 @@
+uuid: 67625e18-ca19-42b2-bacb-4307e53fd780
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contract_period_till_date
+    - node.type.manage_agreements
+  module:
+    - datetime
+id: node.manage_agreements.field_contract_period_till_date
+field_name: field_contract_period_till_date
+entity_type: node
+bundle: manage_agreements
+label: 'CONTRACT VALID - Till'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

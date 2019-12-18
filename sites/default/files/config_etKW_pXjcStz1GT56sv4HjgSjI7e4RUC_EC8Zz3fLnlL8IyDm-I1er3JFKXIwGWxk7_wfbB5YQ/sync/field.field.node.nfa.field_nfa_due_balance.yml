@@ -1,0 +1,21 @@
+uuid: 4b6d8211-4c7d-4c4f-a625-1edd5203b940
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nfa_due_balance
+    - node.type.nfa
+id: node.nfa.field_nfa_due_balance
+field_name: field_nfa_due_balance
+entity_type: node
+bundle: nfa
+label: 'NFA Due Balance'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string

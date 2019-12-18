@@ -1,0 +1,19 @@
+uuid: bb03aedd-6163-4288-b8d2-22ce0ad1d838
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_course_name
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_sewing_course_name
+field_name: field_sewing_course_name
+entity_type: node
+bundle: manage_sewing_students
+label: 'Course Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

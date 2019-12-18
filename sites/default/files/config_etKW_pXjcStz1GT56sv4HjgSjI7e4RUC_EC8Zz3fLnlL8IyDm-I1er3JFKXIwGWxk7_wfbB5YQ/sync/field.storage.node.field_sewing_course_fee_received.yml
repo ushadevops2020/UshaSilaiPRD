@@ -1,0 +1,21 @@
+uuid: 2969a8ad-5557-425c-ad7b-fbec1680550f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sewing_course_fee_received
+field_name: field_sewing_course_fee_received
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

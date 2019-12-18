@@ -1,0 +1,31 @@
+send_message.form:
+ path: '/send_message'
+ defaults:
+   _title: 'Send a message'
+   _form: '\Drupal\send_message\Form\SendMessageForm'
+ requirements:
+   _permission: 'access content'
+
+send_message.showMessage:
+ path: '/read_message_list/{message_id}'
+ defaults:
+   _title: 'Message'
+   _controller: '\Drupal\send_message\Controller\ShowMessageController::showMessage'
+ requirements:
+   _permission: 'access content' 
+
+send_message.readMessage:
+ path: '/read_message_when_open_test'
+ defaults:
+   _title: 'Read a message'
+   _form: '\Drupal\send_message\Form\ReadMessageForm'
+ requirements:
+   _permission: 'access content'
+
+send_message.delete_message:
+ path: '/delete_message'
+ defaults:
+    _controller: '\Drupal\send_message\Controller\ShowMessageController::deleteMessage'
+    _title: 'Delete Message'
+ requirements:
+   _permission: 'access content'

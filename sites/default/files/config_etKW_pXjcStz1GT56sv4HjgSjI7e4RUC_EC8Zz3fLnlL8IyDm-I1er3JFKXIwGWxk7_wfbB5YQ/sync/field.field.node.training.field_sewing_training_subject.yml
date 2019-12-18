@@ -1,0 +1,19 @@
+uuid: 9ac1634b-3a0d-4283-9592-b02428314871
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_training_subject
+    - node.type.training
+id: node.training.field_sewing_training_subject
+field_name: field_sewing_training_subject
+entity_type: node
+bundle: training
+label: 'Type of Activity'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

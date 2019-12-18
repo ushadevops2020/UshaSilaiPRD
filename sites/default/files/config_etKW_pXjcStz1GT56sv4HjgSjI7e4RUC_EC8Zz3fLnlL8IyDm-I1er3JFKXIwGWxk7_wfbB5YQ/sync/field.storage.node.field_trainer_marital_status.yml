@@ -1,0 +1,27 @@
+uuid: 4a4cbff5-3dd0-471d-a432-49481e7f692d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_trainer_marital_status
+field_name: field_trainer_marital_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Married
+    -
+      value: '2'
+      label: Unmarried
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

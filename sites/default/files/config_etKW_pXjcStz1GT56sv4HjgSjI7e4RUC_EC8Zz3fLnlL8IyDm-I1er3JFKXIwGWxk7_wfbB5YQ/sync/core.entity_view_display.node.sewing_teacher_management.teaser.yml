@@ -1,0 +1,44 @@
+uuid: 61d02491-8b85-46a7-9aeb-976ed389bd86
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.sewing_teacher_management.field_domain_access
+    - field.field.node.sewing_teacher_management.field_domain_all_affiliates
+    - field.field.node.sewing_teacher_management.field_sewing_school_code_list
+    - node.type.sewing_teacher_management
+  module:
+    - user
+id: node.sewing_teacher_management.teaser
+targetEntityType: node
+bundle: sewing_teacher_management
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_sewing_copy_teacher_data: true
+  field_sewing_school_code_list: true
+  field_sewing_teacher_address: true
+  field_sewing_teacher_certif_no: true
+  field_sewing_teacher_education: true
+  field_sewing_teacher_email: true
+  field_sewing_teacher_gender: true
+  field_sewing_teacher_join_date: true
+  field_sewing_teacher_phone_no: true
+  field_sewing_teacher_pin_code: true
+  field_sewing_teacher_pre_exp: true
+  field_sewing_teacher_qualificati: true
+  field_sewing_teacher_skill_level: true
+  field_sewing_teacher_status: true
+  field_sewing_teacher_subject: true
+  field_sewing_teacher_trained_by: true
+  field_sewing_teacher_training: true
+  field_sewing_teacher_tran_date: true
+  langcode: true

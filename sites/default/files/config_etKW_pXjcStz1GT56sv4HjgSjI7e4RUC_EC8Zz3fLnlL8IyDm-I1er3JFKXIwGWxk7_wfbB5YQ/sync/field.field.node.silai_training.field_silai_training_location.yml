@@ -1,0 +1,29 @@
+uuid: fd40efd6-2269-46c9-8fc0-bb7c3573733c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_training_location
+    - node.type.manage_silai_locations
+    - node.type.silai_training
+id: node.silai_training.field_silai_training_location
+field_name: field_silai_training_location
+entity_type: node
+bundle: silai_training
+label: Location
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_silai_locations: manage_silai_locations
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

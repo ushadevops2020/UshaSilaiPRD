@@ -1,0 +1,19 @@
+uuid: a68f00ed-6ec6-4a49-94b0-5ee798fe6d0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_town_code
+    - node.type.manage_towns
+id: node.manage_towns.field_town_code
+field_name: field_town_code
+entity_type: node
+bundle: manage_towns
+label: 'Town Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

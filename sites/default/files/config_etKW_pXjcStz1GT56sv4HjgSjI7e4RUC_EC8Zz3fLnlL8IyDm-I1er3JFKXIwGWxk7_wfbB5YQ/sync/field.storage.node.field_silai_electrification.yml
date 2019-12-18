@@ -1,0 +1,27 @@
+uuid: 8ca06a14-d9dc-4daf-a927-95c24f6d7c79
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_silai_electrification
+field_name: field_silai_electrification
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: 'Yes'
+    -
+      value: '0'
+      label: 'NO'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,11 @@
+1) UPBJCC17080024 - Admission Number does not exist. In excel file row number : 218
+2) UUPACC17100012 - Admission Number does not exist. In excel file row number : 432
+3) UMAYBD18020005 - Admission Number does not exist. In excel file row number : 475
+4) UMAYCH17070023 - Admission Number does not exist. In excel file row number : 716
+5) UMAYAJ18010004 - Admission Number does not exist. In excel file row number : 831
+6) UMAYAJ18010009 - Admission Number does not exist. In excel file row number : 836
+7) UUPAAJ17050003 - Admission Number does not exist. In excel file row number : 983
+8) UUPAAD17040003 - Admission Number does not exist. In excel file row number : 990
+9) UUPAAD17040002 - Admission Number does not exist. In excel file row number : 991
+10) UMAYCH18010006 - Admission Number does not exist. In excel file row number : 1201
+11) UORCEC17120004 - Admission Number does not exist. In excel file row number : 1418

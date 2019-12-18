@@ -1,0 +1,109 @@
+uuid: 759a0aec-d8db-4725-b45f-b8d4da3577c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_training.field_domain_access
+    - field.field.node.silai_training.field_domain_all_affiliates
+    - field.field.node.silai_training.field_silai_no_of_trainees
+    - field.field.node.silai_training.field_silai_trainer_name
+    - field.field.node.silai_training.field_silai_training_date
+    - field.field.node.silai_training.field_silai_training_district
+    - field.field.node.silai_training.field_silai_training_location
+    - field.field.node.silai_training.field_silai_training_school_name
+    - field.field.node.silai_training.field_silai_training_state
+    - field.field.node.silai_training.field_silai_training_town
+    - node.type.silai_training
+  module:
+    - datetime
+    - user
+id: node.silai_training.default
+targetEntityType: node
+bundle: silai_training
+mode: default
+content:
+  field_silai_no_of_trainees:
+    weight: 108
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_silai_trainer_name:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_training_date:
+    weight: 101
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_silai_training_district:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_training_location:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_training_school_name:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_training_state:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_training_town:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

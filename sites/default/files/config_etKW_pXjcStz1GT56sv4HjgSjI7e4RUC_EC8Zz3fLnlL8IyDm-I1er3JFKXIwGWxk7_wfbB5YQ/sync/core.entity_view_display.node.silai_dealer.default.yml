@@ -1,0 +1,124 @@
+uuid: d7a3b09e-e03a-40d8-a5fc-7fa7bcd10731
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_dealer.field_domain_access
+    - field.field.node.silai_dealer.field_domain_all_affiliates
+    - field.field.node.silai_dealer.field_silai_business_state
+    - field.field.node.silai_dealer.field_silai_dealer_code
+    - field.field.node.silai_dealer.field_silai_dealer_contact_no
+    - field.field.node.silai_dealer.field_silai_dealer_latitude
+    - field.field.node.silai_dealer.field_silai_dealer_locality
+    - field.field.node.silai_dealer.field_silai_dealer_longitude
+    - field.field.node.silai_dealer.field_silai_dealer_pin_code
+    - field.field.node.silai_dealer.field_silai_dealer_street
+    - field.field.node.silai_dealer.field_silai_district
+    - field.field.node.silai_dealer.field_silai_town
+    - node.type.silai_dealer
+  module:
+    - user
+id: node.silai_dealer.default
+targetEntityType: node
+bundle: silai_dealer
+mode: default
+content:
+  field_silai_business_state:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_dealer_code:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_contact_no:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_latitude:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_locality:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_longitude:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_pin_code:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_dealer_street:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_district:
+    weight: 109
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_town:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

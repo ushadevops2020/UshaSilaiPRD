@@ -1,0 +1,15 @@
+1)  - Course Code field is Blank. In Row Number : 15
+2)  - Course Code field is Blank. In Row Number : 16
+3)  - Marital Status is Blank. In Row Number : 17
+4)  - Course Code field is Blank. In Row Number : 22
+5)  - Course Code field is Blank. In Row Number : 23
+6)  - Course Code field is Blank. In Row Number : 24
+7)  - Course Code field is Blank. In Row Number : 25
+8)  - Course Code field is Blank. In Row Number : 26
+9)  - Course Code field is Blank. In Row Number : 27
+10)  - Course Code field is Blank. In Row Number : 28
+11)  - Course Code field is Blank. In Row Number : 29
+12)  - Course Code field is Blank. In Row Number : 30
+13)  - Course Code field is Blank. In Row Number : 31
+14)  - Course Code field is Blank. In Row Number : 32
+15)  - Course Code field is Blank. In Row Number : 33

@@ -1,0 +1,19 @@
+uuid: c020927a-5a8b-4ef7-817b-f27916f6e94a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_school_code
+    - node.type.sewing_school
+id: node.sewing_school.field_sewing_school_code
+field_name: field_sewing_school_code
+entity_type: node
+bundle: sewing_school
+label: 'School Code'
+description: '* School Code is auto generated.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

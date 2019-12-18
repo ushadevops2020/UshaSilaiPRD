@@ -1,0 +1,29 @@
+uuid: b513a246-9b44-42b0-89f1-f893d1c3e8b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_business_state
+    - node.type.manage_business_states
+    - node.type.manage_districts
+id: node.manage_districts.field_business_state
+field_name: field_business_state
+entity_type: node
+bundle: manage_districts
+label: 'Assign State'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_business_states: manage_business_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

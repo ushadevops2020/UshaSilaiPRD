@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @file
+ * Contains send_message.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query;
+
+use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+
+
+/**
+ * [Altering send message Views] 
+ * @param  ViewExecutable  $view  [description]
+ * @param  QueryPluginBase $query [description]
+ * @return [type]                 [description]
+ */
+function send_message_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $userRoles = $user->getRoles();
+  $userId = $user->id();
+
+  // Altering Receive Message List(send_message module) Views
+  if ($view->id() == 'send_message_list' && ($view->current_display == 'page_2')) {
+      if ($userId != 1) {
+        $query->addWhere('', 'send_message.receiver_id', $userId, '=');
+      }
+  }
+
+  if ($view->id() == 'send_message_list' && ($view->current_display == 'block_1')) {
+      if ($userId != 1) {
+        $query->addWhere('', 'send_message.receiver_id', $userId, '=');
+      }
+  }
+    // Altering Send Message List(send_message module) Views
+  if ($view->id() == 'send_message_list' && ($view->current_display == 'page_1' || $view->current_display == 'page_3')) {
+      if ($userId != 1) {
+        $query->addWhere('', 'send_message.sender_id', $userId, '=');
+      }
+  }
+  if ($view->id() == 'send_message_list' && $view->current_display == 'block_2') {
+      if ($userId != 1) {
+        $query->addWhere('', 'send_message.sender_id', $userId, '=');
+      }
+  }
+
+  if (($view->id() == 'send_message_list' && ($view->current_display == 'page_1')) || ($view->id() == 'send_message_list' && ($view->current_display == 'block_2'))) {
+    $definition = [
+        'table' => TABLE_NODE_FIELD_DATA,
+        'field' => NID,
+        'left_table' => 'send_message',
+        'left_field' => 'ngo',
+    ];  
+
+    $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+    $query->addRelationship('ngo_alias', $join, 'sendmessage_alias');
+  }  
+
+  if ($view->id() == 'send_message_list' && $view->current_display == 'page_1') {
+    if($query->where[1]['conditions'][0]['field'] == 'send_message.sent_date') {
+        $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+    }
+
+    if($query->where[1]['conditions'][1]['field'] == 'send_message.sent_date') {
+        $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+    }
+  }
+  if ($view->id() == 'send_message_list' && $view->current_display == 'page_3') {
+    if($query->where[1]['conditions'][0]['field'] == 'send_message.sent_date') {
+        $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+    }
+
+    if($query->where[1]['conditions'][1]['field'] == 'send_message.sent_date') {
+        $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+    }
+  }
+
+}
+
+/**
+ * Implementation of hook_views_pre_execute
+ */
+function send_message_views_pre_execute(\Drupal\views\ViewExecutable $view) {
+  if ($view->id() == 'send_message_list' && ($view->current_display == 'block_2')) {
+    $query = $view->build_info['query'];
+    // echo $query;die;
+  }
+  if($view->id() == 'silai_users_listing') {
+    $query = $view->build_info['query'];
+    //echo $query;die;    
+  }
+}
+
+/**
+ * Implementation of hook_views_pre_render
+ */
+function send_message_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  if(($view->id() == 'send_message_list' && $view->current_display == 'block_1') || ($view->id() == 'send_message_list' && $view->current_display == 'block_2')) {
+        foreach($view->result as $value) {
+            if($value->send_message_filepath) {
+              //Loading file 
+              $file_object = File::load($value->send_message_filepath);
+              if($file_object) {
+                $file_uri = $file_object->getFileUri();
+                $file_url = Url::fromUri(file_create_url($file_uri))->toString();
+              } 
+              else {
+                $file_url = '';
+              }
+
+              $image = "<a href=\"$file_url\">Download</a>";
+              $value->send_message_filepath = $file_url;
+            }
+        }
+  }
+}
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the exposed filter forms.
+ */
+function send_message_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-send-message-list-page-1') {
+    $form['from_date']['#type'] = 'date';
+    $form['to_date']['#type'] = 'date';
+  } 
+  if ($form['#id'] == 'views-exposed-form-send-message-list-page-3') {
+    $form['from_date']['#type'] = 'date';
+    $form['to_date']['#type'] = 'date';
+  }   
+} 

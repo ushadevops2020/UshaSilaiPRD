@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install file for the Update Database module.
+ */
+ 
+/**
+ * Update function for 1st deployment. NOTE: This code comment is used in the list of updates and should be descriptive.
+ */
+function mis_update_8621(){
+    // $spec1 = array(
+    //     'description' => 'Select Week Start Date',
+    //     'type' => 'int',
+    //     'not null' => FALSE
+    // ); 
+
+    // $spec2 = array(
+    //     'description' => 'Select Week End Date',
+    //     'type' => 'int',
+    //     'not null' => FALSE
+    // );
+    // $spec3 = array(
+    //     'description' => 'Created',
+    //     'type' => 'int',
+    //     'not null' => FALSE
+    // );
+    // $spec4 = array(
+    //     'description' => 'Updated',
+    //     'type' => 'int',
+    //     'not null' => FALSE
+    // ); 
+    // $schema = Database::getConnection()->schema();
+
+    // $schema->addField('usha_weekly_mis', 'week_start_date', $spec1);
+    // $schema->addField('usha_weekly_mis', 'week_end_date', $spec2);
+    // $schema->addField('usha_weekly_mis', 'created_date', $spec3);
+    // $schema->addField('usha_weekly_mis', 'updated_date', $spec4);
+}

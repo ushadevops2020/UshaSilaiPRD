@@ -1,0 +1,14 @@
+uuid: e8d8f793-4431-4a6d-9b07-22066a9c0ac6
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_silai_tk
+  module:
+    - domain_access
+id: domain_access_add_action.usha_silai_tk
+label: 'Add selected content to the Silai domain'
+type: node
+plugin: domain_access_add_action
+configuration:
+  domain_id: usha_silai_tk

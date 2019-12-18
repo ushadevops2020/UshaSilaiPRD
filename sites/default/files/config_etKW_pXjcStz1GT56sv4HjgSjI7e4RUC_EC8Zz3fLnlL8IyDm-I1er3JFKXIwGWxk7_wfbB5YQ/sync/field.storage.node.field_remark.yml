@@ -1,0 +1,19 @@
+uuid: 47a5ae05-dff5-4e88-b0b2-9bf4cf344ca4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_remark
+field_name: field_remark
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

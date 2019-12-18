@@ -1,0 +1,13 @@
+uuid: 627d0d60-7f87-4dad-897b-cfaf826be151
+langcode: en
+status: true
+dependencies: {  }
+id: silai_school_admin
+label: 'Silai School Admin'
+weight: 7
+is_admin: null
+permissions:
+  - 'add audit log entities'
+  - 'administer audit log entities'
+  - 'create content_workflow workflow_transition'
+  - 'view audit log entities'

@@ -1,0 +1,21 @@
+uuid: 8a43c282-51b3-4a4a-ae41-9cc14ac2108e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sil_school_status_remarks
+field_name: field_sil_school_status_remarks
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

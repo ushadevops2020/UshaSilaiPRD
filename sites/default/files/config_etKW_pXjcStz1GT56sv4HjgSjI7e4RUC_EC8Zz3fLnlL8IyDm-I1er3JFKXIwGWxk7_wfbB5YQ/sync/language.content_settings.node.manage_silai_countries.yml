@@ -1,0 +1,11 @@
+uuid: ac3ed5c0-0fcd-4008-9533-5dfc47677cc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_silai_countries
+id: node.manage_silai_countries
+target_entity_type_id: node
+target_bundle: manage_silai_countries
+default_langcode: site_default
+language_alterable: false

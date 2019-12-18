@@ -1,0 +1,19 @@
+uuid: f5fae222-b714-456e-922a-f199cc50f2bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sil_school_status_remarks
+    - node.type.silai_school
+id: node.silai_school.field_sil_school_status_remarks
+field_name: field_sil_school_status_remarks
+entity_type: node
+bundle: silai_school
+label: Remarks
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

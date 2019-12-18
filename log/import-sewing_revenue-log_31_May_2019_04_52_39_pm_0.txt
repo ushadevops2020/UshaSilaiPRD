@@ -1,0 +1,4 @@
+1)  - Total Fee is not valid. In excel file row number : 2
+2)  - Total Fee is not valid. In excel file row number : 3
+3)  - Total Fee is not valid. In excel file row number : 4
+4)  - Total Fee is not valid. In excel file row number : 5

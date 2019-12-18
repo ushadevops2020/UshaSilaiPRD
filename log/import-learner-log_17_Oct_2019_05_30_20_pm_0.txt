@@ -1,0 +1,8 @@
+1) 72803 - Districe Code is not exist. In Row Number : 8
+2) 72804 - Districe Code is not exist. In Row Number : 9
+3) 72804 - Districe Code is not exist. In Row Number : 10
+4) 72802 - Districe Code is not exist. In Row Number : 11
+5) 72798 - Districe Code is not exist. In Row Number : 12
+6) 72802 - Districe Code is not exist. In Row Number : 13
+7) 72804 - Districe Code is not exist. In Row Number : 14
+8)  - Course Code field is Blank. In Row Number : 15

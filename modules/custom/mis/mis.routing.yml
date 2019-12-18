@@ -1,0 +1,127 @@
+mis.mis_add_weekly_form:
+ path: '/add-weekly-mis'
+ defaults:
+   _title: 'Add Weekly MIS'
+   _form: '\Drupal\mis\Form\AddWeeklyMISForm'
+ requirements:
+   _permission: 'access content'
+
+mis.mis_delete_weekly:
+ path: '/delete-weekly-mis'
+ defaults:
+    _controller: '\Drupal\mis\Controller\MISController::deleteWeeklyMIS'
+    _title: 'Delete Weekly MIS'
+ requirements:
+   _permission: 'access content'
+
+mis.mis_delete_monthly:
+ path: '/delete-monthly-mis'
+ defaults:
+    _controller: '\Drupal\mis\Controller\MISController::deleteMonthlyMIS'
+    _title: 'Delete Monthly/Quarterly MIS'
+ requirements:
+   _permission: 'access content'   
+
+mis.mis_add_monthly_form:
+ path: '/add-monthly-mis'
+ defaults:
+   _title: 'Add Monthly/Quarterly MIS'
+   _form: '\Drupal\mis\Form\AddMonthlyMISForm'
+ requirements:
+   _permission: 'access content'
+
+mis.mis_weekly_bulk_import:
+  path: '/weekly-bulk-import'
+  defaults:
+    _controller: '\Drupal\mis\Controller\MISController::weeklyBulkUpload'
+    _title: 'MIS Data Import'
+  requirements:
+   _permission: 'access content'
+
+mis.mis_monthly_bulk_import:
+  path: '/monthly-bulk-import'
+  defaults:
+    _controller: '\Drupal\mis\Controller\MISController::monthlyBulkUpload'
+    _title: 'MIS Data Import'
+  requirements:
+   _permission: 'access content'   
+
+mis.mis_controller_getblocksbyDistrict:
+  path: '/get_block_by_district/{districtId}'
+  defaults:
+    _title: 'Get blocks by district'
+    _controller: '\Drupal\mis\Controller\MISController::getBlocksByDistrict'
+  requirements:
+    _permission: 'access content'
+
+mis.school_code_autocomplete:
+  path: '/school-code-autocomplete/{field_name}/{count}'
+  defaults:
+    _controller: '\Drupal\mis\Controller\MISController::schoolCodeAutocomplete'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+
+mis.mis_controller_getSchoolCodeByVillage:
+  path: '/get_mis_school_code_by_village/{villageId}'
+  defaults:
+    _title: 'Get School Code by village'
+    _controller: '\Drupal\mis\Controller\MISController::getSchoolCodeByVillage'
+  requirements:
+    _permission: 'access content'
+
+mis.mis_controller_getMonthlyQuarterYr:
+  path: '/get_monthly_quarter_value'
+  defaults:
+    _title: 'Get Monthly Quarterly Year'
+    _controller: '\Drupal\mis\Controller\MISController::getMonthlyQuarterlyValue'
+  requirements:
+    _permission: 'access content'
+
+mis.mis_controller_upadteMonthlyQuarterYr:
+  path: '/get_monthly_quarter_value/{fiscalYr}/{type}/{misid}'
+  defaults:
+    _title: 'Update Monthly Quarterly Year'
+    _controller: '\Drupal\mis\Controller\MISController::getMonthlyQuarterlyValue'
+  requirements:
+    _permission: 'access content'
+
+mis.mis_controller_getFiscalYear:
+  path: '/get_monthly_quarter_fiscalYr'
+  defaults:
+    _title: 'Get Monthly Quarterly Year'
+    _controller: '\Drupal\mis\Controller\MISController::getFiscalYear'
+  requirements:
+    _permission: 'access content'
+
+mis.mis_sewing_add_weekly_form:
+ path: '/weekly-mis-add'
+ defaults:
+   _title: 'Add Weekly MIS'
+   _form: '\Drupal\mis\Form\AddSewingWeeklyMISForm'
+ requirements:
+   _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+mis.mis_sewing_delete_weekly:
+ path: '/weekly-mis-delete'
+ defaults:
+    _controller: '\Drupal\mis\Controller\MISController::deleteSewingWeeklyMIS'
+    _title: 'Delete Weekly MIS'
+ requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+mis.mis_sewing_weekly_bulk_import:
+  path: '/mis-weekly-bulk-import'
+  defaults:
+    _controller: '\Drupal\mis\Controller\MISController::sewingWeeklyBulkUpload'
+    _title: 'MIS Data Import'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'      
+
+mis.mis_bulk_monthly_mis_delete:
+  path: '/silai_bulk_monthly_mis_delete'
+  defaults:
+    _controller: '\Drupal\mis\Controller\MISController::bulkMonthlyMISDeleteProcess'
+    _title: 'Bulk Learner Inactive'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user' 

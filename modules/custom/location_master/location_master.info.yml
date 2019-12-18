@@ -1,0 +1,5 @@
+name: 'location_master'
+type: module
+description: 'This Module is for managing location master'
+core: 8.x
+package: 'Custom'

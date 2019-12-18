@@ -1,0 +1,19 @@
+uuid: f6b19c4d-ab2b-457a-9b6f-00d2f9ffcbca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_post_office
+    - node.type.silai_villages
+id: node.silai_villages.field_silai_post_office
+field_name: field_silai_post_office
+entity_type: node
+bundle: silai_villages
+label: 'Post Office'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

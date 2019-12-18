@@ -1,0 +1,116 @@
+uuid: e06a6a3d-a24d-45d9-a6c7-572e87afc2bf
+langcode: en
+status: true
+dependencies: {  }
+id: send_message
+title: send_message
+table_schema:
+  -
+    name: id
+    label: 'Primary key'
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    index: '1'
+    primary: '1'
+  -
+    name: sender_id
+    label: 'Sender ID'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: sender_role
+    label: 'Sender Role'
+    type: varchar
+    size: normal
+    length: '25'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: receiver_id
+    label: 'Receiver ID'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: receiver_role
+    label: 'Receiver Role'
+    type: varchar
+    size: normal
+    length: '25'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: subject
+    label: Subject
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: message
+    label: Message
+    type: varchar
+    size: normal
+    length: '500'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: sent_date
+    label: 'Sent Date'
+    type: int
+    size: normal
+    length: '50'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: status
+    label: Status
+    type: int
+    size: tiny
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: filepath
+    label: 'File Path'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: location
+    label: Location
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: ngo
+    label: NGO
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

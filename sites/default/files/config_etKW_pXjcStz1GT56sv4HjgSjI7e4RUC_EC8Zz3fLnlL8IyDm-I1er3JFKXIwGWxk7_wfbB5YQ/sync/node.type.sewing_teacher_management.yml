@@ -1,0 +1,18 @@
+uuid: 77124983-afcf-4210-a3ed-d7f7f33f990f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - sewing-menu
+    parent: 'sewing-menu:'
+name: 'Sewing teacher Management'
+type: sewing_teacher_management
+description: "The purpose of Manage Teachers screen is to allow the user to view the list of existing teachers. Every teacher needs to be mapped with a school. \r\nThe purpose of Add Teacher screen is to allow the user to add a new teacher (under a school) in the system. Teachers can be created by SSI or by School Admin. However, teachers created by School Admin will be subject to approval from SSI."
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

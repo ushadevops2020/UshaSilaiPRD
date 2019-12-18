@@ -1,0 +1,22 @@
+uuid: 0c555f76-ba35-460d-a6c8-dffe4bbc1653
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_items
+id: node.silai_items.promote
+field_name: promote
+entity_type: node
+bundle: silai_items
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

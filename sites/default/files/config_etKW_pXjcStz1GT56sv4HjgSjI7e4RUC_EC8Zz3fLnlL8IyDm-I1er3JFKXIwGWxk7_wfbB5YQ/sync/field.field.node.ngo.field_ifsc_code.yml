@@ -1,0 +1,19 @@
+uuid: 45dfda85-e370-4886-ab49-972d3eade872
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ifsc_code
+    - node.type.ngo
+id: node.ngo.field_ifsc_code
+field_name: field_ifsc_code
+entity_type: node
+bundle: ngo
+label: 'IFSC Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

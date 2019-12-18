@@ -1,0 +1,22 @@
+uuid: a4ef120b-59ce-44d6-b741-166890bc1f6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_inventory
+id: node.silai_inventory.status
+field_name: status
+entity_type: node
+bundle: silai_inventory
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

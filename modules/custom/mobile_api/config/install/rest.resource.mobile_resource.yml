@@ -1,0 +1,10 @@
+id: mobile_resource
+plugin_id: mobile_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie  

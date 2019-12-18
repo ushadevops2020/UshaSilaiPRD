@@ -1,0 +1,25 @@
+uuid: 20075f48-b6d1-41f3-a0f9-17fcb5260fee
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: silai_lte_admin_branding
+theme: silai_lte_admin
+region: header
+weight: -8
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

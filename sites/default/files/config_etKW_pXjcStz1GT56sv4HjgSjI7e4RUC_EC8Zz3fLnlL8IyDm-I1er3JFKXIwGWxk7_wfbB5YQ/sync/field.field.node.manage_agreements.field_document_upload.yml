@@ -1,0 +1,27 @@
+uuid: b90a085d-6767-456a-97a4-e9bf2397d82d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_document_upload
+    - node.type.manage_agreements
+  module:
+    - file
+id: node.manage_agreements.field_document_upload
+field_name: field_document_upload
+entity_type: node
+bundle: manage_agreements
+label: 'Document Upload'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

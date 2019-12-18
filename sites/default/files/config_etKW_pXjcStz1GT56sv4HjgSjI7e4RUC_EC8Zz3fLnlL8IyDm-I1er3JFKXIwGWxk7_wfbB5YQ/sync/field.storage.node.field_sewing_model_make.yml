@@ -1,0 +1,30 @@
+uuid: c2a1cc03-8909-48ac-8a39-2b239e3223ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_model_make
+field_name: field_sewing_model_make
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Usha
+    -
+      value: '2'
+      label: 'Usha Janome'
+    -
+      value: '3'
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

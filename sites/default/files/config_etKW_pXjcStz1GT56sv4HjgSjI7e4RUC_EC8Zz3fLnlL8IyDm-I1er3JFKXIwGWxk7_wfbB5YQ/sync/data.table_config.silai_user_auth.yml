@@ -1,0 +1,62 @@
+uuid: 715f8a54-e00e-4a59-ad33-91f69f7a902e
+langcode: en
+status: true
+dependencies: {  }
+id: silai_user_auth
+title: silai_user_auth
+table_schema:
+  -
+    name: id
+    label: 'Primary key'
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    primary: '1'
+    index: 0
+  -
+    name: user_id
+    label: 'User Id'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: session_id
+    label: 'Session Id'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: token
+    label: 'Token Id'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: device_id
+    label: 'Device Id'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: created
+    label: 'Created Time'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

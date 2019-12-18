@@ -1,0 +1,195 @@
+uuid: 65a64055-aac8-4d3f-8fc6-95cda3ba5542
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ngo.field_account_no
+    - field.field.node.ngo.field_address_1
+    - field.field.node.ngo.field_address_2
+    - field.field.node.ngo.field_bank_name
+    - field.field.node.ngo.field_branch_address_1
+    - field.field.node.ngo.field_branch_address_2
+    - field.field.node.ngo.field_domain_access
+    - field.field.node.ngo.field_domain_all_affiliates
+    - field.field.node.ngo.field_gstn_no
+    - field.field.node.ngo.field_gstn_registered
+    - field.field.node.ngo.field_ifsc_code
+    - field.field.node.ngo.field_ngo_code
+    - field.field.node.ngo.field_ngo_location
+    - field.field.node.ngo.field_ngo_remarks
+    - field.field.node.ngo.field_ngo_secondry_mobile_no
+    - field.field.node.ngo.field_ngo_user_id
+    - field.field.node.ngo.field_ngo_vendor_code
+    - field.field.node.ngo.field_pan_no
+    - field.field.node.ngo.field_partner_type
+    - field.field.node.ngo.field_silai_pin_code
+    - node.type.ngo
+  module:
+    - options
+    - user
+id: node.ngo.default
+targetEntityType: node
+bundle: ngo
+mode: default
+content:
+  field_account_no:
+    weight: 115
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_address_1:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_address_2:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_bank_name:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_branch_address_1:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_branch_address_2:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_gstn_no:
+    weight: 121
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_gstn_registered:
+    weight: 120
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_ifsc_code:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ngo_code:
+    weight: 123
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ngo_location:
+    weight: 114
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_ngo_remarks:
+    weight: 116
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_ngo_secondry_mobile_no:
+    weight: 117
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ngo_user_id:
+    weight: 122
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_ngo_vendor_code:
+    weight: 118
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_pan_no:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_partner_type:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_pin_code:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

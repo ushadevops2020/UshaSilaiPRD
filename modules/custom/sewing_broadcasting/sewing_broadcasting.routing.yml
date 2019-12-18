@@ -1,0 +1,23 @@
+sewing_broadcasting.send_notification:
+ path: '/send-notification'
+ defaults:
+   _title: 'Send Notification'
+   _form: '\Drupal\sewing_broadcasting\Form\SendNotificationForm'
+ requirements:
+   _permission: 'access content'
+
+sewing_broadcasting.delete_notification:
+ path: '/delete_notification'
+ defaults:
+    _controller: '\Drupal\sewing_broadcasting\Controller\SewingBroadcastingController::deleteNotification'
+    _title: 'Delete Message'
+ requirements:
+   _permission: 'access content'
+
+sewing_broadcasting.readNotification:
+ path: '/read_notification_list/{notification_id}'
+ defaults:
+   _title: 'Notification'
+   _controller: '\Drupal\sewing_broadcasting\Controller\SewingBroadcastingController::readNotification'
+ requirements:
+   _permission: 'access content' 

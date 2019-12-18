@@ -1,0 +1,14 @@
+uuid: 11c1a7e2-9ef2-4995-81e2-84a6d0df6153
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_sewing_tk
+  module:
+    - domain_access
+id: domain_access_remove_editor_action.usha_sewing_tk
+label: 'Remove editors from the Sewing domain'
+type: user
+plugin: domain_access_remove_editor_action
+configuration:
+  domain_id: usha_sewing_tk

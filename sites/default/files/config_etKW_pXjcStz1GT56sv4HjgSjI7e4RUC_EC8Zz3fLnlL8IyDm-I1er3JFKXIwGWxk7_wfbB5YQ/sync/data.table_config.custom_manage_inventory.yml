@@ -1,0 +1,98 @@
+uuid: 7f5a638e-4fe8-4ba9-b261-94610db920da
+langcode: en
+status: true
+dependencies: {  }
+id: custom_manage_inventory
+title: custom_manage_inventory
+table_schema:
+  -
+    name: nid
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: domain_id
+    label: ''
+    type: varchar
+    size: normal
+    length: '100'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: sender_id
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: receiver_id
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: qty_send
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: qty_received
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: location_id
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: role
+    label: ''
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: received_date
+    label: ''
+    type: varchar
+    size: normal
+    length: '100'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: status
+    label: ''
+    type: int
+    size: tiny
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

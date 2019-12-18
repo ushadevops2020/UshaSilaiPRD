@@ -1,0 +1,125 @@
+uuid: c78aaf1e-c488-4833-bc1f-b4adbc8d7951
+langcode: en
+status: true
+dependencies: {  }
+id: silai_ngo_payment_detail
+title: silai_ngo_payment_detail
+table_schema:
+  -
+    name: id
+    label: 'Primary key'
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    primary: '1'
+    index: 0
+  -
+    name: nid
+    label: 'Node id'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: agreement_id
+    label: 'Agreement Id'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: cararr_id
+    label: 'Cararr Id'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: installment
+    label: 'Payment Installment'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: payment_mode
+    label: 'Payment Mode'
+    type: int
+    size: tiny
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: amount
+    label: Amount
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: cheque_no
+    label: 'Cheque Number'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: bank_drawn
+    label: 'Bank Drawn'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: transaction_date
+    label: 'Transaction Dat'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: invoice_no
+    label: 'Invoice Number'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: invoice_date
+    label: 'Invoice Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: payment_status
+    label: 'Payment Status'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

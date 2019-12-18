@@ -1,0 +1,13 @@
+name: Bootstrap Basic Image Gallery
+description: Provides bootstrap-based image formatter which displays images in a gallery format with secondary images as thumbnails.
+# core: 8.x
+type: module
+package: Field formatter
+# core: '8.x'
+configure: bootstrap_basic_image_gallery.admin_settings
+
+# Information added by Drupal.org packaging script on 2018-08-13
+version: '8.x-1.3'
+core: '8.x'
+project: 'bootstrap_basic_image_gallery'
+datestamp: 1534177387

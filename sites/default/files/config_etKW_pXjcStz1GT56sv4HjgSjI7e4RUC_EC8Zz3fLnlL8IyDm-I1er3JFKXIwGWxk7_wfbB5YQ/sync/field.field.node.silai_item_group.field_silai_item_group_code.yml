@@ -1,0 +1,19 @@
+uuid: 2798c8be-f101-466d-a730-3898a848ee77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_item_group_code
+    - node.type.silai_item_group
+id: node.silai_item_group.field_silai_item_group_code
+field_name: field_silai_item_group_code
+entity_type: node
+bundle: silai_item_group
+label: 'Item Group Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

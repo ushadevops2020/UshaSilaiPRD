@@ -1,0 +1,21 @@
+uuid: 7d192f7e-3458-44f6-b089-7af29087a045
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_do_after_learning_school
+    - node.type.silai_learners_manage
+  module:
+    - options
+id: node.silai_learners_manage.field_do_after_learning_school
+field_name: field_do_after_learning_school
+entity_type: node
+bundle: silai_learners_manage
+label: 'What will you do after learning from Silai School'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

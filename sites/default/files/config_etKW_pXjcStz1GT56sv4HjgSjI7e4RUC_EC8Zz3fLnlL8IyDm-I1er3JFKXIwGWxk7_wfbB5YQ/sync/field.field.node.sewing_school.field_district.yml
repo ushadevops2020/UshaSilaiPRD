@@ -1,0 +1,29 @@
+uuid: 09e4cf2c-37cf-4c9e-921d-3212741f107e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_district
+    - node.type.manage_districts
+    - node.type.sewing_school
+id: node.sewing_school.field_district
+field_name: field_district
+entity_type: node
+bundle: sewing_school
+label: District
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_districts: manage_districts
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

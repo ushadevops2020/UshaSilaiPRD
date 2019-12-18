@@ -1,0 +1,19 @@
+uuid: 42290368-4f1e-4ca9-ab44-b7ec5872bd05
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_trainer_name
+field_name: field_silai_trainer_name
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

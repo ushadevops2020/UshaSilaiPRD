@@ -1,0 +1,29 @@
+uuid: a7637c00-0b29-46df-bef0-96a1e10ab2cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_qualificati
+    - node.type.sewing_teacher_management
+    - taxonomy.vocabulary.sewing_teacher_qualification
+id: node.sewing_teacher_management.field_sewing_teacher_qualificati
+field_name: field_sewing_teacher_qualificati
+entity_type: node
+bundle: sewing_teacher_management
+label: Qualification
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sewing_teacher_qualification: sewing_teacher_qualification
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

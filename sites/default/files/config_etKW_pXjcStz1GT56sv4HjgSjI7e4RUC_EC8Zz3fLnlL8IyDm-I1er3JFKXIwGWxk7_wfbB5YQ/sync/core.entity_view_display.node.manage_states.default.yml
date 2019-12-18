@@ -1,0 +1,52 @@
+uuid: 9f5d29eb-6476-4abc-b73a-f34c8003cfa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.manage_states.field_domain_access
+    - field.field.node.manage_states.field_domain_all_affiliates
+    - field.field.node.manage_states.field_state_code
+    - field.field.node.manage_states.field_state_country
+    - node.type.manage_states
+  module:
+    - user
+id: node.manage_states.default
+targetEntityType: node
+bundle: manage_states
+mode: default
+content:
+  field_state_code:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_state_country:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

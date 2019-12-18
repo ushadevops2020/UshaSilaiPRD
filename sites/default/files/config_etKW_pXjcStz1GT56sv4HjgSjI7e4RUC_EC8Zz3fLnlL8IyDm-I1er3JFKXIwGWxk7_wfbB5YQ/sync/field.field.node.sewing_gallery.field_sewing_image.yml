@@ -1,0 +1,38 @@
+uuid: 7e30a514-c70c-4e2e-8053-1b1ad140868c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_image
+    - node.type.sewing_gallery
+  module:
+    - image
+id: node.sewing_gallery.field_sewing_image
+field_name: field_sewing_image
+entity_type: node
+bundle: sewing_gallery
+label: 'Event Picture'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

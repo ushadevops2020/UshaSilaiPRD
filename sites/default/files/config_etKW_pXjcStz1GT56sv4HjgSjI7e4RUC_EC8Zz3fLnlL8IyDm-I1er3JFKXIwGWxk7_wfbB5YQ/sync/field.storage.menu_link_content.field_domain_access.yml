@@ -1,0 +1,22 @@
+uuid: db385f0b-7f7f-450d-96fc-9bf13d0eb9d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - domain
+    - menu_link_content
+_core:
+  default_config_hash: GdK-L2kiPJ0P1BVHGMvSiKeOMlldQyYuQqPwNEkR3rI
+id: menu_link_content.field_domain_access
+field_name: field_domain_access
+entity_type: menu_link_content
+type: entity_reference
+settings:
+  target_type: domain
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

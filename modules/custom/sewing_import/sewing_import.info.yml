@@ -1,0 +1,5 @@
+name: 'Sewing Import'
+type: module
+description: 'This Module is for managing Sewing Import Data'
+core: 8.x
+package: 'Custom' 

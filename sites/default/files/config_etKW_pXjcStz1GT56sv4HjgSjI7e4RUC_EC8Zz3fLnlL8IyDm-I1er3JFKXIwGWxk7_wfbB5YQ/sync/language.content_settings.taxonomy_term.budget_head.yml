@@ -1,0 +1,11 @@
+uuid: c00c1a16-4d6a-4e39-9117-13f25106f9d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.budget_head
+id: taxonomy_term.budget_head
+target_entity_type_id: taxonomy_term
+target_bundle: budget_head
+default_langcode: site_default
+language_alterable: false

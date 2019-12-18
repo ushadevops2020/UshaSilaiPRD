@@ -1,0 +1,19 @@
+uuid: 30af0610-2978-42de-8561-3db05509ee04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_no_of_ss_machines
+    - node.type.sewing_school
+id: node.sewing_school.field_no_of_ss_machines
+field_name: field_no_of_ss_machines
+entity_type: node
+bundle: sewing_school
+label: 'No. of SS Machines'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: 3437a023-2316-4379-aaf4-5ab6718324f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_future_plan_after_course
+    - node.type.manage_sewing_students
+    - taxonomy.vocabulary.future_plan_courses
+id: node.manage_sewing_students.field_future_plan_after_course
+field_name: field_future_plan_after_course
+entity_type: node
+bundle: manage_sewing_students
+label: 'Future Plan after Course'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      future_plan_courses: future_plan_courses
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

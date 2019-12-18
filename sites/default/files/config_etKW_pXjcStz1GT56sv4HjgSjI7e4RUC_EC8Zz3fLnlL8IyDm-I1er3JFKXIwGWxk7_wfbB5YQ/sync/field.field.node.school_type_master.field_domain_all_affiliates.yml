@@ -1,0 +1,21 @@
+uuid: 1f91aedd-285c-4ecb-8892-c2f6f56eb0f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.school_type_master
+id: node.school_type_master.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: school_type_master
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

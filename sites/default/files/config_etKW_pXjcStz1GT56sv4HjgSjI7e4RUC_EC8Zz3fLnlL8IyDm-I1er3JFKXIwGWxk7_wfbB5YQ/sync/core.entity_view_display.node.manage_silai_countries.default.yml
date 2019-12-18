@@ -1,0 +1,43 @@
+uuid: 5637d34c-2195-4d8e-93a1-87e0578d1648
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.manage_silai_countries.field_domain_access
+    - field.field.node.manage_silai_countries.field_domain_all_affiliates
+    - field.field.node.manage_silai_countries.field_silai_country_code
+    - node.type.manage_silai_countries
+  module:
+    - user
+id: node.manage_silai_countries.default
+targetEntityType: node
+bundle: manage_silai_countries
+mode: default
+content:
+  field_silai_country_code:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

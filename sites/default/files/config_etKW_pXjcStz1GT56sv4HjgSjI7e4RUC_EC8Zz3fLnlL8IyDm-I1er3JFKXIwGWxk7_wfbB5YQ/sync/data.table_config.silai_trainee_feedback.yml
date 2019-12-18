@@ -1,0 +1,161 @@
+uuid: e2f7e2aa-f147-4efd-a190-12e5c7a2b7af
+langcode: en
+status: true
+dependencies: {  }
+id: silai_trainee_feedback
+title: silai_trainee_feedback
+table_schema:
+  -
+    name: silai_trainee_nid
+    label: 'Trainee node id'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_communication
+    label: Communication
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_entrepreneurship
+    label: Entrepreneurship
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_creativity
+    label: Creativity
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_problem_solving
+    label: 'Problem Solving'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_confidence
+    label: Confidence
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_leadership_quality
+    label: 'Leadership Quality'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_functional_numeracy
+    label: 'Functional Numeracy'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_measurement_skills
+    label: 'Measurement Skills'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_drafting
+    label: Drafting
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_pattern_making
+    label: 'Pattern Making'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_cutting
+    label: Cutting
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_quality_of_stitching
+    label: 'Quality of Stitching'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_embroidery_skills
+    label: 'Embroidery Skills'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_willing_learn_new_things
+    label: 'Willing to learn new things'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_willingness_travel_within_district
+    label: 'Willingness to travel within district'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_r_average_rating
+    label: 'Average Rating'
+    type: float
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

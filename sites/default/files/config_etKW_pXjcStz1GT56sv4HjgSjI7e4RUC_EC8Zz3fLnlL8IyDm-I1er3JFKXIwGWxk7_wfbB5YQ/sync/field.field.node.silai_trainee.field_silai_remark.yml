@@ -1,0 +1,19 @@
+uuid: f70b8aaf-76af-4a5d-9c6d-3e6e1043bf78
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_remark
+    - node.type.silai_trainee
+id: node.silai_trainee.field_silai_remark
+field_name: field_silai_remark
+entity_type: node
+bundle: silai_trainee
+label: Remark
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

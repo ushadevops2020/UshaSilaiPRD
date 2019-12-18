@@ -1,0 +1,21 @@
+uuid: 199bc983-a2f1-4b8b-9fa6-192e01baa50d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_training_school_name
+field_name: field_silai_training_school_name
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

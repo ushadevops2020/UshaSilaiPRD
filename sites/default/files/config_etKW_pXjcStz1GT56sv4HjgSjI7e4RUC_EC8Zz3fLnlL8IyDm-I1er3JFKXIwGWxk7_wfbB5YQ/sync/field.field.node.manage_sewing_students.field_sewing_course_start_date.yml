@@ -1,0 +1,24 @@
+uuid: d150c076-c966-4c4f-888e-e2cd729f3fe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_course_start_date
+    - node.type.manage_sewing_students
+  module:
+    - datetime
+id: node.manage_sewing_students.field_sewing_course_start_date
+field_name: field_sewing_course_start_date
+entity_type: node
+bundle: manage_sewing_students
+label: 'Course Start Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,11 @@
+uuid: 6c2dcd4c-8076-4a5b-bf18-39c69b80d57b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_items
+id: node.silai_items
+target_entity_type_id: node
+target_bundle: silai_items
+default_langcode: site_default
+language_alterable: false

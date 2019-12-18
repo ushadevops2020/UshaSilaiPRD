@@ -1,0 +1,18 @@
+uuid: ee0ea141-ddea-4b6d-a2da-b9da8d863eae
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.grades
+id: node.grades.title
+field_name: title
+entity_type: node
+bundle: grades
+label: 'Grade Code'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

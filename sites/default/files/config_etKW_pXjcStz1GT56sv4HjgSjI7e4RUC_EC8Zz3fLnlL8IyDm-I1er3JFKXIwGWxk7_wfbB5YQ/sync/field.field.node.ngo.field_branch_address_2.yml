@@ -1,0 +1,19 @@
+uuid: 334113a8-5e56-4968-9778-cd9962dd4017
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_branch_address_2
+    - node.type.ngo
+id: node.ngo.field_branch_address_2
+field_name: field_branch_address_2
+entity_type: node
+bundle: ngo
+label: 'Branch Address 2'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

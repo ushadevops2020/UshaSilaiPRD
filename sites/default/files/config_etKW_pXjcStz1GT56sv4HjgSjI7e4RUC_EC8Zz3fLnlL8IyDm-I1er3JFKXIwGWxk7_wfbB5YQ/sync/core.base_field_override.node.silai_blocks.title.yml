@@ -1,0 +1,18 @@
+uuid: 3ee39645-3f99-4e09-881d-9bfef305815e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_blocks
+id: node.silai_blocks.title
+field_name: title
+entity_type: node
+bundle: silai_blocks
+label: 'Block Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

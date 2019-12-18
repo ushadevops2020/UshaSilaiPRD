@@ -1,0 +1,8 @@
+silai_form_update.silai_school_gender_update:
+  path: '/silai-school-gender-update' 
+  defaults:
+    _title: 'School Gender Field Update'
+    _controller: '\Drupal\silai_form_update\Controller\SilaiSchoolFieldUpdateController::silaiSchoolGenderUpdate'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user' 
+    

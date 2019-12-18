@@ -1,0 +1,10 @@
+1)  - Payment Mode field is blank. In excel file row number : 3
+2)  - Payment Mode field is blank. In excel file row number : 4
+3)  - Payment Mode field is blank. In excel file row number : 5
+4)  - Payment Mode field is blank. In excel file row number : 6
+5)  - Payment Mode field is blank. In excel file row number : 7
+6)  - Payment Mode field is blank. In excel file row number : 8
+7)  - Payment Mode field is blank. In excel file row number : 9
+8)  - Payment Mode field is blank. In excel file row number : 10
+9)  - Payment Mode field is blank. In excel file row number : 11
+10)  - Payment Mode field is blank. In excel file row number : 12

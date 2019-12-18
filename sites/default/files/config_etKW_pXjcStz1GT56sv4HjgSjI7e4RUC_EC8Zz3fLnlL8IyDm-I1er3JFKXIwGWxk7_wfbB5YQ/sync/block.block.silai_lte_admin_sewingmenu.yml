@@ -1,0 +1,46 @@
+uuid: 07b7b1da-8e2b-4f76-9502-723639c8bd96
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.sewing-menu
+  module:
+    - domain
+    - system
+    - user
+  theme:
+    - silai_lte_admin
+id: silai_lte_admin_sewingmenu
+theme: silai_lte_admin
+region: sidebar
+weight: -6
+provider: null
+plugin: 'system_menu_block:sewing-menu'
+settings:
+  id: 'system_menu_block:sewing-menu'
+  label: 'Sewing Menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility:
+  domain:
+    id: domain
+    domains:
+      usha_sewing_tk: usha_sewing_tk
+    negate: false
+    context_mapping:
+      'entity:domain': '@domain.current_domain_context:entity:domain'
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      sewing_ho_admin: sewing_ho_admin
+      sewing_ho_user: sewing_ho_user
+      sewing_ssi: sewing_ssi
+      sewing_school_admin: sewing_school_admin
+      sewing_school_teacher: sewing_school_teacher
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

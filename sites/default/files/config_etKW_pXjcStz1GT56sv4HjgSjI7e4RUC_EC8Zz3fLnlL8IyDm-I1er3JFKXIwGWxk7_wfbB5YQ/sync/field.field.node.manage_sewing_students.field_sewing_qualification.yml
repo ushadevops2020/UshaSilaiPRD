@@ -1,0 +1,21 @@
+uuid: 5e2cc3e5-6f7d-42d5-b646-6ed6fd191558
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_qualification
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_qualification
+field_name: field_sewing_qualification
+entity_type: node
+bundle: manage_sewing_students
+label: Qualification
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,21 @@
+uuid: b57996a8-eeb7-47d9-a74a-eeb603c02cf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_school_creation_date
+    - node.type.sewing_school
+  module:
+    - datetime
+id: node.sewing_school.field_school_creation_date
+field_name: field_school_creation_date
+entity_type: node
+bundle: sewing_school
+label: 'School Creation Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

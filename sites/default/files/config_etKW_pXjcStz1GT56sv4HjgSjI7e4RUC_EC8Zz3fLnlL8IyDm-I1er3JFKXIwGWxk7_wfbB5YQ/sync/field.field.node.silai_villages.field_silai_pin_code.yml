@@ -1,0 +1,19 @@
+uuid: b9192630-d8da-4b1c-b960-75eda88f69f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_pin_code
+    - node.type.silai_villages
+id: node.silai_villages.field_silai_pin_code
+field_name: field_silai_pin_code
+entity_type: node
+bundle: silai_villages
+label: 'Pin Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

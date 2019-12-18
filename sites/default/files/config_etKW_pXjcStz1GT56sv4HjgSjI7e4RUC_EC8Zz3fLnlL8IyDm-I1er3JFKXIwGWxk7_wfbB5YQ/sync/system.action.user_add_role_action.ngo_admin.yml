@@ -1,0 +1,14 @@
+uuid: c5d199ca-98f3-4461-adc5-57170e019af3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ngo_admin
+  module:
+    - user
+id: user_add_role_action.ngo_admin
+label: 'Add the NGO Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: ngo_admin

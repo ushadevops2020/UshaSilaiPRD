@@ -1,0 +1,191 @@
+uuid: d2ba03c1-362d-4078-a2f8-223fdbcc7f9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.manage_agreements.body
+    - field.field.node.manage_agreements.field_agreement_amount
+    - field.field.node.manage_agreements.field_agreement_id
+    - field.field.node.manage_agreements.field_agreement_nfa_number
+    - field.field.node.manage_agreements.field_agreement_ngo_name
+    - field.field.node.manage_agreements.field_agreement_no_of_schools
+    - field.field.node.manage_agreements.field_agreement_po_date
+    - field.field.node.manage_agreements.field_agreement_po_number
+    - field.field.node.manage_agreements.field_agreement_remarks
+    - field.field.node.manage_agreements.field_agreement_type_of_schools
+    - field.field.node.manage_agreements.field_cararr_id
+    - field.field.node.manage_agreements.field_contract_period_from_date
+    - field.field.node.manage_agreements.field_contract_period_till_date
+    - field.field.node.manage_agreements.field_document_upload
+    - field.field.node.manage_agreements.field_domain_access
+    - field.field.node.manage_agreements.field_domain_all_affiliates
+    - field.field.node.manage_agreements.field_received_payment_status
+    - field.field.node.manage_agreements.field_silai_agre_received_amount
+    - field.field.node.manage_agreements.field_silai_agree_due_balance
+    - node.type.manage_agreements
+  module:
+    - datetime
+    - file
+    - text
+    - user
+id: node.manage_agreements.default
+targetEntityType: node
+bundle: manage_agreements
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_agreement_amount:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_agreement_id:
+    weight: 113
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_agreement_nfa_number:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_agreement_ngo_name:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_agreement_no_of_schools:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_agreement_po_date:
+    weight: 112
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_agreement_po_number:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_agreement_remarks:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_agreement_type_of_schools:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_cararr_id:
+    weight: 118
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_contract_period_from_date:
+    weight: 105
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_contract_period_till_date:
+    weight: 106
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_document_upload:
+    weight: 119
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_received_payment_status:
+    weight: 116
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_agre_received_amount:
+    weight: 114
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_agree_due_balance:
+    weight: 115
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

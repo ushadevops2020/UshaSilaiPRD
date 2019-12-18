@@ -1,0 +1,24 @@
+uuid: 7221910e-3324-4ea1-a8ee-071ef13f1171
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - domain_menu_access
+  theme:
+    - yorkshire
+id: yorkshire_mainnavigation
+theme: yorkshire
+region: sidebar
+weight: -8
+provider: null
+plugin: 'domain_access_menu_block:main'
+settings:
+  id: 'domain_access_menu_block:main'
+  label: 'Main navigation'
+  provider: domain_menu_access
+  label_display: visible
+  level: '1'
+  depth: '0'
+visibility: {  }

@@ -1,0 +1,29 @@
+uuid: a59f1041-fb92-40f4-98e7-81614912d198
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_exit_code
+    - node.type.manage_sewing_students
+    - taxonomy.vocabulary.sewing_student_exit
+id: node.manage_sewing_students.field_sewing_exit_code
+field_name: field_sewing_exit_code
+entity_type: node
+bundle: manage_sewing_students
+label: 'Exit Reason'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sewing_student_exit: sewing_student_exit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

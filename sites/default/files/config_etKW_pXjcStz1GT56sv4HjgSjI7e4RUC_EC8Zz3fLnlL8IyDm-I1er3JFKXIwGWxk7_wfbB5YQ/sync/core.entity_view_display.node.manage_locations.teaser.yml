@@ -1,0 +1,39 @@
+uuid: 53309522-0ff6-4829-b5d0-f1e83a380f73
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_locations.field_country
+    - field.field.node.manage_locations.field_domain_access
+    - field.field.node.manage_locations.field_domain_all_affiliates
+    - field.field.node.manage_locations.field_location_code
+    - node.type.manage_locations
+  module:
+    - user
+id: node.manage_locations.teaser
+targetEntityType: node
+bundle: manage_locations
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_country: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_location_code: true
+  langcode: true

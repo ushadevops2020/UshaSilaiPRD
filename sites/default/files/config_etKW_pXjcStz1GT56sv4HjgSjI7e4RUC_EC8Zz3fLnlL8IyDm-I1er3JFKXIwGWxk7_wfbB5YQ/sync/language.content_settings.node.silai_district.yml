@@ -1,0 +1,11 @@
+uuid: 37ea1104-f8f2-46de-acd1-8bba0ff502e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_district
+id: node.silai_district
+target_entity_type_id: node
+target_bundle: silai_district
+default_langcode: site_default
+language_alterable: false

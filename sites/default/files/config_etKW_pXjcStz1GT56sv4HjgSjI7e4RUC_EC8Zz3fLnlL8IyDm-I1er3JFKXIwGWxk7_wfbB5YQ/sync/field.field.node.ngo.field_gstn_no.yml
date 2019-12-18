@@ -1,0 +1,19 @@
+uuid: 2e9f0b00-8a60-4ba7-b5e4-3d26849016e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gstn_no
+    - node.type.ngo
+id: node.ngo.field_gstn_no
+field_name: field_gstn_no
+entity_type: node
+bundle: ngo
+label: 'GSTN No'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

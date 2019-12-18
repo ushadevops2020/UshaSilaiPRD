@@ -1,0 +1,22 @@
+uuid: f51876ee-4aef-4fb5-be0d-44111a249ee5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.sticky
+field_name: sticky
+entity_type: node
+bundle: manage_sewing_students
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

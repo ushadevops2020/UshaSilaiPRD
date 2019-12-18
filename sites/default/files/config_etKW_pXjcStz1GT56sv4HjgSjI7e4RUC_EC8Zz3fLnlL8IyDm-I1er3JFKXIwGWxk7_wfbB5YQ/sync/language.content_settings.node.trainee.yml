@@ -1,0 +1,11 @@
+uuid: fa8deda1-6b9c-453b-aa46-5c633d107ded
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainee
+id: node.trainee
+target_entity_type_id: node
+target_bundle: trainee
+default_langcode: site_default
+language_alterable: false

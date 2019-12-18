@@ -1,0 +1,23 @@
+sewing_statistics.school-revenue-report:
+ path: '/school-revenue-report'
+ defaults:
+   _title: 'School Revenue Report'
+   _controller: '\Drupal\sewing_statistics\Controller\StatisticsController::schoolRevenue'
+ requirements:
+   _role: 'administrator+sewing_ho_admin+sewing_ho_user+sewing_ssi+sewing_school_admin'
+
+sewing_statistics.workshop-activity-report:
+ path: '/workshop-activity-report'
+ defaults:
+   _title: 'Workshop Activity Report'
+   _controller: '\Drupal\sewing_statistics\Controller\StatisticsController::workShopActivityReport'
+ requirements:
+   _role: 'administrator+sewing_ho_admin+sewing_ho_user+sewing_ssi+sewing_school_admin'
+
+sewing_statistics.sewing_school_type wise_report:
+ path: '/school-type-wise-report'
+ defaults:
+   _title: 'School Type Wise Report'
+   _controller: '\Drupal\sewing_statistics\Controller\StatisticsController::schoolTypeWiseReport'
+ requirements:
+   _role: 'administrator+sewing_ho_admin+sewing_ho_user+sewing_ssi+sewing_school_admin'

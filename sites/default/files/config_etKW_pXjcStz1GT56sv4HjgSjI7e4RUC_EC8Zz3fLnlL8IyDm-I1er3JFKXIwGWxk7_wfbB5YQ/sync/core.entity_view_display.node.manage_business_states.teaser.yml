@@ -1,0 +1,43 @@
+uuid: c00afe73-7163-4c9d-9100-9f1e7820ce45
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_business_states.field_business_state_code
+    - field.field.node.manage_business_states.field_country
+    - field.field.node.manage_business_states.field_domain_access
+    - field.field.node.manage_business_states.field_domain_all_affiliates
+    - field.field.node.manage_business_states.field_location
+    - field.field.node.manage_business_states.field_state
+    - node.type.manage_business_states
+  module:
+    - user
+id: node.manage_business_states.teaser
+targetEntityType: node
+bundle: manage_business_states
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_business_state_code: true
+  field_country: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_location: true
+  field_state: true
+  langcode: true

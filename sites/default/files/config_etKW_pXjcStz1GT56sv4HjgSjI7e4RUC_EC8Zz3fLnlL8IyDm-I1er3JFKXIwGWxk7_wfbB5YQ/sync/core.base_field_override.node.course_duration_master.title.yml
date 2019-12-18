@@ -1,0 +1,18 @@
+uuid: 47bd1b91-76c8-41f2-9608-c305a7379763
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.course_duration_master
+id: node.course_duration_master.title
+field_name: title
+entity_type: node
+bundle: course_duration_master
+label: 'Duration Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,28 @@
+uuid: ecbbddd9-0e16-42ce-a312-ca06fd16b2b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_school_name
+    - node.type.sewing_school
+    - node.type.training
+id: node.training.field_sewing_school_name
+field_name: field_sewing_school_name
+entity_type: node
+bundle: training
+label: 'School Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sewing_school: sewing_school
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

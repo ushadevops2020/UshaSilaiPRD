@@ -1,0 +1,11 @@
+uuid: ea01d7c3-870e-41bf-867b-e4007033c6d7
+langcode: en
+status: true
+dependencies: {  }
+id: silai_learner
+label: 'Silai Learner'
+weight: 8
+is_admin: null
+permissions:
+  - 'administer audit log entities'
+  - 'create content_workflow workflow_transition'

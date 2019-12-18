@@ -1,0 +1,22 @@
+uuid: 96354e39-c133-4ca4-8363-30a6ad58e710
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dealer
+id: node.dealer.promote
+field_name: promote
+entity_type: node
+bundle: dealer
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

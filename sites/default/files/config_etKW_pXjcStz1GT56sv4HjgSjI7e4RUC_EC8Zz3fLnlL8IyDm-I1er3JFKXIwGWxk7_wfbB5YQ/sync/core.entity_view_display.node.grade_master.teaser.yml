@@ -1,0 +1,43 @@
+uuid: 60ce0362-3067-43d9-a859-20ea05258aec
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.grade_master.field_affiliation_fees
+    - field.field.node.grade_master.field_domain_access
+    - field.field.node.grade_master.field_domain_all_affiliates
+    - field.field.node.grade_master.field_grades_grade
+    - field.field.node.grade_master.field_renewal_fees
+    - field.field.node.grade_master.field_school_type
+    - node.type.grade_master
+  module:
+    - user
+id: node.grade_master.teaser
+targetEntityType: node
+bundle: grade_master
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_affiliation_fees: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_grades_grade: true
+  field_renewal_fees: true
+  field_school_type: true
+  langcode: true

@@ -1,0 +1,19 @@
+uuid: da8d1f64-300e-494b-a65a-7f31e747ebc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_pin_code
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.field_sewing_teacher_pin_code
+field_name: field_sewing_teacher_pin_code
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Pin Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,24 @@
+uuid: afd6226f-cf30-4ccc-a753-50b7e31e877d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_start_date
+    - node.type.trainer_silai
+  module:
+    - datetime
+id: node.trainer_silai.field_training_start_date
+field_name: field_training_start_date
+entity_type: node
+bundle: trainer_silai
+label: 'Training Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

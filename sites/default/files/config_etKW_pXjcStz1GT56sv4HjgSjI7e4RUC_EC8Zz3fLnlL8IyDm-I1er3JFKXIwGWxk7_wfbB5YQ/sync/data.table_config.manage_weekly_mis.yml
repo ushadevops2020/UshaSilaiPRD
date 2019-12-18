@@ -1,0 +1,395 @@
+uuid: d0bcf23a-49b5-48a8-862e-66d70cc10134
+langcode: en
+status: true
+dependencies: {  }
+id: manage_weekly_mis
+title: 'Manage Weekly MIS'
+table_schema:
+  -
+    name: id
+    label: 'Primary key'
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    index: '1'
+    primary: '1'
+  -
+    name: week_start_date
+    label: 'Select Week Start Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: week_end_date
+    label: 'Select Week End Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: submission_date
+    label: 'Submission Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: location
+    label: 'PC User Location'
+    type: varchar
+    size: normal
+    length: '255'
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_classical_schools_till_date
+    label: 'Consolidated number of classical schools till date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_satellite_schools_till_date
+    label: 'Consolidated number of satellite schools till date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_classical_schools_visited
+    label: 'Number of classical schools visited'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_satellite_school_visited
+    label: 'Number of satellite school visited'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_visits_schools_centers
+    label: 'Visits made to other schools/production centers'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: total_visits_ngo_office
+    label: 'Total visits made to NGO/Sub NGO/Corporate partner offices'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_new_partnership_explored
+    label: 'Number of new partnership explored'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: new_partnership_explored
+    label: 'Details of the new partnership explored'
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: black_machines_sold_silai_schools
+    label: 'Black Machines sold through Silai schools'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: one_model_name
+    label: '1-Model Name(s)'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: white_machines_sold_silai_schools
+    label: 'White Machines sold through Silai schools'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: two_model_name
+    label: 'White Machines sold through Silai schools 2-Model Name(s)'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_appliances_sold_silai_schools
+    label: 'Number of appliances sold through Silai schools'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: details_sold_silai_schools
+    label: 'Details of appliances sold'
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: trainings_ongoing_classical_schools
+    label: 'Trainings ongoing for how much classical schools (WE)'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: trainings_ongoing_satellite_schools
+    label: 'Trainings ongoing for how much satellite schools (WE)'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: case_studies_shared_head_office
+    label: 'Case studies shared with Head Office'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: details_of_case_studies_shared
+    label: 'Details of case studies shared'
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: certificates_issued_to_teachers
+    label: 'Certificates issued to teachers'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: certificate_issued_to_learners
+    label: 'Certificate issued to learners'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_of_photo
+    label: 'Number of good quality photographs shared'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_of_ss_board_replacement
+    label: 'Number of silai school boards for replacement'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: board_received_head_office
+    label: 'Board received at location from Head Office'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: board_installed_ss
+    label: 'Board installed at silai schools'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_book_received_head_office
+    label: 'Silai book received at location from Head Office'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: silai_book_provided_ss
+    label: 'Silai book provided to silai schools'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_new_cs_training_completed
+    label: 'Number of new classical schools training completed'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_new_ss_training_completed
+    label: 'Number of new satellite school training completed'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: num_women_training_completed
+    label: 'Number of other women entrepreneurs training completed'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: feedback_ngo
+    label: 'Feedback from NGO partner(s)'
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: comment
+    label: 'Your comments/remark'
+    type: text
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: monthly_mis_of_last_fy_css
+    label: 'Whether Monthly MIS of Last FY classical Silai schools submitted on SSA?'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: monthly_mis_of_current_fy_css
+    label: 'Whether Monthly MIS of Current FY classical schools submitted on SSA?'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: total_teacher_certificate_stock
+    label: 'Total Teachers certificate stock available at location as on date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: total_learners_certificate_stock
+    label: 'Total Learners certificate stock available at location as on date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: created_date
+    label: 'Created Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: updated_date
+    label: 'Updated Date'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: pc_uid
+    label: 'PC USer ID'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

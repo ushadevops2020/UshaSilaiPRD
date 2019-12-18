@@ -1,0 +1,14 @@
+uuid: 30b39905-e3b1-4a93-95f2-d694f263f549
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_sewing_tk
+  module:
+    - domain_access
+id: domain_access_add_action.usha_sewing_tk
+label: 'Add selected content to the Sewing domain'
+type: node
+plugin: domain_access_add_action
+configuration:
+  domain_id: usha_sewing_tk

@@ -1,0 +1,19 @@
+uuid: 5c5de796-87e8-4a31-a831-689d1eb51681
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_dealer_pin_code
+    - node.type.silai_dealer
+id: node.silai_dealer.field_silai_dealer_pin_code
+field_name: field_silai_dealer_pin_code
+entity_type: node
+bundle: silai_dealer
+label: 'Pin Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

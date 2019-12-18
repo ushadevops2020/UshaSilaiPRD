@@ -1,0 +1,6 @@
+name: 'mis'
+type: module
+description: 'This Module is for managing managent information system'
+core: 8.x
+package: 'Custom'
+version: 1.0

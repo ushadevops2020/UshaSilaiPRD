@@ -1,0 +1,14 @@
+1)  - Course Code field is Blank. In Row Number : 46
+2)  - Course Code field is Blank. In Row Number : 47
+3)  - Course Code field is Blank. In Row Number : 48
+4)  - Course Code field is Blank. In Row Number : 49
+5)  - Course Code field is Blank. In Row Number : 50
+6)  - Course Code field is Blank. In Row Number : 51
+7)  - Course Code field is Blank. In Row Number : 52
+8)  - Course Code field is Blank. In Row Number : 53
+9)  - Course Code field is Blank. In Row Number : 54
+10)  - Course Code field is Blank. In Row Number : 55
+11)  - Course Code field is Blank. In Row Number : 56
+12)  - Course Code field is Blank. In Row Number : 57
+13)  - Course Code field is Blank. In Row Number : 58
+14)  - Course Code field is Blank. In Row Number : 59

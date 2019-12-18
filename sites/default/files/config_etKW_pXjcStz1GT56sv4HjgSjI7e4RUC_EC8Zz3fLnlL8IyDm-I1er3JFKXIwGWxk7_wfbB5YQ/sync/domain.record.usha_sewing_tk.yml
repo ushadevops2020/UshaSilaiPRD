@@ -1,0 +1,11 @@
+uuid: 204db65c-4cba-44bd-81fa-483b920f16ad
+langcode: en
+status: true
+dependencies: {  }
+id: usha_sewing_tk
+domain_id: 11023276
+hostname: usha-sewing.tk
+name: Sewing
+scheme: http
+weight: 1
+is_default: true

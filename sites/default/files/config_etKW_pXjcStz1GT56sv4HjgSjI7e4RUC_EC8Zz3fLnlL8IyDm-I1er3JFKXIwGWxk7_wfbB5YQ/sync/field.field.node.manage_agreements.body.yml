@@ -1,0 +1,22 @@
+uuid: d720c30f-afea-4894-b385-4e71ba2d1224
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.manage_agreements
+  module:
+    - text
+id: node.manage_agreements.body
+field_name: body
+entity_type: node
+bundle: manage_agreements
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

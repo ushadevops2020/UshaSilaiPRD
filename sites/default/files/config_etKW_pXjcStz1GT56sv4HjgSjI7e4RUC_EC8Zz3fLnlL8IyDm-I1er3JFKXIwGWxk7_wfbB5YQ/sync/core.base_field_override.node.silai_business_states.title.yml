@@ -1,0 +1,18 @@
+uuid: 7267d03b-e54c-4bd3-be37-bd22a8b381ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_business_states
+id: node.silai_business_states.title
+field_name: title
+entity_type: node
+bundle: silai_business_states
+label: 'State Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

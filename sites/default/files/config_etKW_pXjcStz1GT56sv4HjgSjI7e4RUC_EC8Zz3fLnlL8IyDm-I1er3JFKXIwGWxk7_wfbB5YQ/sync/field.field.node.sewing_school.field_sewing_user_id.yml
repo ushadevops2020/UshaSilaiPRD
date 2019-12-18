@@ -1,0 +1,28 @@
+uuid: 14546e40-82e4-40f4-955e-7ec7936102f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_user_id
+    - node.type.sewing_school
+id: node.sewing_school.field_sewing_user_id
+field_name: field_sewing_user_id
+entity_type: node
+bundle: sewing_school
+label: 'User Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: false
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

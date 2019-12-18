@@ -1,0 +1,19 @@
+uuid: 7bb32e84-ab85-4819-82d1-f5ca7326f7f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_dealer_locality
+    - node.type.silai_dealer
+id: node.silai_dealer.field_silai_dealer_locality
+field_name: field_silai_dealer_locality
+entity_type: node
+bundle: silai_dealer
+label: Locality
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,14 @@
+uuid: e1f5e58c-6d19-44fd-9dd9-bdacd97b70db
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_school_teacher
+  module:
+    - user
+id: user_add_role_action.sewing_school_teacher
+label: 'Add the Sewing School Teacher role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sewing_school_teacher

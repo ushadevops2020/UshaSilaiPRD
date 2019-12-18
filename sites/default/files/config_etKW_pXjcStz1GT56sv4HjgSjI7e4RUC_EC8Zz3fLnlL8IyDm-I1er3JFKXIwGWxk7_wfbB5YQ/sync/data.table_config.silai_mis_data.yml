@@ -1,0 +1,98 @@
+uuid: 3c2cec7b-ed65-4171-9bca-2059e6fc3280
+langcode: en
+status: true
+dependencies: {  }
+id: silai_mis_data
+title: silai_mis_data
+table_schema:
+  -
+    name: id
+    label: ID
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    index: '1'
+    primary: '1'
+  -
+    name: school_status
+    label: 'School Status'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: total_learner
+    label: 'Total Learner'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: course_complete_learner
+    label: 'Course Complete Learner'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: monthly_income
+    label: 'Monthly Income'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: machine_working_status
+    label: 'Machine Working Status'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: reason
+    label: Reason
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: temporary_close_reason
+    label: 'Temporary Close Reason'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: permanently_close_reason
+    label: 'Permanently Close Reason'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: created
+    label: Created
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

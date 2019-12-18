@@ -1,0 +1,29 @@
+uuid: 88925150-5ffa-44bb-a8e9-9a34e6a864bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_partner_type
+    - node.type.ngo
+    - taxonomy.vocabulary.partner_type
+id: node.ngo.field_partner_type
+field_name: field_partner_type
+entity_type: node
+bundle: ngo
+label: 'Partner Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      partner_type: partner_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

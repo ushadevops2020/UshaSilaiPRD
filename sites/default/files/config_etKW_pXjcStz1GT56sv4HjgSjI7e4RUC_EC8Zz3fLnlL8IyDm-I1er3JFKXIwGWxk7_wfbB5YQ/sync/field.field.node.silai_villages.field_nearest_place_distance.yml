@@ -1,0 +1,23 @@
+uuid: ed0bff55-a15d-4b8f-baf6-e5cbeb62911e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nearest_place_distance
+    - node.type.silai_villages
+id: node.silai_villages.field_nearest_place_distance
+field_name: field_nearest_place_distance
+entity_type: node
+bundle: silai_villages
+label: 'Distance from Nearest Town (In Kms.)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 500
+  prefix: ''
+  suffix: ''
+field_type: integer

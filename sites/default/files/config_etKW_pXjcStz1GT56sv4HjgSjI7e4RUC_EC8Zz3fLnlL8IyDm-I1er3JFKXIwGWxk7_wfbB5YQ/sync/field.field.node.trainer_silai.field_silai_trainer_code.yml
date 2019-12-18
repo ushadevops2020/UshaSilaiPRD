@@ -1,0 +1,19 @@
+uuid: 1e2cb8c7-0706-4c32-98aa-13e973d2418e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_trainer_code
+    - node.type.trainer_silai
+id: node.trainer_silai.field_silai_trainer_code
+field_name: field_silai_trainer_code
+entity_type: node
+bundle: trainer_silai
+label: 'Trainer Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

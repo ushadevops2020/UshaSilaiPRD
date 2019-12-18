@@ -1,0 +1,10 @@
+1)  - Payment Mode text is wrong. In excel file row number : 2
+2)  - Payment Mode text is wrong. In excel file row number : 3
+3)  - Payment Mode text is wrong. In excel file row number : 4
+4)  - Payment Mode text is wrong. In excel file row number : 5
+5)  - Payment Mode text is wrong. In excel file row number : 6
+6)  - Payment Mode text is wrong. In excel file row number : 7
+7)  - Payment Mode text is wrong. In excel file row number : 8
+8)  - Payment Mode text is wrong. In excel file row number : 9
+9)  - Payment Mode text is wrong. In excel file row number : 10
+10)  - Payment Mode text is wrong. In excel file row number : 11

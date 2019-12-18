@@ -1,0 +1,9 @@
+uuid: 2003ac04-e272-4a49-b2e4-e332903fd7cf
+langcode: en
+status: true
+dependencies: {  }
+name: 'Course Code'
+vid: course_code
+description: 'Course code for learner management'
+hierarchy: 0
+weight: 0

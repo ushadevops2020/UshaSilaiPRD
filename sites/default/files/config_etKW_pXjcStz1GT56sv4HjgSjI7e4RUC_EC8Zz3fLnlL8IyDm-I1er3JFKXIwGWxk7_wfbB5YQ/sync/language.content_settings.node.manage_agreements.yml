@@ -1,0 +1,11 @@
+uuid: e4102965-4db6-476f-934e-2eb2f2ecb63b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_agreements
+id: node.manage_agreements
+target_entity_type_id: node
+target_bundle: manage_agreements
+default_langcode: site_default
+language_alterable: false

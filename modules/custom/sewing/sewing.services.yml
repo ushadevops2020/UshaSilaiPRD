@@ -1,0 +1,4 @@
+services:
+ sewing.master_data:
+   class: Drupal\sewing\Services\MasterDataServices
+   arguments: [] 

@@ -1,0 +1,11 @@
+uuid: e6d66577-3a2b-4f97-acb8-79cd482ff13b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.school_type_master
+id: node.school_type_master
+target_entity_type_id: node
+target_bundle: school_type_master
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 888c5c64-8211-424e-90fa-8c291b985a68
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students
+target_entity_type_id: node
+target_bundle: manage_sewing_students
+default_langcode: site_default
+language_alterable: false

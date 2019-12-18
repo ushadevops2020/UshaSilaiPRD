@@ -1,0 +1,14 @@
+uuid: af432627-ce62-4a0b-87b1-8a44f6bba63d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.pc
+  module:
+    - user
+id: user_remove_role_action.pc
+label: 'Remove the PC role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: pc

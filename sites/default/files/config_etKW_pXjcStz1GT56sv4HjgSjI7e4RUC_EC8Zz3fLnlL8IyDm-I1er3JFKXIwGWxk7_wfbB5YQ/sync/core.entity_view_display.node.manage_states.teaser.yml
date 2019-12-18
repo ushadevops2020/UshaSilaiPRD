@@ -1,0 +1,39 @@
+uuid: 1aa7ef32-85f7-41c3-b2b5-ee3e5cef680c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_states.field_domain_access
+    - field.field.node.manage_states.field_domain_all_affiliates
+    - field.field.node.manage_states.field_state_code
+    - field.field.node.manage_states.field_state_country
+    - node.type.manage_states
+  module:
+    - user
+id: node.manage_states.teaser
+targetEntityType: node
+bundle: manage_states
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_state_code: true
+  field_state_country: true
+  langcode: true

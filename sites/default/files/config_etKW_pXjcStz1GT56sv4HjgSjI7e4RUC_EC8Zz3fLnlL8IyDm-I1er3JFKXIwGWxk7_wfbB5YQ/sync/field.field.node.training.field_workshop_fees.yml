@@ -1,0 +1,19 @@
+uuid: 5519599e-39cd-4b9e-aa0b-d5863930e36d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_workshop_fees
+    - node.type.training
+id: node.training.field_workshop_fees
+field_name: field_workshop_fees
+entity_type: node
+bundle: training
+label: 'Workshop Fee'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

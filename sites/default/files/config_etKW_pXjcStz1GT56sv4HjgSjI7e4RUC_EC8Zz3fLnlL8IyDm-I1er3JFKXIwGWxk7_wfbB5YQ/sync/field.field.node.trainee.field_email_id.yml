@@ -1,0 +1,19 @@
+uuid: 5ad79dca-e23e-401f-afd1-5df1e4d5b620
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email_id
+    - node.type.trainee
+id: node.trainee.field_email_id
+field_name: field_email_id
+entity_type: node
+bundle: trainee
+label: 'Email Id'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

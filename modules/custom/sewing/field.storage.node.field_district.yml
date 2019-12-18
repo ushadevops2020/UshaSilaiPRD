@@ -1,0 +1,4 @@
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: 'sewing_allowed_values_district'

@@ -1,0 +1,18 @@
+uuid: 1193d424-880e-452a-8ff5-b6fede8728e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Weekly MIS'
+type: weekly_mis
+description: 'PC user will submit weekly MIS feedback. The purpose of Manage Weekly MIS section is to allow the user to manage weekly MIS.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

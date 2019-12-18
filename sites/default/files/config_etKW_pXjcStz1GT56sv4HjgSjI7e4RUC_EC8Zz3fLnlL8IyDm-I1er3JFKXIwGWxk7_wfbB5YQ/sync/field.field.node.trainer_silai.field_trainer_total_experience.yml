@@ -1,0 +1,19 @@
+uuid: a5a41657-fd28-4c3d-866b-f18f5abe31b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trainer_total_experience
+    - node.type.trainer_silai
+id: node.trainer_silai.field_trainer_total_experience
+field_name: field_trainer_total_experience
+entity_type: node
+bundle: trainer_silai
+label: 'Total Experience (In Yrs.)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

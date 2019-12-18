@@ -1,0 +1,24 @@
+uuid: e5015c99-42d0-4f74-9b00-81b45d3e51f2
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - domain_menu_access
+  theme:
+    - silai_lte_admin
+id: silai_lte_admin_mainnavigation
+theme: silai_lte_admin
+region: sidebar
+weight: -8
+provider: null
+plugin: 'domain_access_menu_block:main'
+settings:
+  id: 'domain_access_menu_block:main'
+  label: 'Main navigation'
+  provider: domain_menu_access
+  label_display: visible
+  level: '1'
+  depth: '0'
+visibility: {  }

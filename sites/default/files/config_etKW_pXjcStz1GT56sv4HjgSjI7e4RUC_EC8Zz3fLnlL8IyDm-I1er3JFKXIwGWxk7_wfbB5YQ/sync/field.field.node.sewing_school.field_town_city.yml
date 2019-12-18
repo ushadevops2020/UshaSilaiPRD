@@ -1,0 +1,29 @@
+uuid: ce6d7988-8736-4603-945c-ac6539f90031
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_town_city
+    - node.type.manage_towns
+    - node.type.sewing_school
+id: node.sewing_school.field_town_city
+field_name: field_town_city
+entity_type: node
+bundle: sewing_school
+label: Town
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_towns: manage_towns
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

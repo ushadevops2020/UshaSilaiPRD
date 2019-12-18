@@ -1,0 +1,139 @@
+uuid: 4d102a5d-a086-4def-badb-4e8ccf401376
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.trainee.field__trainee_address
+    - field.field.node.trainee.field_contact_number
+    - field.field.node.trainee.field_discount_fee
+    - field.field.node.trainee.field_domain_access
+    - field.field.node.trainee.field_domain_all_affiliates
+    - field.field.node.trainee.field_email_id
+    - field.field.node.trainee.field_paid_fee
+    - field.field.node.trainee.field_remark
+    - field.field.node.trainee.field_sewing_last_name
+    - field.field.node.trainee.field_sewing_status
+    - field.field.node.trainee.field_trainee_father_name
+    - field.field.node.trainee.field_trainee_mobile
+    - field.field.node.trainee.field_trainer_id
+    - field.field.node.trainee.field_workshop_fee
+    - node.type.trainee
+  module:
+    - user
+id: node.trainee.default
+targetEntityType: node
+bundle: trainee
+mode: default
+content:
+  field__trainee_address:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_contact_number:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_discount_fee:
+    weight: 112
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_email_id:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_paid_fee:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_remark:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_sewing_last_name:
+    weight: 113
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_status:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_trainee_father_name:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_trainee_mobile:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_trainer_id:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_workshop_fee:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

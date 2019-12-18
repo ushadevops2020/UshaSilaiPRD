@@ -1,0 +1,27 @@
+uuid: a96a29e5-2c56-4525-953d-c9e5392a5d15
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - custom_api
+    - serialization
+    - user
+_core:
+  default_config_hash: aRozvCzQFmYN93YrwlfkmBlre5iUHECYRLoYXDivE2Q
+id: custom_resource
+plugin_id: custom_resource
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+      - basic_auth
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+      - basic_auth

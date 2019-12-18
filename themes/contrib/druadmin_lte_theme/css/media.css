@@ -1,0 +1,1078 @@
+@media (max-width: 1200px){
+
+.header .navbar-nav li a {
+    padding: 15px 25px;
+}
+form.navbar-form.navbar-left.Search {
+    width: 35%;
+}
+}
+@media (max-width: 1024px){
+    .sidemenu{margin-left: -25rem;}
+.sidemenu.hide-custom {
+    margin-left: 0rem;
+    z-index: 11111111;
+}
+.count, .panel-title {
+    font-size: 19px;
+}
+.header {
+    margin-bottom: 0px;
+    min-height: 70px;
+    z-index: 1111111;}
+.wrapper {
+    margin-left: 0rem;
+}
+.wrapper.toggled {
+    margin-left: 0rem;
+}
+.wrapper.toggled .overlay {
+    position: fixed;
+    background: #00000096;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    display: block;
+    z-index: 11111;
+    width: 100%;
+}
+}
+@media (max-width: 990px){
+   .generate-fee-receipt-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.generate-fee-receipt-form fieldset.revenue-head-class .form-item {
+    width: 100%;
+    vertical-align: top;
+}
+.path-print-fee-receipt .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 15px;
+}
+.path-print-fee-receipt fieldset.revenue-head-class .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 15px;
+    vertical-align: top;
+}
+}
+@media (min-width: 768px){
+.sidebar-mini.sidebar-collapse .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 0px !important;
+    z-index: 850;
+}
+.sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: 0px !important;
+    z-index: 840;
+}
+.sidebar-mini.sidebar-collapse .main-sidebar .user-panel>.info, .sidebar-mini.sidebar-collapse .sidebar-form, .sidebar-mini.sidebar-collapse .sidebar-menu li a span, .sidebar-mini.sidebar-collapse .sidebar-menu li .treeview-menu, .sidebar-mini.sidebar-collapse .sidebar-menu li a .pull-right, .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
+    display: block !important;
+    -webkit-transform: translateZ(0);
+}
+
+}
+
+
+
+@media (max-width: 767px){
+    .path-teacher-management-list .views-header-section {
+    display: block;
+    margin: 20px 0px 10px 0px;
+    float: none;
+}
+.path-teacher-management-list .views-header-section a{margin-right: 10px; }
+    .node-sewing-teacher-management-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+    .node-sewing-teacher-management-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+    body.path-manage-workshop-activity .views-header-section #bulk-btn-section {
+    float: left;
+    margin-left: 0px;
+}
+input[type="submit"] {
+    padding: 8px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+    .pager li {
+    display: inline-block!important;
+}
+    .forwarded-summary div#item-detail p {
+    width: 100%;
+    float: left;
+    background: #d6d6d6;
+    border: 1px solid #fff;
+    padding: 10px;
+}
+.forwarded-summary .forwarded-detail {
+    border: 1px solid #efefef;
+    clear: both;
+    overflow: auto;
+}
+    .accept-inventory-form .form-item, .forward-inventory-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+    .path-dealers-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.node-dealer-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-grades-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.path-manage-inventory-admin .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-manage-inventory-form .form-wrapper .form-item {
+    width: 100%;
+    margin-right: 0px;
+}
+    .path-teacher-management-list .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+    .path-manage-workshop-activity .views-exposed-form .form-item {
+    width: 100%;
+    margin-right: 5px;
+    display: inline-block;
+}
+body.path-manage-workshop-activity .views-header-section #action-btn-section {
+    float: inherit;
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+.path-ssi-manage-school .views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 6px;
+    border: none;
+    margin-bottom: 10px;
+    width: auto;
+}
+.path-frontpage form#user-login-form .description, .path-frontpage form#user-login-form label {
+    display: none;
+    font-size: 12px;
+    margin: 0px;
+    text-transform: capitalize;
+}
+a.pull-right.use-ajax.forgot_password {
+    position: absolute;
+    right: 20px;
+    bottom: 90px;
+    font-size: 12px;
+}
+   .path-activity-attendee-detail .views-view-grid .views-field {
+    width: 100% !important;
+  
+}
+
+   .path-workshop-attendee-detail .views-view-grid .views-field {
+    width: 100% !important;
+    
+}
+.send-notification-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.path-manage-training-feedback .views-exposed-form .form-item {
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.views-header-section a {
+    padding: 10px 5px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.node-trainee-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-trainee-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-training-form .form-wrapper {
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+body.path-manage-training-feedback .views-header-section #action-btn-section {
+    float: right;
+    line-height: 36px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#bulk-btn-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 5px;
+    border: none;
+    margin-bottom: 10px;
+}
+.send-notification-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+body.path-manage-training-feedback .views-header-section {
+    width: 100%;
+    margin: 0px;
+    float: left;
+}
+#bulk-btn-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 5px;
+    border: none;
+}
+    .path-manage-school .views-exposed-form .form-item, .path-manage-inventory .views-exposed-form .form-item, .path-manage-items .views-exposed-form .form-item, .path-manage-item-groups .form-item {
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.print-fee-receipt-form fieldset .form-item {
+    width: 100%;
+}
+.path-print-fee-receipt .revenue-total-tax {
+    width: 100%;
+    float: none;
+    border: 1px solid #C3CDDC;
+    background: #F6F7F8;
+    margin-right: 15px;
+}
+.path-manage-school .views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    margin: 2px;
+    width: 48%;
+}
+    .generate-fee-receipt-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.generate-fee-receipt-form fieldset.revenue-head-class .form-item {
+    width: 100%;
+    vertical-align: top;
+}
+
+    .node-manage-inventory-form .form-wrapper, .node-items-form .form-wrapper, .node-items-edit-form .form-wrapper, .node-item-group-form .form-wrapper, .node-item-group-edit-form .form-wrapper {
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+    .path-ssi-manage-school .views-exposed-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-print-fee-receipt .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 0px;
+}
+.path-users-listing .modal-form-user-add-form .form-item {
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
+.path-print-fee-receipt fieldset.revenue-head-class .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 0px;
+}
+.path-manage-revenues .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-ho-fee-receipt-list .form-item{width: 100%;margin-right: 0px;display: inline-block;}
+    .path-manage-students-admin .form-item{width: 100%;margin-right: 0px;display: inline-block;}
+.path-manage-students-ssi  .form-item{width: 100%;margin-right: 0px;display: inline-block;}
+    .generate-fee-receipt-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-fee-receipt-list .views-exposed-form .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 0px;
+}
+.generate-fee-receipt-form fieldset.revenue-head-class .form-item {
+    width: 100%;
+}
+.form-item.fee-date-neft .form-item {
+    width: 100%;
+    margin-right: 5px;
+}
+.path-manage-inventory-ssi .views-exposed-form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+    .node-manage-sewing-students-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-manage-sewing-students-edit-form .form-item-field-sewing-district-selectlist {
+    width: 100%!important;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-manage-sewing-students-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-manage-sewing-students-form .form-item-field-sewing-district-selectlist {
+    width: 100%!important;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.node-sewing-school-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-sewing-school-edit-form #user_login_Form .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-sewing-school-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: top;
+}
+.login-bg .col-xs-12.pull-right{float:none!important;}
+.login-box, .register-box {
+    width: 90% !important;
+    position: absolute;
+    top: 50%;
+    margin: 0 auto !important;
+    left: 0;
+    right: 0;
+    transform: translate(0 , -50%);
+}
+
+.header .navbar-nav li {
+    border: 1px solid #d7dadd !important;
+    border-bottom: none !important;
+    border-right: none !important;
+    border-top: none !important;
+}.skin-blue .main-header .logo {
+    background-color: #ffffff!important;
+    border-right: none!important;
+}
+.logo {
+    width: 42% !important;
+    float: left !important;
+    text-align: center;
+   
+}
+#logo img {
+    margin-top: 15px;
+}
+
+header.main-header.header-2 {
+    clear: both;
+}
+.sidebar-open .content-wrapper, .sidebar-open .main-footer {
+    -webkit-transform: translate(0px, 0) !important;
+    -ms-transform: translate(0px, 0) !important;
+    -o-transform: translate(0px, 0) !important;
+    transform: translate(0px, 0) !important;
+}
+.main-sidebar {
+    padding-top: 50px!important;
+}
+
+
+	
+	
+.path-school-revenue-report .content .form-item-location, .path-school-revenue-report .content .form-item-from-date, .path-school-revenue-report .content .form-item-to-date{
+	width: 100%; display: block;		
+}
+.path-sewing-dashboard #sewing_dashboard_section .no-schools{height: auto;}
+.path-sewing-dashboard .gallery-section{margin-bottom: 20px;}
+.path-sewing-dashboard .gallery-section .views-view-grid .views-col{width: 50%!important; margin-bottom: 20px;}
+
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-week-start-date, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-onroll-schools-till-date,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-open-during-week
+				{width: 100%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-terminated-during-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-visited-week,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-school-code-visited-week
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-new-partnership-explored, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-new-partnership-explored,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machines-sold-through-sewing-schools
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machine-model-name, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machines-sold-sewing-schools,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machine-model-name
+				{width: 100%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-received-from-head-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-issued-students,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-feedback-from-school
+				{width: 100%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-a, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-b,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-expense-incurred-during-week
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-sale-uj-accessories-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-of-uj-accessories,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-books-received-office-week
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 100%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-students-enrolled-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-training-enrolled-week 
+				{width: 100%; display: inline-block; margin-right: 15px;}
+
+
+.path-manage-certificate-ssi .views-element-container #edit-actions{display: block;}
+
+
+.path-manage-students-ssi .views-element-container .form-item{width: 100%;}
+.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section button{margin-bottom: 15px;}
+.path-manage-students-ssi .nav-tabs-custom .views-element-container .views-header-section{margin: 0px;}
+
+.path-manage-certificate-ssi .views-element-container .form-item-field-sewing-district-selectlist-value, .path-manage-certificate-ssi .views-element-container .form-item-title-2,
+.path-manage-certificate-ssi .views-element-container .form-item-title-1, .path-manage-certificate-ssi .views-element-container .form-item-title-3, 
+.path-manage-certificate-ssi .views-element-container .form-item-title, .path-manage-certificate-ssi .views-element-container .form-item-status-student{width: 100%;}
+
+.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col{width: 46%!important}
+.path-manage-students-ssi .nav-tabs-custom .views-element-container .views-header-section{float: none;}
+.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section{float: none;}
+}
+
+
+
+
+@media(max-width: 640px){
+	.header .navbar-nav li a {
+		padding: 15px 5px;
+	}
+	li.notification span{
+		left: 12px;
+	}
+    .path-generate-fee-receipt input#edit-send {
+    margin: 0px;
+}
+.mis-sewing-import-form .sample-file-download {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;margin-top:10px;
+}
+.path-weekly-mis .mis-sewing-import-form .sample-file-download a {
+    float: none;
+}
+#edit-cancel {
+    padding: 8px 15px;
+    height: 38px;
+}
+    .header .navbar-right li a img {
+    float: left;
+    margin-right: auto;
+    margin-top: 7px;
+}
+    .path-activity-attendee-detail .views-field .views-label, .path-activity-attendee-detail .views-field .field-content {
+    padding: 0px;
+    width: 50%!important;
+    margin-bottom: 15px;
+    /* vertical-align: top; */
+    display: inline-block;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+    aside.main-sidebar {
+
+    padding-top: 0px !important;
+}
+    .display-result-summary {
+    display: none;
+}
+.path-print-fee-receipt table {
+    width: 100%;
+    table-layout: fixed;
+}
+.path-print-fee-receipt .nav-tabs-custom button#print {
+    margin: 10px 0px 10px auto;
+    text-align: center;
+    background: #DE1F24;
+    color: #fff;
+    float: right;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid #DE1F24;
+}
+.path-manage-students-ssi .views-header-section button {
+
+    width: 100%!important;
+  
+}
+.path-manage-students-ssi .views-element-container .views-header-section .add-new-section {
+    float: left;
+    width: 100%;
+}
+.header-feed-icon {
+    position: relative;
+    clear: both;
+}
+    .node-sewing-school-form #user_login_Form .form-item {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+    body.path-manage-workshop-activity .views-header-section {
+    width: 100%;
+    margin: 0px;
+    float: left;
+
+}
+.views-element-container .views-header-section {
+    float: left;
+    margin: 0px;
+    width: 100%;
+}
+.path-sewing-dashboard #sewing_dashboard_section .floatr {
+    float: right;
+    width: 100%;
+}
+.path-sewing-dashboard #sewing_dashboard_section .filter-location select {
+    display: block;
+    width: 100%;
+    margin-right: 10px;
+    border-radius: 25px !important;
+    background: #e7ebee;
+    border: none;
+    margin-bottom: 10px;
+    float: none;
+    margin-left: 0px;
+}
+
+
+.path-manage-workshop-activity .views-header-section button, .path-manage-school .views-header-section button, .path-manage-students-ssi .views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 6px;
+    border: none;
+    display: inline-block;
+    margin-bottom: 10px;
+    width: auto;
+    margin: 10px auto;
+    float: none;
+}
+.path-dealers-listing .sewing-dealers-bulk-import .sample-file-download {
+    text-align: left;
+    margin: 15px 0px;
+}
+    .views-element-container .views-header-section a {
+    float: left;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+    .ui-dialog {
+    width: 90% !important;
+    margin: 0 auto;
+    left: 0px;
+    right: 0px;
+}
+    .path-school-type-wise-report .fieldset-wrapper .form-item {
+    display: inline-block;
+    width: 100%;
+    margin-right: 15px;
+}
+.path-school-revenue-report .form-item-schooltype {
+    margin-right: 0.5em;
+    width: 100%;
+    display: inline-block;
+}
+     .csv-feed.views-data-export-feed {
+    display: inline-flex;
+}
+    .views-element-container .views-exposed-form .form-group {
+    width: 100%;
+}
+    .path-workshop-activity-report .form-item .form-item-location {
+    float: inherit;
+    width: 100%;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+    .path-frontpage .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+
+.node--type-manage-countries .node-manage-countries-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+section.page-title h1.page-title {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 20px;
+    
+}
+.node-manage-countries-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-locations-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-locations-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-states-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-business-states-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-business-states-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-districts-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-districts-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-towns-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-towns-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-course-duration-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.node-course-duration-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-course-duration-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-course-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: text-top;
+}
+.node-course-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: text-top;
+}
+.node-grade-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-revenue-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-revenue-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-school-type-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-school-type-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-trainer-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-trainer-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-course-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-school-type-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-grades .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-grade-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-countries-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-locations-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-business-states-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-districts-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-towns-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-users-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+}
+
+@media (max-width: 320px){
+    .login-bg .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+}
+
+@media print {
+  #edit-cancel, #edit-send, #print, .logger-status, .page-title {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+	.path-manage-certificate-ssi .views-element-container #edit-actions{display: block;}
+	.path-sewing-dashboard .gallery-section .views-view-grid .views-col{width: 50%!important; margin-bottom: 20px;}
+	.path-sewing-dashboard-sa .gallery-section-sa .views-view-grid .views-col{width: 50%!important; margin-bottom: 20px;}
+	
+	.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-week-start-date, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-onroll-schools-till-date,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-open-during-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-terminated-during-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-visited-week,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-school-code-visited-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-new-partnership-explored, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-new-partnership-explored,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machines-sold-through-sewing-schools
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machine-model-name, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machines-sold-sewing-schools,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machine-model-name
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-received-from-head-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-issued-students,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-feedback-from-school
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-a, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-b,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-expense-incurred-during-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-sale-uj-accessories-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-of-uj-accessories,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-books-received-office-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-students-enrolled-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-training-enrolled-week 
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+				.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col{width: 23%!important}
+			
+			.path-manage-students-ssi .nav-tabs-custom .views-element-container .views-header-section{float: none;}
+			
+			.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section button{margin-bottom: 10px;}
+			.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section{float: none;}
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1024px) {
+	
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body h1, .path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body h1, 
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body h1, .path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body h1
+		{font-size: 20px;}
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body, .path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body,
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body, .path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body
+		{font-size: 16px;}
+.path-sewing-dashboard #sewing_dashboard_section .no-students, .path-sewing-dashboard #sewing_dashboard_section .no-schools, .path-sewing-dashboard #sewing_dashboard_section .no-revenues, .path-sewing-dashboard #sewing_dashboard_section .no-machine {
+    height: 453px;
+}
+	
+	
+	.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-week-start-date, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-onroll-schools-till-date,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-open-during-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-terminated-during-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-visited-week,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-school-code-visited-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-new-partnership-explored, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-new-partnership-explored,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machines-sold-through-sewing-schools
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machine-model-name, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machines-sold-sewing-schools,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machine-model-name
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-received-from-head-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-issued-students,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-feedback-from-school
+				{width: 46%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-a, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-b,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-expense-incurred-during-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-sale-uj-accessories-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-of-uj-accessories,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-books-received-office-week
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 46%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-students-enrolled-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-training-enrolled-week 
+				{width: 46%; display: inline-block; margin-right: 15px;}
+	
+	.path-manage-certificate-ssi .views-element-container .form-item-field-sewing-district-selectlist-value, .path-manage-certificate-ssi .views-element-container .form-item-title-2, 
+	.path-manage-certificate-ssi .views-element-container .form-item-title-1, .path-manage-certificate-ssi .views-element-container .form-item-title-3, 
+	.path-manage-certificate-ssi .views-element-container .form-item-title, .path-manage-certificate-ssi .views-element-container .form-item-status-student{width: 30%;}
+	
+	.path-manage-students-ssi .views-element-container .form-item{width: 30%;}
+	
+	.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col{width: 25%!important}
+	.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section button{margin-bottom: 10px;}
+			.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section{float: none;}
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1300px) {
+	
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body h1, .path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body h1, 
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body h1, .path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body h1
+		{font-size: 19px;}
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body, .path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body,
+	.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body, .path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body
+		{font-size: 16px;vertical-align: middle;}
+	.path-sewing-dashboard #sewing_dashboard_section .no-students, .path-sewing-dashboard #sewing_dashboard_section .no-schools, .path-sewing-dashboard #sewing_dashboard_section .no-revenues
+	,.path-sewing-dashboard #sewing_dashboard_section .no-machine{height: 439px;}
+	
+	.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-week-start-date, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-onroll-schools-till-date,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-open-during-week
+				{width: 31%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-terminated-during-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-visited-week,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-school-code-visited-week
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-new-partnership-explored, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-new-partnership-explored,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machines-sold-through-sewing-schools
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machine-model-name, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machines-sold-sewing-schools,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machine-model-name
+				{width: 31%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-received-from-head-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-issued-students,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-feedback-from-school
+				{width: 31%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-a, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-b,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-expense-incurred-during-week
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-sale-uj-accessories-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-of-uj-accessories,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-books-received-office-week
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 31%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-students-enrolled-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-training-enrolled-week 
+				{width: 31%; display: inline-block; margin-right: 15px;}
+	
+	.path-manage-students-ssi .views-element-container .form-item{width: 30%;}
+	
+	.path-manage-certificate-ssi .views-element-container .form-item-field-sewing-district-selectlist-value, .path-manage-certificate-ssi .views-element-container .form-item-title-2, 
+	.path-manage-certificate-ssi .views-element-container .form-item-title-1, .path-manage-certificate-ssi .views-element-container .form-item-title-3, 
+	.path-manage-certificate-ssi .views-element-container .form-item-title, .path-manage-certificate-ssi .views-element-container .form-item-status-student{width: 30%;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.path-sewing-dashboard .content{padding: 0px;}

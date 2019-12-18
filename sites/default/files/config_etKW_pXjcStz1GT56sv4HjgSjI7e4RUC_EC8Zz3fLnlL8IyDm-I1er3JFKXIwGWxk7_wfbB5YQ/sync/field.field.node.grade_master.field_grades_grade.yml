@@ -1,0 +1,29 @@
+uuid: cbde25f3-5e03-4cc9-bafd-fdb4c6bb8cc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_grades_grade
+    - node.type.grade_master
+    - node.type.grades
+id: node.grade_master.field_grades_grade
+field_name: field_grades_grade
+entity_type: node
+bundle: grade_master
+label: Grade
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      grades: grades
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

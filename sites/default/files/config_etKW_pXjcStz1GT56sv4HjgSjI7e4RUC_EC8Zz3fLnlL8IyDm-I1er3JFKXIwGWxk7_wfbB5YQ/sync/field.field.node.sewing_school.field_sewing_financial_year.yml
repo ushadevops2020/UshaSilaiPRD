@@ -1,0 +1,29 @@
+uuid: 7a8a0d16-5900-4e3e-ae78-60bf451f7486
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_financial_year
+    - node.type.sewing_school
+    - taxonomy.vocabulary.financial_year_sewing
+id: node.sewing_school.field_sewing_financial_year
+field_name: field_sewing_financial_year
+entity_type: node
+bundle: sewing_school
+label: 'Financial Year'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      financial_year_sewing: financial_year_sewing
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

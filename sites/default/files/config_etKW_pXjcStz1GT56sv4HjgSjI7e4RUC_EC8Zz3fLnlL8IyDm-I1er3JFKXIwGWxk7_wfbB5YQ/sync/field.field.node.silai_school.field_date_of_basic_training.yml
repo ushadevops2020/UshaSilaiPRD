@@ -1,0 +1,24 @@
+uuid: 7588ae50-b7ad-409a-8684-470c0fa54fe1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_basic_training
+    - node.type.silai_school
+  module:
+    - datetime
+id: node.silai_school.field_date_of_basic_training
+field_name: field_date_of_basic_training
+entity_type: node
+bundle: silai_school
+label: 'Date of basic training'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

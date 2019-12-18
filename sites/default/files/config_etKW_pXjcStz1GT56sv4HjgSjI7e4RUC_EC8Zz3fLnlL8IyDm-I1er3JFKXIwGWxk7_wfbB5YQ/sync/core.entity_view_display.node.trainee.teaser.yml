@@ -1,0 +1,35 @@
+uuid: 06a41ef5-7ca9-40d8-a1a8-015793bccb02
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.trainee.field_domain_access
+    - field.field.node.trainee.field_domain_all_affiliates
+    - node.type.trainee
+  module:
+    - user
+id: node.trainee.teaser
+targetEntityType: node
+bundle: trainee
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

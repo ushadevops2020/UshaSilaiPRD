@@ -1,0 +1,21 @@
+uuid: 7e1f68c0-2d0f-40b7-9a0a-96394e2c7021
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.silai_school_type_master
+id: node.silai_school_type_master.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: silai_school_type_master
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

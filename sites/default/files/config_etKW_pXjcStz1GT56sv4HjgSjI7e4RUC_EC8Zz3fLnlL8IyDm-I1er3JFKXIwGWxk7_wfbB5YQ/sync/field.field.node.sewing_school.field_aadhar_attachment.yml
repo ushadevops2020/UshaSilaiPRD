@@ -1,0 +1,27 @@
+uuid: d3408fad-7542-41e2-a79b-3072be7bcde7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_aadhar_attachment
+    - node.type.sewing_school
+  module:
+    - file
+id: node.sewing_school.field_aadhar_attachment
+field_name: field_aadhar_attachment
+entity_type: node
+bundle: sewing_school
+label: 'Aadhar Attachment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt png jpg jpeg pdf doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,23 @@
+uuid: 719cc9e1-bbce-4a97-8df5-d6050c302856
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_teacher_age
+    - node.type.silai_school
+id: node.silai_school.field_silai_teacher_age
+field_name: field_silai_teacher_age
+entity_type: node
+bundle: silai_school
+label: 'Age (In Years)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 10
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer

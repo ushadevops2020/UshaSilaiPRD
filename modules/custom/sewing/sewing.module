@@ -1,0 +1,2759 @@
+<?php
+
+/**
+ * @file
+ * Contains sewing.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\node\Entity\Node;
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements sewing_help().
+ */
+function sewing_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sewing module.
+    case 'help.page.sewing':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements sewing_theme().
+ */
+function sewing_theme() {
+  return [
+    'sewing' => [
+      'render element' => 'children',
+    ],
+    'forwarded_sewing_inventory_detail' => [
+            'variables' => [ 
+            'sent_item' => NULL, 
+            'sent_item_qty' => NULL, 
+            'forwarded_items' => NULL,
+            'ref_id' => NULL
+            ],
+        ],
+
+  ];
+}
+
+/**
+ * Implementation of sewing_form_node_school_type_master_alter
+ */
+function sewing_form_node_school_type_master_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_sewing_school_type_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/school-type-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements sewing_form_node_school_type_master_edit_form_alter().
+ */
+function sewing_form_node_school_type_master_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_school_type_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/school-type-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_sewing_school_type_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_school_type_validate($form, FormStateInterface &$form_state) {
+    $schoolTypeCode = $form_state->getValue('field_school_type_code')[0]['value'];
+    
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $schoolTypeCode)) {
+        $form_state->setErrorByName('field_school_type_code', t('School Type Code not valid'));    
+    }
+
+    #validate duplicate code check
+    if($schoolTypeCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('school_type_master', 'field_school_type_code', $schoolTypeCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_school_type_code', t('School Type Code already exist.'));
+        }
+    }
+}
+
+
+
+/**
+ * Implementation of sewing_form_node_course_master_form_alter
+ */
+function sewing_form_node_course_master_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Course');
+    $form[HASH_VALIDATE][] = 'custom_course_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_course_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_course_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_exam_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    //'#attributes' => array('onClick' => 'history.go(-1); event.preventDefault();'),
+    '#attributes' => array('onClick' => 'window.location.href = "/course-list"; event.preventDefault();'),
+    );
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_course_master_form_submit';
+        }
+    } 
+
+}
+
+/**
+ * Implements sewing_form_node_course_master_edit_form_alter().
+ */
+function sewing_form_node_course_master_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_course_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_course_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+    $form['field_course_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_exam_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/course-list"; event.preventDefault();'),
+    );
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_course_master_form_submit';
+        }
+    } 
+}
+
+/**
+ * Implementatuion of custom_course_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_course_master_validate($form, FormStateInterface &$form_state) {
+    $courseCode = $form_state->getValue('field_course_code')[0]['value'];
+    if(strlen($courseCode) != 2) {
+        $form_state->setErrorByName('field_course_code', t('Course Code must be 2 character long.'));   
+    }
+
+    #validate duplicate code check
+    if($courseCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('course_master', 'field_course_code', $courseCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_course_code', t('Course Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of Custom course master form Submit
+ */
+function custom_course_master_form_submit(array $form, FormStateInterface $form_state){
+    $editId = 0;
+    $masterDataService = \Drupal::service('sewing.master_data');
+    
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+
+    $courseName = $form_state->getValue('title')[0]['value'];
+    $courseCode = $form_state->getValue('field_course_code')[0]['value'];
+    
+    $course = $courseName.'-'.$courseCode; 
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      $editId = $urlEditId->id();
+      $message = preg_replace('/{.*}/', $course, COURSE_UPDATE_MESSAGE);
+    } else {
+       $message = preg_replace('/{.*}/', $course, COURSE_ADDED_MESSAGE); 
+    }
+
+    #For Notification System
+    $targetUsers = $masterDataService->getUsersByRoleSewing([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER, ROLE_SEWING_SSI]);
+
+    foreach ($targetUsers as $key => $value) {
+      if ($value == $user->id()) {
+        unset($targetUsers[$key]);
+      }
+    }
+
+    $data = [
+        'sender_role' => $userRoles[1],
+        'receiver_id' => '',
+        'receiver_role' => '',
+        'message' => $message,
+        'location' => 0,
+        'created_by' => $user->id()
+      ];
+      $masterDataService = \Drupal::service('sewing.master_data');
+     if(!empty($targetUsers)){ 
+        $masterDataService->sewingNotificationAlert($data, $targetUsers);
+    }
+}
+
+
+/**
+ * Implementation of sewing_form_node_course_duration_master_form_alter
+ */
+function sewing_form_node_course_duration_master_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Course Duration');
+    $form[HASH_VALIDATE][] = 'custom_course_duration_master_validate';
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/course-duration-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements sewing_form_node_course_duration_master_edit_form_alter().
+ */
+function sewing_form_node_course_duration_master_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_course_duration_master_validate'; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/course-duration-list"; event.preventDefault();'),
+    );
+}
+
+
+/**
+ * Implementatuion of custom_course_duration_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_course_duration_master_validate($form, FormStateInterface &$form_state) {
+    $courseDurationName = $form_state->getValue('title')[0]['value'];
+    $duration = $form_state->getValue('field_duration')[0]['value'];
+
+    #validate duplicate code check
+    if($courseDurationName){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('course_duration_master', 'title', $courseDurationName);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('title', t('Course Duration Name already exist.'));
+        }
+    } 
+
+    #validate duplicate code check
+    if($duration){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('course_duration_master', 'field_duration', $duration);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('title', t('Course Duration Name already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implementation of sewing_form_node_grades_form_alter
+ */
+function sewing_form_node_grades_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Grade');
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_grade_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form[HASH_VALIDATE][] = 'custom_grade_validate'; 
+
+     $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/grades"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements sewing_form_node_grades_edit_form_alter().
+ */
+function sewing_form_node_grades_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_grade_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_grade_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+     $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/grades"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_grade_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_grade_validate($form, FormStateInterface &$form_state) {
+    $gradeCode = $form_state->getValue(TITLE)[0]['value'];
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'grades');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $grades = $node_storage->loadMultiple($nids);
+    foreach ($grades as $n) {
+        $gradeCodeArr[] = strtolower($n->title->value);
+    }
+    if( in_array(strtolower($gradeCode), $gradeCodeArr)) {
+        $form_state->setErrorByName(TITLE, t('Grade Code already exist.'));
+    }
+}
+
+
+/**
+ * Implementation of sewing_form_node_revenue_form_alter
+ */
+function sewing_form_node_revenue_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_revenue_master_validate'; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-revenues"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements sewing_form_node_revenue_edit_form_alter().
+ */
+function sewing_form_node_revenue_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_revenue_master_validate'; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-revenues"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_revenue_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_revenue_master_validate($form, FormStateInterface &$form_state) {
+    $revenueCode = $form_state->getValue('field_revenue_code')[0]['value'];
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'revenue');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $revenue = $node_storage->loadMultiple($nids);
+    foreach ($revenue as $n) {
+        $revenueCodeArr[] = strtolower($n->field_revenue_code->value);
+    }
+    if( in_array(strtolower($revenueCode), $revenueCodeArr)) {
+        $form_state->setErrorByName('field_revenue_code', t('Revenue Code already exist.'));
+    }
+}
+
+/**
+ * Implementation of sewing_form_node_trainer_form_alter
+ */
+function sewing_form_node_trainer_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_trainer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_basic_info'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_trainer_email_id'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_trainer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-trainers"; event.preventDefault();'),
+    );
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_trainer_master_form_submit';
+        }
+    }
+}
+
+/**
+ * Implements sewing_form_node_trainer_edit_form_alter().
+ */
+function sewing_form_node_trainer_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_trainer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_basic_info'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_trainer_email_id'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_trainer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-trainers"; event.preventDefault();'),
+    );
+
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_trainer_master_form_submit';
+        }
+    }
+}
+
+/**
+ * Implementatuion of custom_trainer_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_trainer_master_validate($form, FormStateInterface &$form_state) {
+    $trainerCode = $form_state->getValue('field_trainer_code')[0]['value'];
+     $contactNumber = $form_state->getValue('field_trainer_contact_no')[0]['value'];
+    $emailId = $form_state->getValue('field_trainer_email_id')[0]['value'];
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'trainer');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $trainers = $node_storage->loadMultiple($nids);
+    foreach ($trainers as $n) {
+        $trainerCodeArr[] = strtolower($n->field_trainer_code->value);
+    }
+    if( in_array(strtolower($trainerCode), $trainerCodeArr)) {
+        $form_state->setErrorByName('field_trainer_code', t('Trainer Code already exist.'));
+    }
+    if(!filter_var($emailId, FILTER_VALIDATE_EMAIL)) {
+        $form_state->setErrorByName('field_trainer_email_id', t('Invalid Email.'));
+    }
+    if(!empty($contactNumber) && (strlen($contactNumber) > 11 || strlen($contactNumber) < 7 || !is_numeric($contactNumber))) {
+        $form_state->setErrorByName('field_trainer_contact_no', t('Invalid Contact Number.'));
+    }
+}
+
+
+/**
+ * Implementation of Custom trainer master form Submit
+ */
+function custom_trainer_master_form_submit(array $form, FormStateInterface $form_state){
+    $editId = 0;
+    $masterDataService = \Drupal::service('sewing.master_data');
+    
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+
+    $trainerName = $form_state->getValue('title')[0]['value'];
+    $trainerCode = $form_state->getValue('field_trainer_code')[0]['value'];
+    
+    $trainer = $trainerName.'-'.$trainerCode; 
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      $editId = $urlEditId->id();
+      $message = preg_replace('/{.*}/', $trainer, TRAINER_UPDATE_MESSAGE);
+    } else {
+       $message = preg_replace('/{.*}/', $trainer, TRAINER_ADDED_MESSAGE); 
+    }
+
+    #For Notification System
+    $targetUsers = $masterDataService->getUsersByRoleSewing([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER, ROLE_SEWING_SSI]);
+
+    foreach ($targetUsers as $key => $value) {
+      if ($value == $user->id()) {
+        unset($targetUsers[$key]);
+      }
+    }
+
+
+    $data = [
+        'sender_role' => $userRoles[1],
+        'receiver_id' => '',
+        'receiver_role' => '',
+        'message' => $message,
+        'location' => 0,
+        'created_by' => $user->id()
+      ];
+      $masterDataService = \Drupal::service('sewing.master_data');
+     if(!empty($targetUsers)){ 
+        $masterDataService->sewingNotificationAlert($data, $targetUsers);
+    }
+}
+
+
+/**
+ * Implementation of sewing_form_node_dealer_form_alter
+ */
+function sewing_form_node_dealer_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Dealer');
+    $form[HASH_VALIDATE][] = 'custom_dealer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_street'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_locality'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_dealer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_dealer_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_dealer_latitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_dealer_longitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/dealers-listing"; event.preventDefault();'),
+    );
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_dealer_master_form_submit';
+        }
+    }
+}
+
+/**
+ * Implements sewing_form_node_dealer_edit_form_alter().
+ */
+function sewing_form_node_dealer_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_dealer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_street'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_locality'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_dealer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_dealer_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_dealer_latitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_dealer_longitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/dealers-listing"; event.preventDefault();'),
+    );
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_dealer_master_form_submit';
+        }
+    }
+}
+
+/**
+ * Implementatuion of custom_dealer_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_dealer_master_validate($form, FormStateInterface &$form_state) {
+    $dealerCode = $form_state->getValue('field_dealer_code')[0]['value'];
+    $contactNumber = $form_state->getValue('field_dealer_contact_no')[0]['value'];
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'dealer');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $dealers = $node_storage->loadMultiple($nids);
+    foreach ($dealers as $n) {
+        $dealerCodeArr[] = strtolower($n->field_dealer_code->value);
+    }
+    if( in_array(strtolower($dealerCode), $dealerCodeArr)) {
+        $form_state->setErrorByName('field_dealer_code', t('Dealer Code already exist.'));
+    }
+    if(strlen($contactNumber) != 11 || !is_numeric($contactNumber)) {
+        $form_state->setErrorByName('field_dealer_contact_no', t('Invalid Contact Number.'));
+    }
+}
+
+
+/**
+ * Implementation of Custom dealer master form Submit
+ */
+function custom_dealer_master_form_submit(array $form, FormStateInterface $form_state){
+    $editId = 0;
+    $masterDataService = \Drupal::service('sewing.master_data');
+    
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+
+    $dealerName = $form_state->getValue('title')[0]['value'];
+    $dealerCode = $form_state->getValue('field_dealer_code')[0]['value'];
+    
+    $dealer = $dealerName.'-'.$dealerCode; 
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      $editId = $urlEditId->id();
+      $message = preg_replace('/{.*}/', $dealer, DEALER_UPDATE_MESSAGE);
+    } else {
+       $message = preg_replace('/{.*}/', $dealer, DEALER_ADDED_MESSAGE); 
+    }
+
+    #For Notification System
+    $targetUsers = $masterDataService->getUsersByRoleSewing([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER, ROLE_SEWING_SSI]);
+
+    foreach ($targetUsers as $key => $value) {
+      if ($value == $user->id()) {
+        unset($targetUsers[$key]);
+      }
+    }
+
+
+    $data = [
+        'sender_role' => $userRoles[1],
+        'receiver_id' => '',
+        'receiver_role' => '',
+        'message' => $message,
+        'location' => 0,
+        'created_by' => $user->id()
+      ];
+      $masterDataService = \Drupal::service('sewing.master_data');
+     if(!empty($targetUsers)){ 
+        $masterDataService->sewingNotificationAlert($data, $targetUsers);
+    }
+}
+
+
+/**
+ * Implements sewing_form_alter().
+ */
+
+function sewing_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$form['#attached']['library'][] = 'sewing/sewing_form_alter';
+	$current_user = \Drupal::currentUser();
+	$roles = $current_user->getRoles();
+	if(!in_array('administrator', $roles)) {
+		$form['revision_information']['#access'] = false;
+		$form[ACTIONS]['delete']['#access'] = false;
+		$form[ACTIONS]['preview']['#access'] = false;
+	}
+}
+
+
+
+/**
+ * Implementation of hook_user_login()
+ */
+function sewing_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+     $form['name'][HASH_PLACEHOLDER] = t('Username');
+     $form['pass'][HASH_PLACEHOLDER] = t('Password');
+     $form[HASH_VALIDATE][] = '_custom_user_login_validation';
+}
+
+/**
+ * Implementation login validate
+ */
+
+function _custom_user_login_validation(&$form, FormStateInterface $form_state) {
+    $username = $form_state->getValue('name');   
+    $userObj = user_load_by_name($username);
+    if($userObj) {
+        $roles = $userObj->getRoles();
+        $userRoles = $roles[1];
+        if($userRoles != 'administrator') {
+            $currentDomain = _get_current_domain();
+            if(isset($currentDomain) && $currentDomain == SEWING_DOMAIN ) {
+                $sewingRoles = array('sewing_ho_admin', ROLE_SEWING_HO_USER, 'sewing_ssi', 'sewing_school_admin', 'sewing_school_teacher');
+                if(! in_array($userRoles, $sewingRoles)) {
+                    $form_state->setErrorByName('', t('Invalid login credentials for this domain.'));
+                }
+            } 
+
+            if(isset($currentDomain) && $currentDomain == SILAI_DOAMIN ) {
+                $silaiRoles = array('silai_ho_admin', SILAI_HO_USER, 'ngo_admin', 'pc', 'silai_school_admin', 'silai_learner');
+                if(! in_array($userRoles, $silaiRoles)) {
+                    $form_state->setErrorByName('', t('Invalid login credentials for this domain.'));
+                }
+            } 
+        }           
+    }
+}
+
+
+
+/**
+ * Implementation of sewing_form_node_item_group_form_alter()
+ */
+function sewing_form_node_item_group_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_item_group_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_item_group_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-item-groups"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of sewing_form_node_item_group_edit_form_alter()
+ */
+function sewing_form_node_item_group_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_item_group_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_item_group_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-item-groups"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_item_group_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_item_group_validate($form, FormStateInterface &$form_state) {
+    $itemGroupCode = $form_state->getValue('field_item_group_code')[0]['value'];
+
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'item_group');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $itemGroups = $node_storage->loadMultiple($nids);
+    foreach ($itemGroups as $n) {
+        $itemGroupCodeArr[] = strtolower($n->field_item_group_code->value);
+    }
+    
+    if( in_array(strtolower($itemGroupCode), $itemGroupCodeArr)) {
+        $form_state->setErrorByName('field_item_group_code', t('Item group code already exist.'));
+    }
+}
+
+/**
+ * Implementation of edit trainee content type form
+ */
+function sewing_form_node_trainee_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $node = $form_state->getFormObject()->getEntity();
+    $nid = $node->id();
+    $form[HASH_TITLE] = t('Edit Attendee');
+	$form['field_trainer_id']['widget'][0]['value']['#type'] = 'hidden';
+    $attendeeNode = Node::load($nid);
+    $trainingNid = $attendeeNode->field_trainer_id->value;
+    $trainingNode = Node::load($trainingNid);
+    if($trainingNode->field_training_type->value == 'Activity'){
+        $form['field_workshop_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_paid_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    }else{
+        $form['field_workshop_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+        $form['field_paid_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+        $form['field_workshop_fee']['widget'][0]['value']['#default_value'] =  $trainingNode->field_workshop_fees->value;
+        $form['field_workshop_fee']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+    }
+    $form['field_discount_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $destinationData = drupal_get_destination();
+    $form[HASH_VALIDATE][] = 'custom_trainee_form_validate';
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+/**
+ * Implementation of add new trainee content type form
+ */
+function sewing_form_node_trainee_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Attendee');
+    $form['field_trainer_id']['widget'][0]['value']['#default_value'] =  $_REQUEST['stid'];
+    $form['field_trainer_id']['widget'][0]['value']['#type'] = 'hidden';
+    $trainingNode = Node::load($_REQUEST['stid']);
+    if($trainingNode->field_training_type->value == 'Activity'){
+        $form['field_workshop_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_paid_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    }else{
+        $form['field_workshop_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+        $form['field_paid_fee'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+        $form['field_workshop_fee']['widget'][0]['value']['#default_value'] =  $trainingNode->field_workshop_fees->value;
+        $form['field_workshop_fee']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+    }
+    $form['field_discount_fee'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $destinationData = drupal_get_destination();
+    $form[HASH_VALIDATE][] = 'custom_trainee_form_validate';
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+/**
+ * Implementatuion of custom_trainee_form_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_trainee_form_validate($form, FormStateInterface &$form_state) {
+    $trainerId = $form_state->getValue('field_trainer_id')[0]['value'];
+    $trainingNode = Node::load($trainerId); 
+    if($trainingNode->field_training_type->value == 'Workshop'){
+        $workshopFee = $form_state->getValue('field_workshop_fee')[0]['value'];
+        $paidFee = $form_state->getValue('field_paid_fee')[0]['value'];
+        
+        if($paidFee == 0 || $paidFee == ''){
+            $form_state->setErrorByName('field_paid_fee', t("Paid Fee can not equal to null and 0."));
+        }else{
+            if($workshopFee < $paidFee){
+                $form_state->setErrorByName('field_paid_fee', t("Paid Fee can not be greater then workshop fee."));
+            }
+        }
+    }
+}
+function  sewing_node_presave(\Drupal\Core\Entity\EntityInterface $node) {
+    $node_type = $node->bundle();
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      // You can get nid and anything else you need from the node object.
+      $editId = $urlEditId->id();
+    }
+
+     if($node_type == 'manage_sewing_students'  && !empty($editId)){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $nid = $node->id();
+        $currentAdmissionNo = $node->get('field_student_admission_no')->value;
+        $schoolID = $node->get('field_sewing_school_code_list')->getValue()[0]['target_id'];
+        $courseId = $node->get('field_sewing_course_code_list')->getValue()[0]['target_id'];
+        $certificateIssued = $node->get('field_sewing_certificate_issued')->getValue()[0]['target_id']; 
+        $studentStatus = $node->get('field_student_status')->getValue()[0]['value']; 
+        
+        $node_storage = \Drupal::entityTypeManager()->getStorage(NODE);
+        $nodeSchool = $node_storage->load($schoolID);
+        $schoolCode = $nodeSchool->field_sewing_school_code->value;
+        $schoolAdminId = $nodeSchool->field_sewing_user_id->target_id;
+        $locationId = $nodeSchool->field_location->target_id;
+        $schoolType = $nodeSchool->field_sewing_school_type->target_id;
+        
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRoleAndSchool = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].') in '. $schoolCode ;
+
+        $nodeLocation = $node_storage->load($locationId);
+        $locationCode = $nodeLocation->field_location_code->value;
+
+        $nodeCourse = $node_storage->load($courseId);
+        $courseCode = $nodeCourse->field_course_code->value;
+
+        $townId = $node->get('field_town_city')->getValue()[0]['target_id'];
+        $townData = Node::load($townId);
+        $districtId = $townData->field_district->target_id;
+        
+        $currentYear = date('y');
+        $currentMonth = date('m');
+        $prefix = strtoupper($locationCode).strtoupper($courseCode).$currentYear.$currentMonth;
+		$prvCourseId = Node::load($nid)->field_sewing_course_code_list->target_id;
+		/* print_r($courseId);
+		echo '<br>';
+		print_r($currentNodeLoad);
+		die('die command'); */
+		if($courseId != $prvCourseId){
+			if($currentAdmissionNo) {
+				$checkPerPrefixSequence = $masterDataService->checkCode($currentAdmissionNo, 'manage_sewing_students', $prefix); 
+				if(!$checkPerPrefixSequence) {
+				   $prevAdmissionNo = $masterDataService->generate_code($nid, 'manage_sewing_students', 'field_student_admission_no', $prefix);
+					if($prevAdmissionNo) {
+						$prevSeqNo = (int) substr($prevAdmissionNo, -4);
+						$seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );   
+					} else {
+						$seqNo = '0001';
+					}
+
+					$admissionNo = $prefix.$seqNo;  
+				} else {
+				  $admissionNo = $currentAdmissionNo;  
+				}  
+			} else {
+				$seqNo = '0001';
+				$admissionNo = $prefix.$seqNo;
+			}
+			$node->set('field_student_admission_no', $admissionNo);
+		}
+        // get cource duration
+        $courseData = $masterDataService->getCourseDetailById($courseId);
+        $courseDurationNode = Node::load($courseData->field_course_duration->target_id);
+        $courseDuration = $courseDurationNode->field_duration->value;
+        $courseExamRequire = $courseDurationNode->field_exam_required->value;
+        $courseStartDate = $node->get('field_sewing_course_start_date')->getValue()[0]['value'];
+        
+        $courseCompleteDate = date('Y-m-d', strtotime("+".$courseDuration." months", strtotime($courseStartDate)));
+        $node->set('field_sew_course_completion_date', $courseCompleteDate);
+        $node->set('field_school_type', $schoolType);
+        if($courseExamRequire == 0){
+            $node->set('field_sewing_exam_result', 1);
+            $node->set('field_sewing_result_date', $courseCompleteDate);
+            $node->set('field_sewing_grades', 43);
+        }else{
+			$node->set('field_sewing_exam_result', 3);
+            $node->set('field_sewing_result_date', '');
+            $node->set('field_sewing_grades', '');
+		}
+
+
+        if($certificateIssued == CERTIFICATE_ISSUED) {
+            $node->set(STATUS, NOT_ON_ROLL_STATUS);
+            $node->set('field_sewing_district_selectlist', $districtId);
+            $node->set('field_sewing_exit_code', EXAM_PASSING_EXIT_CODE);   
+        } else if($certificateIssued == 2){
+            $node->set(STATUS, $studentStatus);
+        }else {
+			$node->set(STATUS, $studentStatus);
+			$node->set('field_sewing_certificate_issued', 0);
+		}
+
+        #For Notification System
+        if(in_array(ROLE_SEWING_SSI, $user->getRoles())) {
+            $targetUsers = [$schoolAdminId]; 
+        } else {
+           $targetUsers = $masterDataService->getUsersByRoleSewing([ROLE_SEWING_SSI], $locationId);
+        }
+        
+        $message = preg_replace('/{.*}/', $nameWithRoleAndSchool, EDIT_STUDENT_MESSAGE);
+        $data = [
+            'sender_role' => $userRoles[1],
+            'receiver_id' => '',
+            'receiver_role' => '',
+            'message' => $message,
+            'location' => $locationId,
+            'created_by' => $user->id()
+          ];
+          
+         if(!empty($targetUsers)){ 
+            $masterDataService->sewingNotificationAlert($data, $targetUsers);
+        }
+
+    }else if($node_type == 'trainee'  && !empty($editId)){
+        $nid = $node->id();
+        $trainingNode = Node::load($node->field_trainer_id->value);
+        if($trainingNode->field_training_type->value == 'Workshop'){
+            $workshopFee = $trainingNode->field_workshop_fees->value;
+            $paidFee = $node->get('field_paid_fee')->getValue()[0]['value'];
+            $discountFee = 100-(($paidFee/$workshopFee)*100);
+            $node->set('field_discount_fee', $discountFee);
+
+            $query = \Drupal::entityQuery(NODE)->condition(TYPE, 'trainee');
+            $query->condition('field_trainer_id', $node->field_trainer_id->value);
+            $query->condition('field_sewing_status', 1);
+            $query->condition('status', 1);
+            $traineeIds = $query->execute();
+            $revenueGenerated = 0;
+            foreach ($traineeIds as $traineeId) {
+                $traineeData = Node::load($traineeId);
+                if($traineeId != $nid){
+                    $revenueGenerated = $revenueGenerated + $traineeData->field_paid_fee->value;
+                }else{
+                    $revenueGenerated = $revenueGenerated + $paidFee;
+                }
+            }
+            $trainingNode->set('field_revenue_generated', $revenueGenerated);
+            $trainingNode->save();
+       }
+    }else if($node_type == 'manage_inventory'  && !empty($editId)){
+		$currentDomain = _get_current_domain();
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+
+        $location = $node->get('field_location')->getValue()[0]['target_id'];
+        $quantitySent = $node->get('field_sewing_inv_quantity')->getValue()[0]['value'];
+        $masterDataService = \Drupal::service('silai.master_data');
+        $users = $masterDataService->getUsersByLocation($location, [ROLE_SEWING_SSI]);
+
+        $ssiUserId = $node->get('field_sewing_ssi_user')->getValue()[0]['target_id'];
+        $database = \Drupal::database();
+        #check feedback data by trainee id
+        $connection = Database::getConnection();
+        $check_qry = $connection->select('custom_manage_inventory_sewing', 'n')->fields('n', array('nid'))->condition('nid', $editId);
+        $check_data = $check_qry->execute();
+        $check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+		
+        $count = count($check_results);
+		
+        if($count == 1){ #insert new data
+			$data_ary = array(
+				'receiver_id'           => $ssiUserId,
+			);
+			$query = $database->update(TABLE_CUSTOM_MANAGE_INVENTORY_SEWING)->fields($data_ary)->condition('nid', $editId)->execute();
+        }
+	}
+}
+
+
+/**
+ * trainee data save in custom table 
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ *   The node that is being inserted .
+ */
+ function  sewing_node_insert(\Drupal\Core\Entity\EntityInterface $node) {
+	$nid = $node->id();
+	$node_type = $node->bundle();
+	if($node_type == 'trainee'){
+	    $trainingNode = Node::load($_REQUEST['stid']);
+        $query = \Drupal::entityQuery(NODE)->condition(TYPE, 'trainee');
+        $query->condition('field_trainer_id', $_REQUEST['stid']);
+        $query->condition('field_sewing_status', 1);
+        $query->condition('status', 1);
+        $traineeIds = $query->execute();
+        if($trainingNode->field_training_type->value == 'Activity'){
+            /* $traineeCount = count($traineeIds);
+            $noOfAttendees = $traineeCount;
+            $trainingNode->set('field_no_of_attendees', $noOfAttendees);
+            $trainingNode->save(); */
+        }else{
+            $traineeCount = count($traineeIds);
+            $noOfAttendees = $traineeCount;
+            $workshopFee = $trainingNode->field_workshop_fees->value;
+            $expectedRevenue = $noOfAttendees * $workshopFee;
+            $revenueGenerated = 0;
+            foreach ($traineeIds as $traineeId) {
+                $traineeData = Node::load($traineeId);
+                $revenueGenerated = $revenueGenerated + $traineeData->field_paid_fee->value;
+            }
+            $trainingNode->set('field_revenue_generated', $revenueGenerated);
+            $trainingNode->set('field_no_of_attendees', $noOfAttendees);
+            $trainingNode->set('field_expected_revenue', $expectedRevenue);
+            $trainingNode->save();
+            $paidFee = $node->get('field_paid_fee')->getValue()[0]['value'];
+            $discountFee = 100-(($paidFee/$workshopFee)*100);
+            $node = Node::load($nid);
+            $node->set('field_discount_fee', $discountFee);
+            $node->save();
+
+        }
+	}else if($node_type == 'manage_inventory'){
+        $currentDomain = _get_current_domain();
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+
+        $location = $node->get('field_location')->getValue()[0]['target_id'];
+        $quantitySent = $node->get('field_sewing_inv_quantity')->getValue()[0]['value'];
+        $masterDataService = \Drupal::service('silai.master_data');
+        $users = $masterDataService->getUsersByLocation($location, [ROLE_SEWING_SSI]);
+        
+        //$receiverUser = \Drupal\user\Entity\User::load($users[0]);
+        //$receiverUserRoles = $receiverUser->getRoles();
+        $node = Node::load($nid);
+        $node->set('field_sewing_transaction_no', rand(1000000000,9999999999));
+       
+        $node->save();
+
+		$ssiUserId = $node->get('field_sewing_ssi_user')->getValue()[0]['target_id'];
+        $database = \Drupal::database();
+        #check feedback data by trainee id
+        $connection = Database::getConnection();
+        $check_qry = $connection->select('custom_manage_inventory_sewing', 'n')->fields('n', array('nid'))->condition('nid', $nid);
+        $check_data = $check_qry->execute();
+        $check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+        $count = count($check_results);
+        if($count == 0){ #insert new data
+            //$nid = $node->id();
+            if(!empty($nid)){
+               
+                $data_ary = array(
+                    'nid'                   => $nid,
+                    'domain_id'             => ($currentDomain == SILAI_DOAMIN) ? SILAI_DOAMIN : SEWING_DOMAIN,
+                    'sender_id'             => $user->id(),
+                    'receiver_id'           => $ssiUserId,
+                    'qty_send'              => $quantitySent,
+                    'qty_received'          => 0,
+                    'status'                => '1',
+                    'sent_date'             => time(),
+                    'received_date'         => '',
+                    'location_id'           => $location,
+                    'sender_role'           => $userRoles[1],
+                    'receiver_role'         => ROLE_SEWING_SSI,//$receiverUserRoles[1],
+                    //'parent_ref_id'   => $user->id()
+                    
+                );
+
+                //foreach($users as $user) {
+                 //   $data_ary['receiver_id'] = $user;
+                    $query = $database->insert(TABLE_CUSTOM_MANAGE_INVENTORY_SEWING)->fields($data_ary)->execute();     
+               // }
+
+                
+
+                #For Notification System
+                $targetUsers = $users;
+                $message = preg_replace('/{.*}/', $nameWithRole, SENT_INVENTORY_MESSAGE);
+                $data = [
+                    'sender_role' => $userRoles[1],
+                    'receiver_id' => '',
+                    'receiver_role' => '',
+                    'message' => $message,
+                    'location' => $location,
+                    'created_by' => $user->id()
+                  ];
+                  $masterDataService = \Drupal::service('sewing.master_data');
+                 if(!empty($targetUsers)){ 
+                    $masterDataService->sewingNotificationAlert($data, $targetUsers);
+                }
+            }
+        }
+    } else if($node_type == 'manage_sewing_students'){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $nid = $node->id();
+        $schoolID = $node->get('field_sewing_school_code_list')->getValue()[0]['target_id'];
+        $courseId = $node->get('field_sewing_course_code_list')->getValue()[0]['target_id']; 
+        $certificateIssued = $node->get('field_sewing_certificate_issued')->getValue()[0]['target_id']; 
+        $studentStatus = $node->get('field_student_status')->getValue()[0]['value'];
+        $node_storage = \Drupal::entityTypeManager()->getStorage(NODE);
+        $nodeSchool = $node_storage->load($schoolID);
+        $schoolCode = $nodeSchool->field_sewing_school_code->value;
+        $schoolAdminId = $nodeSchool->field_sewing_user_id->target_id;
+        $locationId = $nodeSchool->field_location->target_id;
+        $schoolType = $nodeSchool->field_sewing_school_type->target_id;
+
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRoleAndSchool = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].') in '. $schoolCode ;
+
+        $townId = $node->get('field_town_city')->getValue()[0]['target_id'];
+        $townData = Node::load($townId);
+        $districtId = $townData->field_district->target_id;
+
+        $nodeLocation = $node_storage->load($locationId);
+        $locationCode = $nodeLocation->field_location_code->value;
+
+        $nodeCourse = $node_storage->load($courseId);
+        $courseCode = $nodeCourse->field_course_code->value;
+
+        $currentYear = date('y');
+        $currentMonth = date('m');
+
+        
+
+        $prefix = strtoupper($locationCode).strtoupper($courseCode).$currentYear.$currentMonth;
+        $prevAdmissionNo = $masterDataService->generate_code($nid, 'manage_sewing_students', 'field_student_admission_no', $prefix);
+
+        if($prevAdmissionNo) {
+            $prevSeqNo = (int) substr($prevAdmissionNo, -4);
+            $seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );   
+        } else {
+            $seqNo = '0001';
+        }
+        // get cource duration
+        $courseData = $masterDataService->getCourseDetailById($courseId);
+        $courseDurationNode = Node::load($courseData->field_course_duration->target_id);
+        $courseDuration = $courseDurationNode->field_duration->value;
+        $courseExamRequire = $courseDurationNode->field_exam_required->value;
+        $courseStartDate = $node->get('field_sewing_course_start_date')->getValue()[0]['value'];
+        $courseCompleteDate = date('Y-m-d', strtotime("+".$courseDuration." months", strtotime($courseStartDate)));
+        $admissionNo = $prefix.$seqNo; 
+        $node = Node::load($nid);
+        $node->set('field_student_admission_no', $admissionNo);
+        $node->set('field_sewing_district_selectlist', $districtId);
+        $node->set('field_sew_course_completion_date', $courseCompleteDate);
+        $node->set('field_school_type', $schoolType);
+        $node->set('field_sewing_certificate_issued', 0);
+        if($courseExamRequire == 0){
+            $node->set('field_sewing_exam_result', 1);
+            $node->set('field_sewing_result_date', $courseCompleteDate);
+            $node->set('field_sewing_grades', 43);
+        }else{
+			$node->set('field_sewing_exam_result', 3);
+		}
+        if($certificateIssued == CERTIFICATE_ISSUED) {
+            $node->set(STATUS, NOT_ON_ROLL_STATUS);
+            $node->set('field_sewing_exit_code', EXAM_PASSING_EXIT_CODE);   
+        } else {
+            $node->set(STATUS, $studentStatus);
+        }
+        $node->save();
+
+        #For Notification System
+        if(in_array(ROLE_SEWING_SSI, $user->getRoles())) {
+            $targetUsers = [$schoolAdminId]; 
+        } else {
+           $targetUsers = $masterDataService->getUsersByRoleSewing([ROLE_SEWING_SSI], $locationId);
+        }
+        
+        $message = preg_replace('/{.*}/', $nameWithRoleAndSchool, ADD_STUDENT_MESSAGE);
+        $data = [
+            'sender_role' => $userRoles[1],
+            'receiver_id' => '',
+            'receiver_role' => '',
+            'message' => $message,
+            'location' => $locationId,
+            'created_by' => $user->id()
+          ];
+          
+         if(!empty($targetUsers)){ 
+            $masterDataService->sewingNotificationAlert($data, $targetUsers);
+        }
+
+    }
+} 
+
+/**
+ * trainee data update in custom table
+ * custom table name - 'sewing_trainee_feedback'
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ */
+/* function sewing_node_update(\Drupal\Core\Entity\EntityInterface $node) {
+	$nid = $node->id();
+	$node_type = $node->bundle();
+	if($node_type == 'manage_inventory'){
+       
+    }
+} */
+/**
+ * trainee data delete in custom table
+ * custom table name - 'sewing_trainee_feedback'
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ */
+function sewing_node_delete(\Drupal\Core\Entity\EntityInterface $node) {
+	$database = \Drupal::database();
+	$nid = $node->id();	
+	$node_type = $node->bundle();
+	if($node_type == 'trainee'){
+		// $query = $database->delete('sewing_trainee_feedback')->condition('trainee_nid', $nid)->execute(); 
+	} else if($node_type == 'manage_inventory'){
+       $query = $database->delete(TABLE_CUSTOM_MANAGE_INVENTORY_SEWING)->condition('nid', $nid)->execute();  
+    } else if($node_type == 'manage_sewing_students'){
+        $connection = Database::getConnection();
+        $check_qry = $connection->select(TBL_USHA_STUDENT_FEE_RECEIPT, 'usfr')->fields('usfr', array('generate_fee_id', 'received_fee', 'payment_to_uil'))->condition('student_id', $nid);
+        $check_data = $check_qry->execute();
+        $results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+         if(count($results) > 0) {
+            // foreach ($results as $key => $value) {
+            //     $feeReceiptData[]['id'] = $value->generate_fee_id;
+            //     $feeReceiptData[]['received_fee'] = ($value->received_fee) ? $value->received_fee : 0;
+            //     $feeReceiptData[]['payment_to_uil'] = ($value->payment_to_uil) ? $value->payment_to_uil : 0;
+            // }
+            $swingMasterDataService = \Drupal::service('sewing.master_data');
+            $revenueHeadData = $swingMasterDataService->getRevenueHead(REVENUE_HEAD_STUDENT_FEE_NID);
+            $taxApplicable = $revenueHeadData[REVENUE_HEAD_STUDENT_FEE_NID];
+            foreach ($results as $key => $value) {
+                $feeGeneratedId = $value->generate_fee_id;
+                $studentReceivedFee = ($value->received_fee) ? $value->received_fee : 0;
+                $studentPaymentToUil = ($value->payment_to_uil) ? $value->payment_to_uil : 0;
+
+                $qry = $connection->select(TBL_USHA_GENERATE_FEE_RECEIPT, 'ugfr')->fields('ugfr', array('total_student_fee', 'total_fee_entry', 'total_pay_to_uil', 'tax'))->condition('id', $feeGeneratedId);
+                $data = $qry->execute();
+                $resultData = $data->fetchAll(\PDO::FETCH_OBJ);
+
+                if(count($resultData) > 0) {
+                    $totalStudentFee = ($resultData[0]->total_student_fee) ? $resultData[0]->total_student_fee : 0;
+                    $totalFee = ($resultData[0]->total_fee_entry) ? $resultData[0]->total_fee_entry : 0;
+                    $payableToUIL = ($resultData[0]->total_pay_to_uil) ? $resultData[0]->total_pay_to_uil : 0;
+                    $totalTax = ($resultData[0]->tax) ? $resultData[0]->tax : 0;
+                    if(!empty($totalStudentFee) && !empty($totalFee) && !empty($payableToUIL)) {
+                        $updatedStudentFee = $totalStudentFee - $studentReceivedFee;
+                        $updatedFee = $totalFee - $studentReceivedFee;
+                        $updatedPayableToUIL = $payableToUIL - $studentPaymentToUil;
+                        $updatedTax = $totalTax - $studentPaymentToUil * ($taxApplicable/100);
+                        $data_ary = ['total_student_fee' => $updatedStudentFee, 'total_fee_entry' => $updatedFee, 'total_pay_to_uil' => $updatedPayableToUIL, 'tax' => $updatedTax];
+                        $query = $database->update(TBL_USHA_GENERATE_FEE_RECEIPT)->fields($data_ary)->condition('id', $feeGeneratedId); 
+                        $query->execute();
+                    }
+                }
+            }
+        }
+
+       $query = $database->delete(TBL_USHA_STUDENT_FEE_RECEIPT)->condition('student_id', $nid)->execute();  
+    }
+}
+/***************************/
+
+/**
+ * Implementation of sewing_form_node_items_form_alter()
+ */
+function sewing_form_node_items_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_items_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_item_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-items"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of sewing_form_node_items_edit_form_alter()
+ */
+function sewing_form_node_items_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_items_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_item_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/manage-items"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_items_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_items_validate($form, FormStateInterface &$form_state) {
+    $itemCode = $form_state->getValue('field_item_code')[0]['value'];
+
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'items');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $items = $node_storage->loadMultiple($nids);
+    foreach ($items as $n) {
+        $itemCodeArr[] = strtolower($n->field_item_code->value);
+    }
+    
+    if( in_array(strtolower($itemCode), $itemCodeArr)) {
+        $form_state->setErrorByName('field_item_code', t('Item code already exist.'));
+    }
+}
+
+
+/**
+ * Implementation of sewing_form_node_nfa_form_alter
+ */
+function sewing_form_node_manage_agreements_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Agreement');
+    $form[HASH_VALIDATE][] = 'custom_manage_agreements_validate';
+    $form['field_agreement_amount'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_agreement_no_of_schools'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_agreement_id']['widget'][0]['value']['#type'] = 'hidden';
+    $form['title']['widget'][0]['value']['#type'] = 'hidden';
+    $form['title']['widget'][0]['value']['#default_value'] = t('Agreement');
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/agreements-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of custom_manage_agreements_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_manage_agreements_validate($form, FormStateInterface &$form_state) {
+    $cararrId = $form_state->getValue('field_cararr_id')[0]['value'];
+    $nfaNid = $form_state->getValue('field_agreement_nfa_number')[0]['target_id'];
+    $agreementAmount = $form_state->getValue('field_agreement_amount')[0]['value'];
+    $fromDate = $_REQUEST['field_contract_period_from_date'][0]['value']['date'];
+    $tillDate = $_REQUEST['field_contract_period_till_date'][0]['value']['date'];
+    if(!empty($fromDate) && !empty($tillDate)){
+        $fromTimeStamp = strtotime($fromDate);
+        $tillTimeStamp = strtotime($tillDate);
+        if($tillTimeStamp < $fromTimeStamp) {
+            $form_state->setErrorByName('field_contract_period_till_date', t('Contract valid till date can not before valid from date.'));    
+        }
+    }
+    //$nid = $form_state->get;
+    $entity = $form_state->getFormObject()->getEntity();
+    $nid = $entity->id();
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+    // Load a single node.
+    $nfaData = $node_storage->load($nfaNid);
+    $nfaNumber = $nfaData->title->value;
+
+    $masterDataService = \Drupal::service('silai.master_data');
+    $nfaSanctionedAmt = $masterDataService->getNfaSanctionedAmt($nfaNumber);
+    $prevAgreements = $masterDataService->getAgreementsByNfa($nfaNid);
+    $prevAgreementVal = 0;
+    if(!empty($prevAgreements)) {
+        foreach($prevAgreements as $key=>$prevAgreement) {
+            if(!empty($nid) && $key == $nid) {
+                continue;
+            } else {
+                $prevAgreementVal += $prevAgreement['field_agreement_amount'];
+            }
+        }
+    }
+    
+    $totalAgreemtsValForNfa = $agreementAmount + $prevAgreementVal;
+    if($totalAgreemtsValForNfa > $nfaSanctionedAmt) {
+        $form_state->setErrorByName('field_agreement_amount', t('Total agreement amount is exceeding sanctioned Amount for NFA.'));    
+    }
+    
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'manage_agreements');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $items = $node_storage->loadMultiple($nids);
+    foreach ($items as $n) {
+        $itemCodeArr[] = strtolower($n->title->value);
+    }
+    
+    if( !empty($cararrId) && in_array(strtolower($cararrId), $itemCodeArr)) {
+        $form_state->setErrorByName('field_cararr_id', t('Cararr Id already exist.'));
+    }
+}
+
+/**
+ * Implements sewing_form_node_manage_agreements_edit_form_alter().
+ */
+function sewing_form_node_manage_agreements_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit Agreement');
+    $form[HASH_VALIDATE][] = 'custom_manage_agreements_validate';
+    $form['field_agreement_amount'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_agreement_no_of_schools'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_agreement_id']['widget'][0]['value']['#type'] = 'hidden';
+    $form['title']['widget'][0]['value']['#type'] = 'hidden';
+    $form['title']['widget'][0]['value']['#default_value'] = t('Agreement');
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/agreements-listing"; event.preventDefault();'),
+    );
+}
+
+
+
+/**
+ * [sewing_form_node_manage_inventory_form_alter description]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function sewing_form_node_manage_inventory_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Send Inventory');
+    $form[HASH_VALIDATE][] = 'custom_sewing_inventory_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sewing_docket_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sewing_inv_quantity'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    //print_r($form['field_sewing_transaction_no']['widget'][0]);die;
+    $form['field_sewing_transaction_no']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+     $form['field_inventory_transaction_date']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+     $form['field_sewing_transaction_no'][HASH_ATTRIBUTES] = [CLASS_CONST => ['global-hidden-field']];
+     $form['field_inventory_transaction_date'][HASH_ATTRIBUTES] = [CLASS_CONST => ['global-hidden-field']];
+    //$form['field_sewing_transaction_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_inventory_courier'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    
+    $form['actions']['cancel'] = array(
+    HASH_TYPE => 'button',
+    HASH_VALUE => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-inventory-admin"; event.preventDefault();'),
+    );
+    $form['actions']['submit']['#value'] = t('Send');
+    $form[STATUS][HASH_ACCESS] = FALSE;
+    $form['title']['widget'][0]['value']['#value'] = 'Inventory';
+    $form[title][HASH_ACCESS] = FALSE;
+}
+
+/**
+ * [sewing_form_node_manage_inventory_edit_form_alter description]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function sewing_form_node_manage_inventory_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Sent Inventory');
+    $form[HASH_VALIDATE][] = 'custom_sewing_inventory_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sewing_docket_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sewing_inv_quantity'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_transaction_no']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+     $form['field_inventory_transaction_date']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+    $form['field_inventory_courier'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    
+
+    $form['actions']['cancel'] = array(
+    HASH_TYPE => 'button',
+    HASH_VALUE => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-inventory-admin"; event.preventDefault();'),
+    );
+    $form[STATUS][HASH_ACCESS] = FALSE;
+}
+
+/**
+ * Implementatuion of custom_sewing_inventory_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_inventory_validate($form, FormStateInterface &$form_state) {
+    $docketNo = $form_state->getValue('')[0]['value'];
+    $transactionNo = $form_state->getValue('field_sewing_transaction_no')[0]['value'];
+    $location = $form_state->getValue('field_location')[0]['target_id'];
+    $masterDataService = \Drupal::service('silai.master_data');
+    $users = $masterDataService->getUsersByLocation($location, [ROLE_SEWING_SSI]);
+
+    if(empty($users)) {
+      $form_state->setErrorByName('field_location', t('No SSI found Linked to the selected location.'));   
+    }
+
+    $query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'manage_inventory');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $dockets = $node_storage->loadMultiple($nids);
+    foreach ($dockets as $n) {
+        $docketArr[] = strtolower($n->field_sewing_docket_no->value);
+    }
+
+    if(!empty($docketNo) && in_array(strtolower($docketNo), $docketArr)) {
+        $form_state->setErrorByName('field_sewing_docket_no', t('Docket No. already exist.'));
+    }
+   
+} 
+
+/**
+ * Implementation of sewing_form_node_training_form_alter
+ */
+function sewing_form_node_training_form_alter(&$form, FormStateInterface $form_state) {
+    //set Form title, type field 
+	$user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+	
+    $destinationData = drupal_get_destination();
+    $type = $_REQUEST['type'];
+    $form['field_no_of_attendees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_pros_gen_for_sch'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_prosp_gen_for_sal'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_conf_no_of_sch_ad'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_conf_no_of_sale'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_workshop_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    if ($type == 'Activity') {
+        $form[HASH_TITLE] = t('Add New Activity');
+        $form['field_training_date']['widget'][0]['value']['#title'] = t('Date of Activity');
+        $form['field_training_town']['widget'][0]['target_id']['#title'] = t('Place of Activity');
+        $form['field_training_type']['widget'][0]['value']['#default_value'] = 'Activity';
+        $form['title']['widget'][0]['value']['#value'] = 'Activity';
+        $form['field_training_type']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+        $form['field_workshop_fees'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_workshop_conducted_by'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+		if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+			$location = $user->get('field_user_location');
+			foreach ($location as $key => $value) {
+				$locationIds[] = $value->target_id;
+			}
+			foreach ($locationIds as $locationId) {
+				$query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+				$query->condition(TYPE, 'trainer');
+				$query->condition('field_location', $locationId);
+				$trainerIds = $query->execute();
+			}
+			$trainerData = Node::loadMultiple($trainerIds);
+			$trainerOption[UNDERSCORE_NONE] =  '- Select -';
+			foreach ($trainerData as $key => $value) {
+			   $trainerOption[$key] = $value->getTitle();
+			}
+			$form['field_training_trainer_name']['widget']['#options'] = $trainerOption;
+		}
+    }else if($type == 'Workshop'){
+        $form[HASH_TITLE] = t('Add New Workshop');
+        $form['field_training_date']['widget'][0]['value']['#title'] = t('Workshop Date');
+        $form['field_training_town']['widget'][0]['target_id']['#title'] = t('Place of Workshop');
+        $form['field_sewing_training_subject']['widget'][0]['value']['#title'] = t('Workshop Name');
+        $form['field_venue']['widget'][0]['value']['#title'] = t('Workshop Venue');
+        $form['field_training_type']['widget'][0]['value']['#default_value'] = 'Workshop';
+        $form['field_training_pros_gen_for_sch'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_prosp_gen_for_sal'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_conf_no_of_sch_ad'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_conf_no_of_sale'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sm_representative_name'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sm_representative_designat'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_trainer_name'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['title']['widget'][0]['value']['#value'] = 'Workshop';
+        $form['field_training_type']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+        $form['field_workshop_fees']['widget'][0]['value']['#required'] = TRUE;
+		$form['field_no_of_attendees']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+    }
+    
+    $form['field_expected_revenue']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+    $form['field_expected_revenue'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_revenue_generated'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_training_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_training_type']['widget'][0]['value']['#type'] = 'hidden';
+    
+    // $form['field_sewing_school_name']['widget'][0]['target_id']['#selection_settings']['arguments'] = ['type' => 'townId', 'value' => $townId];
+
+    //Hide title field for the Training 
+    $form['title']['#access'] = FALSE;
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_training_form_submit';
+        }
+    } 
+}
+/**
+ * Implementation of edit training content type form
+ */ 
+function sewing_form_node_training_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    //$form['title']['widget'][0]['value']['#type'] = 'hidden';
+	$user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+	
+    $type = $_REQUEST['type'];
+    $form['field_no_of_attendees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_pros_gen_for_sch'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_prosp_gen_for_sal'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_conf_no_of_sch_ad'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_training_conf_no_of_sale'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_workshop_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    if ($type == 'Activity') {
+        $form[HASH_TITLE] = t('Edit Activity');
+        $form['field_training_date']['widget'][0]['value']['#title'] = t('Date of Activity');
+        $form['field_training_town']['widget'][0]['target_id']['#title'] = t('Place of Activity');
+        $form['field_training_type']['widget'][0]['value']['#default_value'] = 'Activity';
+        $form['title']['widget'][0]['value']['#value'] = 'Activity';
+        $form['field_training_type']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+        $form['title'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_workshop_fees'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_workshop_conducted_by'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+		if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+			$location = $user->get('field_user_location');
+			foreach ($location as $key => $value) {
+				$locationIds[] = $value->target_id;
+			}
+			foreach ($locationIds as $locationId) {
+				$query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+				$query->condition(TYPE, 'trainer');
+				$query->condition('field_location', $locationId);
+				$trainerIds = $query->execute();
+			}
+			$trainerData = Node::loadMultiple($trainerIds);
+			$trainerOption[UNDERSCORE_NONE] =  '- Select -';
+			foreach ($trainerData as $key => $value) {
+			   $trainerOption[$key] = $value->getTitle();
+			}
+			$form['field_training_trainer_name']['widget']['#options'] = $trainerOption;
+		}
+    }else if($type == 'Workshop'){
+        $form[HASH_TITLE] = t('Edit Workshop');
+        $form['field_training_date']['widget'][0]['value']['#title'] = t('Workshop Date');
+        $form['field_training_town']['widget'][0]['target_id']['#title'] = t('Place of Workshop');
+        $form['field_training_type']['widget'][0]['value']['#default_value'] = 'Workshop';
+        $form['field_sewing_training_subject']['widget'][0]['value']['#title'] = t('Workshop Name');
+        $form['field_venue']['widget'][0]['value']['#title'] = t('Workshop Venue');
+        $form['field_training_pros_gen_for_sch'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_prosp_gen_for_sal'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_conf_no_of_sch_ad'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_conf_no_of_sale'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sm_representative_name'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sm_representative_designat'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['title'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_training_trainer_name'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['title']['widget'][0]['value']['#value'] = 'Workshop';
+        $form['field_training_type']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+        $form['field_workshop_fees']['widget'][0]['value']['#required'] = TRUE;
+        $node = $form_state->getFormObject()->getEntity();
+        $nid = $node->id();
+        $query = \Drupal::entityQuery(NODE)->condition(TYPE, 'trainee');
+        $query->condition('field_trainer_id', $nid);
+        $query->condition('field_sewing_status', 1);
+        $query->condition('status', 1);
+        $traineeIds = $query->execute();
+        $traineeCount = count($traineeIds);
+        if($traineeCount !=0){
+            $form['field_workshop_fees']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+        }
+		$form['field_no_of_attendees']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+    }
+    
+    $form['field_expected_revenue']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+    $form['field_expected_revenue'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_revenue_generated'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_training_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_training_type']['widget'][0]['value']['#type'] = 'hidden';
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_training_form_submit';
+        }
+    } 
+}
+/**
+ * Implementation of Custom Training Submit
+ */
+function custom_training_form_submit(array $form, FormStateInterface $form_state){
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      $editId = $urlEditId->id();
+    }
+    $entity = $form_state->getFormObject()->getEntity();
+    $townID = $form_state->getValue('field_training_town')[0]['target_id'];
+    $townData = Node::load($townID);
+    $locationId = $townData->field_location->target_id;
+    if($editId == 0){
+        $entity->set('field_training_location', $locationId );
+    }else{
+        $entity->set('field_training_location', $locationId );
+    }
+    $entity->save();
+}
+
+/**
+ * [sewing_form_node_manage_sewing_students_form_alter description]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function sewing_form_node_manage_sewing_students_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Add Student');
+    $destinationData = drupal_get_destination();
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+    $locMasterDataService = \Drupal::service('location_master.master_data');
+    $locationIds = [];
+    if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+        $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $locationIds;
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+       $form['field_location']['widget']['#options'] = $locationOption;
+       foreach ($locationIds as $locationId) {
+            $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+            $query->condition(TYPE, 'sewing_school');
+            $query->condition('field_sew_school_approval_status', 1);
+            $query->condition('field_location', $locationId);
+            $schoolIds[] = $query->execute();
+       }
+       $schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolIdData) {
+            foreach ($schoolIdData as $schoolId) {
+               $schoolData = Node::load($schoolId);
+               $schoolCode = $schoolData->field_sewing_school_code->value;
+               $schoolOption[$schoolId] =  $schoolCode;
+            }
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+
+        $townOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        $townOptions =  $swingMasterDataService->getTownBylocationId($locationIds);
+        foreach ($townOptions as $key => $value) {
+           $townOption[$key] =  $value;
+        }
+        
+        $form['field_town_city']['widget'][HASH_OPTIONS] = $townOption;
+    } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+        
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $schoolData = $node_storage->load($schoolId);
+        $schoolType = $schoolData->field_sewing_school_type->target_id;
+        $schoolCode = $schoolData->field_sewing_school_code->value;
+        $location = $schoolData->field_location->target_id;
+        $district = $schoolData->field_district->target_id;
+        $townId = $schoolData->field_town_city->target_id;
+
+        $locationIds[] = $location;
+        $form['field_school_type']['widget'][HASH_DEFAULT_VALUE] = $schoolType;
+        $form['field_sewing_district_selectlist']['widget'][HASH_DEFAULT_VALUE] = $district;
+        $form['field_school_type']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        
+        $schoolOption =  [ $schoolId => $schoolCode];
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolId;
+        $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        
+        $form['field_school_name_sewing']['widget'][0]['value'][HASH_DEFAULT_VALUE]= $schoolData->title->value;
+
+        $townData = Node::load($townId);
+        $townOption =  [ $townId => $townData->getTitle()];
+        $form['field_town_city']['widget'][HASH_OPTIONS] = $townOption;
+        $form['field_town_city']['widget'][HASH_DEFAULT_VALUE] = $townId;
+        $form['field_town_city']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+
+        $form['field_sewing_district_selectlist']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $locationIds;
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly']; 
+        $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+        $form['field_location']['widget']['#options'] = $locationOption;
+ 
+    } else {
+       
+        $locations = $locMasterDataService->getLocationByCountryId();
+        foreach ($locations as $key => $value) {
+            $locationIds[] = $key;
+        }
+        //foreach ($locationIds as $locationId) {
+        $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+        $query->condition(TYPE, 'sewing_school');
+        $query->condition('field_sew_school_approval_status', 1);
+        //$query->condition('field_location', $locationId);
+        $schoolIds = $query->execute();
+       //}
+       $schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+    }
+    
+    if(array_intersect([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER], $userRoles)) {
+    $form['field_sewing_course_start_date']['widget'][0]['value']['#attributes'] = ['min'=> date('Y-m-d', strtotime('-180 days')), 'max' => date('Y-m-d', strtotime('+1 year')) ];
+    } else {
+      $form['field_sewing_course_start_date']['widget'][0]['value']['#attributes'] = ['min'=> date('Y-m-d', strtotime('-30 days')), 'max' => date('Y-m-d', strtotime('+1 year')) ];  
+    }
+    $form['field_sewing_course_fee']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sewing_date_of_birth']['widget'][0]['value']['#attributes'] = ['max' => date('Y-m-d', strtotime('-10 year')) ];
+    $form['field_school_name_sewing']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_name']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_duration']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_fee_due']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sewing_course_fee_received']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_fee_out']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_student_admission_no']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+    $form['field_student_admission_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sew_course_completion_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+
+    $form['field_sewing_financial_year']['widget']['#options']['_none'] = '- Select -';
+    $form['field_student_salutation']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_district_selectlist']['widget']['#options']['_none'] = '- Select -';
+    $form['field_school_type']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_gender']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_marital_status']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_qualification']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_course_type']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exam_appearance']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exam_result']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_grades']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_certificate_print']['widget']['#options']['_none'] = '- Select -';
+    //$form['field_sewing_certificate_issued']['widget']['#options']['_none'] = '- Select -';
+    $form['field_existing_sewing_machine_br']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_model_make']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_want_to_buy_new']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_time_to_buy']['widget']['#options']['_none'] = '- Select -';
+    $form['field_future_plan_after_course']['widget']['#options']['_none'] = '- Select -';
+    //$form['field_student_status']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exit_code']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_school_code_list'][HASH_ATTRIBUTES]['class'][] = 'custom-manage-student';
+    //print_r($form['field_sewing_course_code_list']);die;
+    //$form['field_sewing_course_code_list']['widget'][HASH_OPTIONS] = ['_none' =>'- Select -'];
+    $form['field_sewing_exam_result'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_sewing_exam_appearance'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $form['field_school_type'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    //$form['field_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    $swingMasterDataService = \Drupal::service('sewing.master_data');
+    if($district) {
+        $townArray = $locMasterDataService->getTownsByDistrictId($district);
+    } else {
+        $townArray = $swingMasterDataService->getTownBylocationId($locationIds);
+    }   
+    $form[HASH_VALIDATE][] = 'custom_sewing_student_validate';
+    
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+    
+}
+
+
+/**
+ * [sewing_form_node_manage_sewing_students_edit_form_alter description]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function sewing_form_node_manage_sewing_students_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Student');
+    
+    $destinationData = drupal_get_destination();
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+
+    $locMasterDataService = \Drupal::service('location_master.master_data');
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      // You can get nid and anything else you need from the node object.
+      $editId = $urlEditId->id();
+    }
+    $form['field_hidden_student_id'] = [
+      HASH_TYPE => FIELD_HIDDEN,
+      HASH_VALUE => ($editId) ? $editId : '',
+      HASH_ATTRIBUTES =>['id' => 'field_hidden_student_id'],
+      
+    ];
+    $studentNodeData  = Node::load($editId);
+    $schoolId = $studentNodeData->field_sewing_school_code_list->target_id;
+    $studentStatus = $studentNodeData->status->value;
+    $districtId = $studentNodeData->field_sewing_district_selectlist->value;
+    $feeReceived = ($studentNodeData->field_sewing_course_fee_received->value) ?  $studentNodeData->field_sewing_course_fee_received->value : 0;
+    $certificatePrint = $studentNodeData->field_sewing_certificate_print->value;
+    $certificateIssue = $studentNodeData->field_sewing_certificate_issued->value;
+
+    if($schoolId) {
+        $schoolNodeData = Node::load($schoolId);
+        $schoolCode = $schoolNodeData->field_sewing_school_code->value;
+
+        $schoolObject = clone $schoolNodeData;
+        $schoolObject->title->value = $schoolCode;
+    }
+    if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+         $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+         $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+        $form['field_location']['widget']['#options'] = $locationOption;
+
+        foreach ($locationIds as $locationId) {
+            $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+            $query->condition(TYPE, 'sewing_school');
+            $query->condition('field_sew_school_approval_status', 1);
+            $query->condition('field_location', $locationId);
+            $schoolIds = $query->execute();
+       }
+	    //print_r($districtId);
+		//die('hello');
+       /*$schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolIds) {
+           $schoolData = Node::load($schoolIds);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolIds] =  $schoolCode;
+        } */
+		$schoolOption[$schoolId] = $schoolCode;
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolId;
+		$form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        /* $townOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        $townOptions =  $swingMasterDataService->getTownBylocationId($locationIds);
+        foreach ($townOptions as $key => $value) {
+           $townOption[$key] =  $value;
+        }
+        
+        $form['field_town_city']['widget'][HASH_OPTIONS] = $townOption; */
+		/* $townId = $schoolNodeData->field_town_city->target_id;
+		$townData = Node::load($townId);
+        $townOption =  [ $townId => $townData->getTitle()];
+        $form['field_town_city']['widget'][HASH_OPTIONS] = $townOption;
+        $form['field_town_city']['widget'][HASH_DEFAULT_VALUE] = $townId;
+        $form['field_town_city']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+		
+		$districtData = Node::load($districtId);
+        $districtOption =  [ $districtId => $districtData->getTitle()];
+        $form['field_sewing_district_selectlist']['widget'][HASH_OPTIONS] = $districtOption;
+        $form['field_sewing_district_selectlist']['widget'][HASH_DEFAULT_VALUE] = $districtId;
+        $form['field_sewing_district_selectlist']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly']; */
+
+    } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+        
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $schoolData = $node_storage->load($schoolId);
+        $schoolType = $schoolData->field_sewing_school_type->target_id;
+        $schoolCode = $schoolData->field_sewing_school_code->value;
+        $location = $schoolData->field_location->target_id;
+        $townId = $schoolData->field_town_city->target_id;
+
+        $locationIds[] = $location;
+        $form['field_town_city']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $form['field_school_type']['widget'][HASH_DEFAULT_VALUE] = $schoolType;
+        $form['field_school_type']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly']; 
+        // $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolCode;
+        // $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['disabled' => true]; 
+        /* $townData = Node::load($townId);
+        $townOption =  [ $townId => $townData->getTitle()];
+        $form['field_town_city']['widget'][HASH_OPTIONS] = $townOption;
+        $form['field_town_city']['widget'][HASH_DEFAULT_VALUE] = $townId;
+        $form['field_town_city']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly']; */
+
+        $schoolOption =  [ $schoolId => $schoolCode];
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolId;
+        $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+
+        //$form['field_sewing_school_code_list']['widget'][0]['target_id'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $form['field_sewing_district_selectlist']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+        $form['field_location']['widget']['#options'] = $locationOption;
+
+    } else {
+        $locations = $locMasterDataService->getLocationByCountryId();
+        foreach ($locations as $key => $value) {
+            $locationIds[] = $key;
+        }
+         //foreach ($locationIds as $locationId) {
+        $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+        $query->condition(TYPE, 'sewing_school');
+        $query->condition('field_sew_school_approval_status', 1);
+        //$query->condition('field_location', $locationId);
+        $schoolIds = $query->execute();
+       //}
+        /* $schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        } */
+		$schoolOption[$schoolId] = $schoolCode;
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+		$form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+    }
+
+    /* if(array_intersect([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER], $userRoles)) {
+    $form['field_sewing_course_start_date']['widget'][0]['value']['#attributes'] = ['min'=> date('Y-m-d', strtotime('-180 days')), 'max' => date('Y-m-d', strtotime('+1 year')) ];
+    } else {
+      $form['field_sewing_course_start_date']['widget'][0]['value']['#attributes'] = ['min'=> date('Y-m-d', strtotime('-30 days')), 'max' => date('Y-m-d', strtotime('+1 year')) ];  
+    } */
+
+     $form['field_sewing_date_of_birth']['widget'][0]['value']['#attributes'] = ['max' => date('Y-m-d', strtotime('-10 year')) ];
+	$form['field_sewing_course_fee']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_school_name_sewing']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_name']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_duration']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_fee_due']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sewing_course_fee_received']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true]; 
+    $form['field_sewing_course_fee_out']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => true];
+    //$form['field_sewing_school_code_list']['widget'][0]['target_id'][HASH_DEFAULT_VALUE]= $schoolObject;
+    $form['field_school_name_sewing']['widget'][0]['value'][HASH_DEFAULT_VALUE]= $schoolNodeData->title->value;
+
+    $form['field_student_admission_no']['widget'][0]['value'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+    $form['field_student_admission_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sew_course_completion_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+    $form['field_sewing_course_start_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+   //$form['field_student_status']['widget'][HASH_DEFAULT_VALUE] = [$studentStatus];
+	$form['field_student_salutation']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_financial_year']['widget']['#options']['_none'] = '- Select -';
+    //$form['field_sewing_district_selectlist']['widget']['#options']['_none'] = '- Select -';
+    $form['field_school_type']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_gender']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_marital_status']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_qualification']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_course_type']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exam_appearance']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exam_result']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_grades']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_certificate_print']['widget']['#options']['_none'] = '- Select -';
+    //$form['field_sewing_certificate_issued']['widget']['#options']['_none'] = '- Select -';
+    $form['field_existing_sewing_machine_br']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_model_make']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_want_to_buy_new']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_time_to_buy']['widget']['#options']['_none'] = '- Select -';
+    $form['field_future_plan_after_course']['widget']['#options']['_none'] = '- Select -';
+    //$form['field_student_status']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_exit_code']['widget']['#options']['_none'] = '- Select -';
+    $form['field_sewing_school_code_list'][HASH_ATTRIBUTES]['class'][] = 'custom-manage-student';
+    $form['field_school_type'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	//$form['field_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    if(!empty($feeReceived) ) {
+         $form['field_sewing_course_code_list']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+
+    }
+    if($feeReceived == 0 || $feeReceived ==''){
+        $form['field_sewing_exam_result'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sewing_result_date'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sewing_grades'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+        $form['field_sewing_exam_appearance'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+    }
+    $swingMasterDataService = \Drupal::service('sewing.master_data');
+    if($districtId) {
+        $townArray = $locMasterDataService->getTownsByDistrictId($districtId);
+    } else {
+        $townArray = $swingMasterDataService->getTownBylocationId($locationIds);
+    }
+    if($certificatePrint == 1){
+        $form['field_sewing_exam_result']['widget'][HASH_ATTRIBUTES] = ['readonly' =>true];
+        $form['field_sewing_grades']['widget'][HASH_ATTRIBUTES] = ['readonly' =>true];
+        $form['field_sewing_certificate_print']['widget'][HASH_ATTRIBUTES] = ['readonly' =>true];
+        $form['field_sewing_result_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+        $form['field_date_of_certificate_print']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+        $form['field_sewing_certificate_issued']['widget'][HASH_ATTRIBUTES] = ['readonly' =>true];
+        $form['field_date_of_certificate_issued']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+        
+        if($certificateIssue == 1){
+            $form['field_sewing_gender']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_existing_sewing_machine_br']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_want_to_buy_new']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_model_make']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_time_to_buy']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_future_plan_after_course']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+
+
+            
+            $form['field_sewing_financial_year']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            //$form['field_sewing_father_name']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_exam_appearance']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_town_city']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_district_selectlist']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_course_type']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_qualification']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_marital_status']['widget'][HASH_ATTRIBUTES] = ['disabled' =>true];
+            $form['field_sewing_course_start_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+
+            $form['field_sewing_date_of_birth']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['title']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_sewing_father_name']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_address_1']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_address_2']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_address_3']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_pin_code']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_sewing_mobile_no']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_sewing_phone_no']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_sewing_email_address']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+            $form['field_sewing_model_of_sm']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+        }
+    }
+    $form[HASH_VALIDATE][] = 'custom_sewing_student_validate';
+
+    if($certificatePrint == 1 && $certificateIssue == 1){
+        $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Close'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+        );
+        unset($form['actions']['submit']);
+    } else {
+        $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+        );
+    }
+
+} 
+
+/**
+ * [custom_sewing_student_validate description]
+ * @param  [type]             $form        [description]
+ * @param  FormStateInterface &$form_state [description]
+ * @return [type]                          [description]
+ */
+function custom_sewing_student_validate($form, FormStateInterface &$form_state) {
+	$entity = $form_state->getFormObject()->getEntity();
+	$editId = 0;
+	$urlEditId = \Drupal::routeMatch()->getParameter('node');
+	if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+	  $editId = $urlEditId->id();
+	}
+    $courseStartDate = $form_state->getValue('field_sewing_course_start_date')[0]['value']->format('Y-m-d');
+    if($form_state->getValue('field_sewing_date_of_birth')[0]['value']){
+        $birthDate = $form_state->getValue('field_sewing_date_of_birth')[0]['value']->format('Y-m-d');
+        if(strtotime($birthDate) > strtotime('-10 year')) {
+            $form_state->setErrorByName('field_sewing_date_of_birth', t('Age should be at least 10 years old'));
+        }
+    }
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+    if($editId == 0){
+		if(array_intersect([ROLE_SEWING_HO_ADMIN, ROLE_SEWING_HO_USER], $userRoles)) {
+			if(strtotime($courseStartDate) < strtotime('-181 days')) {
+				$form_state->setErrorByName('field_sewing_course_start_date', t('Course start date is not valid'));
+			}
+		} else {
+			if(strtotime($courseStartDate) < strtotime('-31 days')) {
+				$form_state->setErrorByName('field_sewing_course_start_date', t('Course start date is not valid'));
+			} 
+		}
+	}
+}
+
+
+function sewing_allowed_values_district(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+
+    $locationIds = [];
+    if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+        $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+    } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+        
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $schoolData = $node_storage->load($schoolId);
+        $location = $schoolData->field_location->target_id;
+        $district = $schoolData->field_district->target_id;
+
+        //$locationIds[] = $location;
+
+        $districtData = Node::load($district);
+        $districtOption =  [ $district => $districtData->getTitle()];
+
+        return $districtOption;
+    } else {
+        $locMasterDataService = \Drupal::service('location_master.master_data');
+        $locations = $locMasterDataService->getLocationByCountryId();
+        foreach ($locations as $key => $value) {
+            $locationIds[] = $key;
+        }
+      
+    }
+    $locMasterDataService = \Drupal::service('location_master.master_data');
+    $locations = $locMasterDataService->getLocationByCountryId();
+    $districtsArray = $locMasterDataService->getDistrictsByLocationId($locationIds);
+    $districts = [UNDERSCORE_NONE => SELECT_VALUE];
+
+     if(!empty($districtsArray)) {
+        $districts = $districts + $districtsArray;
+    }
+    return $districts;
+}
+
+
+/**
+ * [Altering Sewing Views] 
+ * @param  ViewExecutable  $view  [description]
+ * @param  QueryPluginBase $query [description]
+ * @return [type]                 [description]
+ */
+function sewing_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userId = \Drupal::currentUser()->id();
+    $userRoles = $user->getRoles();
+    $currentUserid = $user->id();
+    if($view->id() == 'sewing_teacher_management' && $view->current_display == 'page_1') {
+        $locMasterDataService = \Drupal::service('location_master.master_data');
+        $locationIds = [];
+        if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+            $location = $user->get('field_user_location');
+            foreach ($location as $key => $value) {
+                $locationIds[] = $value->target_id;
+            }
+            $query->addWhere('', 'node_field_data_node__field_town_city__node__field_location.field_location_target_id', $locationIds, 'IN');
+        } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+            /* $swingMasterDataService = \Drupal::service('sewing.master_data');
+            $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+            $schoolData = $node_storage->load($schoolId);
+            $location = $schoolData->field_location->target_id;
+            $locationIds[] = $location;
+            $query->addWhere('', 'node_field_data_node__field_town_city__node__field_location.field_location_target_id', $locationIds, 'IN'); */
+			$swingMasterDataService = \Drupal::service('sewing.master_data');
+            $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+            
+             $definition = [
+				'table' => 'node__field_sewing_school_code_list',
+				'field' => 'entity_id',
+				'left_table' => 'node_field_data',
+				'left_field' => 'nid',
+			];
+			$join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+			$query->addRelationship('school', $join, 'student'); 
+			$query->addWhere('', 'school.bundle', 'sewing_teacher_management', '=');
+			$query->addWhere('', 'school.field_sewing_school_code_list_target_id', $schoolId, '=');
+        }        
+    }
+    if($view->id() == 'sewing_teacher_management' && $view->current_display == 'data_export_1') {
+        $locMasterDataService = \Drupal::service('location_master.master_data');
+        $locationIds = [];
+        if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+            $location = $user->get('field_user_location');
+            foreach ($location as $key => $value) {
+                $locationIds[] = $value->target_id;
+            }
+            $query->addWhere('', 'node_field_data_node__field_town_city__node__field_location.field_location_target_id', $locationIds, 'IN');
+        } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+            /* $swingMasterDataService = \Drupal::service('sewing.master_data');
+            $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+            $schoolData = $node_storage->load($schoolId);
+            $location = $schoolData->field_location->target_id;
+            $locationIds[] = $location;
+            $query->addWhere('', 'node_field_data_node__field_town_city__node__field_location.field_location_target_id', $locationIds, 'IN'); */
+			$swingMasterDataService = \Drupal::service('sewing.master_data');
+            $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+            
+             $definition = [
+				'table' => 'node__field_sewing_school_code_list',
+				'field' => 'entity_id',
+				'left_table' => 'node_field_data',
+				'left_field' => 'nid',
+			];
+			$join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+			$query->addRelationship('school', $join, 'student'); 
+			$query->addWhere('', 'school.bundle', 'sewing_teacher_management', '=');
+			$query->addWhere('', 'school.field_sewing_school_code_list_target_id', $schoolId, '=');
+        }        
+    }
+    if ($view->id() == 'manage_students' && ($view->current_display == 'page_2' || $view->current_display == 'data_export_2')) {
+        
+        $locationIds = [];
+        $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+        
+         $definition = [
+            'table' => 'node__field_location',
+            'field' => 'entity_id',
+            'left_table' => 'node_field_data',
+            'left_field' => 'nid',
+        ];
+        $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+        $query->addRelationship('location', $join, 'student'); 
+        $query->addWhere('', 'location.bundle', 'manage_sewing_students', '=');
+        $query->addWhere('', 'location.field_location_target_id', $locationIds, 'IN');
+    } else if ($view->id() == 'manage_students' &&  ($view->current_display == 'page_4' || $view->current_display == 'data_export_3')) {
+		$conditionCount = count($query->where[1]['conditions']);
+		for($i = 0; $i<$conditionCount; $i++){ 
+			if($query->where[1]['conditions'][$i]['field'] == 'node__field_sewing_course_fee_out.field_sewing_course_fee_out_value'){
+				$query->where[1]['conditions'][$i]['operator'] = '<=';
+			}
+		}
+		//print_r($query->where);
+		//die('hello');
+        if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+            $locationIds = [];
+            $location = $user->get('field_user_location');
+            foreach ($location as $key => $value) {
+                $locationIds[] = $value->target_id;
+            }
+            
+             $definition = [
+                'table' => 'node__field_location',
+                'field' => 'entity_id',
+                'left_table' => 'node_field_data',
+                'left_field' => 'nid',
+            ];
+            $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+            $query->addRelationship('location', $join, 'student'); 
+            $query->addWhere('', 'location.bundle', 'manage_sewing_students', '=');
+            $query->addWhere('', 'location.field_location_target_id', $locationIds, 'IN');
+        }
+    } else  if ($view->id() == 'manage_students' && $view->current_display == 'page_1') {
+         
+            $swingMasterDataService = \Drupal::service('sewing.master_data');
+            $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+            
+             $definition = [
+            'table' => 'node__field_sewing_school_code_list',
+            'field' => 'entity_id',
+            'left_table' => 'node_field_data',
+            'left_field' => 'nid',
+        ];
+        $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+        $query->addRelationship('school', $join, 'student'); 
+        $query->addWhere('', 'school.bundle', 'manage_sewing_students', '=');
+        $query->addWhere('', 'school.field_sewing_school_code_list_target_id', $schoolId, '=');
+       
+    } else if ($view->id() == 'manage_sewing_inventory' && ($view->current_display == 'page_3' || $view->current_display == 'data_export_3')) {
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $masterDataService->getSchoolIdByUserId($userId);
+    
+        $query->addWhere('', 'custom_manage_inventory_sewing.ref_id', $schoolId, '=');   
+    } else if ($view->id() == 'manage_sewing_inventory' && ($view->current_display == 'page_2'  || $view->current_display == 'data_export_2')) {
+        $query->addWhere('', 'custom_manage_inventory_sewing.receiver_id', $userId, '=');   
+    }
+    
+}
+/**
+ * [sewing views exposed form alter]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function sewing_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+    if (in_array($form['#id'], ['views-exposed-form-manage-students-page-3', 'views-exposed-form-manage-students-page-2', 'views-exposed-form-manage-students-page-1'])  && isset($form['status_student']) && !empty($form['status_student'])) {
+       $form['status_student']['#options'][0] = 'Not On-Roll';
+       $form['status_student']['#options'][1] = 'On-Roll'; 
+    } else if(isset($form['field_sewing_teacher_status_value']) && !empty($form['field_sewing_teacher_status_value'])) {
+       $form['field_sewing_teacher_status_value']['#options'][0] = 'Not On Roll';
+        $form['field_sewing_teacher_status_value']['#options'][1] = 'On Roll'; 
+    }
+   
+}
+
+/**
+ * Implements sewing_form_node_sewing_teacher_management_edit_form_alter().
+ */
+function sewing_form_node_sewing_teacher_management_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Add Teacher');
+    $form[HASH_VALIDATE][] = 'custom_sewing_teacher_validate';
+    $form['field_sewing_teacher_phone_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_teacher_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_teacher_gender']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_qualificati']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_training']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_training']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_email']['widget'][0]['value'][HASH_TYPE] = 'email';
+    $form['field_sewing_school_code_list'][HASH_ATTRIBUTES]['class'][] = 'custom-manage-teacher';
+    $destinationData = drupal_get_destination();
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+    $locMasterDataService = \Drupal::service('location_master.master_data');
+    $locationIds = [];
+    if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+        $cancelUrl = '/teacher-management-list';
+        $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+        $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $locationIds;
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+       $form['field_location']['widget']['#options'] = $locationOption;
+       foreach ($locationIds as $locationId) {
+            $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+            $query->condition(TYPE, 'sewing_school');
+            $query->condition('field_sew_school_approval_status', 1);
+            $query->condition('field_location', $locationId);
+            $schoolIds = $query->execute();
+       }
+        $schoolOption[''] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+    } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+        $cancelUrl = '/teacher-management-list';
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+        
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $schoolData = $node_storage->load($schoolId);
+        $schoolType = $schoolData->field_sewing_school_type->target_id;
+        $schoolCode = $schoolData->field_sewing_school_code->value;
+        $location = $schoolData->field_location->target_id;
+        $district = $schoolData->field_district->target_id;
+        $townId = $schoolData->field_town_city->target_id;
+
+        $locationIds[] = $location;
+         
+        $schoolOption =  [ $schoolId => $schoolCode];
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolId;
+        $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+ 
+    } else {
+        $cancelUrl = '/ho-teacher-management-list';
+        $locations = $locMasterDataService->getLocationByCountryId();
+        foreach ($locations as $key => $value) {
+            $locationIds[] = $key;
+        }
+        $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+        $query->condition(TYPE, 'sewing_school');
+        $query->condition('field_sew_school_approval_status', 1);
+        $schoolIds = $query->execute();
+       $schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+    }   
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$cancelUrl.'"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements sewing_form_node_sewing_teacher_management_edit_form_alter().
+ */
+function sewing_form_node_sewing_teacher_management_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit Teacher');
+    $form[HASH_VALIDATE][] = 'custom_sewing_teacher_validate';
+    $form['field_sewing_teacher_phone_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_teacher_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_teacher_gender']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_qualificati']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_training']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_teacher_training']['widget']['#options']['_none'] = '-Select-';
+    $form['field_sewing_school_code_list'][HASH_ATTRIBUTES]['class'][] = 'custom-manage-teacher';
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    $editId = $urlEditId->id();
+    $form['field_hidden_tid'] = array(
+        HASH_TYPE => FIELD_HIDDEN,
+        HASH_ATTRIBUTES => array('id' => 'field-hidden-tid'),
+        HASH_VALUE => ($editId) ? $editId : '',
+      );
+    $destinationData = drupal_get_destination();
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $userId = $user->id();
+    $locMasterDataService = \Drupal::service('location_master.master_data');
+    $locationIds = [];
+    if(in_array(ROLE_SEWING_SSI, $userRoles)) {
+        $cancelUrl = '/teacher-management-list';
+        $location = $user->get('field_user_location');
+        foreach ($location as $key => $value) {
+            $locationIds[] = $value->target_id;
+        }
+        $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $locationIds;
+        $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $loactionData = Node::loadMultiple($locationIds);
+        foreach ($loactionData as $key => $value) {
+           $locationOption[$key] = $value->getTitle();
+        }
+       $form['field_location']['widget']['#options'] = $locationOption;
+       foreach ($locationIds as $locationId) {
+            $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+            $query->condition(TYPE, 'sewing_school');
+            $query->condition('field_sew_school_approval_status', 1);
+            $query->condition('field_location', $locationId);
+            $schoolIds = $query->execute();
+       }
+        $schoolOption[''] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+    } else if(in_array(ROLE_SEWING_SCHOOL_ADMIN, $userRoles)) {
+        $cancelUrl = '/teacher-management-list';
+        $swingMasterDataService = \Drupal::service('sewing.master_data');
+        $schoolId = $swingMasterDataService->getSchoolIdByUserId($userId);
+        
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $schoolData = $node_storage->load($schoolId);
+        $schoolType = $schoolData->field_sewing_school_type->target_id;
+        $schoolCode = $schoolData->field_sewing_school_code->value;
+        $location = $schoolData->field_location->target_id;
+        $district = $schoolData->field_district->target_id;
+        $townId = $schoolData->field_town_city->target_id;
+
+        $locationIds[] = $location;
+         
+        $schoolOption =  [ $schoolId => $schoolCode];
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_DEFAULT_VALUE] = $schoolId;
+        $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+ 
+    } else {
+        $cancelUrl = '/ho-teacher-management-list';
+        $locations = $locMasterDataService->getLocationByCountryId();
+        foreach ($locations as $key => $value) {
+            $locationIds[] = $key;
+        }
+        $query = \Drupal::entityQuery(NODE)->condition(STATUS, 1);
+        $query->condition(TYPE, 'sewing_school');
+        $query->condition('field_sew_school_approval_status', 1);
+        $schoolIds = $query->execute();
+       $schoolOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+        foreach ($schoolIds as $schoolId) {
+           $schoolData = Node::load($schoolId);
+           $schoolCode = $schoolData->field_sewing_school_code->value;
+           $schoolOption[$schoolId] =  $schoolCode;
+        }
+        $form['field_sewing_school_code_list']['widget'][HASH_OPTIONS] = $schoolOption;
+        $form['field_sewing_school_code_list']['widget'][HASH_ATTRIBUTES] = ['disabled' => 'disabled'];
+        $form['field_sewing_copy_teacher_data'][HASH_ATTRIBUTES] = ['disabled' => 'disabled'];
+        $form['field_sewing_copy_teacher_data']['#disabled'] = TRUE;
+        $form['field_sewing_teacher_gender']['widget'][HASH_ATTRIBUTES] = ['disabled' => 'disabled'];
+        $form['field_sewing_teacher_email']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+        $form['field_sewing_teacher_phone_no']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+    }   
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$cancelUrl.'"; event.preventDefault();'),
+    );
+}
+
+/**
+ * [custom_sewing_teacher_validate description]
+ * @param  [type]             $form        [description]
+ * @param  FormStateInterface &$form_state [description]
+ * @return [type]                          [description]
+ */
+function custom_sewing_teacher_validate($form, FormStateInterface &$form_state) {
+     $contactNumber = $form_state->getValue('field_sewing_teacher_phone_no')[0]['value'];
+   if(!empty($contactNumber) && (strlen($contactNumber) > 11 || strlen($contactNumber) < 7 || !is_numeric($contactNumber))) {
+        $form_state->setErrorByName('field_trainer_contact_no', t('Invalid Contact Number.'));
+    }
+}
+/**
+ * Implementation of hook_views_pre_render
+ */
+function sewing_views_pre_render(ViewExecutable $view) {
+    if($view->id() == 'sewing_notification' && $view->current_display == 'page_1') {
+        //$currentDomain = _get_current_domain(); 
+        $account = \Drupal::currentUser();
+        $userID = $account->id();
+
+        $connection = Database::getConnection();
+
+      $status_update = \Drupal::database()->update('custom_sewing_notifications')->fields(['status' => '2'])
+      ->condition('receiver_id', $userID)->condition('status', '1')->execute();
+      
+    }
+}

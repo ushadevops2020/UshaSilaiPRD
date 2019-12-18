@@ -1,0 +1,14 @@
+uuid: c26685db-3b44-4b6e-98e8-e255866b136b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_school_admin
+  module:
+    - user
+id: user_add_role_action.silai_school_admin
+label: 'Add the Silai School Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: silai_school_admin

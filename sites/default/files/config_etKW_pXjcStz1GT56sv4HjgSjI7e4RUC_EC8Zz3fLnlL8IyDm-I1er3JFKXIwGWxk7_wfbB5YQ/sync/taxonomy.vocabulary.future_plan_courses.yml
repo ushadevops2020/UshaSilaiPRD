@@ -1,0 +1,9 @@
+uuid: ec3b303a-56c5-4cf9-80d9-15195596c2bc
+langcode: en
+status: true
+dependencies: {  }
+name: 'Future Plan Courses'
+vid: future_plan_courses
+description: 'Future Plan Courses'
+hierarchy: 0
+weight: 0

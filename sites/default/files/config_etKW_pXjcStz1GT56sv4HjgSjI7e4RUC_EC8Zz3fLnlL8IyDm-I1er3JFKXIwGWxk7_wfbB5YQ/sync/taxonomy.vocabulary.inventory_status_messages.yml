@@ -1,0 +1,9 @@
+uuid: f7fa10fd-7a01-4d21-8fa2-146b44b3459b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Inventory Status Messages'
+vid: inventory_status_messages
+description: 'Inventory Status Messages'
+hierarchy: 0
+weight: 0

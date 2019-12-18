@@ -1,0 +1,19 @@
+uuid: 97e6a42f-b28b-43ca-aa3b-1f02789540cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_country_code
+    - node.type.manage_silai_countries
+id: node.manage_silai_countries.field_silai_country_code
+field_name: field_silai_country_code
+entity_type: node
+bundle: manage_silai_countries
+label: 'Country Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: cb0587cf-6f73-4a66-9877-36d8bed8a4e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_business_state
+    - node.type.silai_business_states
+    - node.type.silai_district
+id: node.silai_district.field_silai_business_state
+field_name: field_silai_business_state
+entity_type: node
+bundle: silai_district
+label: 'Assign State'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_business_states: silai_business_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,20 @@
+uuid: 131d4bba-d732-4818-8b6c-d85d27653cb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_renewal_fees
+field_name: field_renewal_fees
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

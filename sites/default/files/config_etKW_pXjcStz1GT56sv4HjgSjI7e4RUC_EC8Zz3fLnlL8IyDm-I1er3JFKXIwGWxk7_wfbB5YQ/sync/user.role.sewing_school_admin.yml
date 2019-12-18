@@ -1,0 +1,19 @@
+uuid: f977b7be-7e6d-4ea4-905f-9f5bff67ba8e
+langcode: en
+status: true
+dependencies: {  }
+id: sewing_school_admin
+label: 'School Admin'
+weight: 13
+is_admin: null
+permissions:
+  - 'bypass node access'
+  - 'create content_workflow workflow_transition'
+  - 'create manage_sewing_students content'
+  - 'create manage_sewing_students content on assigned domains'
+  - 'delete any manage_sewing_students content'
+  - 'delete manage_sewing_students content on assigned domains'
+  - 'delete own manage_sewing_students content'
+  - 'edit any manage_sewing_students content'
+  - 'edit own manage_sewing_students content'
+  - 'update manage_sewing_students content on assigned domains'

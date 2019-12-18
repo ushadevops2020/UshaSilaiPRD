@@ -1,0 +1,22 @@
+uuid: 14564e24-7903-412f-af40-b15e05af0209
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.status
+field_name: status
+entity_type: node
+bundle: sewing_teacher_management
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

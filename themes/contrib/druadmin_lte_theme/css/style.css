@@ -1,0 +1,3122 @@
+#logo img{
+  /*max-height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);*/
+}
+#logo .logo-lg, #logo .logo-mini{
+  position:relative;
+  height:50px;
+}
+
+.login-box .logo-lg   img {
+  max-width: 100%;
+}
+
+.login-page-header.logo .logo-lg {
+  display: block;
+}
+.login-page-header.logo .logo-mini {
+  display: none;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+}
+body .label {
+  color:#6a707e;
+  font-size: 80%;
+  text-transform: uppercase;
+}
+label {
+  color: #6a707e;
+
+  text-transform: uppercase;
+}
+a.tabledrag-handle .handle {
+  width: 24px;
+  height: 24px;
+}
+
+.box .box-header h4{
+  margin:0;
+}
+
+.content {
+	min-height:520px !important
+}
+.content-wrapper {
+    min-height: 100%;
+    background-color: #e7ebee!important;
+    z-index: 800;
+    clear: both;
+    margin-top: 70px;
+}
+body{background: #e7ebee;}
+body, html {
+    height: 100%;
+    margin: 0;}
+.m-t-0{margin-top:0px!important; }
+.m-b-0{margin-bottom:0px!important; }
+.m-0{margin:0px!important; }
+.m-t-15{margin-top:15px!important; }
+.p-0{padding: 0px!important;}
+.p-l-0{padding-left: 0px!important;}
+.p-r-0{padding-right: 0px!important;}
+.p-t-0{padding-top:0px!important;}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d3cfc8;
+    position: relative;
+    margin-top:0px;
+    outline: none;
+}
+.login-form .checkbox span {
+    line-height: 24px;
+    padding-left: 15px;
+}
+input[type="checkbox"]:checked:focus{
+    border-left: 1px solid #d3cfc8!important;outline: none;
+}
+input[type="checkbox"]:focus {
+    border-left: 1px solid #d3cfc8 !important;outline: none;
+}
+input[type="checkbox"]:checked::after {
+    content: "\f00c";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    text-align: center;
+    color: #e31f24;
+}
+.header {
+    margin-bottom: 0px;
+    min-height: 70px;
+}
+.header .navbar-brand {
+    float: left;
+    height: 70px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.header .navbar-nav li {
+    border: 1px solid #d7dadd;
+    border-bottom: none;
+    border-right: none;
+}
+.header a.navbar-brand {
+    width: 20rem;
+    text-align: center;
+    border-right: 1px solid #e6e4e4;
+}
+.header .navbar-nav li a {
+    height: 70px;line-height: 40px;    padding: 15px 30px;
+}
+.header .navbar-right li a{line-height: inherit;}
+
+.header .navbar-right li a img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.header .navbar-right li span{float: right;}
+.header a.navbar-brand {
+    width: 25rem;
+    text-align: center;
+}
+li.text-right.logged-in-user{position: relative;}
+li.text-right.logged-in-user img {
+    /* position: absolute; */
+    /* right: 10px; */
+    /* top: 22%; */
+    /* width: 40px; */
+    /* height: 40px; */
+    /* display: block; */
+    float: right;
+    width: 40px;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+li.text-right.logged-in-user a {
+    padding-right: 10px;
+}
+.Search img {
+    position: absolute;
+    right: 30px;
+    top: 30%;
+}
+.Search .form-control {
+    height: 54px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    border: none;
+}
+.Search .form-group {
+    width: 100%;
+    position: relative;
+}
+
+
+.Search .form-group input {
+    width: 100%;
+    display: inline-block;
+    background: #e7ebee;
+    border-radius: 25px;
+}
+.Search i {color: #828a9b;}
+.sidemenu {
+    width: 25rem;
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: calc(100vh - 72px);
+    border-radius: 0px;
+    overflow: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    z-index: 111;
+}
+.sidemenu .container-fluid {
+    padding: 0px;
+    margin: 0;
+}
+.sidemenu ul.nav.navbar-nav {
+    width: 100%;
+}
+.sidemenu ul.navbar-nav li {
+    display: block;
+    float: none;
+    color: #6a707e;
+}
+.sidemenu ul.navbar-nav li.active a {
+    color: #de1f24;
+    font-weight: 500;
+    background-color: #e7ebee;
+    border-left: 8px solid #de1f24;
+}
+.sidemenu ul.navbar-nav li.active a:hover{color: #de1f24}
+.sidemenu ul.navbar-nav li a:hover{color: #de1f24}
+.sidemenu ul.navbar-nav li a {
+    padding-left: 24px;
+    font-size: 15px;
+    line-height: 35px;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #6a707e;
+}
+
+
+.wrapper {
+    margin-left: 25rem;
+    margin-top: 72px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+ul.date-wise-data {
+    padding: 0;
+    list-style: none;
+}
+
+.col-sm-2half{width: 20%;}
+.dashboard-numbers .panel{background:#0072c6b0;color: #fff}
+.dashboard-numbers .panel .panel-heading {
+    font-size: 40px;
+    padding: 10px 15px 0px;
+}
+.dashboard-numbers .panel .panel-body {
+    font-size: 20px;
+    padding: 0px 15px 10px 15px;
+}
+.welcome-row {
+    background: #fff;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    padding: 10px 0px;
+    margin-bottom: 45px;
+    background-repeat: no-repeat;
+    margin-left: 0;
+    margin-right: 0;
+}
+.welcome-row h2 {
+    color: #6a707e;
+}
+.welcome-row h2 strong{color: }
+.welcome-row h5{color: #6a707e;}
+form.navbar-form.navbar-left.Search {
+    width: 40%;
+}
+li.notification span {
+    background: #de1f23;
+    width: 25px;
+    border-radius: 50%;
+    height: 25px;
+    text-align: center;
+    line-height: 27px;
+    position: absolute;
+    left: 44px;
+    top: 11px;
+    color: #fff;
+}
+li.notification {
+    position: relative;
+}
+li.text-right.logged-in-user {
+    position: relative;
+}
+li.logged-in-user a {
+    display: block;
+    float: left;
+}
+.header .navbar-brand img {
+    margin: 0 auto;
+}
+li.notification i {
+    margin-top: 7px;
+}
+li.logged-in-user a i {
+    margin-top: 14px;
+}
+.navbar-header{padding-left: 15px;}
+.panel.tab-container-data {
+    height: 350px;
+    margin-bottom: 45px;
+}
+.panel.total-revenue {
+    border-top: 8px solid #4bb266;
+    position: relative;
+    border-radius: 0px;
+}
+.panel.active-schools {
+    border-top: 8px solid #ffa726;
+    position: relative;
+    border-radius: 0px;
+}
+.panel.number-student {
+    border-top: 8px solid #42a5f5;
+    position: relative;
+    border-radius: 0px;
+}
+.panel.notice-board {
+    border-top: 8px solid #42a5f5;
+    position: relative;
+    border-radius: 0px;
+}
+
+.panel.machine-sold {
+    border-top: 8px solid #9575cd;
+    position: relative;
+    border-radius: 0px;
+}
+.panel.gallery {
+    border-top: 8px solid #f06292;
+    position: relative;
+    border-radius: 0px;
+    margin-top: 30px;
+}
+.gallery h1, .notice-period h1 {
+    margin: 0;
+}
+.panel.total-revenue .icon-cont {
+    background: url(../images/total-revenue.png) #4bb266;
+    background-repeat: no-repeat;
+    background-position: -66px 19px;
+}
+.panel.active-schools .icon-cont {
+    background: url(../images/total-revenue.png) #ffa726;
+    background-repeat: no-repeat;
+    background-position: -66px -56px;
+}
+.panel.number-student .icon-cont {
+    background: url(../images/total-revenue.png) #42a5f5;
+    background-repeat: no-repeat;
+    background-position: -72px -136px;
+}
+.panel.notice-board .icon-cont {
+    background: url(../images/total-revenue.png) #42a5f5;
+    background-repeat: no-repeat;
+    background-position: -69px -273px;
+}
+.panel.machine-sold .icon-cont {
+    background: url(../images/total-revenue.png) #9575cd;
+    background-repeat: no-repeat;
+    background-position: -65px -206px;
+}
+.panel.gallery .icon-cont {
+    background: url(../images/total-revenue.png) #f06292;
+    background-repeat: no-repeat;
+    background-position: -66px -339px;
+}
+.icon-cont {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    height: 80px;
+    line-height: 66px;
+    position: absolute;
+    right: -15px;
+    top: -30px;
+    box-shadow: 1px 2px 4px 0px #0000003b;
+}
+.col-sm-5 {
+    width: 44.666667%;
+}
+.custom-tabs a {
+    text-decoration: none;
+    color: #3d3d3d;
+}
+.custom-tabs .panel {
+    margin-bottom: 50px;
+    
+}
+.panel.tab-container-data .tab-pane {
+    height: 350px;
+    overflow: auto;
+    padding: 10px;
+}
+div#revenue.active {
+    border-color: #4bb266;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+div#activeSchools.active{
+    border-color: #ffa726;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+div#numberStudent.active{
+    border-color: #42a5f5;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+div#machineSold.active{
+    border-color: #9575cd;
+    border-width: 8px 2px 2px 2px;
+    border-style: solid;
+}
+.panel.gallery p {
+    padding: 0 15px;
+}
+.custom-tabs li{list-style: none}
+.count, .panel-title {
+    font-size: 22px;
+}
+li.active .total-revenue a, li.active .active-schools a, li.active .number-student a, li.active .machine-sold a {
+    color: #fff;
+}
+li.active .total-revenue {
+    background: #4bb266;
+}
+li.active .active-schools {
+    background: #ffa726;
+}
+li.active .number-student {
+    background: #42a5f5;
+}
+li.active .machine-sold {
+    background: #9575cd;
+}
+.active .total-revenue .icon-cont {
+    background: url(../images/total-revenue.png) #fff;
+    background-repeat: no-repeat;
+    background-position: 14px 13px;
+    border: 4px solid #4bb266;
+}
+.active .panel.active-schools .icon-cont {
+    background: url(../images/total-revenue.png) #ffffff;
+    background-repeat: no-repeat;
+    background-position: 14px -60px;
+    border: 4px solid #ffa726;
+}
+.active .panel.number-student .icon-cont {
+    background: url(../images/total-revenue.png) #ffffff;
+    background-repeat: no-repeat;
+    background-position: 21px -140px;
+    border: 4px solid #42a5f5;
+}
+.active .panel.machine-sold .icon-cont {
+    background: url(../images/total-revenue.png) #ffffff;
+    background-repeat: no-repeat;
+    background-position: 12px -210px;
+    border: 4px solid #9575cd;
+}
+.notice-board .media {
+    background: url(../images/notice-bg.png);
+    height: 161px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10px;margin-top:0px;
+}
+.gallery .media {
+    background: url(../images/notice-bg.png);
+    height: 161px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10px;margin-top:0px;
+}
+a#menu-toggle {
+    margin: 15px 0px;
+    color: dimgrey;
+    font-size: 16px;
+}
+.path-frontpage .panel .panel-heading img {
+    margin: 0 auto;
+    width: 320px;
+}
+.path-frontpage {
+    background: url(../images/login-bg.jpg);
+    height: 100%;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.path-frontpage .panel {
+    /*position: absolute;
+    right: 5vh;
+    top: 18vh;*/
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    background: transparent;
+    /*left: 0px;*/
+}
+.login-box, .register-box {
+    width: 400px !important;
+    position: absolute;
+    top: 50%;
+    margin: 0 auto !important;
+    left: 0;
+    right: 0;
+    transform: translate(0 , -50%);
+}
+.path-frontpage .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+.path-frontpage .panel .panel-body h1 {
+    margin: 0 auto;
+    width: 250px;
+    position: absolute;
+    background: #fff;
+    border: 1px dashed #7f7f7f;
+    left: 0;
+    right: 0;
+    top: -30px;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Marker Felt';
+    font-weight: 100;
+    font-style: normal;
+    color: #000;
+}
+.path-frontpage input[type=checkbox]{margin-top: 0px;}
+@font-face {
+    font-family: 'Marker Felt';
+    src: url('../fonts/MarkerFeltThin.eot');
+    src: url('../fonts/MarkerFeltThin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/MarkerFeltThin.woff2') format('woff2'),
+        url('../fonts/MarkerFeltThin.woff') format('woff'),
+        url('../fonts/MarkerFeltThin.ttf') format('truetype'),
+        url('../fonts/MarkerFeltThin.svg#MarkerFeltThin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+.login-form {
+    width: 80%;
+    margin: 0 auto;
+}
+.path-frontpage .panel .panel-body div.form-group:first-child .form-control {
+    border-bottom: none;
+}
+.path-frontpage .panel .panel-body .form-control {
+    border-color: #d3cfc8;
+    border-radius: 0px;
+    height: 64px;
+   
+    margin: 0px auto;
+        padding-left: 70px;
+}
+.path-frontpage input[id="edit-name"] {
+    background: url(../images/icon-2.png);
+    background-repeat: no-repeat;
+    background-position: 22px 14px;
+}
+.path-frontpage input[type=password] {
+    background: url(../images/icon-3.png);
+    background-repeat: no-repeat;
+    background-position: 22px 14px;
+}
+.path-frontpage input[type="text"]:active, .path-frontpage input[type="text"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 8px solid #e31f24 !important;
+}
+.path-frontpage a{color: #0071d0;}
+.path-frontpage input[type="password"]:active, .path-frontpage input[type="password"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 8px solid #e31f24 !important;
+}
+img.scissors {
+    position: absolute;
+    left: -14px;
+    z-index: 1;
+}
+.path-frontpage .form-actions{
+    position: absolute;
+    margin: 0px auto;
+    left: 0px;
+    right: 0px;
+    bottom: -22px;
+    text-align: center;
+}
+.path-frontpage .form-actions #edit-submit {
+    background: #000302;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 25px;
+    width: 250px;
+    border-color: #000302;
+    outline: none;
+}
+.btn-default.focus, .btn-default:focus{outline: none;}
+.path-frontpage form#user-login-form .description, .path-frontpage form#user-login-form label {
+    display: none;
+}
+.path-frontpage form#user-login-form .form-type-password {
+    margin-top: 0px;margin-bottom: 0px;
+}
+.path-frontpage form#user-login-form .form-item-name {
+    margin-bottom: 0px;
+}
+.path-frontpage .nav-tabs-custom {
+    box-shadow: none;
+
+}
+.path-frontpage .login-page .tab-content {
+    padding: 0px;
+}
+
+/* header css starts */
+.main-header .logo{height: 70px!important;}
+#logo img {
+    margin-top: 10px;
+}
+.skin-blue .main-header .navbar {
+    background-color: #ffffff!important;
+}
+.skin-blue .main-header .logo {
+    background-color: #ffffff!important;
+    border-right: 1px solid #ebecee!important;
+}
+.content-wrapper {
+    min-height: 100%;
+    background-color: #e7ebee!important;
+    z-index: 800;
+    height: calc(100vh - 73px);
+    clear: both;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #ffffff!important;
+    border-right: 1px solid #efefef;
+}
+.main-header {
+    position: relative;
+    max-height: 100px;
+    z-index: 1030;
+    border-bottom: 1px solid #efefef;
+}
+.skin-blue .main-header .navbar .sidebar-toggle {
+    color: #de1f23!important;
+    font-size: 27px!important;
+}
+.skin-blue .main-header .navbar .nav>li>a {
+    color: #6a707e!important;
+}
+body{color: #6a707e!important;}
+.skin-blue .sidebar a {
+    color: #6a707e!important;
+    border-bottom: 1px solid #ebecee;
+
+}
+.skin-blue .sidebar a i{display: none;}
+.sidebar-menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+}
+h1.page-title {
+    margin-top: 0px;padding: 10px;
+}
+.skin-blue .sidebar-menu li:hover a, .skin-blue .sidebar-menu li.active a {
+    color: #de1f23!important;
+    background: #e7ebee!important;
+    border-left: 3px solid #de1f23;
+}
+table.views-table thead th {
+    background: #d5dbe2;
+}
+table.views-table.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f6f7f8;
+}
+table.views-table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+a.button {
+    background: #de1f23;
+    color: #fff;
+    padding: 10px 35px;
+    font-weight: normal;
+    height: 42px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.skin-blue .sidebar-menu li.active a {
+    border-left-color: #de1f23!important;
+}
+.skin-blue .sidebar-menu li .treeview-menu.menu-open {
+    margin: 0 0px;
+    background: #ffffff!important;
+    padding: 0;
+}
+.skin-blue .sidebar-menu li.active .treeview-menu.menu-open a {
+    border-left-color: #fff !important;
+    background: #fff !important;
+    color: #6a707e!important;
+    padding-left: 40px;
+}
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #c3cddc;
+}
+
+input#edit-submit {
+    padding: 8px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+
+input[type="submit"] {
+    padding: 8px 25px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+.view-header{text-align: right;}
+
+table thead th {
+    background: #d5dbe2;
+    color: #252b37;
+    text-transform: uppercase;
+    border: none!important;
+}
+.table thead th a {
+    color: #252b37;
+}
+.table {
+    border: 1px solid #c3cddc;
+    margin-top: 0px;
+	text-transform: uppercase;
+} 
+.table thead tr th, .table  tbody tr th, .table tfoot tr th, .table thead tr td, .table tbody tr td, .table tfoot tr td {
+    border-bottom: 1px solid #c3cddc;border-right: none;border-left: none;
+}
+body {
+    background-color:  #e7ebee!important;
+}
+section.page-title {
+    background: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    color: #565656;
+}
+section.page-title h1.page-title {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 25px;
+    color: #5f5f5f;
+}
+.content-wrapper{min-height: 100%!important}
+table.table tbody tr:nth-child(even) {
+    background: #f6f7f8;
+}
+table.table thead th{
+    border-bottom: 1px solid #c3cddc;
+}
+table.table td a {
+    color: #6a707e;
+}
+.csv-feed.views-data-export-feed {
+    display: block;
+}
+.views-header-section  {
+    display: block;
+    margin: 10px 0px 20px 20px;
+    float: right;
+}
+.views-header-section a {
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+     -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.table-responsive{clear: both; }
+.header-feed-icon {
+    position: relative;
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: #de1f23 !important;
+    color: #fff !important;
+}
+.views-header-section a:hover {
+    background: #c5181c;
+    color: #ffffff;
+   
+}
+input[type="submit"]:hover {
+    background: #c5181c;
+    color: #ffffff;
+    border: 1px solid #c5181c;
+    border-width: 1px;
+}
+.csv-feed .feed-icon {
+    background-image: url(../images/csv.png);
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: right;
+}
+.skin-blue .sidebar-menu li .treeview-menu {
+    margin: 0px!important;
+    background: #ffffff!important;
+    padding: 0px;
+}
+.skin-blue .sidebar-menu li .treeview-menu li a{
+    padding-left:40px;
+}
+.sidebar-menu li ul li{background: #fff;border-left: none;color: green;}
+li.logged-in-user.stting-logout a {
+    padding: 20px 10px!important;
+}
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d3cfc8;
+    position: relative;
+    outline: none;
+    vertical-align: bottom;
+}
+.path-frontpage .checkbox {
+    margin-top: 0px;
+}
+.skin-blue .sidebar-menu li .treeview-menu li.active a {
+    background: #e7ebee !important;
+    border-left: none;
+    color: #6a707e!important;
+    font-weight: bold;
+}
+
+.skin-blue .sidebar-menu li .treeview-menu li a {
+    background: #fff !important;
+color: #6a707e!important;
+    border-left: none;
+}
+.sidebar-menu li.treeview a::after {
+    content: "\f0d7";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 10px;
+}
+.sidebar-menu li.treeview.active ul li a::after {
+    content: none;
+}
+.sidebar-menu li.treeview ul.treeview-menu li.treeview a::after {
+    content: "\f0d7";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 10px;
+}
+.sidebar-menu li.treeview.active ul.treeview-menu li.treeview ul.treeview-menu li a::after {
+    content: none;
+}
+.sidebar-menu li.treeview.active ul.treeview-menu li.treeview ul.treeview-menu li a {
+    font-weight: normal;padding-left: 60px;
+}
+.sidebar-menu li.treeview ul.treeview-menu li.treeview.active ul.treeview-menu li.active a {
+    background: #e7ebee !important;
+    font-weight: bold;
+}
+/* custom styling header ends */
+
+
+/*Listing page css starts*/
+.path-countries-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-countries-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-countries-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-locations-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-locations-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-locations-list  .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-states-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-states-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-states-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-business-states-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-business-states-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-business-states-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-districts-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-districts-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-districts-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-towns-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-towns-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-towns-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-school-type-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-school-type-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-school-type-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-grade-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-grade-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-grade-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-course-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-course-list .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-course-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-dealers-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-dealers-listing .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-dealers-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-manage-revenues .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-manage-revenues .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+
+}
+.path-manage-revenues .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-manage-trainers .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-manage-trainers .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+.path-manage-trainers .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-course-duration-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-course-duration-list .views-exposed-form #edit-actions {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.path-course-duration-list .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+
+
+.path-users-listing .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-users-listing .views-exposed-form #edit-actions {
+    display: inline-block;margin-top: 2.5em;
+}
+.path-users-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-users-listing .views-exposed-form a#edit-open-modal{
+    float: right;
+    margin: 10px 0;
+}
+.path-grades .views-exposed-form .form-item {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+.path-grades .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.path-grades .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+}
+
+
+
+
+/*Listing page css ends*/
+
+
+/* add countries css starts*/
+
+.node-manage-countries-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node--type-manage-countries  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add countries css ends*/
+
+/* add  locations css starts*/
+
+.node-manage-locations-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-locations-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add locations css ends*/
+
+
+/* add states css starts*/
+
+.node-manage-states-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-states-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add states css ends*/
+
+
+/* add business states css starts*/
+
+.node-manage-business-states-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-business-states-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add business states css ends*/
+
+
+/* add manage-districts-form css starts*/
+
+.node-manage-districts-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-districts-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add manage-districts-form css ends*/
+
+
+
+/* add manage-towns css ends*/
+.node-manage-towns-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-towns-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add manage-towns css ends*/
+
+
+/* add node-grade-master-form css starts*/
+.node-grade-master-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-grade-master-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add node-grade-master-form css ends*/
+
+
+/* add school type css starts*/
+
+.node-school-type-master-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-school-type-master-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-school-type-master-form #edit-field-school-type-description-wrapper{
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+/* add school type css ends*/
+
+
+/* add course css starts*/
+.node-course-master-form #edit-actions {
+  
+    display: inline-block;
+    
+}
+.node-course-master-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+        vertical-align: text-top;
+}
+.node-course-master-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add course css ends*/
+
+
+/* add revenue-form css starts*/
+
+.node-revenue-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-revenue-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add revenue-form css ends*/
+
+
+
+/* add node-trainer-form css starts*/
+
+.node-trainer-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-trainer-form #edit-field-basic-info-wrapper{width: 100%;margin: 0px;}
+.node-trainer-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add node-trainer-form css ends*/
+
+/* add node-trainer-form css starts*/
+
+.node-grades-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-grades-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-grades-form  .field--name-field-description{
+    width:100%;
+}
+/* add node-trainer-form css ends*/
+
+
+/* add course-duration-master-form css starts*/
+
+.node-course-duration-master-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+
+.node-course-duration-master-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+
+.node-course-duration-master-form .form-wrapper fieldset {
+    width: 100%;
+
+}
+.node-course-duration-master-form .form-wrapper legend {
+    color: #6a707e;
+    text-transform: uppercase;
+    border-bottom: none;
+}
+.node-course-duration-master-form .form-wrapper .form-radios {
+   margin:10px 0px;
+}
+.node-course-duration-master-form .form-wrapper fieldset .form-item {
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 0px;
+}
+/* add course-duration-master-form css ends*/
+
+
+/* add dealer css starts*/
+.node-dealer-form  .form-wrapper{
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-dealer-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* add dealer css ends */
+
+/* add grades css starts*/
+.node-grades-form div#edit-field-description-wrapper {
+    width: 100%;
+    margin: 0px;
+}
+/* add grades css ends */
+
+/* edit countries css starts*/
+
+.node-manage-countries-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-countries-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit countries css ends*/
+
+/*Edit grades css stARTS*/
+.node-grades-edit-form div#edit-field-description-wrapper{
+    width: 100%;
+    margin:0px;
+
+}
+/*edit grades css ends*/
+
+
+/* manage locations css starts*/
+.node-manage-locations-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-locations-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage locations css ends*/
+
+/* manage indian-states css starts*/
+
+.node-manage-states-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-states-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage indian-states css ends*/
+
+/* manage states css starts*/
+
+.node-manage-business-states-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-business-states-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage states css ends*/
+
+/* manage Manage Districts css starts*/
+.node-manage-districts-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-districts-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage Manage Districts css ends*/
+
+/* manage Manage Towns css starts*/
+
+.node-manage-towns-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-towns-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* manage Manage Towns css ends*/
+
+/* edit school type css starts*/
+
+.node-school-type-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-school-type-master-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-school-type-master-edit-form #edit-field-school-type-description-wrapper{
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+/* edit school type css ends*/
+
+/* edit node-grade-master-form css starts*/
+.node-grade-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-grade-master-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit node-grade-master-form css ends*/
+
+/* edit course css starts*/
+
+.node-course-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+        vertical-align: text-top;
+}
+.node-course-master-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit course css ends*/
+
+/* edit revenue-form css starts*/
+
+.node-revenue-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-revenue-edit-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit revenue-form css ends*/
+
+
+/* edit node-trainer-form css starts*/
+
+.node-trainer-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-trainer-edit-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-trainer-edit-form #edit-field-basic-info-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+/* edit node-trainer-form css ends*/
+
+/* edit course-duration-master-form css starts*/
+
+.node-course-duration-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-course-duration-master-edit-form  .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-course-duration-master-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-course-duration-master-edit-form .form-wrapper fieldset {
+    width: 100%;
+
+}
+.node-course-duration-master-edit-form .form-wrapper legend {
+    color: #6a707e;
+    text-transform: uppercase;
+    border-bottom: none;
+}
+.node-course-duration-master-edit-form .form-wrapper .form-radios {
+   margin:10px 0px;
+}
+.node-course-duration-master-edit-form .form-wrapper fieldset .form-item {
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 0px;
+}
+/* edit grades css starts*/
+.node-grades-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.node-grades-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-grades-edit-form .field--name-field-description{
+    width:100%;
+}
+/* edit grades css ends*/
+
+
+
+div.counter{display:none;}
+/* edit course-duration-master-form css ends*/
+
+
+/* edit dealer css starts*/
+
+.node--type-dealer .node-dealer-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node--type-dealer .node-dealer-edit-form .form-wrapper label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+/* edit dealer css ends*/
+
+
+
+
+.vertical-tabs {
+    display: none;
+}
+.path-users-listing .ui-dialog .ui-dialog-titlebar {
+    font-weight: bold;
+    background: #de1f23;
+    border-style: solid;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-color: #de1f23;
+    color: #ffff;
+    padding: 15px;
+}
+.path-users-listing .modal-form-user-add-form .form-item {
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+.path-users-listing .ui-dialog .ui-dialog-buttonpane {
+    margin-top: 0;
+    background: #ffffff;
+    padding: 0.3em 1em;
+    border-width: 1px 0 0 0;
+    border-color: #fff;
+}
+.path-users-listing .ui-dialog .ui-dialog-buttonpane button {
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.hide-user-location{
+    display: none;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    font-weight: bold;
+    background: #de1f23;
+    border-style: solid;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-color: #de1f23;
+    color: #ffff;
+    padding: 15px;
+    text-transform: uppercase;
+}
+#wrapper_modal_forgot_password_form .form-item {
+    width: 50%;
+    margin-right: 15px;
+    display: inline-block;
+}
+#wrapper_modal_forgot_password_form .form-item label{
+    text-transform: uppercase;
+}
+
+#wrapper_modal_forgot_password_form input[type="text"]:active, #wrapper_modal_forgot_password_form input[type="text"]:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-left: 1px solid #d3cfc8 !important;
+    border: 1px solid #d3cfc8 !important;
+}
+.ui-dialog .ui-dialog-buttonpane {
+    margin-top: 0;
+    background: #ffffff;
+    padding: 0.3em 1em;
+    border-width: 1px 0 0 0;
+    border-color: #fff;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons .form-actions {
+    position: inherit;
+}
+label.option[for="edit-persistent-login"] {
+    display: inline !important;
+    margin: 0px 10px;
+}
+a.pull-right.use-ajax.forgot_password {
+    position: absolute;
+    right: 60px;
+    bottom: 90px;
+	display: none;
+}
+.toolbar .toolbar-bar, .toolbar .toolbar-tray {
+    z-index: 811 !important;
+}
+
+.messages--error a{display: none;}
+
+fieldset > legend {
+    border-bottom: none !important;
+}
+.entity-meta{display: none;}
+.path-users-listing .delete-user{cursor:pointer;}
+.node-grade-master-form .field--name-title {display:none;}
+.node-grade-master-edit-form .field--name-title {display:none !important;}
+.ui-dialog {
+    width: 70% !important;
+    left: 0px !important;
+    right: 0px;
+    margin: 0px auto;
+    top: 50% !important;
+    transform: translate(0,-50%);
+}
+form#node-sewing-school-form #edit-status-wrapper{
+    display: none!important;
+}
+aside.main-sidebar {
+    position: fixed;
+    left: 0px;
+    top: 72px;
+    bottom: 0px;
+    background-color: #ffffff!important;
+    border-right: 1px solid #efefef;
+    /* height: calc(100vh - 72px); */
+    overflow: auto;
+    min-height: inherit;
+    padding: 0px;
+}
+aside.main-sidebar .user-panel {
+    display: none;
+}
+.main-header {
+    position: fixed!important;
+    max-height: 100px!important;
+    z-index: 1030!important;
+    border-bottom: 1px solid #efefef;
+    left: 0px!important;
+    right: 0px!important;
+    padding: 0px 15px!important;
+}
+
+.node-sewing-school-form details {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #C3CDDC;
+    
+}
+.node-sewing-school-form details summary {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.node-sewing-school-form details .details-wrapper {
+    background: #fff;
+}
+.node-sewing-school-form details .details-wrapper .form-item{  width: 100%;
+    display: inline-block;
+    margin-right: 15px;}
+.node-sewing-school-form details.form-wrapper{width: 100%;}
+.node-sewing-school-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.node-sewing-school-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-sewing-school-form .form-wrapper .form-item{width: 100%;}
+.node-sewing-school-form .field--name-field-sew-school-approval-status .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-form .field--name-field-sewing-school-code .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-form .field--name-field-sewing-user-id .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-form .field--name-field-sewing-dealer-details{width: 100%}
+.node-sewing-school-form .form-type-textarea{width: 100%}
+
+.node-sewing-school-form #user_login_Form .form-item {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+.node-sewing-school-form  div#edit-actions {
+    width: 100%;
+    text-align: right;
+}
+
+
+.node-sewing-school-edit-form details {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #C3CDDC;
+    
+}
+.node-sewing-school-edit-form details summary {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.node-sewing-school-edit-form details .details-wrapper {
+    background: #fff;
+}
+.node-sewing-school-edit-form details .details-wrapper .form-item{  width: 100%;
+    display: inline-block;
+    margin-right: 15px;}
+.node-sewing-school-edit-form details.form-wrapper{width: 100%;}
+.node-sewing-school-edit-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.node-sewing-school-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.node-sewing-school-edit-form .form-wrapper .form-item{width: 100%;}
+.node-sewing-school-edit-form .field--name-field-sew-school-approval-status .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-edit-form .field--name-field-sewing-school-code .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-edit-form .field--name-field-sewing-user-id .form-item{width: 100%;vertical-align: top;}
+.node-sewing-school-edit-form .field--name-field-sewing-dealer-details{width: 100%}
+.node-sewing-school-edit-form .form-type-textarea{width: 100%}
+.node-sewing-school-edit-form #user_login_Form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-sewing-school-edit-form div#edit-actions {
+    width: 100%;
+    text-align: right;
+}
+/*#edit-field-sewing-user-id-wrapper, #edit-status-wrapper .form-item-status-value{
+    display:none!important;
+}*/
+#edit-field-sewing-user-id-wrapper{
+    display:none!important;
+}
+.path-manage-workshop-activity .views-exposed-form .form-item{
+    width: 31%;margin-right: 15px;display: inline-block;
+}
+.node-training-form .form-wrapper{
+    width: 31%;margin-right: 15px;display: inline-block;
+}
+body .label {
+    color: #333;
+    font-size: 100%;
+    padding: 0px;
+    vertical-align: top;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    border-radius: inherit;
+    line-height: inherit;
+    font-size: 1em;
+    font-family: inherit;
+    color: #6a707e!important
+}
+.node-training-edit-form .form-wrapper{
+    width: 31%;margin-right: 15px;display: inline-block;
+}
+.views-header-section a:hover{color: #fff;}
+.path-manage-school .views-exposed-form .form-item, .path-manage-inventory .views-exposed-form .form-item, .path-manage-items .views-exposed-form .form-item, .path-manage-item-groups .form-item {
+    width: 31%;margin-right: 15px;display: inline-block;
+}
+.path-manage-school .views-exposed-form div#edit-actions, .path-manage-inventory .views-exposed-form  div#edit-actions, .path-manage-items .views-exposed-form  div#edit-actions, .path-manage-item-groups div#edit-actions{
+    display: inline-block;
+    margin-top: 36px;
+}
+.node-manage-inventory-form .form-wrapper, .node-items-form .form-wrapper, .node-items-edit-form .form-wrapper, .node-item-group-form .form-wrapper, .node-item-group-edit-form .form-wrapper{
+    width: 31%;margin-right: 15px;display: inline-block;
+}
+.node-items-form .field--name-field-items-description, .node-items-edit-form .field--name-field-items-description, .node-item-group-form .field--name-field-item-group-description, .node-item-group-edit-form .field--name-field-item-group-description{
+    width: 100%;
+}
+
+.path-manage-students-admin .form-item{width: 31%;margin-right: 15px;display: inline-block;}
+.path-manage-students-ssi  .form-item{width: 31%;margin-right: 15px;display: inline-block;}
+.path-ho-fee-receipt-list .form-item{width: 31%;margin-right: 15px;display: inline-block;}
+
+
+
+
+
+
+.node-manage-sewing-students-form details {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #C3CDDC;
+    
+}
+.node-manage-sewing-students-form details summary {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.node-manage-sewing-students-form details .details-wrapper {
+    background: #fff;
+}
+.node-manage-sewing-students-form details .details-wrapper .form-item {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 0px;
+}
+.node-manage-sewing-students-form details.form-wrapper{width: 100%;}
+.node-manage-sewing-students-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.node-manage-sewing-students-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+
+
+.node-manage-sewing-students-form .form-item-field-sewing-district-selectlist .form-item{width: 100%;}
+.node-manage-sewing-students-form .form-wrapper .form-item{width: 100%;}
+.node-manage-sewing-students-form .field--name-field-sew-school-approval-status .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-form .field--name-field-sewing-school-code .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-form .field--name-field-sewing-user-id .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-form .field--name-field-sewing-dealer-details{width: 100%}
+.node-manage-sewing-students-form .form-type-textarea{width: 100%}
+.node-manage-sewing-students-form #user_login_Form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-sewing-students-form div#edit-actions {
+    width: 100%;
+    text-align: right;
+}
+
+
+
+
+
+
+
+.node-manage-sewing-students-edit-form details {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #C3CDDC;
+    
+}
+.node-manage-sewing-students-edit-form details summary {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.node-manage-sewing-students-edit-form details .details-wrapper {
+    background: #fff;
+}
+.node-manage-sewing-students-edit-form details .details-wrapper .form-item{  width: 100%;
+    display: inline-block;
+    margin-right: 15px;}
+.node-manage-sewing-students-edit-form details.form-wrapper{width: 100%;}
+.node-manage-sewing-students-edit-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.node-manage-sewing-students-edit-form .form-wrapper {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: top;
+}
+
+.node-manage-sewing-students-edit-form .form-wrapper .form-item{width: 100%;}
+.node-manage-sewing-students-edit-form .field--name-field-sew-school-approval-status .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-edit-form .field--name-field-sewing-school-code .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-edit-form .field--name-field-sewing-user-id .form-item{width: 100%;vertical-align: top;}
+.node-manage-sewing-students-edit-form .field--name-field-sewing-dealer-details{width: 100%}
+.node-manage-sewing-students-edit-form .form-type-textarea{width: 100%}
+.node-manage-sewing-students-edit-form #user_login_Form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node-manage-sewing-students-edit-form div#edit-actions {
+    width: 100%;
+    text-align: right;
+}
+.path-ssi-manage-school .views-exposed-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.path-ssi-manage-school div#edit-actions{
+    
+    
+}
+.path-manage-inventory-ssi .views-exposed-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.generate-fee-receipt-form .form-item {
+    width: 30%;
+    display: inline-block;
+    margin-right: 15px;
+    /* vertical-align: top; */
+    margin-top: 0px;
+}
+.generate-fee-receipt-form fieldset.revenue-head-class{width: 100%;}
+.generate-fee-receipt-form fieldset.revenue-head-class .form-item {
+    width: 22%;
+    vertical-align: top;
+    margin-top: 15px;
+}
+.generate-fee-receipt-form .form-item-swr-student-fee{width: 100%;}
+.generate-fee-receipt-form .form-item.fee-date .container-inline .form-item {
+    width: 46%;
+}
+
+.hide{
+    display: none;
+}
+
+span.fieldset-legend {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+.school_modified_need_approval a, .terminate_school a i{
+    cursor: pointer!important;
+}
+.school_on_hold a{
+    cursor: pointer!important;
+}
+.path-fee-receipt-list .views-exposed-form .form-item{display: inline-block;width:30%;margin-right:15px;}
+/*.path-fee-receipt-list .views-exposed-form #edit-actions{display: inline-block;margin-top: 38px;}*/
+.form-item.fee-date-neft .form-item {
+    width: 46%;margin-right:5px;margin-top: 0px;
+}
+.payment-mode-class .form-item {
+    width: 46%;margin-right:5px;
+}
+.path-print-fee-receipt-cr .form-item,
+.path-print-fee-receipt .form-item{display: inline-block;width:30%;margin-right:15px;}
+.path-print-fee-receipt-cr .form-item.print-fee-button,
+.path-print-fee-receipt .form-item.print-fee-button {
+    width: 100%;
+    text-align: right;
+}
+.path-print-fee-receipt-cr fieldset.revenue-head-class,
+.path-print-fee-receipt fieldset.revenue-head-class {
+    width: 100% !important;
+    display: block !important;
+}
+.path-print-fee-receipt-cr fieldset.revenue-head-class .form-item,
+.path-print-fee-receipt fieldset.revenue-head-class .form-item {
+    display: inline-block;
+    width: 22%;
+    margin-right: 15px;vertical-align: top;
+}
+.path-generate-fee-receipt .form-item.fee-date-cheque .form-item {
+    width: 100%;
+    margin-right: 5px;margin-top: 0px;
+}
+.print-fee-receipt-form fieldset .form-item {
+    width: 46%;
+    margin-right: 5px;
+}
+
+.print-fee-receipt-form .form-item.fee-date-cheque .form-item {
+    width: 46%;
+    margin-right: 5px;
+}
+
+body.node--type-sewing-school #edit-status-wrapper{
+    display: none;
+}
+
+body.node--type-manage-sewing-students #edit-status-wrapper{
+    display: none;
+}
+
+.ui-dialog span.ui-dialog-title {
+    color: #fff !important;
+}
+.views-header-section a {
+    color: #fff !important;
+}
+body.path-manage-school .views-header-section  {
+    display: block;
+    margin: 10px 0px 18px 0px;
+    float: left;
+}
+
+
+
+.school-details .form-item input {
+    width: 46%;
+    display: inline-block;
+    border: none;
+    background: #D5DBE2;
+    float: right;
+}
+.school-details .form-item label {
+    width: 35%;
+}
+
+.revenue-total-tax .form-item input {
+    width: 46%;
+    display: inline-block;
+    border: none;
+    background: #d5dbe2;
+    float: right;
+}
+
+.path-generate-fee-receipt .revenue-total-tax .form-item.form-item-swr-total-pay-to-uil input, .path-generate-fee-receipt .revenue-total-tax .form-item.form-item-swr-tax input {
+    color: #1271D1;
+}
+.action-link{
+    color: #3c8dbc !important;
+    text-decoration: underline;
+}
+
+.path-ssi-manage-school .views-header-section{text-align: left;}
+.path-ssi-manage-school .views-header-section button{}
+
+
+
+
+
+
+
+
+
+
+
+.form-item-swr-bank-drawn {
+    margin-top: 0px;
+}
+.path-print-fee-receipt .revenue-total-tax .form-item.form-item-swr-total-pay-to-uil input, .path-print-fee-receipt .revenue-total-tax .form-item.form-item-swr-tax input {
+    color: #1271D1;
+}
+.action-link{
+    color: #3c8dbc !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+input[type="date"].form-control, input[type="time"].form-control, input[type="datetime-local"].form-control, input[type="month"].form-control {
+    line-height: 22px!important;
+}
+input[type="file"]{
+    padding: 0px;border:none;
+}
+.table thead tr th, .table tbody tr th, .table tfoot tr th, .table thead tr td, .table tbody tr td, .table tfoot tr td{
+/* vertical-align: middle!important; Commented by Prashant on 03-06-2019 to adjust grid in all tables.*/
+vertical-align: top!important;
+}
+.ui-button .ui-icon {
+    background-image: url(/core/assets/vendor/jquery.ui/themes/base/images/ui-icons_ffffff_256x240.png)!important/*{iconsDefault}*/;background-position: -96px -128px;
+}
+.sewing-approval-school-form .form-item{width: 30%;}
+
+.path-manage-workshop-activity .views-header-section button,
+.path-manage-school .views-header-section button,
+.path-manage-students-ssi .views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+}
+.path-ssi-manage-school .views-header-section button,
+.path-manage-certificate-ssi .views-header-section button {
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+}
+.path-manage-certificate-ssi .views-header-section button{
+    margin-bottom: 10px;
+}
+ .form-item-swr-beneficiary{
+    vertical-align: top;
+    margin-top: 0px;
+}
+.form-item-swr-cheque-no{
+    vertical-align: top;
+    margin-top: 0px;
+}
+.payment-mode {
+    vertical-align: top;
+    margin-top: 0px;
+    width: 100%!important;
+    margin-bottom: 20px; 
+}
+.school-details .form-item {
+    margin-top: 0px;
+    vertical-align: top;
+    margin-bottom: 5px;
+}
+.revenue-total-tax {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.revenue-total-tax .form-item {
+    margin-top: 0px;
+    vertical-align: top;margin-bottom: 0px;
+}
+.payment-mode input {
+    width: auto!important;
+    margin-right: 5px;
+    vertical-align: middle;
+    margin-bottom: 0px; 
+}
+.revenue-total-tax .form-item label {
+    word-break: break-word;
+    white-space: normal;
+    text-overflow: clip;
+    width: 35%;
+    margin: 0px;
+    vertical-align: top;
+}
+.revenue-total-tax, .school-details {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+/* .table-responsive{white-space: nowrap;} Commented by Prashant on 03-06-2019 */
+.table>thead>tr>th{vertical-align:top!important;}
+.pager li a {
+    display: inline-block!important;
+    padding: 5px 14px!important;
+    background-color: #e7ebee!important;
+    border: 1px solid #ddd!important;
+    border-radius: 0px!important;
+}
+li.pager__item.is-active a {
+    background: #de1f23 !important;
+    color: #fff;
+}
+li.pager__item a {
+    color: #000;
+}
+ .payment-to-uil-class {
+    background: none;
+    border: none;
+}
+ .payment-to-uil-class:focus {
+    background: none;
+    border: none;
+    outline: none;
+}
+.form-item-swr-remitter, .form-item-swr-beneficiary-ac-no, .form-item-swr-cheque-transaction {
+    margin-top: 0px;
+}
+a.button:hover {
+    color: #fff;
+}
+body.path-activity-attendee-detail .views-header-section{
+    width:100%;
+}
+.header-button{
+    float: right;
+}
+.node-training-form .entity-content-form-footer, 
+.node-training-edit-form .entity-content-form-footer, 
+#node-trainee-form .form-item-status-value,
+#node-trainee-edit-form .form-item-status-value{
+    display: none;
+}
+span.terminate_training,
+span.terminate_attendee{
+    cursor: pointer;
+}
+#bulk-btn-section button{
+    background: #6a707e;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+}
+.forward-link {
+    color: #3c8dbc !important;
+} 
+
+.forwarded-link {
+    color: #1abd3d !important;
+}
+
+.pending-link {
+    color: #fb9d11 !important;
+}
+.node-sewing-teacher-management-form .form-wrapper{width: 30%;display: inline-block;margin-right: 15px;vertical-align: middle;}
+.node-sewing-teacher-management-form .field--name-field-sewing-teacher-address{/* width: 99%!important; float: right;*/}
+.node-sewing-teacher-management-form .field--name-field-sewing-teacher-address textarea{
+	height: 50px;
+}
+.node-sewing-teacher-management-form .field--name-field-sewing-teacher-status .form-item {
+    
+    width: 100%;
+}
+.node-sewing-teacher-management-form .field--name-field-sewing-teacher-status .form-item .form-type-radio{
+    
+    width: 45%;display: inline-block;
+}
+.node-sewing-teacher-management-form .form-item-field-sewing-teacher-email-wrapper {/* width: 30%;display: inline-block;margin-right: 15px; */}
+.node-sewing-teacher-management-form .form-item-field-sewing-teacher-email-wrapper  textarea{
+	height: 50px;
+}
+.node-sewing-teacher-management-edit-form .form-wrapper{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-sewing-teacher-management-edit-form .field--name-field-sewing-teacher-address{/* width: 99%!important;float: right; */}
+.node-sewing-teacher-management-edit-form .field--name-field-sewing-teacher-address textarea{
+	height: 50px;
+}
+
+.node-sewing-teacher-management-edit-form .field--name-field-sewing-teacher-status .form-item {
+    
+    width: 100%;
+}
+
+.node-sewing-teacher-management-edit-form .field--name-field-sewing-teacher-status .form-item .form-type-radio{
+    
+    width: 45%;display: inline-block;
+}
+.node-sewing-teacher-management-edit-form .form-item-field-sewing-teacher-email-wrapper {width: 30%;display: inline-block;margin-right: 15px;}
+
+
+
+.node-trainee-form .form-wrapper{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-trainee-form div#edit-actions {
+    width: 100%;
+}
+.node-trainee-edit-form .form-wrapper{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-trainee-edit-form div#edit-actions {
+    width: 100%;
+}
+.path-manage-inventory-admin .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-manage-inventory-form .form-wrapper .form-item{width: 100%;}
+.node-manage-inventory-edit-form .form-wrapper{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-manage-inventory-edit-form .form-wrapper .form-item{width: 100%;}
+.accept-inventory-form .form-item, .forward-inventory-form .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+a.addsewingschool-row {
+    border: 1px solid;
+    color: #de1f23!important;
+    margin: 0.5em 0.4em 1em 0px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    border-color: #de1f23;
+    text-transform: uppercase;
+}
+.remSchoolRow {
+    border: 1px solid;
+    color: #666!important;
+    margin: 2.5em 0.4em 1em 0px;
+    cursor: pointer;
+    padding: 7px 11px;
+    border-radius: 0px;
+    border-color: #666;
+    text-transform: uppercase;
+    clear: both;
+    display: inline-block;
+}
+.forwarded-summary {
+    width: 100% !important;
+}
+.forwarded-summary .forwarded-detail{border: 1px solid #efefef;clear: both;}
+.forwarded-summary .forwarded-detail th {
+    padding: 10px;
+    border-bottom: 1px;
+    background: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+}
+.forwarded-summary div#item-detail p {
+    width: 50%;
+    float: left;
+    background: #d6d6d6;
+    border: 1px solid #fff;
+    padding: 10px;
+}
+.forwarded-summary .forwarded-detail td{padding: 5px 10px;border: 1px solid #efefef}
+.path-manage-inventory-sadmin .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+body.path-manage-workshop-activity .views-header-section{
+    width : 85%;
+    margin: 0px;
+    float: left;
+}
+body.path-manage-workshop-activity .views-header-section #action-btn-section{
+    float: right;line-height: 36px;
+}
+body.path-manage-workshop-activity .views-header-section #bulk-btn-section{
+    float: left;margin-left:0px;
+}
+.send-notification-form .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.send-notification-form .form-item.form-type-checkbox, .send-notification-form .form-item-message{width: 100%;}
+.send-notification-form .form-item-message{width: 99%;}
+.global-hidden-field{
+    display: none!important;
+}
+.forwarded-received {
+    color: #ea5209 !important;
+}
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-field-field-training-date,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-field-field-training-trainer-name,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-field-field-training-town,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-field-field-sewing-school-name,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-label-field-training-date,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-label-field-training-trainer-name,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-label-field-training-town,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-label-field-sewing-school-name,
+.path-activity-attendee-detail #views-bootstrap-add-new-feedback-block-1 .views-field-field-sewing-training-subject
+{
+    width: 50%;
+    float: left;
+}
+body.path-workshop-attendee-detail .views-header-section{
+    width:100%;
+}
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-field-field-training-date,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-field-field-workshop-conducted-by,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-field-field-training-town,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-field-field-sewing-school-name,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-label-field-training-date,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-label-field-workshop-conducted-by,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-label-field-training-town,
+.path-workshop-attendee-detail #views-bootstrap-add-new-feedback-block-2 .views-label-field-sewing-school-name
+{
+    width: 50%;
+    float: left;
+}
+
+.path-activity-attendee-detail .views-field .views-label, .path-activity-attendee-detail .views-field .field-content{padding: 10px;    width: 50%!important;margin-bottom: 5px;
+    /* vertical-align: top; */
+    display: inline-block;text-transform: uppercase;}
+
+
+.path-activity-attendee-detail  .header-button {
+    float: right;
+    line-height: 36px;
+    margin-top: 10px;
+}
+.path-workshop-attendee-detail .views-field .views-label, .path-workshop-attendee-detail .views-field .field-content{padding: 10px;    width: 50%!important;margin-bottom: 5px;
+    /* vertical-align: top; */
+    display: inline-block;text-transform: uppercase;}
+
+.path-workshop-attendee-detail  .header-button {
+    float: right;
+    line-height: 36px;
+    margin-top: 10px;
+}
+#views-bootstrap-add-new-feedback-block-2 .field-content{font-weight: bold;}
+#views-bootstrap-add-new-feedback-block-1 .field-content{font-weight: bold;}
+.path-workshop-attendee-detail .views-view-grid{border-bottom: 1px solid #d5dbe2;}
+.path-activity-attendee-detail .views-view-grid{border-bottom: 1px solid #d5dbe2;}
+
+.path-activity-attendee-detail .views-header-section .views-header-section{margin: 0px!important;} 
+.path-workshop-attendee-detail .views-header-section .views-header-section{margin: 0px!important;} 
+
+
+.div-sent-by-me {
+    line-height: 36px;
+    display: inline-block;
+}
+
+.path-sewing-broadcast-notification-ssi .sent-by-me, .path-sewing-broadcast-notification-ssi .received-by-me{
+    background: #6a707e!important;
+    color: #fff!important;
+    padding: 8px 15px!important;
+    border: none!important;
+}
+.path-sewing-broadcast-notification-ssi .views-header-section {
+    display: block;
+    margin: 0px 0px 10px 0px;
+    float: inherit;
+}
+.path-receive-notification-ssi .views-header-section {
+    display: block;
+    margin: 0px 0px 10px 0px;
+    float: inherit;
+}
+.path-receive-notification-ssi .sent-by-me, .path-receive-notification-ssi .received-by-me{
+    background: #6a707e!important;
+    color: #fff!important;
+    padding: 8px 15px!important;
+    border: none!important;
+}
+.path-sewing-broadcast-notification-ssi .send-notification-ssi {float: right;}
+a.sent-by-me.active, a.received-by-me.active {
+    background: #556080 !important;
+    text-decoration: underline;
+}
+
+.path-teacher-management-list .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+
+.path-ho-teacher-management-list .form-item{width: 30%;display: inline-block;margin-right: 15px;vertical-align: top;}
+.node-sewing-teacher-management-edit-form .field--name-field-sewing-teacher-join-date{margin-top: 15px;}
+/*media all*/
+.ui-dialog .ui-dialog-buttonpane {
+    margin-top: 0px;
+    background: transparent!important;
+    padding: 0.3em 1em;
+    border-width: 1px 0 0 0;
+    border-color: transparent!important;
+}
+/*media all*/
+.ui-dialog .ui-dialog-titlebar {
+    font-weight: bold;
+    background: #de1f23!important;
+    border-style: solid;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-color: #de1f23!important;
+}
+
+
+
+/*css started by Akash*/
+
+
+.path-school-revenue-report .content .js-form-item{margin-top: 0px;}
+
+.path-school-revenue-report .content .form-item-location, .path-school-revenue-report .content .form-item-from-date, .path-school-revenue-report .content .form-item-to-date{ 
+	margin-right: 0.5em;
+    width: 25%;
+    display: inline-block;
+}
+
+.path-school-revenue-report .location-filter-btn{display: inline-block;}
+
+.path-sewing-dashboard .floatl{margin-bottom: 10px;}
+.path-sewing-dashboard .filter-location select{width: 30%; margin-right: 15px; display: inline-block;}
+.path-school-revenue-report .content .js-form-item .filter-btn{display: inline-block;} 
+.path-school-revenue-report a.export-link {background-image: url(../images/csv.png); text-indent: -9999px; overflow: hidden; width: 90px; height: 40px; display: block; margin: 0px; background-size: cover; background-repeat: no-repeat; float: right;}
+
+.path-sewing-dashboard #sewing_dashboard_section .no-schools{border: 1px solid darkorange !important; height: 485px;}
+.path-sewing-dashboard #sewing_dashboard_section .no-students{border: 1px solid #DE1F24!important; height: 485px;}
+.path-sewing-dashboard #sewing_dashboard_section .no-revenues{border: 1px solid #5CAF5F!important; height: 485px;}
+.path-sewing-dashboard #sewing_dashboard_section .no-machine{border: 1px solid #21AFC5!important; height: 485px;}
+
+
+.path-sewing-dashboard #sewing_dashboard_section #school_chart_inner_section .school-count, .path-sewing-dashboard #sewing_dashboard_section #school_chart_inner_section .student-count
+, .path-sewing-dashboard #sewing_dashboard_section #revenues_chart_inner_section .revenues-count, .path-sewing-dashboard #sewing_dashboard_section #machine_chart_inner_section .machine-count
+		{display: inline-block; font-size: 37px; color: #434343;}
+		
+.path-sewing-dashboard #sewing_dashboard_section #school_chart_inner_section .school-head, .path-sewing-dashboard #sewing_dashboard_section #school_chart_inner_section .student-head
+, .path-sewing-dashboard #sewing_dashboard_section #revenues_chart_inner_section .revenues-head, .path-sewing-dashboard #sewing_dashboard_section #machine_chart_inner_section .machine-head
+		{display: inline-block; font-size: 24px; color: #434343; margin-left: 10px;}
+
+.path-sewing-dashboard #student_chart_main #student_chart_inner_section .student-head{display: inline-block; font-size: 24px; color: #434343; margin-left: 10px;}
+.path-sewing-dashboard #sewing_dashboard_section .floatl{float: left;}
+.path-sewing-dashboard #sewing_dashboard_section .floatr{float: right;}
+.path-sewing-dashboard #sewing_dashboard_section .filter-location select {display: inline; width: 210px; margin-right: 10px; border-radius: 25px !important; background: #e7ebee; border: none;}
+
+
+.path-sewing-dashboard .content .nav-tabs-custom, .path-sewing-dashboard .content .nav-tabs-custom .tab-content{background: #e7ebee; box-shadow: none;}
+
+
+.path-sewing-dashboard .gallery-section{padding: 10px; background: #fff; min-height: 420px; margin-bottom: 20px; border-top: 8px solid #f06292; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); box-shadow: 0 1px 1px rgba(0,0,0,.05);}
+.path-sewing-dashboard .gallery-section h2{margin: 0px; font-size: 22px; padding: 0px 0px 6px 0px; color: #f06292;}
+.path-sewing-dashboard .gallery-section .views-view-grid .views-col{padding: 0px 10px;}
+.path-sewing-dashboard .gallery-section .views-view-grid .views-col a img{height: 260px; width: 100%;}
+.path-sewing-dashboard .gallery-section footer a {display: block; margin: 0px 0px 0px auto; text-align: center; width: 100px; background: #DE1F24; color: #fff; text-decoration: none; padding: 10px;}
+
+.path-sewing-dashboard .notice-board-section{padding: 10px; background: #fff; border-top: 8px solid #21AFC5;min-height: 420px; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); box-shadow: 0 1px 1px rgba(0,0,0,.05);}
+.path-sewing-dashboard .notice-board-section h2{margin: 0px; font-size: 22px; color: #21AFC5;}
+.path-sewing-dashboard .notice-board-section .views-view-grid .views-col{padding: 0px 5px 10px; margin-bottom: 5px; border-bottom: 1px solid #eee;}
+.path-sewing-dashboard .notice-board-section .views-view-grid .views-col a img{height: 200px; width: 100%;}
+.path-sewing-dashboard .notice-board-section footer a {display: block; margin: 10px 0px 10px auto; text-align: center; width: 100px; background: #DE1F24; color: #fff; text-decoration: none; padding: 10px;}
+
+.path-sewing-dashboard .notice-board-section .views-view-grid .views-col .views-field-subject h3{margin-top: 0px; font-size: 22px;} 
+.path-sewing-dashboard .notice-board-section .views-view-grid .views-col .views-field-message{padding-bottom: 5px;}
+.path-sewing-dashboard .notice-board-section .views-header-section{float: none;}
+
+
+
+.path-manage-picture-upload .node-sewing-gallery-form .form-managed-file .image-widget-data input{padding: 6px 12px; border: 1px solid #eee;}
+.path-manage-picture-upload .node-sewing-gallery-form .description{display: none;}
+
+
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools{border: 2px solid darkorange; cursor: pointer; margin-left: -15px; margin-right: 0px; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active {box-shadow: 0px 0px 4px 1px darkorange;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active .panel-body {background: darkorange;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active .media-left {background: #fff; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools .media-left{padding: 20px; vertical-align: middle;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active img.inactive-img{display: none;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools img.inactive-img{display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active img.active-img {display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools img.active-img {display: none;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body{padding: 10px; font-size: 20px; color: #434343;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools.active .media-body {color: #fff!important;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_school .media-body h1 {margin-top: 0px; font-size: 40px;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.schools .media-left {background: darkorange;  padding: 20px; vertical-align: middle;}
+
+
+.path-sewing-dashboard #sewing_dashboard_section .panel.students{border: 2px solid #DE1F24; margin-left: -15px; margin-right: -15px; cursor: pointer;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active {box-shadow: 0px 0px 4px 1px #DE1F24;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active .panel-body {background: #DE1F24;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active .media-left {background: #fff; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.students .media-left{padding: 20px; vertical-align: middle;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active img.inactive-img{display: none;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students img.inactive-img{display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active img.active-img {display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students img.active-img {display: none;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body{padding: 10px; font-size: 20px; color: #434343;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students.active .media-body {color: #fff!important;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_student .media-body h1 {margin-top: 0px; font-size: 40px;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.students .media-left {background: #DE1F24;  padding: 20px; vertical-align: middle;}
+
+
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue{border: 2px solid #5CAF5F; cursor: pointer; margin-left: -15px; margin-right: 0px; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active {box-shadow: 0px 0px 4px 1px #5CAF5F;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active .panel-body {background: #5CAF5F;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active .media-left {background: #fff; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue .media-left{padding: 20px; vertical-align: middle;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active img.inactive-img{display: none;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue img.inactive-img{display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active img.active-img {display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue img.active-img {display: none;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body{padding: 10px; font-size: 20px; color: #434343;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue.active .media-body {color: #fff!important;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_revenue .media-body h1 {margin-top: 0px; font-size: 40px;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.revenue .media-left {background: #5CAF5F;  padding: 20px; vertical-align: middle;}
+
+
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine{border: 2px solid #21AFC5; cursor: pointer; margin-left: -15px; margin-right: -15px; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active {box-shadow: 0px 0px 4px 1px #21AFC5;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active .panel-body {background: #21AFC5;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active .media-left {background: #fff; }
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine .media-left{padding: 20px; vertical-align: middle;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active img.inactive-img{display: none;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine img.inactive-img{display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active img.active-img {display: block;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine img.active-img {display: none;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body{padding: 10px; font-size: 20px; color: #434343;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine.active .media-body {color: #fff!important;}
+.path-sewing-dashboard #sewing_dashboard_section div#no_of_machine .media-body h1 {margin-top: 0px; font-size: 40px;}
+.path-sewing-dashboard #sewing_dashboard_section .panel.machine .media-left {background: #21AFC5;  padding: 20px; vertical-align: middle;}
+
+
+.path-weekly-mis .content .views-element-container .views-header-section a{display: inline-block;}
+.path-weekly-mis .content .views-element-container .views-header-section .display-result-summary{display: inline-block;}
+.path-weekly-mis .mis-sewing-import-form .sample-file-download a{padding: 7px 25px; border-radius: 0px; background: #de1f23; border-color: #de1f23; text-transform: uppercase; color: #fff!important; float: right;}
+.path-weekly-mis .form-managed-file .form-file {border-radius: 0; box-shadow: none; border: 1px solid #c3cddc; padding: 6px 12px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-week-start-date, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-onroll-schools-till-date,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-open-during-week
+				{width: 32%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-terminated-during-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-school-visited-week,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-school-code-visited-week
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-new-partnership-explored, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-new-partnership-explored,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machines-sold-through-sewing-schools
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-black-machine-model-name, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machines-sold-sewing-schools,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-white-machine-model-name
+				{width: 32%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-received-from-head-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-cerf-issued-students,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-feedback-from-school
+				{width: 32%; display: inline-block; margin-right: 15px;}
+
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-a, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-revenue-from-school-account-department-b,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-expense-incurred-during-week
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-sale-uj-accessories-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-details-of-uj-accessories,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-books-received-office-week
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-total-board-received-office-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-difference-amount,
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-revenue-reconciliation
+				{width: 32%; display: inline-block; margin-right: 15px;}
+				
+.path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-students-enrolled-week, .path-weekly-mis-add .tab-pane.active .add-sewing-weekly-mis-form .form-item-num-training-enrolled-week 
+				{width: 32%; display: inline-block; margin-right: 15px;}
+
+
+
+
+.path-workshop-activity-report .form-item .form-item-location {
+    float: inherit;
+    width: 30%;
+    margin-right: 15px;
+    display: inline-block;
+}
+.path-workshop-activity-report .form-item{margin-top: 0px;}
+.path-workshop-activity-report .filter-btn{display: inline-block;}
+
+.path-workshop-activity-report .views-exposed-form #edit-actions {
+    display: inline-block;vertical-align: bottom;
+ 
+}
+.path-workshop-activity-report .views-exposed-form .form-item label {
+    color: #6a707e;
+    text-transform: uppercase;
+}
+
+.path-workshop-activity-report a.export-link{  
+    background-image: url(../images/csv.png);
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat; text-indent: -9999px; overflow: hidden;
+    float: right;
+}
+
+
+
+.path-print-fee-receipt-cr .nav-tabs-custom button#print, 
+.path-print-fee-receipt .nav-tabs-custom button#print{ 
+    margin: 10px 0px -10px auto;
+    text-align: center; 
+    background: #DE1F24;
+    color: #fff;
+    float: right;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid #DE1F24;
+	
+}
+
+.path-print-fee-receipt-cr .nav-tabs-custom table#print-receipt tbody tr td,
+.path-print-fee-receipt .nav-tabs-custom table#print-receipt tbody tr td{padding: 10px;}
+
+
+
+.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col{width: 18%!important; margin-right: 15px; border: 1px solid #efefef;}
+.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col .views-field-field-sewing-image .field-content a{display: block;}
+.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col .views-field-field-sewing-image .field-content a img{width: 100%;}
+.path-sewing-gallery .nav-tabs-custom .views-view-grid .views-row .views-col .views-field-title{padding: 10px; text-align: center; background: #eee;}
+
+
+.path-sewing-dashboard-sa .tab-content #sewing_dashboard_section_sa .no-students{border: 1px solid darkorange !important; margin-bottom: 20px;}
+.path-sewing-dashboard-sa .nav-tabs-custom>.tab-content{background: none; padding: 0px;}
+.path-sewing-dashboard-sa .nav-tabs-custom{background: none; box-shadow: none;}
+.path-sewing-dashboard-sa .no-students #student_chart_inner_section_sa .student-count{display: inline-block; font-size: 37px; color: #434343;}
+.path-sewing-dashboard-sa .no-students #student_chart_inner_section_sa .student-head{display: inline-block; font-size: 24px; color: #434343; margin-left: 10px;}
+.floatl{float: left;}
+.floatr{float: right;}
+.path-sewing-dashboard-sa .no-students .filter-location select{display: inline; width: 210px; margin-right: 10px; border-radius: 25px !important; background: #e7ebee; border: none;}
+.path-sewing-dashboard-sa .gallery-section-sa{min-height: 375px;border-top: 8px solid #f06292; margin-bottom: 20px; padding: 10px; position: relative; border-radius: 0px; background: #fff; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); box-shadow: 0 1px 1px rgba(0,0,0,.05);}
+.path-sewing-dashboard-sa .gallery-section-sa h2{margin: 0px; font-size: 22px; color: #f06292;}
+
+.path-sewing-dashboard-sa .gallery-section-sa .views-view-grid{padding: 15px;} 
+.path-sewing-dashboard-sa .gallery-section-sa footer a{display: block; margin: 10px 0px 10px auto; text-align: center; width: 100px; background: #DE1F24; color: #fff; text-decoration: none; padding: 10px;}
+.path-sewing-dashboard-sa .gallery-section-sa .views-view-grid .views-col{padding: 0px 10px;}
+.path-sewing-dashboard-sa .gallery-section-sa .views-view-grid .views-col a img{height: 200px; width: 100%;}
+
+
+
+.path-sewing-dashboard-sa .notice-board-section-sa{padding: 10px; min-height: 375px; margin-bottom: 20px; background: #fff; border-top: 8px solid #21AFC5; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); box-shadow: 0 1px 1px rgba(0,0,0,.05);} 
+.path-sewing-dashboard-sa .notice-board-section-sa h2{margin: 0px; font-size: 22px; color: #21AFC5;}
+.path-sewing-dashboard-sa .notice-board-section-sa .views-view-grid .views-col{padding: 0px 5px 10px; margin-bottom: 5px; border-bottom: 1px solid #eee;}
+.path-sewing-dashboard-sa .notice-board-section-sa .views-view-grid .views-col .views-field-subject h4{margin-top: 0px; font-size: 22px;}
+.path-sewing-dashboard-sa .notice-board-section-sa .views-view-grid .views-col .views-field-message{padding-bottom: 5px;}
+.path-sewing-dashboard-sa .notice-board-section-sa footer a{display: block; margin: 10px 0px 10px auto; text-align: center; width: 100px; background: #DE1F24; color: #fff; text-decoration: none; padding: 10px;}
+
+
+
+/*.path-manage-certificate-ssi .views-element-container #edit-actions{text-align: right; margin-right: 30px;}*/
+.path-manage-certificate-ssi .views-element-container .views-header-section #student-bulk-section button{background: #6a707e; text-transform:uppercase; padding: 8px 25px; color: #ffffff; border: 1px solid #6a707e; display: inline-block; border-width: 1px;}
+.path-manage-certificate-ssi .views-element-container .views-header-section #student-bulk-section{display: inline-block; padding-right: 10px; margin-bottom: 15px;}
+
+.path-manage-certificate-ssi .views-element-container .form-item-field-sewing-district-selectlist-value, .path-manage-certificate-ssi .views-element-container .form-item-title-2,
+.path-manage-certificate-ssi .views-element-container .form-item-title-1, .path-manage-certificate-ssi .views-element-container .form-item-title-3, .path-manage-certificate-ssi .views-element-container .form-item-title,
+.path-manage-certificate-ssi .views-element-container .form-item-status-student
+{width: 32%; margin-right: 15px;}
+
+
+.path-manage-certificate-ssi .views-element-container .views-header-section{}
+.path-manage-certificate-ssi .views-element-container .display-count{float: right; padding-top: 10px;}
+
+
+.path-manage-students-ssi .nav-tabs-custom .views-element-container .views-header-section{ }
+
+.path-manage-students-ssi .views-element-container .form-item{width: 32%;}
+/*.path-manage-students-ssi .views-element-container #edit-actions{text-align: right; margin-right: 20px;}*/
+
+
+.path-manage-students-ssi .views-element-container .views-header-section .display-count,.path-manage-students-ssi .views-element-container .views-header-section .add-new-section{float: right; margin-right: 10px;}
+.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section button{padding: 7px 15px; margin-top: 2px; border-radius: 0px; background: #6a707e; border: 1px solid #6a707e; color: #fff; text-transform: uppercase;
+    -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s;}
+	
+.path-manage-students-ssi .views-element-container .views-header-section #student-bulk-section {float: right; margin-right: 10px; margin-top: -10px;}
+
+.path-sewing-dashboard .main-sidebar .sidebar ul.treeview-menu li a, .path-sewing-dashboard .main-sidebar .sidebar ul.treeview-menu li.active a{white-space: normal!important;}
+.path-workshop-activity-report .main-sidebar .sidebar ul.treeview-menu li a, .path-workshop-activity-report .main-sidebar .sidebar ul.treeview-menu li.active a{white-space: normal!important;}
+
+.path-sewing-dashboard.skin-blue .main-sidebar .sidebar ul.treeview-menu li a, .path-sewing-dashboard.skin-blue .main-sidebar .sidebar ul.treeview-menu li.active a{white-space: normal!important;}
+.skin-blue .sidebar-menu li .treeview-menu li.active a, .skin-blue .sidebar-menu li .treeview-menu li a{white-space: normal;}
+.path-school-revenue-report.skin-blue .sidebar-menu li .treeview-menu li.active a{white-space: normal;}
+.path-workshop-activity-report.skin-blue .sidebar-menu li .treeview-menu li a{white-space: normal;}
+
+.views-element-container form.views-exposed-form{padding: 0px 15px; border: 2px solid #eee; /*background: #f5f5f5;*/ margin-bottom: 15px;}
+.views-element-container .views-header-section{float: none; margin: 0px;}
+.views-element-container .views-header-section a{float: right; margin-bottom: 15px; margin-left: 10px;}
+.views-header-section .display-result-summary{float: left; padding-top: 10px; padding-right: 15px; color: #333; font-size: 16px;}
+.csv-feed .feed-icon{margin-top: -20px; margin-right: 10px;}
+
+.path-manage-school .csv-feed .feed-icon, .path-course-list .csv-feed .feed-icon, 
+.path-machine-requests .csv-feed .feed-icon, .path-course-duration-list .csv-feed .feed-icon, 
+.path-manage-students-admin .csv-feed .feed-icon, .path-ho-fee-receipt-list .csv-feed .feed-icon,
+.path-ho-teacher-management-list .csv-feed .feed-icon, .path-ho-weekly-mis .csv-feed .feed-icon,
+.path-manage-workshop-activity .csv-feed .feed-icon,
+.path-teacher-management-list .csv-feed .feed-icon, .path-fee-receipt-list .csv-feed .feed-icon,
+.path-manage-inventory-ssi .csv-feed .feed-icon, .path-manage-inventory-sadmin .csv-feed .feed-icon{margin-top: 0px;}
+.path-ssi-manage-school .csv-feed .feed-icon, .path-manage-students-ssi .csv-feed .feed-icon{margin-top: -34px;}
+
+.views-element-container .views-exposed-form .form-group{width: 31%;}
+
+.path-sewing-dashboard .csv-feed .feed-icon{margin-top: 0px; margin-right: 10px;}
+/* .path-sewing-dashboard .ui-dialog-title{display : none;} */
+
+.ui-widget-overlay{
+	z-index: 1111;
+	background: #000;
+	opacity: .8;
+	filter: Alpha(Opacity=30);
+}
+
+
+
+
+
+
+
+
+/*css ended by Akash*/
+
+
+
+
+
+
+.path-school-type-wise-report .fieldset-wrapper{width: 100%;}
+.path-school-type-wise-report .fieldset-wrapper .form-item{display: inline-block;width: 25%;margin-right: 15px;}
+.path-school-type-wise-report .content .js-form-item {
+    margin-top: 0px;
+}
+.path-school-type-wise-report .content .js-form-item .filter-btn {
+    display: inline-block;
+}
+.path-school-type-wise-report a.export-link {
+    background-image: url(../images/csv.png);
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: right;
+}
+
+.path-sewing-broadcast-notification .form-type-managed-file{width: 60%;}
+.path-ho-weekly-mis div#edit-actions {
+    display: inline-block;
+    margin-top: 37px;
+}
+#edit-cancel{
+    padding: 8px 27px;
+    height: 38px;
+}
+
+.path-school-revenue-report .form-item-schooltype {
+    margin-right: 0.5em;
+    width: 25%;
+    display: inline-block;
+}
+
+.path-dealers-listing .sewing-dealers-bulk-import .sample-file-download {
+    text-align: right;
+    margin: 15px 0px;
+}
+
+.path-dealers-listing .sewing-dealers-bulk-import .sample-file-download a{
+
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 0px;
+    background: #de1f23;
+    border-color: #de1f23;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;}
+
+    body.path-manage-workshop-activity .views-header-section {
+    width: 100%;
+    margin: 0px;
+    float: left;
+}
+.path-school-renewal-letter #print,
+.path-school-affiliation-letter #print{
+    margin: 10px 0px -10px auto;
+    text-align: center;
+    background: #DE1F24;
+    color: #fff;
+    float: right;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #DE1F24;
+}
+.path-manage-picture-upload .node-sewing-gallery-form .field--name-field-sewing-gallery-location{display: inline-block;width: 30%;margin-right: 15px;}
+.path-manage-picture-upload .node-sewing-gallery-form .field--name-title{display: inline-block;width: 30%;margin-right: 15px;}
+.path-manage-picture-upload .node-sewing-gallery-form .field--type-image{display: inline-block;width: 30%;margin-right: 15px;}
+.node-manage-countries-form .entity-content-form-footer .field--type-boolean{width: 100%;}
+
+a.print_affiliation_letter {
+    content: url(/themes/contrib/druadmin_lte_theme/images/aff.png);
+}
+a.print_renewal_letter{
+    content: url(/themes/contrib/druadmin_lte_theme/images/ren.png);
+}
+.path-ho-teacher-management-list div#edit-actions, .path-manage-students-admin div#edit-actions, .path-manage-certificate-ssi div#edit-actions, .path-ho-fee-receipt-list div#edit-actions, .path-manage-workshop-activity div#edit-actions, .path-manage-picture-upload div#edit-actions{
+    display: inline-block;
+    margin-top: 38px;
+}
+#studentListData{
+	text-transform: uppercase;
+}
+a.cr-fee-receipt-btn {
+    font-size: 22px;
+    color: #008080 !important;
+}
+.path-sewing-school-report-count table.table-bordered thead th, .path-sewing-school-report-count table.table-bordered tbody td {
+	border: 1px solid #dbdbea!important;
+}
+.path-sewing-school-report-count form fieldset .form-group{
+	width: 32%;
+	float: left;
+	margin-right: 15px;
+}
+.path-sewing-school-report-count form{
+	border: 2px solid #eee;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+.path-sewing-school-report-count form fieldset{
+	margin-top: 0px;
+}
+/* table th, table td{
+	text-align: center;
+} */
+.path-sewing-school-report-count table.table tbody tr:nth-child(odd){
+	background : #ffffff;
+}
+
+/**/
+.path-sewing-revenue-collection-report table.table-bordered thead th, .path-sewing-revenue-collection-report table.table-bordered tbody td {
+	border: 1px solid #dbdbea!important;
+}
+.path-sewing-revenue-collection-report form fieldset .form-group{
+	width: 32%;
+	float: left;
+	margin-right: 15px;
+}
+.path-sewing-revenue-collection-report form{
+	border: 2px solid #eee;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+.path-sewing-revenue-collection-report form fieldset{
+	margin-top: 0px;
+}
+/* table th, table td{
+	text-align: center;
+} */
+.path-sewing-revenue-collection-report table.table tbody tr:nth-child(odd){
+	background : #ffffff;
+}
+.path-sewing-revenue-collection-report a.export-link {
+    background-image: url(../images/csv.png);
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 90px;
+    height: 40px;
+    display: block;
+    margin: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: right;
+}
+/**/
+.path-sewing-student-count-report table.table-bordered thead th, .path-sewing-student-count-report table.table-bordered tbody td {
+	border: 1px solid #dbdbea!important;
+}
+.path-sewing-student-count-report form fieldset .form-group{
+	width: 32%;
+	float: left;
+	margin-right: 15px;
+}
+.path-sewing-student-count-report form{
+	border: 2px solid #eee;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+.path-sewing-student-count-report form fieldset{
+	margin-top: 0px;
+}
+/* table th, table td{
+	text-align: center;
+} */
+.path-sewing-student-count-report table.table tbody tr:nth-child(odd){
+	background : #ffffff;
+}
+
+.path-sewing-weekly-pjp-plan table tr td .form-group{
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+.path-sewing-weekly-pjp-plan table tr td .form-group select{
+	width: 160px;
+}
+/* .path-sewing-weekly-pjp-plan table tr td .form-group input{
+	width: 189px;
+} */
+.path-sewing-weekly-pjp-plan table .readonly-field{
+	width: 105px;
+}
+.path-sewing-weekly-pjp-plan table tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+.path-sewing-weekly-pjp-plan form h3{
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+
+/*****************************************/
+/**/
+.path-sewing-revenue-head-wise-revenue-collection table.table-bordered thead th, 
+.path-sewing-revenue-head-wise-revenue-collection table.table-bordered tbody td {
+	border: 1px solid #dbdbea!important;
+}
+.path-sewing-revenue-head-wise-revenue-collection form fieldset .form-group{
+	width: 32%;
+	float: left;
+	margin-right: 15px;
+}
+.path-sewing-revenue-head-wise-revenue-collection form{
+	border: 2px solid #eee;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+.path-sewing-revenue-head-wise-revenue-collection form fieldset{
+	margin-top: 0px;
+}
+/* table th, table td{
+	text-align: center;
+} */
+.path-sewing-revenue-head-wise-revenue-collection table.table tbody tr:nth-child(odd){ 
+	background : #ffffff;
+}
+
+/**/
+.path-sewing-school-type-wise-revenue-collection table.table-bordered thead th, 
+.path-sewing-school-type-wise-revenue-collection table.table-bordered tbody td {
+	border: 1px solid #dbdbea!important;
+}
+.path-sewing-school-type-wise-revenue-collection form fieldset .form-group{
+	width: 32%;
+	float: left;
+	margin-right: 15px;
+}
+.path-sewing-school-type-wise-revenue-collection form{
+	border: 2px solid #eee;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+.path-sewing-school-type-wise-revenue-collection form fieldset{
+	margin-top: 0px;
+}
+/* table th, table td{
+	text-align: center;
+} */
+.path-sewing-student-count-report table.table tbody tr:nth-last-child(1),
+.path-sewing-school-report-count table.table tbody tr:nth-last-child(1),
+.path-sewing-school-type-wise-revenue-collection table.table tbody tr:nth-last-child(1){
+	background : #b9ff73!important;
+	font-weight: bold;
+}
+.path-sewing-school-type-wise-revenue-collection table.table tbody tr:nth-child(odd){ 
+	background : #ffffff;
+}
+/***************/
+
+#message-section-textarea .text-format-wrapper .form-item-message-value,
+#message-section-textarea .text-format-wrapper .form-wrapper,
+#message-section-textarea .text-format-wrapper{
+	    width: 90%;
+}
+/******/
+#reset-revenue-type {
+    background: green;
+	padding: 4px 8px;
+	border-radius: 7px;
+	color: #fff;
+	letter-spacing: 0.7px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-left: 15px;
+}
+
+
+
+

@@ -1,0 +1,29 @@
+uuid: 04188629-8f33-4ffe-9914-ea73b56c0099
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_training_state
+    - node.type.silai_business_states
+    - node.type.silai_training
+id: node.silai_training.field_silai_training_state
+field_name: field_silai_training_state
+entity_type: node
+bundle: silai_training
+label: State
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_business_states: silai_business_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

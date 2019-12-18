@@ -1,0 +1,21 @@
+uuid: c6be2d79-435d-4c82-b7f4-b2bae05e38cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_location_selectlist
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_location_selectlist
+field_name: field_sewing_location_selectlist
+entity_type: node
+bundle: manage_sewing_students
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

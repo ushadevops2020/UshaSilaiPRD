@@ -1,0 +1,29 @@
+# Test API endpoints
+custom_api.get:
+  path: 'usha-api/get.json'
+  defaults: { _controller: '\Drupal\custom_api\Controller\CustomAPIController::get' }
+  methods:  [GET]
+  requirements:
+    _access: 'TRUE'
+
+custom_api.put:
+  path: 'usha-api/put.json'
+  defaults: { _controller: '\Drupal\custom_api\Controller\CustomAPIController::put' }
+  methods:  [PUT]
+  requirements:
+    _access: 'TRUE'
+
+custom_api.post:
+  path: 'usha-api/post.json'
+  defaults: { _controller: '\Drupal\custom_api\Controller\CustomAPIController::post' }
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'
+
+custom_api.delete:
+  path: 'usha-api/delete.json'
+  defaults: { _controller: '\Drupal\custom_api\Controller\CustomAPIController::delete' }
+  methods:  [DELETE]
+  requirements:
+    _access: 'TRUE'
+

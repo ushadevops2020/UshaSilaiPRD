@@ -1,0 +1,29 @@
+uuid: 0a5a76ec-a742-40c5-9f9c-5e056a222efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_trained_by
+    - node.type.sewing_teacher_management
+    - node.type.trainer
+id: node.sewing_teacher_management.field_sewing_teacher_trained_by
+field_name: field_sewing_teacher_trained_by
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Trained By'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      trainer: trainer
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,18 @@
+uuid: 63accfcd-0162-43a9-8c58-9c2f3f66f321
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_item_group
+id: node.silai_item_group.title
+field_name: title
+entity_type: node
+bundle: silai_item_group
+label: 'Item Group Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

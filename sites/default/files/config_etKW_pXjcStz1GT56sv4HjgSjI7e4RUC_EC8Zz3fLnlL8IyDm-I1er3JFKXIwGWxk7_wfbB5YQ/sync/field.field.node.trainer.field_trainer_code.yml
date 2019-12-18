@@ -1,0 +1,19 @@
+uuid: 13e38d1d-0340-4b64-9e47-3cde27e4e992
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trainer_code
+    - node.type.trainer
+id: node.trainer.field_trainer_code
+field_name: field_trainer_code
+entity_type: node
+bundle: trainer
+label: 'Trainer Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

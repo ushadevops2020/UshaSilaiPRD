@@ -1,0 +1,22 @@
+uuid: ae0c8917-3085-45ab-aa88-ff708abd2d5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_districts
+id: node.manage_districts.promote
+field_name: promote
+entity_type: node
+bundle: manage_districts
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

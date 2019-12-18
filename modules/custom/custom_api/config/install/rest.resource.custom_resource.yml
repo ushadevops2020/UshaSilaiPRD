@@ -1,0 +1,35 @@
+id: custom_resource
+plugin_id: custom_resource
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+      - basic_auth
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+      - basic_auth
+
+id: user_profile
+plugin_id: custom_resource
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie
+requirements:
+    _user_is_logged_in: 'TRUE'
+options:
+    _maintenance_access: 'TRUE'

@@ -1,0 +1,25 @@
+uuid: d56b1253-9ff2-45f3-a0d2-629f6c29d363
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_access
+    - node.type.silai_trainee
+id: node.silai_trainee.field_domain_access
+field_name: field_domain_access
+entity_type: node
+bundle: silai_trainee
+label: 'Domain Access'
+description: 'Select the affiliate domain(s) for this content'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\domain_access\DomainAccessManager::getDefaultValue'
+settings:
+  handler: 'default:domain'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: weight
+      direction: ASC
+field_type: entity_reference

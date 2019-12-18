@@ -1,0 +1,23 @@
+uuid: c33a5cf7-c8ed-467a-8c8a-8aefe6ada419
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_renewal_fees
+    - node.type.grade_master
+id: node.grade_master.field_renewal_fees
+field_name: field_renewal_fees
+entity_type: node
+bundle: grade_master
+label: 'Renewal Fees'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100000
+  prefix: ''
+  suffix: ''
+field_type: integer

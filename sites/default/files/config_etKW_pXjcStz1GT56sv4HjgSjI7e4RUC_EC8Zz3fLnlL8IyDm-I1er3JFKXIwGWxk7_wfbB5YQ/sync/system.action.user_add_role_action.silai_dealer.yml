@@ -1,0 +1,14 @@
+uuid: 626c9c22-7bc3-467f-84da-dd13142af7d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_dealer
+  module:
+    - user
+id: user_add_role_action.silai_dealer
+label: 'Add the Silai Dealer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: silai_dealer

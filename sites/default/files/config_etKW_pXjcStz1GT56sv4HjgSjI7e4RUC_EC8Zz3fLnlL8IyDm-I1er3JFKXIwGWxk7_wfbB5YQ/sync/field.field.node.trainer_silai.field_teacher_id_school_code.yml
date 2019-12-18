@@ -1,0 +1,19 @@
+uuid: 2eeaf4ee-0352-4d15-a514-6df51e93c995
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teacher_id_school_code
+    - node.type.trainer_silai
+id: node.trainer_silai.field_teacher_id_school_code
+field_name: field_teacher_id_school_code
+entity_type: node
+bundle: trainer_silai
+label: 'Teacher ID / School Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

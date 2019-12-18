@@ -1,0 +1,45 @@
+uuid: c00cffd1-7887-40f1-84c8-35b0aa8e6e8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.nfa.body
+    - field.field.node.nfa.field_domain_access
+    - field.field.node.nfa.field_domain_all_affiliates
+    - node.type.nfa
+  module:
+    - text
+    - user
+id: node.nfa.teaser
+targetEntityType: node
+bundle: nfa
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

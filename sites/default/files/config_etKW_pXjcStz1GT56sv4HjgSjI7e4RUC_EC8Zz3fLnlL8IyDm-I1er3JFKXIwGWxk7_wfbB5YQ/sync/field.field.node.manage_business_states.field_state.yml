@@ -1,0 +1,29 @@
+uuid: 19c6cbfa-1a00-40e7-813e-c3bc3975dc3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_state
+    - node.type.manage_business_states
+    - node.type.sewing_indian_states
+id: node.manage_business_states.field_state
+field_name: field_state
+entity_type: node
+bundle: manage_business_states
+label: 'Map to Census State'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      sewing_indian_states: sewing_indian_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: manage_states
+field_type: entity_reference

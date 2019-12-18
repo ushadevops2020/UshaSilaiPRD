@@ -1,0 +1,319 @@
+#sewing_school.sewing_school_total_fees_affiliation:
+#  path: '/total_fees_affiliation' 
+#  defaults:
+#    _title: 'Get Affiliation total fees by School Type & Grade'
+#    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::getTotalFeesAffiliation'
+#  requirements:
+#    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+#sewing_school.sewing_school_total_fees_renewal:
+#  path: '/total_fees_renewal' 
+#  defaults:
+#    _title: 'Get Renewal total fees by School Type & Grade'
+#    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::getTotalFeesRenewal'
+#  requirements:
+#    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+sewing_school.sewing_school_dealer_details:
+  path: '/sewing_school_dealer_details' 
+  defaults:
+    _title: 'Get Dealer Details'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::getSchoolDealerDetails'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+sewing_school.sewing_school_course_count_by_grade:
+  path: '/sewing_school_course_count_by_grade' 
+  defaults:
+    _title: 'Get Dealer Details'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::getCourseCountByGrade'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Bulk School Update 'Approve' Status 
+sewing_school.sewing_school_approval_status_flow:
+  path: '/sewing_school_approval_status_flow/{nid}' 
+  defaults:
+    _title: 'School Approval Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::schoolApprovalStatusFlow'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# School Update 'Need For Approval' Status 
+sewing_school.sewing_school_modified_need_approval:
+  path: '/sewing_school_modified_need_approval/{nid}' 
+  defaults:
+    _title: 'School Approval Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::modifiedSchoolNeedApproval'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# School Update 'Terminate' Status 
+sewing_school.sewing_school_terminated_state:
+  path: '/sewing_school_terminated_state/{nid}' 
+  defaults:
+    _title: 'School Approval Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::terminatedSchoolState'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+sewing_school.sewing_get_town_by_location:
+  path: '/sewing_get_town_by_location/{nid}' 
+  defaults:
+    _title: 'School Approval Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::getTownByLocation'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_school_admin+sewing_ssi'
+
+# Bulk School Update 'Terminate' Status 
+sewing_school.sewing_bulk_school_terminate_status:
+  path: '/bulk-school-terminate-status' 
+  defaults:
+    _title: 'Bulk School Terminate Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkSchoolTerminateStatus'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Bulk School Update 'Approve' Status 
+sewing_school.sewing_bulk_school_approve_status:
+  path: '/bulk-school-approve-status' 
+  defaults:
+    _title: 'Bulk School Approve Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkSchoolApproveStatus'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin'
+
+# Bulk School Update 'On hold' Status 
+sewing_school.sewing_bulk_school_on_hold_status:
+  path: '/bulk-school-on-hold-status' 
+  defaults:
+    _title: 'Bulk School On-Hold Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkSchoolOnHoldStatus'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# School Update 'On Hold to Approve' Status 
+sewing_school.sewing_school_onhold_to_approve_status:
+  path: '/sewing_school_onhold_to_approve/{nid}' 
+  defaults:
+    _title: 'School On Hold To Approve'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::schoolOnHoldToApprove'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# School Update 'Terminated to Approve' Status 
+sewing_school.sewing_school_terminate_to_approve:
+  path: '/sewing_school_terminate_to_approve/{nid}' 
+  defaults:
+    _title: 'School Terminated To Approve'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::schoolTerminatedToApprove'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Sewing Dashboard Section
+sewing_school.sewing_dashboard_module:
+  path: '/sewing-dashboard' 
+  defaults:
+    _title: 'Dashboard'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::dashboardPageManage'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+sewing_school.sewing_dashboard_school_chart_dataset:
+  path: '/sewing-dashboard-school-chart-dataset' 
+  defaults:
+    _title: 'Sewing Dashboard School Chart Dataset'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardSchoolChartDataset'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_location_filter:
+  path: '/sewing-dashboard-location-filter' 
+  defaults:
+    _title: 'Sewing Dashboard Location Filter'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardLoctionFilter'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_fy_filter:
+  path: '/sewing-dashboard-fy-filter' 
+  defaults:
+    _title: 'Sewing Dashboard FY Filter'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardFinancialYearFilter'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_student_chart_dataset:
+  path: '/sewing-dashboard-student-chart-dataset' 
+  defaults:
+    _title: 'Sewing Dashboard Student Chart Dataset'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardStudentChartDataset'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_revenue_chart_dataset:
+  path: '/sewing-dashboard-revenue-chart-dataset' 
+  defaults:
+    _title: 'Sewing Dashboard Revenue Chart Dataset'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardRevenueChartDataset'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_machine_chart_dataset:
+  path: '/sewing-dashboard-machine-chart-dataset' 
+  defaults:
+    _title: 'Sewing Dashboard Machine Chart Dataset'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardMachineChartDataset'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_student_chart_dataset_sa:
+  path: '/sewing-dashboard-student-chart-dataset-sa' 
+  defaults:
+    _title: 'Sewing Dashboard Machine Chart Dataset'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardStudentChartDatasetSA'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_gallery_page:
+  path: '/sewing-gallery' 
+  defaults:
+    _title: 'Gallery'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::sewingGalleryPage'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+
+sewing_school.sewing_dashboard_for_school_admin_module:
+  path: '/sewing-dashboard-sa' 
+  defaults:
+    _title: 'Dashboard'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::dashboardPageManageForSchoolAdmin'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_school_admin'
+
+# Student Bulk Result update
+sewing_school.sewing_student_bulk_result_update:
+  path: '/bulk-student-bulk-result-update' 
+  defaults:
+    _title: 'Bulk Student Approve Status'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkStudentResultUpdate'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Student Bulk Raise a Machine Request
+sewing_school.sewing_student_raise_machine_request:
+  path: '/bulk-student-raise-machine-request' 
+  defaults: 
+    _title: 'Bulk Student Raise a Machine Request'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkStudentRaiseMachineRequest'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Student Bulk Certificate Issued
+sewing_school.sewing_student_certificate_issued:
+  path: '/bulk-student-certificate_issued' 
+  defaults: 
+    _title: 'Bulk Student Certificate Issued'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkStudentCertificateIssued'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# Student Bulk Certificate print
+sewing_school.sewing_student_certificate_print:
+  path: '/bulk-student-certificate_print' 
+  defaults: 
+    _title: 'Bulk Student Certificate Print'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::bulkStudentCertificatePrint'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin+sewing_ssi'
+
+# School Affilation letter print
+sewing_school.sewing_school_affiliation_letter:
+  path: '/school-affiliation-letter/{nid}' 
+  defaults: 
+    _title: 'School Affiliation Letter'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::schoolAffiliationLetter'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin'
+
+# School Renewal letter print
+sewing_school.sewing_school_renewal_letter:
+  path: '/school-renewal-letter/{nid}' 
+  defaults: 
+    _title: 'School Renewal Letter'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::schoolRenewalLetter'
+  requirements:
+    _role: 'administrator+sewing_ho_user+sewing_ho_admin'
+
+sewing_school.sewing_dashboard_fy_filter_for_school:
+  path: '/sewing-dashboard-fy-filter-for-school' 
+  defaults:
+    _title: 'Sewing Dashboard FY Filter'
+    _controller: '\Drupal\sewing_school\Controller\SewingDashboardController::sewingDashboardFinancialYearFilterForSchool'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin'
+    
+sewing_school.sewing_school_report_count:
+  path: '/sewing-school-report-count' 
+  defaults:
+    _title: 'School Type Wise School Report'
+    _controller: '\Drupal\sewing_school\Controller\SewingReportController::sewingLocationWiseSchoolReport'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin'
+    
+sewing_school.sewing_revenue_head_wise_revenue_collection:
+  path: '/sewing-revenue-head-wise-revenue-collection'
+  defaults:
+    _title: 'Revenue Head Wise Revenue Report'
+    _controller: '\Drupal\sewing_school\Controller\SewingOtherReportController::sewingRevenueHeadWiseRevenueCollection'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin'
+  
+sewing_school.sewing_school_type_wise_revenue_collection:
+  path: '/sewing-school-type-wise-revenue-collection'
+  defaults:
+    _title: 'School Type Wise Revenue Report'
+    _controller: '\Drupal\sewing_school\Controller\SewingOtherReportController::sewingSchoolTypeWiseRevenueCollection'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin'
+  
+sewing_school.sewing_revenue_collection_report:
+  path: '/sewing-revenue-collection-report' 
+  defaults:
+    _title: 'Revenue Collection Report'
+    _controller: '\Drupal\sewing_school\Controller\SewingReportController::sewingRevenueCollectionReport'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin'    
+ 
+sewing_school.sewing_student_count_report:
+  path: '/sewing-student-count-report' 
+  defaults:
+    _title: 'Student Count Report'
+    _controller: '\Drupal\sewing_school\Controller\SewingReportController::sewingStudentCountReport'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi' 
+    
+sewing_school.sewing_weekly_pjp_plan:
+  path: '/sewing-weekly-pjp-plan' 
+  defaults:
+    _title: 'Permanent Journey Plan (PJP)'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::sewingWeeklyPjpPlan'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin' 
+    
+sewing_school.sewing_change_password:
+  path: '/sewing-change-password' 
+  defaults:
+    _title: 'Change Password'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::sewingChangePassword'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin' 
+    
+sewing_school.sewing_export_in_folder_test:
+  path: '/sewing-export-in-folder-test' 
+  defaults:
+    _title: 'Export In Folder'
+    _controller: '\Drupal\sewing_school\Controller\SewingSchoolController::sewingExportInFolderTest'
+  requirements:
+    _role: 'sewing_ho_user+sewing_ho_admin+sewing_ssi+sewing_school_admin' 
+    

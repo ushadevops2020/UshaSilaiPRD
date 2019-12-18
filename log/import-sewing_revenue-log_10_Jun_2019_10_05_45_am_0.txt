@@ -1,0 +1,2 @@
+1) UKLCEM12040019 - Admission Number does not exist. In excel file row number : 561
+2) UKLCEM12040018 - Admission Number does not exist. In excel file row number : 562

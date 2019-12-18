@@ -1,0 +1,35 @@
+uuid: abefc040-eec7-4585-8625-87083dbf959d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.silai_dealer.field_domain_access
+    - field.field.node.silai_dealer.field_domain_all_affiliates
+    - node.type.silai_dealer
+  module:
+    - user
+id: node.silai_dealer.teaser
+targetEntityType: node
+bundle: silai_dealer
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

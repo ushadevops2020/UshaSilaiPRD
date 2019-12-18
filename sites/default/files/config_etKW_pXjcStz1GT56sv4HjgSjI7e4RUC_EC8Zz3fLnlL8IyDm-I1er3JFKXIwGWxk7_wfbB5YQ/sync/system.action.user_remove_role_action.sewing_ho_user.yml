@@ -1,0 +1,14 @@
+uuid: 38969807-358d-432a-99f2-968d3f169335
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_ho_user
+  module:
+    - user
+id: user_remove_role_action.sewing_ho_user
+label: 'Remove the Sewing Ho User role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sewing_ho_user

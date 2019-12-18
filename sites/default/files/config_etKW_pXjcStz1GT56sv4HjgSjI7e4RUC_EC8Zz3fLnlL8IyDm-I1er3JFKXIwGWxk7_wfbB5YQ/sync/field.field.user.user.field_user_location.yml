@@ -1,0 +1,29 @@
+uuid: 91e01f93-f421-4c83-ac55-a2a3969e8137
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_location
+    - node.type.manage_locations
+  module:
+    - user
+id: user.user.field_user_location
+field_name: field_user_location
+entity_type: user
+bundle: user
+label: 'Assign Location'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_locations: manage_locations
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

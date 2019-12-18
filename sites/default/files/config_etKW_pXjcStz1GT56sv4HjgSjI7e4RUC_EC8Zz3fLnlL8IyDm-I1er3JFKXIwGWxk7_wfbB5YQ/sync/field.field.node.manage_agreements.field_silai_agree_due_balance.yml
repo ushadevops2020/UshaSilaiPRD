@@ -1,0 +1,21 @@
+uuid: a1921fb0-2237-4464-b3a6-a277e112618b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_agree_due_balance
+    - node.type.manage_agreements
+id: node.manage_agreements.field_silai_agree_due_balance
+field_name: field_silai_agree_due_balance
+entity_type: node
+bundle: manage_agreements
+label: 'Due Balance'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string

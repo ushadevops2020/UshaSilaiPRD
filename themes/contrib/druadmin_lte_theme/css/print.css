@@ -1,0 +1,11 @@
+.content-wrapper{
+	margin-top: 0px;
+	min-height: 0px!important;
+	background-color: #ffffff!important;
+}
+.content{
+	min-height: 0px!important;
+}
+body{
+	background-color: #ffffff!important;
+}

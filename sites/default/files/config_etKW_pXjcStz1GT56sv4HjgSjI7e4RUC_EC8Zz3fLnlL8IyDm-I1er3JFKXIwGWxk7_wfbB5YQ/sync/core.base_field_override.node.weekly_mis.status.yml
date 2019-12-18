@@ -1,0 +1,22 @@
+uuid: 79edac71-7ed3-41ac-8258-a0d65208e05b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.weekly_mis
+id: node.weekly_mis.status
+field_name: status
+entity_type: node
+bundle: weekly_mis
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

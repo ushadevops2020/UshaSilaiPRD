@@ -1,0 +1,21 @@
+uuid: 5a7f1245-88d2-4127-9d11-18e840fa7f27
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_nfa_due_balance
+field_name: field_nfa_due_balance
+entity_type: node
+type: string
+settings:
+  max_length: 15
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

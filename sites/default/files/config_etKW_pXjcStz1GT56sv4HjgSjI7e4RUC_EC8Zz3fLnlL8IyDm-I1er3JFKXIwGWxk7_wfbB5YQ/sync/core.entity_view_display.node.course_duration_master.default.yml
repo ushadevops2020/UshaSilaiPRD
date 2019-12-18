@@ -1,0 +1,61 @@
+uuid: e56a58f0-a7f9-4afc-a721-9c30e8be88d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.course_duration_master.field_certification_required
+    - field.field.node.course_duration_master.field_domain_access
+    - field.field.node.course_duration_master.field_domain_all_affiliates
+    - field.field.node.course_duration_master.field_duration
+    - field.field.node.course_duration_master.field_exam_required
+    - node.type.course_duration_master
+  module:
+    - options
+    - user
+id: node.course_duration_master.default
+targetEntityType: node
+bundle: course_duration_master
+mode: default
+content:
+  field_certification_required:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_duration:
+    weight: 106
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_exam_required:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

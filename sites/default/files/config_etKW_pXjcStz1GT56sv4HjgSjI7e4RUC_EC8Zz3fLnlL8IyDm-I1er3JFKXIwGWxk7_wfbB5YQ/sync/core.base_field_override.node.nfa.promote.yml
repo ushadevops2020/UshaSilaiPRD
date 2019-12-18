@@ -1,0 +1,22 @@
+uuid: 7b185eff-4878-4e4b-ad74-aba9db09ad9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.nfa
+id: node.nfa.promote
+field_name: promote
+entity_type: node
+bundle: nfa
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

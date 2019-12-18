@@ -1,0 +1,288 @@
+uuid: c6824061-8c7d-4921-b10b-b66514bf7afd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sewing_teacher_management.field_domain_access
+    - field.field.node.sewing_teacher_management.field_domain_all_affiliates
+    - field.field.node.sewing_teacher_management.field_sewing_copy_teacher_data
+    - field.field.node.sewing_teacher_management.field_sewing_school_code_list
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_address
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_certif_no
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_education
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_email
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_gender
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_join_date
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_phone_no
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_pin_code
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_pre_exp
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_qualificati
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_skill_level
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_status
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_subject
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_trained_by
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_training
+    - field.field.node.sewing_teacher_management.field_sewing_teacher_tran_date
+    - node.type.sewing_teacher_management
+  module:
+    - conditional_fields
+    - datetime
+    - path
+id: node.sewing_teacher_management.default
+targetEntityType: node
+bundle: sewing_teacher_management
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_domain_access:
+    type: options_buttons
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_domain_all_affiliates:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 8
+    third_party_settings: {  }
+    region: content
+  field_sewing_copy_teacher_data:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_sewing_school_code_list:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_teacher_address:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_sewing_teacher_education:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_teacher_email:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_teacher_gender:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_teacher_join_date:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sewing_teacher_phone_no:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 11
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_teacher_pin_code:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_teacher_pre_exp:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_teacher_qualificati:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_teacher_status:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_sewing_teacher_subject:
+    weight: 23
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        85e804ce-d42f-4f88-a3ba-cd13c4189190:
+          dependee: field_sewing_teacher_training
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: '1'
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: sewing_teacher_management
+    type: string_textfield
+    region: content
+  field_sewing_teacher_trained_by:
+    weight: 22
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        e8c5be4b-02ee-4f5a-805e-1c6c8e37d050:
+          dependee: field_sewing_teacher_training
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: '1'
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: sewing_teacher_management
+    type: entity_reference_autocomplete
+    region: content
+  field_sewing_teacher_training:
+    weight: 21
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+    type: options_select
+    region: content
+  field_sewing_teacher_tran_date:
+    weight: 24
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        bedcdd4e-3448-41c6-90fe-88f129240725:
+          dependee: field_sewing_teacher_training
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: '1'
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: sewing_teacher_management
+    type: datetime_default
+    region: content
+  langcode:
+    type: language_select
+    weight: 3
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 18
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 19
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_sewing_teacher_certif_no: true
+  field_sewing_teacher_skill_level: true

@@ -1,0 +1,9 @@
+uuid: a2e1726f-acfa-4d2c-93cb-d0077117652a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Sewing Student Exit'
+vid: sewing_student_exit
+description: 'Sewing Student Exit'
+hierarchy: 0
+weight: 0

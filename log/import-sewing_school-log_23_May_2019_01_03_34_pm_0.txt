@@ -1,0 +1,1 @@
+1) SS - School Type does not exist. In excel file row number : 535

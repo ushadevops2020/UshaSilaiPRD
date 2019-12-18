@@ -1,0 +1,11 @@
+uuid: df668c5a-a87b-481c-88c7-a13bc18dc002
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainer_silai
+id: node.trainer_silai
+target_entity_type_id: node
+target_bundle: trainer_silai
+default_langcode: site_default
+language_alterable: false

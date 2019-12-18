@@ -1,0 +1,28 @@
+uuid: da164210-8d17-44bf-8b1b-fd7796a89393
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.manage_countries
+    - node.type.sewing_indian_states
+id: node.sewing_indian_states.field_country
+field_name: field_country
+entity_type: node
+bundle: sewing_indian_states
+label: 'Assign Country'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_countries: manage_countries
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

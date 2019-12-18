@@ -1,0 +1,35 @@
+uuid: d8e88d5b-5b45-4b04-972a-70f0b416fa06
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dealer.field_domain_access
+    - field.field.node.dealer.field_domain_all_affiliates
+    - node.type.dealer
+  module:
+    - user
+id: node.dealer.teaser
+targetEntityType: node
+bundle: dealer
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

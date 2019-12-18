@@ -1,0 +1,39 @@
+uuid: d484f08a-37af-45d4-ae88-9191c6e39180
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.silai_add_new_feedback
+  module:
+    - domain
+    - system
+    - views
+  theme:
+    - silai_lte_admin
+id: views_block__silai_add_new_feedback_block_1
+theme: silai_lte_admin
+region: content
+weight: -8
+provider: null
+plugin: 'views_block:silai_add_new_feedback-block_1'
+settings:
+  id: 'views_block:silai_add_new_feedback-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  domain:
+    id: domain
+    domains:
+      usha_silai_tk: usha_silai_tk
+    negate: false
+    context_mapping:
+      'entity:domain': '@domain.current_domain_context:entity:domain'
+  request_path:
+    id: request_path
+    pages: '/silai-add-new-feedback/*'
+    negate: false
+    context_mapping: {  }

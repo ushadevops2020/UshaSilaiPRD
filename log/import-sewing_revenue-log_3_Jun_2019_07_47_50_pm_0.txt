@@ -1,0 +1,7 @@
+1) UPBJCT12040074 - Admission Number does not exist. In excel file row number : 94
+2) UPBJCT12040101 - Admission Number does not exist. In excel file row number : 97
+3) UPBJEM11080002 - Admission Number does not exist. In excel file row number : 247
+4) UPBJCT11080003 - Admission Number does not exist. In excel file row number : 248
+5) UPBJEM11080083 - Admission Number does not exist. In excel file row number : 268
+6) UPBJEM11080003 - Admission Number does not exist. In excel file row number : 461
+7) UUPLS112100003 - Admission Number does not exist. In excel file row number : 755

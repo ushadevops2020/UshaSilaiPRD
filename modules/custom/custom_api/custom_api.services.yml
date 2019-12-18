@@ -1,0 +1,13 @@
+services:
+  custom_api.login_response_listener:
+    class: '\Drupal\custom_api\EventSubscriber\UserLoginListener'
+    arguments: ['@path.current', '@jwt.authentication.jwt']
+    tags:
+      - { name: event_subscriber }
+  custom_api.user_profile:
+    class: '\Drupal\custom_api\src\Plugin\rest\resource\UserProfile'
+    arguments: ['@path.current', '@jwt.authentication.jwt']
+
+  custom_api.get_inventory:
+   class: '\Drupal\custom_api\Services\CustomAPIDataServices'
+   arguments: []

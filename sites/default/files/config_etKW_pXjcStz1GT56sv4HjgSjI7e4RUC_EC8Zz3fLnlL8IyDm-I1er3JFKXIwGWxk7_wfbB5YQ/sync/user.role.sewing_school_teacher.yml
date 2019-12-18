@@ -1,0 +1,10 @@
+uuid: 634f41c8-1d20-4328-99b1-bb164a4df934
+langcode: en
+status: true
+dependencies: {  }
+id: sewing_school_teacher
+label: 'School Teacher'
+weight: 14
+is_admin: null
+permissions:
+  - 'create content_workflow workflow_transition'

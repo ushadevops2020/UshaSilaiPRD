@@ -1,0 +1,29 @@
+uuid: 9f32f1fb-6be2-4127-9896-98a7ae0c6849
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_budget_head
+    - node.type.nfa
+    - taxonomy.vocabulary.budget_head
+id: node.nfa.field_budget_head
+field_name: field_budget_head
+entity_type: node
+bundle: nfa
+label: 'Budget Head'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      budget_head: budget_head
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

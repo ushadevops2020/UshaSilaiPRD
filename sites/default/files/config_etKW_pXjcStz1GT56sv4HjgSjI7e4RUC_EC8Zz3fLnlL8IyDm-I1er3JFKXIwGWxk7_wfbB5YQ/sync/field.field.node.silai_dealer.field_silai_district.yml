@@ -1,0 +1,29 @@
+uuid: f4e8b19c-8ac2-4afa-b490-8ff1eed0a71d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_district
+    - node.type.silai_dealer
+    - node.type.silai_district
+id: node.silai_dealer.field_silai_district
+field_name: field_silai_district
+entity_type: node
+bundle: silai_dealer
+label: District
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_district: silai_district
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

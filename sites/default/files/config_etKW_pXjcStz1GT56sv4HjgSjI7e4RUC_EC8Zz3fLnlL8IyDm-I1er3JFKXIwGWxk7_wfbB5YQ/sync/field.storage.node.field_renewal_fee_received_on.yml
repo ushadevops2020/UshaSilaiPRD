@@ -1,0 +1,20 @@
+uuid: 2f910d27-e1e7-4d76-adf7-0eb501d60632
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_renewal_fee_received_on
+field_name: field_renewal_fee_received_on
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

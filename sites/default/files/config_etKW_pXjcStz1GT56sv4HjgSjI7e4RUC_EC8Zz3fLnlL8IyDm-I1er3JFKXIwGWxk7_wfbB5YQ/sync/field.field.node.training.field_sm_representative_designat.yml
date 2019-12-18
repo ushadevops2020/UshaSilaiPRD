@@ -1,0 +1,19 @@
+uuid: 6f748837-ca46-49ab-8ccb-01da276c567f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sm_representative_designat
+    - node.type.training
+id: node.training.field_sm_representative_designat
+field_name: field_sm_representative_designat
+entity_type: node
+bundle: training
+label: 'SM Representative Designation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

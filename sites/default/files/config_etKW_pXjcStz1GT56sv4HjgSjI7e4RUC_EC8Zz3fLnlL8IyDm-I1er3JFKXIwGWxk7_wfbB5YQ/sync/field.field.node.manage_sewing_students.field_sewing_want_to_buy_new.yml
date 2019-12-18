@@ -1,0 +1,21 @@
+uuid: fc3f4ee8-00bc-4a2c-851f-bef56e0526d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_want_to_buy_new
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_want_to_buy_new
+field_name: field_sewing_want_to_buy_new
+entity_type: node
+bundle: manage_sewing_students
+label: 'Want to buy New'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

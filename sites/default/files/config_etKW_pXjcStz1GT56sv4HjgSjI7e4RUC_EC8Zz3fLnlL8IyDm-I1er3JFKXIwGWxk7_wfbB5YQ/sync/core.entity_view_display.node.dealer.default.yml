@@ -1,0 +1,124 @@
+uuid: 44e22c00-e237-47c5-b9ae-b3aefc2e43b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dealer.field_business_state
+    - field.field.node.dealer.field_dealer_code
+    - field.field.node.dealer.field_dealer_contact_no
+    - field.field.node.dealer.field_dealer_latitude
+    - field.field.node.dealer.field_dealer_longitude
+    - field.field.node.dealer.field_dealer_pin_code
+    - field.field.node.dealer.field_district
+    - field.field.node.dealer.field_domain_access
+    - field.field.node.dealer.field_domain_all_affiliates
+    - field.field.node.dealer.field_locality
+    - field.field.node.dealer.field_street
+    - field.field.node.dealer.field_town_city
+    - node.type.dealer
+  module:
+    - user
+id: node.dealer.default
+targetEntityType: node
+bundle: dealer
+mode: default
+content:
+  field_business_state:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_dealer_code:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dealer_contact_no:
+    weight: 112
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dealer_latitude:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dealer_longitude:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_dealer_pin_code:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_district:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_locality:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_street:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_town_city:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

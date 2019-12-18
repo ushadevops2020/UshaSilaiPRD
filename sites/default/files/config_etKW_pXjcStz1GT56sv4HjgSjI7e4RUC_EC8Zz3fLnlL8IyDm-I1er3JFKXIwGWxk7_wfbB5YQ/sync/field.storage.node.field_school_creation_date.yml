@@ -1,0 +1,20 @@
+uuid: 0bb35836-b352-4d36-9866-ad89bf0074e7
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_school_creation_date
+field_name: field_school_creation_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

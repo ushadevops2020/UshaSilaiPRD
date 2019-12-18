@@ -1,0 +1,43 @@
+uuid: d941cc50-e465-49bd-af4d-c24d9e572a5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.course_master.field_course_code
+    - field.field.node.course_master.field_course_fee
+    - field.field.node.course_master.field_domain_access
+    - field.field.node.course_master.field_domain_all_affiliates
+    - field.field.node.course_master.field_exam_fee
+    - field.field.node.course_master.field_grade
+    - node.type.course_master
+  module:
+    - user
+id: node.course_master.teaser
+targetEntityType: node
+bundle: course_master
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_course_code: true
+  field_course_fee: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_exam_fee: true
+  field_grade: true
+  langcode: true

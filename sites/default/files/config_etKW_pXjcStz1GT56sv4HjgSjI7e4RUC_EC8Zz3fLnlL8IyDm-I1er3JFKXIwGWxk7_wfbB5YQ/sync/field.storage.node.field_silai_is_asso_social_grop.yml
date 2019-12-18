@@ -1,0 +1,27 @@
+uuid: 2d79b03f-d165-4395-9473-1c663567dd63
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_silai_is_asso_social_grop
+field_name: field_silai_is_asso_social_grop
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '0'
+      label: 'No'
+    -
+      value: '1'
+      label: 'Yes'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

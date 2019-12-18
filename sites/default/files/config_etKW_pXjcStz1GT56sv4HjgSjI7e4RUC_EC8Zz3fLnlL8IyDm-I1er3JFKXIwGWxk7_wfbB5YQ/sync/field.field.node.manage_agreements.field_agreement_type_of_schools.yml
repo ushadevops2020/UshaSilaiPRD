@@ -1,0 +1,29 @@
+uuid: a65773f7-0a68-480e-9325-ed91246e036b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agreement_type_of_schools
+    - node.type.manage_agreements
+    - node.type.silai_school_type_master
+id: node.manage_agreements.field_agreement_type_of_schools
+field_name: field_agreement_type_of_schools
+entity_type: node
+bundle: manage_agreements
+label: 'Type of Schools'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_school_type_master: silai_school_type_master
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: school_type_master
+field_type: entity_reference

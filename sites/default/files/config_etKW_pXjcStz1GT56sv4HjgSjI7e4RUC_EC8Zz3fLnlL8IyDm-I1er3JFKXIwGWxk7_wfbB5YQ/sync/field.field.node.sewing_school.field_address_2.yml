@@ -1,0 +1,19 @@
+uuid: ffeb6ee6-b633-4280-bbfa-821dbbf71c6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address_2
+    - node.type.sewing_school
+id: node.sewing_school.field_address_2
+field_name: field_address_2
+entity_type: node
+bundle: sewing_school
+label: 'Address 2'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

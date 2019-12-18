@@ -1,0 +1,11 @@
+uuid: 7084943f-09f6-4727-9685-b2985298187f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.grade_master
+id: node.grade_master
+target_entity_type_id: node
+target_bundle: grade_master
+default_langcode: site_default
+language_alterable: false

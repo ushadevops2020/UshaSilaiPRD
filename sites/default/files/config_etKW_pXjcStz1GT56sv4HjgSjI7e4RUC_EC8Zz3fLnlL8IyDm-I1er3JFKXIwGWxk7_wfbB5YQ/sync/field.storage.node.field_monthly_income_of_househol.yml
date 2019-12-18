@@ -1,0 +1,21 @@
+uuid: 4f0d6382-8a77-4948-8c92-799750017dcd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_monthly_income_of_househol
+field_name: field_monthly_income_of_househol
+entity_type: node
+type: string
+settings:
+  max_length: 15
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

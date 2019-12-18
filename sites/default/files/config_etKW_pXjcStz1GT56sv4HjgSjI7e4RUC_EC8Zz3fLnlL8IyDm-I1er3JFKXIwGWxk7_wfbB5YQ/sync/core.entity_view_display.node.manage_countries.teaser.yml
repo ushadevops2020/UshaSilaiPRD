@@ -1,0 +1,37 @@
+uuid: 6b91a231-c65e-4c22-b2ed-c9183f2236a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_countries.field_country_code
+    - field.field.node.manage_countries.field_domain_access
+    - field.field.node.manage_countries.field_domain_all_affiliates
+    - node.type.manage_countries
+  module:
+    - user
+id: node.manage_countries.teaser
+targetEntityType: node
+bundle: manage_countries
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_country_code: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

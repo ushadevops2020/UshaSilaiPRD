@@ -1,0 +1,58 @@
+<script>
+function printPage() {
+  window.print();
+}
+</script> 
+<button onclick="printPage()" id='print'><i class="fa fa-print" aria-hidden="true"></i> PRINT</button>
+{% for item in dataArray %}
+	<table id="print-receipt" width="100%">
+		<tr>
+			<td style="border-bottom: 1px solid #000;">
+				<span class="logo-mini">
+				  <img src="/{{directory}}/images/logo_tem.png" alt="Site Logo" style="max-width:100%;height:auto;max-height: 100%;"> 
+				</span>
+			<td style="border-bottom: 1px solid #000; font-size: 22px; font-weight: 600;">RECEIPT</td>
+			<td style="border-bottom: 1px solid #000;"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><b>Receipt Number:</b> {{ item.receiptNumber }} / {{ item.admissionNumber }}</td>
+			<td><b>Receipt Date:</b> {{ item.receiptDate }}</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<b>Service code:  {{ item.serviceCode }}</b></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<b>School code: </b> {{ item.schoolCode }}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			{{ item.studentName }}<br>
+			{{ item.addressOne }}<br>
+			{{ item.addressTwo }}</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<p>We acknowledge receipt Rs. {{ item.netAmount }} ({{ item.netAmountWords }}) in {{ item.paymentType }} on account of STUDENT FEE.</p>
+			
+			<br>
+			<p><b>For Usha International Limited.</b></p>
+			<br><br>
+			<p><b>Authorised Official</b></p>
+		</td>
+	</tr>
+	
+	
+<br>	
+<br>
+<br>
+<br>  
+	<table>
+	<div style="display:none;">
+		{{ item.paymentDetails }}
+		{{ item.paymentDate }}
+		{{ item.paymentBank }}
+	</div> 
+{% endfor %}

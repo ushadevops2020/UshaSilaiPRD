@@ -1,0 +1,10 @@
+1) UWBCEC18010010 - Admission Number does not exist. In excel file row number : 417
+2) UWBCEC18010011 - Admission Number does not exist. In excel file row number : 418
+3) UWBCEJ17120006 - Admission Number does not exist. In excel file row number : 732
+4) UWBCEJ17120007 - Admission Number does not exist. In excel file row number : 733
+5) UWBCEJ17120008 - Admission Number does not exist. In excel file row number : 734
+6) UWBCEC17120043 - Admission Number does not exist. In excel file row number : 736
+7) UWBCEC17120044 - Admission Number does not exist. In excel file row number : 737
+8) UWBCEC17120046 - Admission Number does not exist. In excel file row number : 739
+9) UWBCEC17120047 - Admission Number does not exist. In excel file row number : 740
+10) UASGC318010002 - Admission Number does not exist. In excel file row number : 1157

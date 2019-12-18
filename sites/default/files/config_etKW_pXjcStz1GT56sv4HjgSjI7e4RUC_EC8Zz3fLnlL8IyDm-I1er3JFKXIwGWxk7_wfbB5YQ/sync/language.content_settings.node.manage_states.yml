@@ -1,0 +1,11 @@
+uuid: acc024f4-8143-48cf-b012-d4aada2fb9f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_states
+id: node.manage_states
+target_entity_type_id: node
+target_bundle: manage_states
+default_langcode: site_default
+language_alterable: false

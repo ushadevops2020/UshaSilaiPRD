@@ -1,0 +1,18 @@
+uuid: 0d3d4a6b-9e37-4ff5-8591-32ac4d7322a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainee
+id: node.trainee.title
+field_name: title
+entity_type: node
+bundle: trainee
+label: 'First Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

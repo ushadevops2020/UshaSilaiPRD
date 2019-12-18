@@ -1,0 +1,35 @@
+uuid: bac4d51c-e2ce-42f4-b628-6538776a950a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.silai_town.field_domain_access
+    - field.field.node.silai_town.field_domain_all_affiliates
+    - node.type.silai_town
+  module:
+    - user
+id: node.silai_town.teaser
+targetEntityType: node
+bundle: silai_town
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

@@ -1,0 +1,21 @@
+uuid: dcdb2048-e96c-449c-9a97-1f95bcf9dfcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paid_fee
+    - node.type.trainee
+id: node.trainee.field_paid_fee
+field_name: field_paid_fee
+entity_type: node
+bundle: trainee
+label: 'Paid Fee'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string

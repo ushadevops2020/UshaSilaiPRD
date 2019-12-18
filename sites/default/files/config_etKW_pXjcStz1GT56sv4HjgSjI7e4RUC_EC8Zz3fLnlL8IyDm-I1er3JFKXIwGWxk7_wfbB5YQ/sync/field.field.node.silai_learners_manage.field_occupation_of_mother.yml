@@ -1,0 +1,21 @@
+uuid: 2ad204bd-29d4-4fb8-9af6-4b8633c4c934
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_occupation_of_mother
+    - node.type.silai_learners_manage
+  module:
+    - options
+id: node.silai_learners_manage.field_occupation_of_mother
+field_name: field_occupation_of_mother
+entity_type: node
+bundle: silai_learners_manage
+label: 'Occupation of Mother'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

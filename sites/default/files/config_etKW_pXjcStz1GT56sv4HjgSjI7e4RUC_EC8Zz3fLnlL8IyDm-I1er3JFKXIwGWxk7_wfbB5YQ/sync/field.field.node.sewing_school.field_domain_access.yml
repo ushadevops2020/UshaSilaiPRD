@@ -1,0 +1,25 @@
+uuid: 0a74cf45-67ff-4c50-9f82-2e10a6a2a272
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_access
+    - node.type.sewing_school
+id: node.sewing_school.field_domain_access
+field_name: field_domain_access
+entity_type: node
+bundle: sewing_school
+label: 'Domain Access'
+description: 'Select the affiliate domain(s) for this content'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\domain_access\DomainAccessManager::getDefaultValue'
+settings:
+  handler: 'default:domain'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: weight
+      direction: ASC
+field_type: entity_reference

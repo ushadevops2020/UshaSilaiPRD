@@ -1,0 +1,70 @@
+uuid: 5c031cb3-d12e-4a47-a692-7149a7df698c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.silai_district.field_domain_access
+    - field.field.node.silai_district.field_domain_all_affiliates
+    - field.field.node.silai_district.field_silai_business_state
+    - field.field.node.silai_district.field_silai_country
+    - field.field.node.silai_district.field_silai_district_code
+    - field.field.node.silai_district.field_silai_location
+    - node.type.silai_district
+  module:
+    - user
+id: node.silai_district.default
+targetEntityType: node
+bundle: silai_district
+mode: default
+content:
+  field_silai_business_state:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_country:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_silai_district_code:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_silai_location:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

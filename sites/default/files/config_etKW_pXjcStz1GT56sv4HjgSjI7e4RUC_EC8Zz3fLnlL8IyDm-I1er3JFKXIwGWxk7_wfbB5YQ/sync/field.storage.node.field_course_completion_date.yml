@@ -1,0 +1,20 @@
+uuid: a84a8ca6-b2d3-4211-8047-20e4c2ae324d
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_course_completion_date
+field_name: field_course_completion_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

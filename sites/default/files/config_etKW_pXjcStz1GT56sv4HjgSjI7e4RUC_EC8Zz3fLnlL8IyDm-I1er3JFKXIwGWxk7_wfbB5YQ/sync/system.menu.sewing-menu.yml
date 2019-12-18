@@ -1,0 +1,8 @@
+uuid: 7f380008-2ab2-4bd3-b4c9-b9f4fe346c81
+langcode: en
+status: true
+dependencies: {  }
+id: sewing-menu
+label: 'Sewing Menu'
+description: 'Sewing Menu'
+locked: false

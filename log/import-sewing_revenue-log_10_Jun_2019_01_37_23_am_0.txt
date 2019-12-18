@@ -1,0 +1,6 @@
+1) UAPSS114030004 - Admission Number does not exist. In excel file row number : 2342
+2) UTNCH114040017 - Admission Number does not exist. In excel file row number : 2670
+3) UMAYH114050004 - Admission Number does not exist. In excel file row number : 3092
+4) UPBJC314020010 - Admission Number does not exist. In excel file row number : 3156
+5) UAPSS114030003 - Admission Number does not exist. In excel file row number : 3163
+6) UGJAC314060014 - Admission Number does not exist. In excel file row number : 3219

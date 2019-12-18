@@ -1,0 +1,225 @@
+uuid: 1ff66b7c-9068-4d4f-8e12-1ad1a4737f23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.training.field_domain_access
+    - field.field.node.training.field_domain_all_affiliates
+    - field.field.node.training.field_expected_revenue
+    - field.field.node.training.field_no_of_attendees
+    - field.field.node.training.field_revenue_generated
+    - field.field.node.training.field_sewing_school_name
+    - field.field.node.training.field_sewing_status
+    - field.field.node.training.field_sewing_training_subject
+    - field.field.node.training.field_sm_representative_designat
+    - field.field.node.training.field_sm_representative_name
+    - field.field.node.training.field_training_conf_no_of_sale
+    - field.field.node.training.field_training_conf_no_of_sch_ad
+    - field.field.node.training.field_training_date
+    - field.field.node.training.field_training_location
+    - field.field.node.training.field_training_pros_gen_for_sch
+    - field.field.node.training.field_training_prosp_gen_for_sal
+    - field.field.node.training.field_training_remarks
+    - field.field.node.training.field_training_town
+    - field.field.node.training.field_training_trainer_name
+    - field.field.node.training.field_training_type
+    - field.field.node.training.field_venue
+    - field.field.node.training.field_workshop_conducted_by
+    - field.field.node.training.field_workshop_fees
+    - node.type.training
+  module:
+    - datetime
+    - user
+id: node.training.default
+targetEntityType: node
+bundle: training
+mode: default
+content:
+  field_expected_revenue:
+    weight: 134
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_no_of_attendees:
+    weight: 123
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_revenue_generated:
+    weight: 135
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_school_name:
+    weight: 115
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_status:
+    weight: 128
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_training_subject:
+    weight: 122
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sm_representative_designat:
+    weight: 130
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sm_representative_name:
+    weight: 129
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_conf_no_of_sale:
+    weight: 127
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_conf_no_of_sch_ad:
+    weight: 126
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_date:
+    weight: 101
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_training_location:
+    weight: 136
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_pros_gen_for_sch:
+    weight: 124
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_prosp_gen_for_sal:
+    weight: 125
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_remarks:
+    weight: 121
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_training_town:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_trainer_name:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_type:
+    weight: 116
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_venue:
+    weight: 131
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_workshop_conducted_by:
+    weight: 133
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_workshop_fees:
+    weight: 132
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

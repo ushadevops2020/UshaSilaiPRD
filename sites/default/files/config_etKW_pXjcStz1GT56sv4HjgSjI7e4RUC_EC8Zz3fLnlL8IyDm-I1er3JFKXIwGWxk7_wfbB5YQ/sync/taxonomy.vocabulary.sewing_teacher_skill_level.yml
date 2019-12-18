@@ -1,0 +1,9 @@
+uuid: 15d37396-41c3-4328-bfd4-13dca8df1380
+langcode: en
+status: true
+dependencies: {  }
+name: 'Sewing Teacher Skill Level'
+vid: sewing_teacher_skill_level
+description: 'Allows to select the skill level of the teacher from the list.'
+hierarchy: 0
+weight: 0

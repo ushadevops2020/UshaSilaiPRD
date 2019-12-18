@@ -1,0 +1,11 @@
+uuid: 20a237c8-1ef3-471d-b17d-7aed3571c83e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.revenue
+id: node.revenue
+target_entity_type_id: node
+target_bundle: revenue
+default_langcode: site_default
+language_alterable: false

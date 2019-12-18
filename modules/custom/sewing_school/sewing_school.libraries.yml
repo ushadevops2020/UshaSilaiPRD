@@ -1,0 +1,9 @@
+sewing_school:
+  version: 1.x
+  js:
+    #js/sewing_school.js: {}
+  dependencies:
+   - core/jquery
+   - core/drupalSettings
+   - core/drupal.dialog.ajax
+   - core/jquery.form

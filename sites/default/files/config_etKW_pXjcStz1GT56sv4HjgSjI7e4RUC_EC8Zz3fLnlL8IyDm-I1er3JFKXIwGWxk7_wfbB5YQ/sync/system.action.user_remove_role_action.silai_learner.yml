@@ -1,0 +1,14 @@
+uuid: 52ab6bf0-cd79-4ba3-8510-d099cd05d5fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_learner
+  module:
+    - user
+id: user_remove_role_action.silai_learner
+label: 'Remove the Silai Learner role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: silai_learner

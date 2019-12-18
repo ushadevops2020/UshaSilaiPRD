@@ -1,0 +1,54 @@
+uuid: e44833ed-1c26-4455-a9b4-268122e0bbce
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_silai_teacher_education
+field_name: field_silai_teacher_education
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Any other'
+      label: 'Any other'
+    -
+      value: Diploma
+      label: Diploma
+    -
+      value: Doctorate
+      label: Doctorate
+    -
+      value: Graduate
+      label: Graduate
+    -
+      value: 'High School'
+      label: 'High School'
+    -
+      value: Intermediate
+      label: Intermediate
+    -
+      value: Literate
+      label: Literate
+    -
+      value: Non-literate
+      label: Non-literate
+    -
+      value: 'Post Graduate'
+      label: 'Post Graduate'
+    -
+      value: Primary
+      label: Primary
+    -
+      value: 'Upper Primary'
+      label: 'Upper Primary'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

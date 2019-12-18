@@ -1,0 +1,18 @@
+uuid: 2be5a2f3-fe0b-442c-b02d-2e55f59633d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ngo
+id: node.ngo.title
+field_name: title
+entity_type: node
+bundle: ngo
+label: 'NGO Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

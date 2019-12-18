@@ -1,0 +1,523 @@
+uuid: e0ee3c6e-50cf-43c7-9669-0c1c4070e83c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sewing_school.field_aadhar_attachment
+    - field.field.node.sewing_school.field_address_1
+    - field.field.node.sewing_school.field_address_2
+    - field.field.node.sewing_school.field_address_3
+    - field.field.node.sewing_school.field_affiliation_fee_receive_on
+    - field.field.node.sewing_school.field_affiliation_received_fees
+    - field.field.node.sewing_school.field_area_of_operation
+    - field.field.node.sewing_school.field_district
+    - field.field.node.sewing_school.field_domain_access
+    - field.field.node.sewing_school.field_domain_all_affiliates
+    - field.field.node.sewing_school.field_location
+    - field.field.node.sewing_school.field_no_of_courses
+    - field.field.node.sewing_school.field_no_of_ss_machines
+    - field.field.node.sewing_school.field_no_of_uj_machines
+    - field.field.node.sewing_school.field_other_attachment
+    - field.field.node.sewing_school.field_pin_code
+    - field.field.node.sewing_school.field_renewal_fee_received_on
+    - field.field.node.sewing_school.field_renewal_received_fees
+    - field.field.node.sewing_school.field_school_approval_date
+    - field.field.node.sewing_school.field_school_creation_date
+    - field.field.node.sewing_school.field_sew_school_approval_status
+    - field.field.node.sewing_school.field_sewing_affiliation_date
+    - field.field.node.sewing_school.field_sewing_area_in_sqft
+    - field.field.node.sewing_school.field_sewing_area_range
+    - field.field.node.sewing_school.field_sewing_date_of_renewal
+    - field.field.node.sewing_school.field_sewing_dealer_details
+    - field.field.node.sewing_school.field_sewing_financial_year
+    - field.field.node.sewing_school.field_sewing_grade
+    - field.field.node.sewing_school.field_sewing_latitude
+    - field.field.node.sewing_school.field_sewing_longitude
+    - field.field.node.sewing_school.field_sewing_no_of_teachers
+    - field.field.node.sewing_school.field_sewing_pan_no
+    - field.field.node.sewing_school.field_sewing_phone_number
+    - field.field.node.sewing_school.field_sewing_sap_code
+    - field.field.node.sewing_school.field_sewing_school_code
+    - field.field.node.sewing_school.field_sewing_school_type
+    - field.field.node.sewing_school.field_sewing_select_dealer
+    - field.field.node.sewing_school.field_sewing_upload_documents
+    - field.field.node.sewing_school.field_sewing_user_id
+    - field.field.node.sewing_school.field_termination_date
+    - field.field.node.sewing_school.field_town_city
+    - node.type.sewing_school
+  module:
+    - datetime
+    - field_group
+    - field_hidden
+    - file
+    - path
+third_party_settings:
+  field_group:
+    group_basic_details:
+      children:
+        - field_sewing_financial_year
+        - field_sewing_sap_code
+        - field_location
+        - field_district
+        - field_town_city
+        - field_sewing_school_type
+        - field_sewing_grade
+        - field_sewing_school_code
+        - title
+        - field_sewing_no_of_teachers
+        - field_no_of_ss_machines
+        - field_no_of_uj_machines
+        - field_no_of_courses
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        label: 'Basic Details'
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Basic Details'
+      region: content
+    group_location_details:
+      children:
+        - field_address_1
+        - field_address_2
+        - field_address_3
+        - field_sewing_area_in_sqft
+        - field_sewing_area_range
+        - field_area_of_operation
+        - field_sewing_latitude
+        - field_sewing_longitude
+        - field_pin_code
+        - field_sewing_pan_no
+        - field_sewing_upload_documents
+        - field_aadhar_attachment
+        - field_other_attachment
+        - field_sewing_select_dealer
+        - field_sewing_dealer_details
+      parent_name: ''
+      weight: 3
+      format_type: details
+      format_settings:
+        label: 'Address & Contact Details'
+        required_fields: true
+        id: ''
+        classes: ''
+        open: false
+      label: 'Address & Contact Details'
+      region: content
+    group_affiliation_details:
+      children:
+        - field_school_creation_date
+        - field_school_approval_date
+        - field_sewing_affiliation_date
+        - field_affiliation_received_fees
+        - field_affiliation_fee_receive_on
+        - field_sewing_date_of_renewal
+        - field_renewal_received_fees
+        - field_renewal_fee_received_on
+      parent_name: ''
+      weight: 4
+      format_type: details
+      format_settings:
+        label: 'Affiliation & Renewal Details'
+        required_fields: true
+        id: ''
+        classes: ''
+        open: false
+      label: 'Affiliation & Renewal Details'
+      region: content
+id: node.sewing_school.default
+targetEntityType: node
+bundle: sewing_school
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_aadhar_attachment:
+    weight: 19
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_address_1:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_address_2:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_address_3:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_affiliation_fee_receive_on:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_affiliation_received_fees:
+    weight: 18
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields: {  }
+    type: string_textfield
+    region: content
+  field_area_of_operation:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_district:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_domain_access:
+    type: options_buttons
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_domain_all_affiliates:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    third_party_settings: {  }
+    region: content
+  field_location:
+    weight: 28
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+    type: options_select
+    region: content
+  field_no_of_courses:
+    weight: 39
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_no_of_ss_machines:
+    weight: 37
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 8
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_no_of_uj_machines:
+    weight: 38
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 8
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_other_attachment:
+    weight: 20
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_pin_code:
+    weight: 16
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_renewal_fee_received_on:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_renewal_received_fees:
+    weight: 21
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields: {  }
+    type: string_textfield
+    region: content
+  field_school_approval_date:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_school_creation_date:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sew_school_approval_status:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: field_hidden_string_textfield
+    region: content
+  field_sewing_affiliation_date:
+    weight: 17
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+    type: datetime_default
+    region: content
+  field_sewing_area_in_sqft:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 4
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_area_range:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_date_of_renewal:
+    weight: 20
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+    type: datetime_default
+    region: content
+  field_sewing_dealer_details:
+    weight: 22
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: null
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+        maxlength_js_truncate_html: false
+    type: string_textarea
+    region: content
+  field_sewing_financial_year:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_grade:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_latitude:
+    weight: 14
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 30
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_longitude:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 30
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_no_of_teachers:
+    weight: 35
+    settings:
+      size: 10
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 10
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_pan_no:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 10
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  field_sewing_phone_number:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: field_hidden_string_textfield
+    region: content
+  field_sewing_sap_code:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_school_code:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sewing_school_type:
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_select_dealer:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sewing_upload_documents:
+    weight: 18
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_sewing_user_id:
+    weight: 14
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_termination_date:
+    weight: 41
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_town_city:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  langcode:
+    type: language_select
+    weight: 8
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    weight: 40
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 1
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 34
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

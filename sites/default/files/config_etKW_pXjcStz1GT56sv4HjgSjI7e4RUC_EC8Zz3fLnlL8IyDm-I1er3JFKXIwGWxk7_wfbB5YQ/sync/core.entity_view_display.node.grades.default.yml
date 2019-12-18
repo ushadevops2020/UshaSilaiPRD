@@ -1,0 +1,51 @@
+uuid: 91da04b6-2091-4c24-bcbe-2ad199b8340e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.grades.field_description
+    - field.field.node.grades.field_domain_access
+    - field.field.node.grades.field_domain_all_affiliates
+    - field.field.node.grades.field_grade_name
+    - node.type.grades
+  module:
+    - user
+id: node.grades.default
+targetEntityType: node
+bundle: grades
+mode: default
+content:
+  field_description:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_grade_name:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

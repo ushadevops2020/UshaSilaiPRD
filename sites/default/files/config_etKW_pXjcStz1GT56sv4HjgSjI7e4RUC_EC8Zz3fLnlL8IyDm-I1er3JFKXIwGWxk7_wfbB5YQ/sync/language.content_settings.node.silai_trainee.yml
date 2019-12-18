@@ -1,0 +1,11 @@
+uuid: 23d8d7c6-6e8a-4c63-8913-cd47216b1ba0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_trainee
+id: node.silai_trainee
+target_entity_type_id: node
+target_bundle: silai_trainee
+default_langcode: site_default
+language_alterable: false

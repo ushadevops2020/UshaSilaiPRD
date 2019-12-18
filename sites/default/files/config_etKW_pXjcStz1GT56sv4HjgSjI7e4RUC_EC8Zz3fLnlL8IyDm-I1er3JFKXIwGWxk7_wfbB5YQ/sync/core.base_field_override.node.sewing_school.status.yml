@@ -1,0 +1,22 @@
+uuid: 552facb8-9716-459e-b134-86e4fc3f1f7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_school
+id: node.sewing_school.status
+field_name: status
+entity_type: node
+bundle: sewing_school
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

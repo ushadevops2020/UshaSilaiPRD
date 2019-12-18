@@ -1,0 +1,18 @@
+uuid: 232587af-1654-4d00-9741-f059dfdc7dc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainer
+id: node.trainer.title
+field_name: title
+entity_type: node
+bundle: trainer
+label: 'Trainer Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

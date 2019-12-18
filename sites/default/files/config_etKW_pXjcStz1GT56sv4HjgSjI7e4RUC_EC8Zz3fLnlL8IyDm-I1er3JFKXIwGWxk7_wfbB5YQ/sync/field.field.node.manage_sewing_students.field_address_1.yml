@@ -1,0 +1,19 @@
+uuid: 6903ea3b-b0a5-443e-9c68-867f2613266d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address_1
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_address_1
+field_name: field_address_1
+entity_type: node
+bundle: manage_sewing_students
+label: 'Address 1'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

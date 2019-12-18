@@ -1,0 +1,177 @@
+sewing.sewing_controller_getsewingstates:
+  path: '/get_sewing_states'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSewingStates'
+    _title: 'Sewing Controller'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_controller_getsewingtown:
+  path: '/get-sewing-towen-by-state/{stateId}'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSewingTownByState'
+    _title: 'Sewing Controller'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_controller_getsewingschool:
+  path: '/get-sewing-school-code'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSewingSchoolCode'
+    _title: 'Sewing Controller'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_controller_getsewingschooldetails:
+  path: '/sewing-school-detials-by-school-code'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSchoolDetailsBySchoolCode'
+    _title: 'Sewing Controller'
+  requirements:
+    _permission: 'access content'
+
+sewing.open_modal_form:
+  path: '/custom_add_user'
+  defaults:
+    _title: 'Custom Add User Form'
+    _controller: '\Drupal\sewing\Controller\ModalFormController::openAddUserCustomForm'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_custom_accept_inventory_form:
+  path: '/inventory_accept'
+  defaults:
+    _title: 'Accept Inventory Form'
+    _controller: '\Drupal\sewing\Controller\InventoryController::openAcceptInventoryForm'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_get_school_detail_by_id:
+  path: '/get_school_detail_by_id/{id}'
+  defaults:
+    _title: 'Get school detail by id'
+    _controller: '\Drupal\sewing\Controller\SewingController::getSchoolDetailById'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_get_course_detail_by_id:
+  path: '/get_course_detail_by_id/{id}/{Sid}'
+  defaults:
+    _title: 'Get course detail by id'
+    _controller: '\Drupal\sewing\Controller\SewingController::getCourseDetailById'
+  requirements:
+    _permission: 'access content'
+ 
+
+sewing.sewing_get_school_by_town_id:
+  path: '/sewing_get_school_by_town/{id}'
+  defaults:
+    _title: 'Get School List by Town Id'
+    _controller: '\Drupal\sewing\Controller\SewingController::getSchoolListByTownId'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_custom_forward_inventory_form:
+  path: '/inventory_forward'
+  defaults:
+    _title: 'Forward Inventory Form'
+    _controller: '\Drupal\sewing\Controller\InventoryController::openForwardInventoryForm'
+  requirements:
+    _permission: 'access content'
+
+
+sewing.sewing_get_sewing_items_by_itemgroup:
+  path: '/get_sewing_items_by_itemgroup/{itemGroupId}'
+  defaults:
+    _title: 'Get items by item group'
+    _controller: '\Drupal\sewing\Controller\SewingController::getItemsByItemGroup'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_get_schools_by_locationIds:
+  path: '/get_schools_by_locationIds/{locationId}'
+  defaults:
+    _title: 'Get school by location'
+    _controller: '\Drupal\sewing\Controller\SewingController::getSchoolsByLocation'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_bulk_traning_terminate:
+  path: '/bulk-traning-terminate'
+  defaults:
+    _title: 'Bulk Training Terminate'
+    _controller: '\Drupal\sewing\Controller\SewingController::bulkTrainingTerminate'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_bulk_attendee_terminate:
+  path: '/bulk-attendee-terminate'
+  defaults:
+    _title: 'Bulk Attendee Terminate'
+    _controller: '\Drupal\sewing\Controller\SewingController::bulkAttendeeTerminate'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_controller_getsewingteacherdetails:
+  path: '/get-sewing-teacher-detail-by-schoolcode'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getTeacherDetailsBySchoolCode'
+    _title: 'Sewing Controller'
+  requirements:
+    _permission: 'access content'
+
+sewing.view_sewing_forwarded_items:
+  path: '/view_sewing_forwarded_items'
+  defaults:
+    _title: 'View forwarded items'
+    _controller: '\Drupal\sewing\Controller\InventoryController::viewForwardedItems'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_techet_deleted:
+  path: '/delete-sewing-teacher'
+  defaults:
+    _title: 'Delete User'
+    _controller: '\Drupal\sewing\Controller\SewingController::deleteTeacherUser'
+  requirements:
+    _permission: 'access content'
+
+sewing.sewing_show_notification:
+  path: '/sewing_show_notification/{id}'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::sewingShowNotification'
+    _title: 'Notification'
+  requirements:
+     _permission: 'access content'
+
+sewing.sewing_delete_notification:
+  path: '/sewing-delete_notification'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::sewingDeleteNotification'
+    _title: 'Notification'
+  requirements:
+    _permission: 'access content'    
+      
+sewing.sewing_courselist_by_school:
+  path: '/get_sewing_courses_by_school/{schoolId}'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSewingCoursesList'
+    _title: 'Get Sewing Course list'
+  requirements:
+    _permission: 'access content'
+    
+sewing.sewing_upgrade_student_fee_function_query:
+  path: '/upgrade_student_fee_function_query'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::queryForStudentFeeFunction'
+    _title: 'Student Fee Update Fonction'
+  requirements:
+    _permission: 'access content'
+    
+sewing.sewing_controller_get_ssi_user_by_location:
+  path: '/get_ssi_user_by_location/{locationId}'
+  defaults:
+    _controller: '\Drupal\sewing\Controller\SewingController::getSSIUserByLocation'
+    _title: 'SSI User By Location'
+  requirements:
+    _permission: 'access content'

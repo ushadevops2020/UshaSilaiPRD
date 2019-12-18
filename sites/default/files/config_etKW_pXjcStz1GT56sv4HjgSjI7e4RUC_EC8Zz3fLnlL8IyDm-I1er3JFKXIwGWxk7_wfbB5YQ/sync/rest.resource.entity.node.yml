@@ -1,0 +1,24 @@
+uuid: 930497ef-5fdf-4fa4-9dd8-fcaac8b7bb43
+langcode: en
+status: true
+dependencies:
+  module:
+    - hal
+    - node
+    - serialization
+    - simple_oauth
+_core:
+  default_config_hash: t_jfECmZhJqBOJuSOFn87EOi_TWi-_fRYTuJgd19vgg
+id: entity.node
+plugin_id: 'entity:node'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+  formats:
+    - hal_json
+    - json
+  authentication:
+    - oauth2

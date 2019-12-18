@@ -1,0 +1,2 @@
+const SCHOOL_TYPE_COMPANY_RUN = '71535';
+const PASSING_EXIT_CODE = '58'; 

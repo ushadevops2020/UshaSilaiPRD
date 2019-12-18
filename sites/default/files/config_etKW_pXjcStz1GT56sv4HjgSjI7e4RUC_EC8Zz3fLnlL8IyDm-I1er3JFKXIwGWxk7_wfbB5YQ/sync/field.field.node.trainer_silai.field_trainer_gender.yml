@@ -1,0 +1,21 @@
+uuid: cbb7849a-a075-49b1-b976-60542a2c300c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trainer_gender
+    - node.type.trainer_silai
+  module:
+    - options
+id: node.trainer_silai.field_trainer_gender
+field_name: field_trainer_gender
+entity_type: node
+bundle: trainer_silai
+label: Gender
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

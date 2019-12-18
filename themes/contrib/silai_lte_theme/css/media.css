@@ -1,0 +1,338 @@
+@media (max-width: 1200px){
+
+.header .navbar-nav li a {
+    padding: 15px 25px;
+}
+form.navbar-form.navbar-left.Search {
+    width: 35%;
+}
+}
+@media (max-width: 1024px){
+    .sidemenu{margin-left: -25rem;}
+.sidemenu.hide-custom {
+    margin-left: 0rem;
+    z-index: 11111111;
+}
+.count, .panel-title {
+    font-size: 19px;
+}
+.header {
+    margin-bottom: 0px;
+    min-height: 70px;
+    z-index: 1111111;}
+.wrapper {
+    margin-left: 0rem;
+}
+.wrapper.toggled {
+    margin-left: 0rem;
+}
+.wrapper.toggled .overlay {
+    position: fixed;
+    background: #00000096;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    display: block;
+    z-index: 11111;
+    width: 100%;
+}
+}
+@media (max-width: 991px){
+  .content-header h1.page-title{
+    margin-top:20px;
+  }
+}
+@media (min-width: 992px){
+
+
+}
+@media (min-width: 768px){
+.sidebar-mini.sidebar-collapse .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 0px !important;
+    z-index: 850;
+}
+.sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: 0px !important;
+    z-index: 840;
+}
+.sidebar-mini.sidebar-collapse .main-sidebar .user-panel>.info, .sidebar-mini.sidebar-collapse .sidebar-form, .sidebar-mini.sidebar-collapse .sidebar-menu li a span, .sidebar-mini.sidebar-collapse .sidebar-menu li .treeview-menu, .sidebar-mini.sidebar-collapse .sidebar-menu li a .pull-right, .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
+    display: block !important;
+    -webkit-transform: translateZ(0);
+}
+
+}
+
+
+
+@media (max-width: 767px){
+
+  body.skin-black #logo,
+  body.skin-black #logo:hover,
+  body.skin-black-light #logo,
+  body.skin-black-light #logo:hover
+  {
+    background-color:#fff;
+    border-bottom: 1px solid #eee;
+  }
+.login-bg .col-xs-12.pull-right{float:none!important;}
+.login-bg .panel {
+    position: absolute;
+    width: 100%;
+    right: 10%;
+    top: 2em;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    background: transparent;
+    left: 0;
+}
+.custom-static-top {
+    width: 10% !important;
+    float: left !important;
+    text-align: center;
+}
+.logo {
+    width: 90% !important;
+    float: right !important;
+    text-align: center;
+}
+
+
+header.main-header.header-2 {
+    clear: both;
+}
+.sidebar-open .content-wrapper, .sidebar-open .main-footer {
+    -webkit-transform: translate(0px, 0) !important;
+    -ms-transform: translate(0px, 0) !important;
+    -o-transform: translate(0px, 0) !important;
+    transform: translate(0px, 0) !important;
+}
+.main-sidebar {
+    padding-top: 50px!important;
+}
+
+}
+
+
+
+
+@media(max-width: 640px){
+
+    .path-frontpage .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+.header {
+    display: none;
+}
+.logo {
+    width: 50%;
+    float: right;
+    text-align: right;
+}
+.node--type-manage-countries .node-manage-countries-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+section.page-title h1.page-title {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 20px;
+    color: #252b37;
+}
+.node-manage-countries-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-locations-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-manage-locations .node-manage-locations-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-manage-states .node-manage-states-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-business-states-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-manage-business-states .node-manage-business-states-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-districts-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-manage-districts .node-manage-districts-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-manage-towns-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.node--type-manage-towns .node-manage-towns-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-course-duration-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.node-course-duration-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-course-duration-master .node-course-duration-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-course-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: text-top;
+}
+.node--type-course-master .node-course-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    vertical-align: text-top;
+}
+.node-grade-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-revenue-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-revenue .node-revenue-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-school-type-master-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-school-type-master .node-school-type-master-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node-trainer-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.node--type-trainer .node-trainer-edit-form .form-wrapper {
+    width: 100%;
+    display: inline-block;
+    margin-right: 0px;
+}
+.path-course-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-school-type-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-grades .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-grade-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-countries-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-locations-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-business-states-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-districts-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-towns-list .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 0px;
+    display: inline-block;
+}
+.path-users-listing .views-exposed-form .form-item {
+    float: inherit;
+    width: 100%;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+}
+
+@media (max-width: 320px){
+    .login-bg .panel .panel-body {
+    background: #fff;
+    box-shadow: 0px 3px 13px rgba(0, 0, 0, 0.21);
+    border: 1px dashed #7f7f7f;
+    margin-top: 4em;
+    position: relative;
+    padding: 5em 0em;
+}
+}

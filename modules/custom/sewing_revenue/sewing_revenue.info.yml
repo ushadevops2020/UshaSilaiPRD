@@ -1,0 +1,5 @@
+name: 'sewing revenue'
+type: module
+description: 'This Module is for Sewing Revenue Generate Fee Receipt'
+core: 8.x
+package: 'Custom'

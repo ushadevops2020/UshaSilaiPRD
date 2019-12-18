@@ -1,0 +1,5 @@
+name: send_message
+description: A module to send message to PC user based on location.
+core: 8.x
+package: Custom
+type: module

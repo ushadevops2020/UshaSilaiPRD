@@ -1,0 +1,9 @@
+uuid: 7508e612-fb65-47ff-8c91-7e3119c8e782
+langcode: en
+status: true
+dependencies: {  }
+name: 'Swing Machine Brands'
+vid: swing_machine_brands
+description: 'Swing Machine Brands'
+hierarchy: 0
+weight: 0

@@ -1,0 +1,127 @@
+sewing_import.sewing_school_bulk_import:
+  path: '/sewing-school-bulk-import' 
+  defaults:
+    _title: 'School Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController::schoolBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_districts_bulk_import:
+  path: '/sewing-district-bulk-import' 
+  defaults:
+    _title: 'District Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController::districtBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_town_bulk_import:
+  path: '/sewing-town-bulk-import' 
+  defaults:
+    _title: 'Town Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController::townBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_student_bulk_import:
+  path: '/sewing-student-bulk-import' 
+  defaults:
+    _title: 'Student Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:studentBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_feeconfig_bulk_import:
+  path: '/sewing-feeconfig-bulk-import' 
+  defaults:
+    _title: 'Fee Configuration Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:feeconfigBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_course_bulk_import:
+  path: '/sewing-course-bulk-import' 
+  defaults:
+    _title: 'Course Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:courseBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_dealers_bulk_import:
+  path: '/sewing-dealers_bulk_import' 
+  defaults:
+    _title: 'Dealers Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:dealersBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_activity_bulk_import:
+  path: '/sewing-activity_bulk_import' 
+  defaults:
+    _title: 'Dealers Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:activityBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_student_bulk_result_update:
+  path: '/sewing-student-bulk-result-update'
+  defaults:
+    _title: 'Student Bulk Result Update'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:studentBulkResultUpdateForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin+sewing_ssi'
+
+sewing_import.sewing_revenue_bulk_import:
+  path: '/sewing-revenue-bulk-import' 
+  defaults:
+    _title: 'Revenue Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:revenueBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+    
+sewing_import.sewing_school_fee_bulk_update:
+  path: '/sewing-school-fee-bulk-update' 
+  defaults:
+    _title: 'School Fee Bulk Update'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:schoolFeeBulkUpdateForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+    
+sewing_import.sewing_teacher_bulk_import:
+  path: '/sewing-teacher-bulk-import' 
+  defaults:
+    _title: 'Teacher Bulk Import'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:teacherBulkImportForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'
+
+sewing_import.sewing_add_bulk_students:
+  path: '/sewing-add-bulk-students' 
+  defaults:
+    _title: 'Add Bulk Student'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:addBulkStudentForm'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'    
+    
+sewing_import.sewing_students_admission_no_update:
+  path: '/sewing-students-admission-no-update' 
+  defaults:
+    _title: 'Students Admission Number Update'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:studentBulkAdmissionNoUpdate'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'    
+    
+sewing_import.sewing_students_admission_sum_query:
+  path: '/sewing-students-admission-sum-query' 
+  defaults:
+    _title: 'Students Admission Sum Query'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:studentBulkAdmissionSumQuery'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'  
+
+sewing_import.sewing_students_certificate_issued:
+  path: '/sewing-bulk-student-certificate-issued' 
+  defaults:
+    _title: 'Bulk Certificate Issued'
+    _controller: '\Drupal\sewing_import\Controller\SewingImportController:studentBulkCertificateIssued'
+  requirements:
+    _role: 'administrator+sewing_ho_admin'       

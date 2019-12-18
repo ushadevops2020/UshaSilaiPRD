@@ -1,0 +1,22 @@
+uuid: cadfb55a-186d-4f32-b621-6922a6fad5b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.weekly_mis
+id: node.weekly_mis.promote
+field_name: promote
+entity_type: node
+bundle: weekly_mis
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

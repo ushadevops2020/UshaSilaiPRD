@@ -1,0 +1,35 @@
+uuid: 51d8b573-7bd7-4787-ab52-50ed402301fb
+langcode: en
+status: true
+dependencies: {  }
+id: usha_broadcasting_receiver_list
+title: usha_broadcasting_receiver_list
+table_schema:
+  -
+    name: id
+    label: ID
+    type: serial
+    size: normal
+    length: ''
+    unsigned: '1'
+    index: '1'
+    primary: '1'
+  -
+    name: notification_id
+    label: 'Notification ID'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+  -
+    name: receiver_id
+    label: 'Receiver ID'
+    type: int
+    size: normal
+    length: ''
+    unsigned: 0
+    index: 0
+    primary: 0
+meta: null

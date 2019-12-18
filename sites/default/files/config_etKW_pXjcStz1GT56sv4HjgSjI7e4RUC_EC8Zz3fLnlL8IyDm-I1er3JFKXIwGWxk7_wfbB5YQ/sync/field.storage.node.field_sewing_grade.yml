@@ -1,0 +1,19 @@
+uuid: 98e6f0cc-d0a3-402e-a764-bfe507e898af
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sewing_grade
+field_name: field_sewing_grade
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

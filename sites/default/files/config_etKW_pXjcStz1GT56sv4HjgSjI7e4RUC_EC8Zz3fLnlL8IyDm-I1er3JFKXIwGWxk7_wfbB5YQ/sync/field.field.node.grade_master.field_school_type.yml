@@ -1,0 +1,29 @@
+uuid: e28c8235-6c5e-4eb2-9a9c-38833a617b22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_school_type
+    - node.type.grade_master
+    - node.type.school_type_master
+id: node.grade_master.field_school_type
+field_name: field_school_type
+entity_type: node
+bundle: grade_master
+label: 'School Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      school_type_master: school_type_master
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

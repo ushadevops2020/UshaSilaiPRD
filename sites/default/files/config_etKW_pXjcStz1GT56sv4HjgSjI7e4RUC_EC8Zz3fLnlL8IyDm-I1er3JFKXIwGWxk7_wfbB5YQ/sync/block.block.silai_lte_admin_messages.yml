@@ -1,0 +1,22 @@
+uuid: a452474c-cde2-4683-9285-58c986bca8cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: silai_lte_admin_messages
+theme: silai_lte_admin
+region: content
+weight: -9
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

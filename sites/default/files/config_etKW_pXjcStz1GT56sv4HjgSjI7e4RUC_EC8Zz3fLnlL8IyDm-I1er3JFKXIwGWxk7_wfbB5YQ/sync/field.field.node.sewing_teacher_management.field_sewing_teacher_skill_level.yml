@@ -1,0 +1,29 @@
+uuid: 5dc7fe55-cb3b-449d-bd37-a7fa72ce063b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_skill_level
+    - node.type.sewing_teacher_management
+    - taxonomy.vocabulary.sewing_teacher_skill_level
+id: node.sewing_teacher_management.field_sewing_teacher_skill_level
+field_name: field_sewing_teacher_skill_level
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Skill Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sewing_teacher_skill_level: sewing_teacher_skill_level
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 49e4fafc-e808-45ad-af6b-2568ca196276
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_town
+    - node.type.silai_blocks
+    - node.type.silai_town
+id: node.silai_blocks.field_silai_town
+field_name: field_silai_town
+entity_type: node
+bundle: silai_blocks
+label: 'Assign Town'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_town: silai_town
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

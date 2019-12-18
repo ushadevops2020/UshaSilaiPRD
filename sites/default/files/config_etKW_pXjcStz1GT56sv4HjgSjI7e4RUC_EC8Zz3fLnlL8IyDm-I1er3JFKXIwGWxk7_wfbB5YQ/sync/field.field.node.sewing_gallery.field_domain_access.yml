@@ -1,0 +1,25 @@
+uuid: 1f0d29c2-94c0-441a-9dbc-b2802e4beb81
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_access
+    - node.type.sewing_gallery
+id: node.sewing_gallery.field_domain_access
+field_name: field_domain_access
+entity_type: node
+bundle: sewing_gallery
+label: 'Domain Access'
+description: 'Select the affiliate domain(s) for this content'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\domain_access\DomainAccessManager::getDefaultValue'
+settings:
+  handler: 'default:domain'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: weight
+      direction: ASC
+field_type: entity_reference

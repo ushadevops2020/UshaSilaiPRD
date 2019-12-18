@@ -1,0 +1,27 @@
+uuid: 8ac0b00d-9c54-4bd7-ae33-51b7f0766d5f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_you_received_certificate
+field_name: field_you_received_certificate
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '0'
+      label: 'No'
+    -
+      value: '1'
+      label: 'Yes'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

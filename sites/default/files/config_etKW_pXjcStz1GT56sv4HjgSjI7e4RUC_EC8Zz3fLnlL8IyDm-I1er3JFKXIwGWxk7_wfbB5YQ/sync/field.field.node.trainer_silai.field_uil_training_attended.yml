@@ -1,0 +1,21 @@
+uuid: 89802c63-7373-4a6e-bdf3-251ff53e8323
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_uil_training_attended
+    - node.type.trainer_silai
+  module:
+    - options
+id: node.trainer_silai.field_uil_training_attended
+field_name: field_uil_training_attended
+entity_type: node
+bundle: trainer_silai
+label: 'UIL Training attended'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

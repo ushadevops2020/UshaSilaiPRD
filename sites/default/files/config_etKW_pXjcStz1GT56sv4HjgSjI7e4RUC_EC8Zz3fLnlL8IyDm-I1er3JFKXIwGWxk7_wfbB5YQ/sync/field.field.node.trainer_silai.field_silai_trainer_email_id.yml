@@ -1,0 +1,19 @@
+uuid: 6cbc26fd-49bc-4533-973e-0518bdf958c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_trainer_email_id
+    - node.type.trainer_silai
+id: node.trainer_silai.field_silai_trainer_email_id
+field_name: field_silai_trainer_email_id
+entity_type: node
+bundle: trainer_silai
+label: 'Email Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

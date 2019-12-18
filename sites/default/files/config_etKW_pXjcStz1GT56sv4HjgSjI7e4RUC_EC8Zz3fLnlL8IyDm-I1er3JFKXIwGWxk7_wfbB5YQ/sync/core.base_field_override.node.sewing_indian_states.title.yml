@@ -1,0 +1,18 @@
+uuid: fc809412-9fa9-41d1-acba-78672009cf08
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_indian_states
+id: node.sewing_indian_states.title
+field_name: title
+entity_type: node
+bundle: sewing_indian_states
+label: 'State Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

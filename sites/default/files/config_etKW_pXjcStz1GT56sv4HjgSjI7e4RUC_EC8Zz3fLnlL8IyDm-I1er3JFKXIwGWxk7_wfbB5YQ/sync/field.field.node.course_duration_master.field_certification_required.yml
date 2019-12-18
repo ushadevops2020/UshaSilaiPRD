@@ -1,0 +1,23 @@
+uuid: 9527dcc5-42a5-453b-bfc4-134543fd43c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_certification_required
+    - node.type.course_duration_master
+  module:
+    - options
+id: node.course_duration_master.field_certification_required
+field_name: field_certification_required
+entity_type: node
+bundle: course_duration_master
+label: 'Certification Required'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '1'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

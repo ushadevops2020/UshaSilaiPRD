@@ -1,0 +1,22 @@
+uuid: f5b7fb15-e089-4d3e-aaa8-d0b45939dc91
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.revenue
+id: node.revenue.promote
+field_name: promote
+entity_type: node
+bundle: revenue
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

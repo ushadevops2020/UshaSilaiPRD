@@ -1,0 +1,11 @@
+uuid: c54b06c4-57ba-4169-adac-84cef3b58a08
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.financial_year_sewing
+id: taxonomy_term.financial_year_sewing
+target_entity_type_id: taxonomy_term
+target_bundle: financial_year_sewing
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,28 @@
+name: SilaiAdminLTE
+description: 'Drupal 8 admin theme based on Silai'
+base theme: classy
+package: Custom
+type: theme
+# version: 1.0.0
+# core: 8.x
+libraries:
+  - silai_lte_admin/base
+regions:
+  brand: Site Branding
+  header: Header
+  top: Top
+  page_title: Page Title
+  content: Content
+  bottom: Bottom
+  sidebar: Sidebar
+  footer: Footer
+  navbar_right_notifications: Navbar Right Notifications
+features:
+  - favicon
+  - logo
+
+# Information added by Drupal.org packaging script on 2018-02-24
+version: '8.x-1.0'
+core: '8.x'
+project: 'silai_lte_admin'
+datestamp: 1519506484

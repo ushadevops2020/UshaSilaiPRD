@@ -1,0 +1,249 @@
+<?php
+namespace Drupal\mis\Services;
+
+use Drupal\node\Entity\Node;
+use Drupal\Core\Database\Database;
+use Drupal\user\Entity\User;
+
+class addImportContent {
+
+  public static function addImportContentItem($item, &$context){
+    $context['sandbox']['current_item'] = $item;
+    // $message = 'Importing MIS Weekly Data....'. $item[2];
+    $results = array();
+    if($item['type'] == 1) {
+      upload_weekly_mis($item);
+    } else {
+      upload_monthly_mis($item);
+    }
+    // $context['message'] = $message;
+    $context['results'][] = $item;
+  }
+  function addImportContentItemCallback($success, $results, $operations) {
+    // The 'success' parameter means no fatal PHP errors were detected. All
+    // other error management should be handled using 'results'.
+    if ($success) {
+      $message = \Drupal::translation()->formatPlural(
+        count($results),
+        'One item processed.', '@count items successfully processed.'
+      );
+    } else {
+      $message = t('Finished with an error.');
+    }
+    drupal_set_message($message);
+  }
+
+  // This function actually upload Monthly/ Quaterly each item.
+  public function monthlyQuarterlyList($fiscalYr, $type, $schoolCode, $misid = '') {
+    $results = array();
+    if($fiscalYr != '-Select-') {
+      if($type == 1) {
+        $results = QUARTERLY_TYPE_DATA;
+        $month = date("m");
+        $length = ltrim($month, '0');
+        $range = count($results);
+        if($length > 3) {
+          $length = $range+1;
+        } else {
+          $length = $range;
+        }
+      } else {
+        $results = MONTHLY_TYPE_DATA;
+        $month = date("m");
+        $length = ltrim($month, '0');
+        $range = count($results);
+      }
+      $conn = Database::getConnection();
+      $query = $conn->select('usha_monthly_mis', 'm');
+      $query->condition('monthly_quarterly_type', $type);
+      $query->condition('fiscal_year', $fiscalYr);
+      $query->condition('school_code', $schoolCode);
+      $query->condition('is_deleted', 0);
+      
+      if(!empty($misid)) {
+        $query->condition('id', $misid, '!=');
+      }
+      $query->fields('m');
+      
+      $record = $query->execute()->fetchAll();
+      if(!empty($record)) {
+        foreach($record as $value) {
+          if(in_array($value->monthly_quarterly_value, array_keys($results))) {
+              unset($results[$value->monthly_quarterly_value]);
+          }
+        }  
+      }
+      $fiscalYrArr = explode('-', $fiscalYr);
+      if(!empty($fiscalYrArr[1]) && $fiscalYrArr[1] == date("Y")) {
+        for($i = $length; $i<= $range; $i++) {
+          unset($results[$i]);
+        }
+      }
+    }
+  return $results;  
+  }
+
+  public function getMQFiscalYear($type, $schoolCode, $misid='') {
+    $result = array();
+    $month = date("m");
+    $length = ltrim($month, '0');
+    if($length > 3) {
+      $lastYear = (int)date('Y') + 1;
+    } else {
+      $lastYear = date('Y');
+    }
+    $firstYear = (int)date('Y') - 6;
+    $result[''] = '-Select-';
+    for($i=$firstYear;$i<=$lastYear;$i++)
+    {
+      $result[($i-1)."-".$i] = ($i-1)."-".$i;
+    }
+    foreach($result as $value) {
+      $getOldData = $this->monthlyQuarterlyList($value, $type, $schoolCode, $misid = '');
+      if(empty($getOldData)) {
+        unset($result[$value]);
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * Method to get Week Drop Down
+   * {@inheritdoc}
+   */
+  function getWeeks($misId= ''){
+	  $userId = \Drupal::currentUser()->id();
+      $current_user = \Drupal::currentUser();
+      $roles = $current_user->getRoles();
+      $user = User::load(\Drupal::currentUser()->id());
+      $locationId = $user->field_user_location->target_id;
+
+      $currdt= strtotime(WEEKLY_MIS_DROP_DOWN_DATE);
+      $nextmonth=strtotime(WEEKLY_MIS_DROP_DOWN_DATE."+1 month");
+      $currentWeek=strtotime(date()."-1 week");
+      $i=0;
+      do 
+      {
+        $weekday= date("w",$currdt);
+        $nextday=7-$weekday;
+        $endday=abs($weekday-7);
+        $startarr[$i]=$currdt;
+        $endarr[$i]=strtotime(date("Y-m-d",$currdt)."+$endday day");
+        $currdt=strtotime(date("Y-m-d",$endarr[$i])."+1 day");
+        $output[$startarr[$i].'@@'.$endarr[$i]] = date("d-M-y",$startarr[$i])." -- ". date("d-M-y",$endarr[$i]);
+         $i++; 
+                   
+      }while($endarr[$i-1]<$currentWeek);
+      $flag = 0;
+      $conn = Database::getConnection();
+      
+      $query = $conn->select('usha_weekly_mis', 'm'); 
+      $query->condition('is_deleted', 0);
+      $query->condition('location', $locationId);
+	  $query->condition('pc_uid', $userId);
+      $query->fields('m', array('week_start_date', 'week_end_date'));
+      $record = $query->execute()->fetchAll();
+      $record = json_decode(json_encode($record), true);
+      if(!empty($misId)) {
+        $select = $conn->select('usha_weekly_mis', 'm'); 
+        $select->condition('id', $misId);
+        $select->condition('is_deleted', 0); 
+		$query->condition('pc_uid', $userId);
+        $select->fields('m', array('week_start_date', 'week_end_date'));
+        $result = $select->execute()->fetchAssoc();
+        $key = array_search($result['week_start_date'], array_column($record, 'week_start_date'));
+        unset($record[$key]);
+      }
+      foreach ($record as $key => $value) {
+        $startDate = $value['week_start_date'];
+        $endDate   = $value['week_end_date'];
+        if(in_array($startDate.'@@'.$endDate, array_keys($output))) {
+            unset($output[$startDate.'@@'.$endDate]);
+        }
+      }  
+    return $output;
+  }
+}
+
+// This function actually upload weekly each item.
+function upload_weekly_mis($item) {
+  $userId = \Drupal::currentUser()->id();
+  $database = Database::getConnection(); 
+  $i= 0; 
+  $dataArr = array();
+  foreach(WEEKLY_MIS_UPLOAD_FIELDS as $key=>$value) {
+     if($i==33 || $i ==34) {
+        $item[$i] = strtolower($item[$i]) == 'yes'?1:0;
+      }
+      $dataArr['week_end_date'] = $item['endDate'];
+      $dataArr[$value] = $item[$i];
+      $dataArr['pc_uid'] = $userId;
+      $dataArr['created_by'] = $userId;
+      $dataArr['created_date'] = time();
+      $i++;
+  }
+  $database->insert('usha_weekly_mis')->fields($dataArr)->execute();
+} 
+
+
+// This function actually upload Monthly/ Quaterly each item.
+function upload_monthly_mis($item) {
+  $userId = \Drupal::currentUser()->id();
+  $database = Database::getConnection(); 
+  $i= 0;
+  if($item['type'] == 2) {
+    $typeValue = 0;
+    $typeData = MONTHLY_TYPE_DATA;
+  } else {
+    $typeValue = 1;
+    $typeData = QUARTERLY_TYPE_DATA;
+  }
+  $dataArr = array();
+  $dataArr['monthly_quarterly_type'] = $typeValue;
+  $dataArr['fiscal_year'] = $item[0];
+  $dataArr['monthly_quarterly_value'] = !empty($item[1])?array_search($item[1], $typeData):'';
+  $dataArr['school_code'] = $item[2];
+	$dataArr['date_of_training'] = $item[3];
+  $dataArr['ss_sign_board_received'] = $item[4];
+  $dataArr['sb_prominent_place'] = $item[5];
+  $dataArr['condition_of_sb'] = $item[6];
+  $dataArr['machine_condition'] = $item[7];
+  $dataArr['machine_remark'] = $item[8];
+  $dataArr['usefulness_of_course'] = $item[9];
+  $dataArr['activity_code'] = $item[10];
+  $dataArr['no_of_student'] = $item[11];
+  $dataArr['additional_information'] = $item[12];
+	$dataArr['activities_status'] = $item[13];
+	
+  
+  
+
+  $dataArr['no_of_learners'] = $item[14];
+  $dataArr['no_of_learners_course_completed'] = $item[15];
+  $dataArr['fee_charged_learners_month'] = $item[16];
+  $dataArr['income_from_learners_fee'] = $item[17];
+  $dataArr['income_from_tailoring'] = $item[18];
+  $dataArr['income_from_sewing_machine_repairing'] = $item[19];
+  $dataArr['total_income'] = $item[20];
+  $dataArr['name_of_classical_school'] = $item[21];
+  $dataArr['whether_entrepreneur_machine'] = $item[22];
+  $dataArr['brand_of_machine'] = $item[23];
+  $dataArr['students_practice'] = $item[24];
+  $dataArr['remark'] = $item[25];
+  $dataArr['enquiry'] = $item[26];
+  $dataArr['feedback'] = $item[27];
+  
+
+  $dataArr['location'] = $item[28];
+  // $dataArr['mother_name_ngo_partner'] = $item[28];
+  $dataArr['ngo_id'] = $item['ngo_id'];
+  $dataArr['school_type'] = $item['school_type'];
+  $dataArr['state'] = $item['state'];
+  $dataArr['district'] = $item['district'];
+  $dataArr['block'] = $item['block'];
+  $dataArr['village'] = $item['village'];
+  
+  $dataArr['created_date'] = time();
+  $dataArr['created_by'] = $userId;
+  $database->insert('usha_monthly_mis')->fields($dataArr)->execute();
+}

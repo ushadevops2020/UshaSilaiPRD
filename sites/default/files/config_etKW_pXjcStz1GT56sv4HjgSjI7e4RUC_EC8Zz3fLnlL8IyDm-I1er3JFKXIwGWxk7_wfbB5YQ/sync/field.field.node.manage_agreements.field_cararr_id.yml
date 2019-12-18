@@ -1,0 +1,19 @@
+uuid: 426094af-8690-4993-a736-f131ec03c227
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cararr_id
+    - node.type.manage_agreements
+id: node.manage_agreements.field_cararr_id
+field_name: field_cararr_id
+entity_type: node
+bundle: manage_agreements
+label: 'Cararr Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

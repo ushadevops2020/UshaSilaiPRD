@@ -1,0 +1,11 @@
+uuid: fbba2bb0-a90e-4725-9cb9-2f2d58d2d1e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ngo
+id: node.ngo
+target_entity_type_id: node
+target_bundle: ngo
+default_langcode: site_default
+language_alterable: false

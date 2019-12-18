@@ -1,0 +1,11 @@
+uuid: 0bac9ae1-ba14-4bfe-a4c1-30e7c87fbf1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_school
+id: node.sewing_school
+target_entity_type_id: node
+target_bundle: sewing_school
+default_langcode: site_default
+language_alterable: false

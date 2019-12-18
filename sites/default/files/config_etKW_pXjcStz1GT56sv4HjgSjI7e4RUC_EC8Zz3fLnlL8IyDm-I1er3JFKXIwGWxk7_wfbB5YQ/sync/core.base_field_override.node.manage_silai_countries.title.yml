@@ -1,0 +1,18 @@
+uuid: c8adb9b5-af23-4062-95fd-d1c93504043b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_silai_countries
+id: node.manage_silai_countries.title
+field_name: title
+entity_type: node
+bundle: manage_silai_countries
+label: 'Country Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

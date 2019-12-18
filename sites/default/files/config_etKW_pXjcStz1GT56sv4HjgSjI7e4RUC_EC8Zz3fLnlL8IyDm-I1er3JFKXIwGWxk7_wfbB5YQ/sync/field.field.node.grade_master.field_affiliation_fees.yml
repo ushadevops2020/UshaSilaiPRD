@@ -1,0 +1,23 @@
+uuid: f02d0548-2f3f-49e0-b535-c61972971ce3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_affiliation_fees
+    - node.type.grade_master
+id: node.grade_master.field_affiliation_fees
+field_name: field_affiliation_fees
+entity_type: node
+bundle: grade_master
+label: 'Affiliation Fees'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 1000000
+  prefix: ''
+  suffix: ''
+field_type: integer

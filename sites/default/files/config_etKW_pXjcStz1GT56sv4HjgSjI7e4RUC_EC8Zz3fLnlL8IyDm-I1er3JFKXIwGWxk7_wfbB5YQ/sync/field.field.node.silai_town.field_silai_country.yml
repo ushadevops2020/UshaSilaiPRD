@@ -1,0 +1,29 @@
+uuid: 9ec2f1dc-e882-4fd5-ac8b-b0f7a78b96b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_country
+    - node.type.manage_silai_countries
+    - node.type.silai_town
+id: node.silai_town.field_silai_country
+field_name: field_silai_country
+entity_type: node
+bundle: silai_town
+label: 'Assign Country'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_silai_countries: manage_silai_countries
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

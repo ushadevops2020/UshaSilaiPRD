@@ -1,0 +1,22 @@
+uuid: 37ba89b5-b11a-4618-b8c4-fcadb7c511a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dealer
+id: node.dealer.status
+field_name: status
+entity_type: node
+bundle: dealer
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

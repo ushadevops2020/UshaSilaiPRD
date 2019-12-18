@@ -1,0 +1,19 @@
+uuid: b27510f8-f852-4c2f-8c40-e3af40a03593
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_district_code
+    - node.type.manage_districts
+id: node.manage_districts.field_district_code
+field_name: field_district_code
+entity_type: node
+bundle: manage_districts
+label: 'District Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

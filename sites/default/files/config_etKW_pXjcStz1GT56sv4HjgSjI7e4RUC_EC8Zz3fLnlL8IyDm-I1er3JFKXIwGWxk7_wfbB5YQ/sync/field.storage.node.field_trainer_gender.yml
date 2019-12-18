@@ -1,0 +1,27 @@
+uuid: ee1f98a4-1f28-4362-89a9-5e82be37b74e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_trainer_gender
+field_name: field_trainer_gender
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Male
+    -
+      value: '2'
+      label: Female
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

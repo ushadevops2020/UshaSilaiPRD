@@ -1,0 +1,11 @@
+uuid: 9c4108f8-887a-40ad-8320-032a0e27ccfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_villages
+id: node.silai_villages
+target_entity_type_id: node
+target_bundle: silai_villages
+default_langcode: site_default
+language_alterable: false

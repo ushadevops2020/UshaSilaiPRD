@@ -1,0 +1,9 @@
+uuid: 33f33c80-cde5-48bc-be0a-273a0482d4c8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Partner Type'
+vid: partner_type
+description: 'Silai Partner Type For NGO'
+hierarchy: 0
+weight: 0

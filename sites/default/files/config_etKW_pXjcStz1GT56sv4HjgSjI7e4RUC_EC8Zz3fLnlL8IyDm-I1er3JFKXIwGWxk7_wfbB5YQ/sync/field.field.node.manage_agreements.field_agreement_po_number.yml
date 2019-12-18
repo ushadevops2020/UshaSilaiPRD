@@ -1,0 +1,19 @@
+uuid: c75ca185-d5bd-42d4-a16c-96780c9637e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agreement_po_number
+    - node.type.manage_agreements
+id: node.manage_agreements.field_agreement_po_number
+field_name: field_agreement_po_number
+entity_type: node
+bundle: manage_agreements
+label: 'PO NUMBER'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

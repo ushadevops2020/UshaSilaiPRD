@@ -1,0 +1,18 @@
+uuid: ef5344a6-703c-44ca-a8aa-6a967cf752ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainer_silai
+id: node.trainer_silai.title
+field_name: title
+entity_type: node
+bundle: trainer_silai
+label: 'Trainer Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 16d1e837-e1ae-44cd-8502-f88e46aa639e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_result_date
+    - node.type.manage_sewing_students
+  module:
+    - datetime
+id: node.manage_sewing_students.field_sewing_result_date
+field_name: field_sewing_result_date
+entity_type: node
+bundle: manage_sewing_students
+label: 'Result Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

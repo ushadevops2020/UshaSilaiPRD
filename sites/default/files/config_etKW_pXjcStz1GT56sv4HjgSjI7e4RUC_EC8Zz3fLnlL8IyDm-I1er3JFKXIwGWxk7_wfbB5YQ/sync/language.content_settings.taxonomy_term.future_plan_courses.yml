@@ -1,0 +1,11 @@
+uuid: 3cef529a-1290-4efa-8012-72a90d6a0a47
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.future_plan_courses
+id: taxonomy_term.future_plan_courses
+target_entity_type_id: taxonomy_term
+target_bundle: future_plan_courses
+default_langcode: site_default
+language_alterable: false

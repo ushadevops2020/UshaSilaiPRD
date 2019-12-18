@@ -1,0 +1,21 @@
+uuid: 2f54c2bb-17fb-4aec-93c5-95ae9cda823b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.sewing_indian_states
+id: node.sewing_indian_states.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: sewing_indian_states
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

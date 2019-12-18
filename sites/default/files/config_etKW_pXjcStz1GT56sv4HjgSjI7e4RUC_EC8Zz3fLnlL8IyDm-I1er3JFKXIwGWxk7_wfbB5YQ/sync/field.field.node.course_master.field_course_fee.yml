@@ -1,0 +1,19 @@
+uuid: 2580ddab-2165-487c-bddf-16e45c84e3bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_fee
+    - node.type.course_master
+id: node.course_master.field_course_fee
+field_name: field_course_fee
+entity_type: node
+bundle: course_master
+label: 'Course Fee'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

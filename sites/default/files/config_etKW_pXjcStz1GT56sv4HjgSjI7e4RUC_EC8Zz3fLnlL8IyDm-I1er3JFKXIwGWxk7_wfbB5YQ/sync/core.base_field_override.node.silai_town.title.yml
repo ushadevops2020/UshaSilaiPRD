@@ -1,0 +1,18 @@
+uuid: b13dd2fa-2e71-4323-a2ef-2f0834e8b8b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_town
+id: node.silai_town.title
+field_name: title
+entity_type: node
+bundle: silai_town
+label: 'Town Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

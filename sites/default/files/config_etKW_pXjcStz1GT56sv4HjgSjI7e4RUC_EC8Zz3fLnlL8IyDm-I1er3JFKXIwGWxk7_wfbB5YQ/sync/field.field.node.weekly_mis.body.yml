@@ -1,0 +1,22 @@
+uuid: ac182279-5445-4867-97ab-3e046a71434e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.weekly_mis
+  module:
+    - text
+id: node.weekly_mis.body
+field_name: body
+entity_type: node
+bundle: weekly_mis
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

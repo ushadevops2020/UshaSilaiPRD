@@ -1,0 +1,51 @@
+uuid: c03309d0-4c57-41b1-b079-fb10cbcfc380
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sewing_indian_states.body
+    - field.field.node.sewing_indian_states.field_country
+    - field.field.node.sewing_indian_states.field_domain_access
+    - field.field.node.sewing_indian_states.field_domain_all_affiliates
+    - field.field.node.sewing_indian_states.field_indian_state_code
+    - node.type.sewing_indian_states
+  module:
+    - text
+    - user
+id: node.sewing_indian_states.default
+targetEntityType: node
+bundle: sewing_indian_states
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_country:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_indian_state_code:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

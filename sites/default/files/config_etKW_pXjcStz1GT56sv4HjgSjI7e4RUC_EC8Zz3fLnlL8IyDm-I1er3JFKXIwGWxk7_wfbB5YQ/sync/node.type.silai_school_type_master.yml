@@ -1,0 +1,18 @@
+uuid: d56a67cb-e6d1-46c8-84c0-91797ed041c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:'
+name: 'Silai School Type Master'
+type: silai_school_type_master
+description: 'Silai School Type Master'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

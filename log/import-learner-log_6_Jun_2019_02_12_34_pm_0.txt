@@ -1,0 +1,14 @@
+1) IN003301 - School Code is not exist. In Row Number : 2
+2)  - Course Code field is Blank. In Row Number : 3
+3)  - Course Code field is Blank. In Row Number : 4
+4)  - Course Code field is Blank. In Row Number : 5
+5)  - Course Code field is Blank. In Row Number : 6
+6)  - Course Code field is Blank. In Row Number : 7
+7)  - Course Code field is Blank. In Row Number : 8
+8)  - Course Code field is Blank. In Row Number : 9
+9)  - Course Code field is Blank. In Row Number : 10
+10)  - Course Code field is Blank. In Row Number : 11
+11)  - Course Code field is Blank. In Row Number : 12
+12)  - Course Code field is Blank. In Row Number : 13
+13)  - Course Code field is Blank. In Row Number : 14
+14)  - Course Code field is Blank. In Row Number : 15

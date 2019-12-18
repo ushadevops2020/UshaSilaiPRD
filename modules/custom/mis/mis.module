@@ -1,0 +1,217 @@
+<?php
+
+/**
+ * @file
+ * Contains mis.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements silai_help().
+ */
+function mis_help($route_name, RouteMatchInterface $route_match) {
+  
+}
+/**
+ * [Altering Silai inventory Views] 
+ * @param  ViewExecutable  $view  [description]
+ * @param  QueryPluginBase $query [description]
+ * @return [type]                 [description]
+ */
+function mis_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'sewing_weekly_mis' && $view->current_display == 'data_export_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $locationId = $user->field_user_location->target_id;
+      $query->addWhere('', 'usha_sewing_weekly_mis.location', $locationId, 'IN');
+    }
+    if($query->where[1]['conditions'][0]['value']) {
+      $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+    }
+
+    if($query->where[1]['conditions'][1]['value']) {
+      $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+    }
+  }
+
+  if ($view->id() == 'manage_weekly_mis' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_1')) {
+    $current_user = \Drupal::currentUser();
+	$userId = \Drupal::currentUser()->id();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SILAI_PC,$roles)) {
+      $locationId = $user->field_user_location->target_id;
+      //$query->addWhere('', 'usha_weekly_mis.location', $locationId, 'IN');
+      $query->addWhere('', 'usha_weekly_mis.pc_uid', $userId, 'IN');
+    }
+  }
+
+  if ($view->id() == 'sewing_weekly_mis' && $view->current_display == 'page_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $locationId = $user->field_user_location->target_id;
+      $query->addWhere('', 'usha_sewing_weekly_mis.location', $locationId, 'IN');
+    }
+  }
+
+  if ($view->id() == 'manage_monthly_quarterly_mis' && ($view->current_display == 'page_1' || $view->current_display  == 'data_export_1')) {
+   $current_user = \Drupal::currentUser();
+   $roles = $current_user->getRoles();
+   $user = User::load(\Drupal::currentUser()->id());
+   if(in_array(ROLE_SILAI_PC,$roles)){
+    $locationId = $user->field_user_location->target_id;
+    $query->addWhere('', 'usha_monthly_mis.location', $locationId, 'IN');
+  } else if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+    $masterDataService = \Drupal::service('silai.master_data');
+    $ngoData = $masterDataService->getLinkedNgoForUser($current_user->id());
+    $schoolCodeId = $masterDataService->getSchoolCodeIds($ngoData[$current_user->id()]);
+    $query->addWhere('', 'usha_monthly_mis.school_code', $schoolCodeId, 'IN');
+  }
+}
+if ($view->id() == 'manage_weekly_mis' && ($view->current_display == 'page_1'|| $view->current_display == 'page_2' || $view->current_display == 'data_export_1')) {
+  if($query->where[1]['conditions'][0]['field'] == 'usha_weekly_mis.week_start_date') {
+    $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+  }
+
+  if($query->where[1]['conditions'][1]['field'] == 'usha_weekly_mis.week_end_date') {
+    $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+  }        
+}
+if ($view->id() == 'manage_monthly_quarterly_mis' && ($view->current_display == 'page_1' || $view->current_display == 'page_2' || $view->current_display == 'data_export_1')) {
+  if($query->where[1]['conditions'][0]['field'] == 'usha_monthly_mis.created_date') {
+    if($query->where[1]['conditions'][0]['value']) {
+      $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+    }
+  }
+
+  if($query->where[1]['conditions'][1]['field'] == 'usha_monthly_mis.created_date') {
+    if($query->where[1]['conditions'][1]['value']) {
+      $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+    } 
+  }       
+}
+if ($view->id() == 'mis_school_data' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_1')) {
+  if($query->where[1]['conditions'][0]['field'] == 'silai_mis_school_data.created') {
+    if($query->where[1]['conditions'][0]['value']) {
+      $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+    }
+  }
+
+  if($query->where[1]['conditions'][1]['field'] == 'silai_mis_school_data.created') {
+    if($query->where[1]['conditions'][1]['value']) {
+      $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+    } 
+  }       
+}
+if ($view->id() == 'sewing_weekly_mis' && ($view->current_display == 'page_1' ||  $view->current_display == 'page_2')) {
+  if($query->where[1]['conditions'][0]['value']) {
+    $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+  }
+
+  if($query->where[1]['conditions'][1]['value']) {
+    $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+  }        
+}
+
+if($view->id() == 'manage_nfa_pc_user') {
+  $currentUser = \Drupal::currentUser();
+  if (in_array(ROLE_SILAI_PC, $currentUser->getRoles())) { 
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userLocationId = $user->field_user_location->target_id;
+    $query->addWhere('', 'node__field_silai_location.field_silai_location_target_id', $userLocationId, '='); 
+  }
+}    
+
+if($view->id() == 'manage_agreements_pc_user') {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $userLocationId = $user->field_user_location->target_id;
+  $nfaArr = getNFAIdByLocation($userLocationId);
+  $query->addWhere('', 'node__field_agreement_nfa_number.field_agreement_nfa_number_target_id', $nfaArr, 'IN');      
+}
+if($view->id() == 'manage_agreements_ngo' && $view->current_display == 'page_1') {
+  $userId = \Drupal::currentUser()->id();
+  $masterDataService = \Drupal::service('silai.master_data');
+  $ngoData = $masterDataService->getLinkedNgoForUser($userId);
+  $query->addWhere('', 'node_field_data_node__field_agreement_ngo_name.nid', $ngoData, 'IN');      
+}
+}
+
+/**
+ * Implementation of get get Nfa Sanctioned Amt by NFA number
+ */
+function getNFAIdByLocation($locationId) {
+  $ids = \Drupal::entityQuery('node')
+  ->condition('type', 'nfa')
+  ->condition('field_silai_location', $locationId)
+  ->execute();
+  $nodes = \Drupal\node\Entity\Node::loadMultiple($ids);
+
+  foreach($nodes as $node) {
+    $nfaArr[] = $node->id();
+  }
+  return $nfaArr;
+}
+
+
+/**
+ * Implementation of hook_views_pre_render
+ */
+function mis_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  
+	if($view->id() == 'manage_monthly_quarterly_mis') {
+    foreach ($view->result as $key => $row) {
+      // $district = Node::load($row->usha_monthly_mis_district)->getTitle();
+      // $row->usha_monthly_mis_district = $district;
+      if($row->usha_monthly_mis_monthly_quarterly_type == 1){
+        $row->usha_monthly_mis_monthly_quarterly_value = QUARTERLY_TYPE_DATA[$row->usha_monthly_mis_monthly_quarterly_value];
+      }
+      if($row->usha_monthly_mis_monthly_quarterly_type == 0){
+        $row->usha_monthly_mis_monthly_quarterly_value = MONTHLY_TYPE_DATA[$row->usha_monthly_mis_monthly_quarterly_value];
+      }
+    }
+  }	
+}
+
+/**
+   * Implements hook_form_FORM_ID_alter().
+   *
+   * Alters the exposed filter forms.
+   */
+function mis_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+ if ($form['#id'] == 'views-exposed-form-manage-weekly-mis-page-1' || $form['#id'] == 'views-exposed-form-manage-weekly-mis-page-2') { 
+  $form['week_start_date']['#type'] = 'date';
+  $form['week_end_date']['#type'] = 'date';
+}
+if ($form['#id'] == 'views-exposed-form-manage-monthly-quarterly-mis-page-1' || $form['#id'] == 'views-exposed-form-manage-monthly-quarterly-mis-page-2') {
+  $form['created_date']['#type'] = 'date';
+  $form['created_date_1']['#type'] = 'date';
+
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  $user = User::load(\Drupal::currentUser()->id());
+  if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+    unset($form['title']);
+    unset($form['title_2']);
+  }
+}
+if ($form['#id'] == 'views-exposed-form-sewing-weekly-mis-page-1' || $form['#id'] == 'views-exposed-form-sewing-weekly-mis-page-2') {
+  $form['week_start_date']['#type'] = 'date';
+  $form['week_end_date']['#type'] = 'date';
+}
+if ($form['#id'] == 'views-exposed-form-mis-school-data-page-1') {
+  $form['created']['#type'] = 'date';
+  $form['created_1']['#type'] = 'date';
+} 
+} 

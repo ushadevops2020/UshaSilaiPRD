@@ -1,0 +1,19 @@
+uuid: 1ee8a48e-bc79-4b03-a7bb-c77703db3dec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_monthly_fee_for_course
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.field_monthly_fee_for_course
+field_name: field_monthly_fee_for_course
+entity_type: node
+bundle: silai_learners_manage
+label: 'Monthly fee for this course'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

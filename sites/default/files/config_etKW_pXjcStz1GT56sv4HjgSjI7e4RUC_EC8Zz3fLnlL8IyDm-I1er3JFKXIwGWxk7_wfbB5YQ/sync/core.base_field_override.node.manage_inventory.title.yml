@@ -1,0 +1,18 @@
+uuid: 87f8f505-f789-4223-aa54-75f1d4b10efb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_inventory
+id: node.manage_inventory.title
+field_name: title
+entity_type: node
+bundle: manage_inventory
+label: 'Inventory Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

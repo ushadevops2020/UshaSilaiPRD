@@ -1,0 +1,10 @@
+1) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 2.
+2) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 3.
+3) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 4.
+4) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 5.
+5) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 6.
+6) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 7.
+7) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 8.
+8) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 9.
+9) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 10.
+10) 721514  - Pin Code not valid. it contain only numeric value. In excel file row number : 11.

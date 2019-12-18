@@ -1,0 +1,4 @@
+mis_form:
+  version: 1.x
+  js:
+    js/mis_form.js: {}

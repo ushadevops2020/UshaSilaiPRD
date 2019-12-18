@@ -1,0 +1,7 @@
+form_alter:
+  version: 1.x
+  js:
+    js/form_alter.js: {}
+  dependencies:
+   - core/jquery
+   - core/drupalSettings

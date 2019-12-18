@@ -1,0 +1,18 @@
+uuid: 977fb77c-41e8-40d3-8c8d-5cf058aff44b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_towns
+id: node.manage_towns.title
+field_name: title
+entity_type: node
+bundle: manage_towns
+label: 'Town Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

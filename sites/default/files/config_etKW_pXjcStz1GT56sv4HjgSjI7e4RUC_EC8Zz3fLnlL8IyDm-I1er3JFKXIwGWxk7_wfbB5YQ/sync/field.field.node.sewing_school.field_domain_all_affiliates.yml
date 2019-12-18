@@ -1,0 +1,21 @@
+uuid: 76583d4e-bf76-4b24-9ebb-84ca29cd4b27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.sewing_school
+id: node.sewing_school.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: sewing_school
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

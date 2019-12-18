@@ -1,0 +1,20 @@
+uuid: 9ba55815-c052-404f-86d6-52ddf187fb49
+langcode: en
+status: true
+dependencies:
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: silai_lte_admin_local_actions
+theme: silai_lte_admin
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: df7a6fd1-9673-4294-81d7-dae828d0167b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_time_to_buy
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_time_to_buy
+field_name: field_sewing_time_to_buy
+entity_type: node
+bundle: manage_sewing_students
+label: 'Time to Buy'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

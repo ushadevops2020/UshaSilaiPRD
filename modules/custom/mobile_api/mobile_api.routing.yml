@@ -1,0 +1,11 @@
+# mobile_api_resource.route:
+#   path: test/ws
+#   defaults:
+#     _controller: 'Drupal\mobile_api\Controller\MobileAPIResourceController::create'
+#     _title: 'User Login'
+#   methods:  [POST]
+#   options:
+#     _auth: [ 'basic_auth' ]
+#   requirements:
+#     _user_is_logged_in: 'TRUE'
+#     _custom_access: '\Drupal\mobile_api\Controller\MobileAPIResourceController::access'

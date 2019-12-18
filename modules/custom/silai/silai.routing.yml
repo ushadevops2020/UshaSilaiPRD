@@ -1,0 +1,429 @@
+silai.silai_controller_getlocationsbycountry:
+  path: '/get_silai_locations_by_country/{country_id}'
+  defaults:
+    _title: 'Get locations by country'
+    _controller: '\Drupal\silai\Controller\SilaiController::getLocationsByCountry'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+silai.silai_controller_getstatesbylocation:
+  path: '/get_silai_states_by_location/{location_id}'
+  defaults:
+    _title: 'Get states by location'
+    _controller: '\Drupal\silai\Controller\SilaiController::getStatesByLocation'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+    
+silai.silai_controller_getdistrictsbystate:
+  path: '/get_silai_districts_by_state/{state_id}'
+  defaults:
+    _title: 'Get districts by state'
+    _controller: '\Drupal\silai\Controller\SilaiController::getDistrictsByState'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_gettownsbydistrict:
+  path: '/get_silai_towns_by_district/{district_id}'
+  defaults:
+    _title: 'Get towns by district'
+    _controller: '\Drupal\silai\Controller\SilaiController::getTownsByDistrict'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_gettownsbydistrictname:
+  path: '/get_silai_towns_by_district_name/{district}'
+  defaults:
+    _title: 'Get towns by district'
+    _controller: '\Drupal\silai\Controller\SilaiController::getTownsByDistrictName'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_getblocksbytown:
+  path: '/get_silai_blocks_by_town/{town_id}'
+  defaults:
+    _title: 'Get blocks by town'
+    _controller: '\Drupal\silai\Controller\SilaiController::getBlocksByTown'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_getvillagesbyblock:
+  path: '/get_silai_villages_by_block/{block_id}'
+  defaults:
+    _title: 'Get villages by block'
+    _controller: '\Drupal\silai\Controller\SilaiController::getVillagesByBlock'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+    
+silai.silai_custom_school_survey_quetionnaire:
+  path: '/school-survey-quetionnaire/{nid}'
+  defaults:
+    _title: 'Survey Questionnaire'
+    _controller: '\Drupal\silai\Controller\SurveyQuetionnaireController::editSurveyQuetionnaireForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_custom_accept_inventory_form:
+  path: '/accept_inventory'
+  defaults:
+    _title: 'Accept Inventory Form'
+    _controller: '\Drupal\silai\Controller\InventoryController::openAcceptInventoryForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_add_ngo_form:
+  path: '/add-ngo'
+  defaults:
+    _title: 'Add New NGO'
+    _controller: '\Drupal\silai\Controller\NgoFormController::addNgoUserGorm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_custom_forward_inventory_form:
+  path: '/forward_inventory'
+  defaults:
+    _title: 'Forward Inventory Form'
+    _controller: '\Drupal\silai\Controller\InventoryController::openForwardInventoryForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_getngobylocation:
+  path: '/get_ngo_by_locationid/{locationId}'
+  defaults:
+    _title: 'Get blocks by town'
+    _controller: '\Drupal\silai\Controller\SilaiController::getNgoByLocation'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_getschoolsbyngoid:
+  path: '/get_schools_by_ngoid/{ngoId}'
+  defaults:
+    _title: 'Get school by ngo id'
+    _controller: '\Drupal\silai\Controller\SilaiController::getSchoolsByNgo'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_getitems_by_itemgroup:
+  path: '/get_items_by_itemgroup/{itemGroupId}'
+  defaults:
+    _title: 'Get items by item group'
+    _controller: '\Drupal\silai\Controller\SilaiController::getItemsByItemGroup'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_view_forwarded_items:
+  path: '/view_forwarded_items'
+  defaults:
+    _title: 'View forwarded items'
+    _controller: '\Drupal\silai\Controller\InventoryController::viewForwardedItems'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_approve_school:
+  path: '/approve_school'
+  defaults:
+    _title: 'Approve School'
+    _controller: '\Drupal\silai\Controller\SilaiController::approveSchool'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_reject_school:
+  path: '/reject_school'
+  defaults:
+    _title: 'Reject School'
+    _controller: '\Drupal\silai\Controller\SilaiController::rejectSchool'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_controller_approvereject_school:
+  path: '/approve_reject_school'
+  defaults:
+    _title: 'Approve / Reject School'
+    _controller: '\Drupal\silai\Controller\ApproveRejectController::approveRejectForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_manage_agreement_payment_details:
+  path: '/agreement-payment-details/{nid}'
+  defaults:
+    _title: 'Payment Details'
+    _controller: '\Drupal\silai\Controller\AgreementPayDetailsController::agreementPayDetailsForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_accept_agreement_payment:
+  path: '/silai_accept_agreement_payment/{nid}'
+  defaults:
+    _title: 'Payment Details'
+    _controller: '\Drupal\silai\Controller\AcceptAgreementController::acceptAgreementForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_accept_learners:
+  path: '/silai_accept_learners/{nid}'
+  defaults:
+    _title: 'Accept Learner'
+    _controller: '\Drupal\silai\Controller\AcceptLearnersController::acceptLearnersForm'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin' 
+
+silai.silai_view_gallery:
+  path: '/gallery'
+  defaults:
+    _title: 'Gallery'
+    _controller: '\Drupal\silai\Controller\SilaiController::galleryPage'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_ho_admin_dashboard:
+  path: '/dashboard'
+  defaults:
+    _title: 'dashboard'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::dashboardPage'
+  requirements:
+    _role: 'silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#School chart load#
+silai.silai_dashboard_hoadmin_school_chart_load:
+  path: '/hoadmin_school_chart_load'
+  defaults:
+    _title: 'Ho Admin School Chart'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminSchoolChartLoad'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#School chart filter location
+silai.silai_dashboard_hoadmin_location_filter:
+  path: '/hoadmin_location_filter'
+  defaults:
+    _title: 'Get School by Location'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::getLocationFilterOptions'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#School chart filter location
+#silai.silai_dashboard_hoadmin_district_filter:
+#  path: '/hoadmin_district_filter'
+#  defaults:
+#    _title: 'Get School by District'
+#    _controller: '\Drupal\silai\Controller\AdminDashboardController::getDistrictFilterOptions'
+#  requirements:
+#    _permission: 'access content'
+
+# Dashboard Month filter 
+silai.silai_dashboard_hoadmin_month_filter:
+  path: '/hoadmin_month_filter'
+  defaults:
+    _title: 'Month Filter For Dashboard'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::getMonthFilterOptions'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Agreement chart load
+silai.silai_dashboard_hoadmin_agreement_chart_load:
+  path: '/hoadmin_agreement_chart_load'
+  defaults:
+    _title: 'Ho Admin Agreement Chart'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminAgreementChartLoad'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Learner chart load
+silai.silai_dashboard_hoadmin_learner_chart_load:
+  path: '/hoadmin_learner_chart_load'
+  defaults:
+    _title: 'Ho Admin Agreement Chart'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminLearnerChartLoad'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Learner chart load
+silai.silai_dashboard_hoadmin_mis_chart_load:
+  path: '/hoadmin_mis_chart_load'
+  defaults:
+    _title: 'Ho Admin MIS Chart'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminMisChartLoad'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Total Machine Sold data 
+silai.silai_dashboard_hoadmin_total_machine_sold:
+  path: '/hoadmin_total_machine_sold'
+  defaults:
+    _title: 'Ho Admin Total Machine Sold'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminTotalMachineSold'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Pending Inventory  data 
+silai.silai_dashboard_hoadmin_pending_inventory:
+  path: '/hoadmin_pending_inventory'
+  defaults:
+    _title: 'Ho Admin Total Machine Sold'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminPendingInventory'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#MIS Weekly Chart Time filter data 
+silai.silai_dashboard_hoadmin_mis_weekly_time_filter:
+  path: '/hoadmin_mis_weekly_time_filter'
+  defaults:
+    _title: 'MIS Weekly Time filter'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminMISWeeklyTimeFilter'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#MIS Monthly Chart Time filter data 
+silai.silai_dashboard_hoadmin_mis_monthly_time_filter:
+  path: '/hoadmin_mis_monthly_time_filter'
+  defaults:
+    _title: 'MIS Monthly Time filter'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminMISMonthlyTimeFilter'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#MIS Quarterly Chart Time filter data 
+silai.silai_dashboard_hoadmin_mis_quarterly_time_filter:
+  path: '/hoadmin_mis_quarterly_time_filter'
+  defaults:
+    _title: 'MIS Quarterly Time filter'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminMISQuarterlyTimeFilter'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Year filter Options data 
+# silai.silai_dashboard_hoadmin_year_filter_options:
+#   path: '/hoadmin_year_filter_options'
+#   defaults:
+#     _title: 'Year Filter Options'
+#     _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminYearFilterOptions'
+#   requirements:
+#     _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+#Financial Year filter Options data 
+silai.silai_dashboard_hoadmin_financial_year_filter_options:
+  path: '/hoadmin_financial_year_filter_options'
+  defaults:
+    _title: 'Year Financial Filter Options'
+    _controller: '\Drupal\silai\Controller\AdminDashboardController::hoadminFinancialYearFilterOptions'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+
+silai.silai_learner_bulk_import:
+  path: '/learner_bulk_import'
+  defaults:
+    _controller: '\Drupal\silai\Controller\BulkImportController::learnerBulkImport'
+    _title: 'Learner Bulk Import'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_dealers_bulk_import:
+  path: '/dealers_bulk_import'
+  defaults:
+    _controller: '\Drupal\silai\Controller\BulkImportController::dealersBulkImport'
+    _title: 'Dealers Bulk Import'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_show_notification:
+  path: '/show_notification/{id}'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::showNotification'
+    _title: 'Notification'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_delete_notification:
+  path: '/delete_silai_notification'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::deleteSilaiNotification'
+    _title: 'Notification'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_school_partially_close:
+  path: '/silai-school-bulk-partially-close'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkSchoolPartiallyClose'
+    _title: 'Bulk School Partially Process'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_school_partially_close_to_approve:
+  path: '/silai_school_partially_close_to_approve/{nid}'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkSchoolPartiallyCloseToApprove'
+    _title: 'Bulk School Partially Close To Approve'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_school_approval_process:
+  path: '/silai-school-bulk-approval-process'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkSchoolApprovalProcess'
+    _title: 'Bulk School Approval Process'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_school_fully_close:
+  path: '/silai-school-bulk-fully-close'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkSchoolFullyClose'
+    _title: 'Bulk School Fully Process'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_get_silai_school_by_id:
+  path: '/get_silai_school_by_id/{id}'
+  defaults:
+    _title: 'Get school detail by id'
+    _controller: '\Drupal\silai\Controller\SilaiController::getSchoolDetailById'
+  requirements:
+    _permission: 'access content'
+
+silai.silai_agreement_payment_amount_edit:
+  path: '/agreement-payment-amount-edit/{agreement_id}/{nid}'
+  defaults:
+    _title: 'Agreement Payment Amount Edit'
+    _controller: '\Drupal\silai\Controller\SilaiController::agreementPaymentAmountEdit'
+  requirements:
+    _permission: 'access content'
+
+silai.silai_bulk_learner_inactive_process:
+  path: '/silai_bulk_learner_inactive_process'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkLearnerInactiveProcess'
+    _title: 'Bulk Learner Inactive'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_learner_course_completion_date:
+  path: '/bulk_learner_course_completion_date'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkLearnerCourseCompletionDate'
+    _title: 'Bulk Learner Course Completion Date'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_learner_received_certificate:
+  path: '/bulk_learner_received_certificate'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkLearnerReceivedCertificate'
+    _title: 'Bulk Learner Received Certificate'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_delete_school_mis_data:
+  path: '/delete_school_mis_data'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::deleteSchoolMisData'
+    _title: 'Notification'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'
+
+silai.silai_bulk_learner_delete:
+  path: '/silai_bulk_learner_delete'
+  defaults:
+    _controller: '\Drupal\silai\Controller\SilaiController::bulkLearnerDeleteProcess'
+    _title: 'Bulk Learner Inactive'
+  requirements:
+    _role: 'administrator+silai_ho_admin+pc+silai_ho_user+ngo_admin'

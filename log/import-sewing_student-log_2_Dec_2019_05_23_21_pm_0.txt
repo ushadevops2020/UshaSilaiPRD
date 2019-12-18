@@ -1,0 +1,6 @@
+1) No  - "Want to buy New" is not valid in row number . 11.
+2) NO - "Want to buy New" is not valid in row number . 17.
+3) Design graments for self - "Future Plan after Course" is not valid in row number . 21.
+4) Design graments for self - "Future Plan after Course" is not valid in row number . 22.
+5) Design graments for self - "Future Plan after Course" is not valid in row number . 23.
+6) NO - "Want to buy New" is not valid in row number . 24.

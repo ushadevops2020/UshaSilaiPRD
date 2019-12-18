@@ -1,0 +1,29 @@
+uuid: eac10f15-84ce-4fc2-9fef-32c84a1eed6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_district
+    - node.type.dealer
+    - node.type.manage_districts
+id: node.dealer.field_district
+field_name: field_district
+entity_type: node
+bundle: dealer
+label: District
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_districts: manage_districts
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

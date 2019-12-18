@@ -1,0 +1,29 @@
+uuid: fb2119b9-232a-4718-8a99-fc6508f0c101
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agreement_ngo_name
+    - node.type.manage_agreements
+    - node.type.ngo
+id: node.manage_agreements.field_agreement_ngo_name
+field_name: field_agreement_ngo_name
+entity_type: node
+bundle: manage_agreements
+label: 'NGO NAME'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      ngo: ngo
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

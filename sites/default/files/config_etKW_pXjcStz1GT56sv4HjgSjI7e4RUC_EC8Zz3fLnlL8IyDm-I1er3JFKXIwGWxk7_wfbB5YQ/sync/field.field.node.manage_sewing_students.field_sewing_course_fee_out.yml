@@ -1,0 +1,19 @@
+uuid: 6559b346-c6e3-4282-8a19-8ce834ff6204
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_course_fee_out
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_sewing_course_fee_out
+field_name: field_sewing_course_fee_out
+entity_type: node
+bundle: manage_sewing_students
+label: 'Outstanding Fees'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

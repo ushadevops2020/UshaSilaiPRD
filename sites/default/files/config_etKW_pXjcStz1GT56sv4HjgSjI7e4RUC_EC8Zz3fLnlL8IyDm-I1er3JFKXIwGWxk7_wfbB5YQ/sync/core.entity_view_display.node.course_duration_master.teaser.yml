@@ -1,0 +1,39 @@
+uuid: 1159b1a7-48e8-465a-a87a-bc603fc3330f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.course_duration_master.field_certification_required
+    - field.field.node.course_duration_master.field_domain_access
+    - field.field.node.course_duration_master.field_domain_all_affiliates
+    - field.field.node.course_duration_master.field_exam_required
+    - node.type.course_duration_master
+  module:
+    - user
+id: node.course_duration_master.teaser
+targetEntityType: node
+bundle: course_duration_master
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_certification_required: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_exam_required: true
+  langcode: true

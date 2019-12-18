@@ -1,0 +1,20 @@
+uuid: e90cb3de-a879-4904-b0be-b0afeb079fc7
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_date_of_saction
+field_name: field_date_of_saction
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

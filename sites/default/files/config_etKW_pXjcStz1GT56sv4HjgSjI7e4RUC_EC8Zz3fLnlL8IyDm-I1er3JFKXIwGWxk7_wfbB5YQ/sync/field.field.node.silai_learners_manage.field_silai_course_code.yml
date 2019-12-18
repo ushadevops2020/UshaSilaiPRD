@@ -1,0 +1,29 @@
+uuid: 54f03015-0006-4850-836c-737d818fb361
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_course_code
+    - node.type.silai_learners_manage
+    - taxonomy.vocabulary.course_code
+id: node.silai_learners_manage.field_silai_course_code
+field_name: field_silai_course_code
+entity_type: node
+bundle: silai_learners_manage
+label: 'Course code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      course_code: course_code
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

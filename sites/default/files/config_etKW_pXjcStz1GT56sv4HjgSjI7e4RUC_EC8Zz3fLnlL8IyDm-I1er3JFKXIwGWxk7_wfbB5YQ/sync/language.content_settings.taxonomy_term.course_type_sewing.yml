@@ -1,0 +1,11 @@
+uuid: 92aa9b5a-2a49-478f-a49d-9f21fd7d4689
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_type_sewing
+id: taxonomy_term.course_type_sewing
+target_entity_type_id: taxonomy_term
+target_bundle: course_type_sewing
+default_langcode: site_default
+language_alterable: false

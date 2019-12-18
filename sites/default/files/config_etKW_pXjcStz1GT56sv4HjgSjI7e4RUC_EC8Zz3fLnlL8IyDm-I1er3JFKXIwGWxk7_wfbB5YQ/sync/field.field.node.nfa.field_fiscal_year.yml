@@ -1,0 +1,21 @@
+uuid: a1021cea-c7ec-40af-ab42-2c75cdb7e3ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fiscal_year
+    - node.type.nfa
+  module:
+    - options
+id: node.nfa.field_fiscal_year
+field_name: field_fiscal_year
+entity_type: node
+bundle: nfa
+label: 'Fiscal Year'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

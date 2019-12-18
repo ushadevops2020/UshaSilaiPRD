@@ -1,0 +1,11 @@
+uuid: 633bb539-1d32-44d7-96ed-6eeae51b736e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.grades_sewing
+id: taxonomy_term.grades_sewing
+target_entity_type_id: taxonomy_term
+target_bundle: grades_sewing
+default_langcode: site_default
+language_alterable: false

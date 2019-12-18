@@ -1,0 +1,29 @@
+uuid: d6f29cb5-72c7-4e84-8433-86c0687d3538
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_town
+    - node.type.silai_dealer
+    - node.type.silai_town
+id: node.silai_dealer.field_silai_town
+field_name: field_silai_town
+entity_type: node
+bundle: silai_dealer
+label: Town
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_town: silai_town
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

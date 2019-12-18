@@ -1,0 +1,18 @@
+uuid: d8b1a0b3-f79e-4ecc-bb31-8b4833c6d998
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.title
+field_name: title
+entity_type: node
+bundle: silai_learners_manage
+label: 'Learner''s Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

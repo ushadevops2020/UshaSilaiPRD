@@ -1,0 +1,19 @@
+uuid: e9ce516b-853d-4415-a606-91b96f484ce3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expected_revenue
+    - node.type.training
+id: node.training.field_expected_revenue
+field_name: field_expected_revenue
+entity_type: node
+bundle: training
+label: 'Expected Revenue'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

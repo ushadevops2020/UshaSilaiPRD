@@ -1,0 +1,11 @@
+uuid: 4ff0edca-38c6-4eca-961e-3649d6aa0fd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.weekly_mis
+id: node.weekly_mis
+target_entity_type_id: node
+target_bundle: weekly_mis
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,14 @@
+uuid: 67edaae3-ac2f-41da-845a-97645ef79c1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_school_admin
+  module:
+    - user
+id: user_remove_role_action.silai_school_admin
+label: 'Remove the Silai School Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: silai_school_admin

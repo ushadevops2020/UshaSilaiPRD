@@ -1,0 +1,19 @@
+uuid: 3efa35e4-aea2-41dc-9f80-06a0e5114b3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_contact_number
+    - node.type.silai_trainee
+id: node.silai_trainee.field_silai_contact_number
+field_name: field_silai_contact_number
+entity_type: node
+bundle: silai_trainee
+label: 'Contact Number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

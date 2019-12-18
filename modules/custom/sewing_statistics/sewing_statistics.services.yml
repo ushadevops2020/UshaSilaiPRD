@@ -1,0 +1,4 @@
+services:
+ sewing_statistics.master_data:
+   class: Drupal\sewing_statistics\Services\SewingStatisticsDataServices
+   arguments: [] 

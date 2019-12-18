@@ -1,0 +1,217 @@
+{# {% if role == 'silai_ho_admin' or role == 'administrator' or role == 'silai_ho_user' or role == 'pc' or role == 'ngo_admin' %} #}
+<input type="hidden" id="sewing_dashboard_user_role" value="{{ role }}">
+<div class="row" id="sewing_dashboard_section">
+	<div class="col-lg-9 col-sm-12">
+		<!-- School Chart Section Start-->
+		<div class="panel no-schools" id="school_chart_main"> 
+			<div class="panel-body">
+				<div id="school_chart_inner_section"> 
+					<div class="floatl">
+						<div class="school-count" id="school-data-count"></div>
+						<div class="school-head">Number of Active Schools</div>
+					</div>	
+					<div class="filter-location floatr form-group">
+						<select name="school_location_filter" id="school_location_filter" class="form-control">
+							<option value=''>- Select a Location -</option>
+						</select>
+						<select id="school_fy_filter" class="form-control"></select> 
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="school_chart"></div> 
+						<!--div id="schooltype_info"></div--> 
+					</div>
+					
+				</div> 
+			</div>
+		</div>
+		<!-- Student Chart Section Start-->
+		<div class="panel no-students" id="student_chart_main"> 
+			<div class="panel-body">
+				<div id="student_chart_inner_section"> 
+					<div class="floatl">
+						<div class="student-count" id="student-data-count"></div>
+						<div class="student-head">Students: Total Enrolled vs Course Completed</div>
+					</div>	
+					<div class="filter-location floatr form-group"> 
+						<select name="student_location_filter" id="student_location_filter" class="form-control">
+							<option value=''>- Select a Location -</option>
+						</select>
+						<select id="student_fy_filter" class="form-control"></select> 
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="student_chart"></div> 
+						<!--div id="schooltype_info"></div--> 
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--  Revenue Chart Section Start-->
+		<div class="panel no-revenues" id="revenues_chart_main"> 
+			<div class="panel-body">
+				<div id="revenues_chart_inner_section"> 
+					<div class="floatl">
+						<div class="revenues-count" id="revenues-data-count"></div>
+						<div class="revenues-head">Revenue Generate</div>
+					</div>	
+					<div class="filter-location floatr form-group">
+						<select name="revenues_location_filter" id="revenues_location_filter" class="form-control">
+							<option value=''>- Select a Location -</option>
+						</select>
+						<select id="revenues_fy_filter" class="form-control"></select> 
+						<!--select id="revenues_school_type_filter" class="form-control"></select--> 
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="revenue_chart"></div> 
+						<!--div id="schooltype_info"></div--> 
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--  Machine Chart Section Start-->
+		<div class="panel no-machine" id="machine_chart_main"> 
+			<div class="panel-body">
+				<div id="machine_chart_inner_section"> 
+					<div class="floatl">
+						<div class="machine-count" id="machine-data-count"></div>
+						<div class="machine-head">Total Machine Sold</div>
+					</div>	
+					<div class="filter-location floatr form-group">
+						<select name="machine_location_filter" id="machine_location_filter" class="form-control">
+							<option value=''>- Select a Location -</option>
+						</select>
+						<select id="machine_fy_filter" class="form-control"></select> 
+						<!--select id="revenues_school_type_filter" class="form-control"></select--> 
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-lg-12">
+						<div id="machine_chart"></div> 
+						<!--div id="schooltype_info"></div--> 
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- School Chart Section End-->
+		
+		<div class="row">
+		<div class="col-lg-12">
+			<!-- School Count & click to open school chart-->
+			<div class="col-lg-6 col-sm-6  p-mob-0">
+				<div class="panel schools">
+					<div class="panel-body p-0">
+						<div id="no_of_school" class="media">
+							<div class="media-left"><img src="/themes/contrib/druadmin_lte_theme/images/school-count-active.png" class="inactive-img">
+								<img src="/themes/contrib/druadmin_lte_theme/images/school-count.png" class="active-img">
+							</div>
+							<div class="media-body"><h1 id="school_count"></h1>Active Schools</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Student Count & click to open student chart-->
+			<div class="col-lg-6 col-sm-6  p-mob-0">
+				<div class="panel students">
+					<div class="panel-body p-0">
+						<div id="no_of_student" class="media">
+							<div class="media-left"><img src="/themes/contrib/druadmin_lte_theme/images/learner.png" class="inactive-img">
+								<img src="/themes/contrib/druadmin_lte_theme/images/learner-active.png" class="active-img">
+							</div>
+							<div class="media-body"><h1 id="student_count"></h1>No. of Enrolled Student</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Revenue Count & click to open revenue chart -->
+			<div class="col-lg-6 col-sm-6  p-mob-0">
+				<div class="panel revenue">
+					<div class="panel-body p-0">
+						<div id="no_of_revenue" class="media">
+							<div class="media-left"><img src="/themes/contrib/druadmin_lte_theme/images/agreement.png" class="inactive-img">
+								<img src="/themes/contrib/druadmin_lte_theme/images/agreement-active.png" class="active-img">
+							</div>
+							<div class="media-body"><h1 id="revenue_count"></h1>Revenue Generate</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Machine Count & click to open machine chart -->
+			<div class="col-lg-6 col-sm-6  p-mob-0">
+				<div class="panel machine">
+					<div class="panel-body p-0">
+						<div id="no_of_machine" class="media">
+							<div class="media-left"><img src="/themes/contrib/druadmin_lte_theme/images/machine-active.png" class="inactive-img">
+								<img src="/themes/contrib/druadmin_lte_theme/images/machine.png" class="active-img">
+							</div>
+							<div class="media-body"><h1 id="machine_count"></h1>Total Machine Sold</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Renewal School Count & click to open View chart -->
+			<div class="col-lg-6 col-sm-6 p-mob-0">
+				<div class="panel schools">
+					<div class="panel-body p-0">
+						<a href="/sewing-school-pending-for-renewal-list" class="use-ajax" data-dialog-type="modal">
+						<div id="no_of_school" class="media">
+							<div class="media-left"><img src="/themes/contrib/druadmin_lte_theme/images/school-count-active.png" class="inactive-img">
+								<img src="/themes/contrib/druadmin_lte_theme/images/school-count.png" class="active-img">
+							</div>
+							<div class="media-body">
+								<h1 id="renewal_school_count">{{ renewalSchoolCount }}</h1>Renewals Pending
+							</div>
+						
+						</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		</div>
+		
+		<!--div class="row">
+		
+		</div-->
+	</div>
+
+
+
+	
+	
+<div class="col-lg-3 col-sm-12">
+			
+				<div class="gallery-section">
+					<h2>Gallery</h2>
+					<center>
+					{{ sewingViewGalleryRender }}
+					</center>
+				</div>
+			
+
+			
+				<div class="notice-board-section">
+					<h2>Notice Board</h2>
+					{{ viewNoticeRender }}
+				</div>
+			
+</div>	
+</div>
+	
+
+
+
+		
+		
+{# {% else %}
+	<script type="text/javascript">
+		window.location = "/";
+	</script>
+{% endif %}
+ #}

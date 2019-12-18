@@ -1,0 +1,21 @@
+uuid: 5e554c61-2001-46ce-b751-c6fb63d9276c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain_all_affiliates
+    - node.type.silai_dealer
+id: node.silai_dealer.field_domain_all_affiliates
+field_name: field_domain_all_affiliates
+entity_type: node
+bundle: silai_dealer
+label: 'Send to all affiliates'
+description: 'Make this content available on all domains.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

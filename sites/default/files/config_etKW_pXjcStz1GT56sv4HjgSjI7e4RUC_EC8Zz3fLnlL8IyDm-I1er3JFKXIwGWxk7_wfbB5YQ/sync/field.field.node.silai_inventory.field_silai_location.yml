@@ -1,0 +1,29 @@
+uuid: 4f107413-b1dc-4db0-87cb-37e4290a03d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_location
+    - node.type.manage_silai_locations
+    - node.type.silai_inventory
+id: node.silai_inventory.field_silai_location
+field_name: field_silai_location
+entity_type: node
+bundle: silai_inventory
+label: Location
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_silai_locations: manage_silai_locations
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

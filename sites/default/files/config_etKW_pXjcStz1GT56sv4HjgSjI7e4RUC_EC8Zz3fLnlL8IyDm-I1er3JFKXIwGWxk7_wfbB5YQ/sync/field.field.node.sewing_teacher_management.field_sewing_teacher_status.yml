@@ -1,0 +1,23 @@
+uuid: 7dc2e1ab-da03-441f-99fc-a139968c7daa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_status
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.field_sewing_teacher_status
+field_name: field_sewing_teacher_status
+entity_type: node
+bundle: sewing_teacher_management
+label: Status
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: On-Roll
+  off_label: 'Not On-Roll'
+field_type: boolean

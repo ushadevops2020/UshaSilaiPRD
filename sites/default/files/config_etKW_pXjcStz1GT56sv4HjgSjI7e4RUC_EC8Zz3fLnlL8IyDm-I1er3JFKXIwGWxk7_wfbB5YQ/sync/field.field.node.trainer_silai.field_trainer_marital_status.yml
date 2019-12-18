@@ -1,0 +1,21 @@
+uuid: d0ce8f84-07c0-4551-911a-aba00b80de9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trainer_marital_status
+    - node.type.trainer_silai
+  module:
+    - options
+id: node.trainer_silai.field_trainer_marital_status
+field_name: field_trainer_marital_status
+entity_type: node
+bundle: trainer_silai
+label: 'Marital Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

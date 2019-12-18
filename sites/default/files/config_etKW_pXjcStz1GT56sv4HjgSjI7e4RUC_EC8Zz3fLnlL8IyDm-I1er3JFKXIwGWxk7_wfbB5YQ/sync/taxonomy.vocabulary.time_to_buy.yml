@@ -1,0 +1,9 @@
+uuid: 94a17d50-ef25-4641-81c0-e38e376118c4
+langcode: en
+status: true
+dependencies: {  }
+name: 'Time to Buy'
+vid: time_to_buy
+description: 'Time to Buy'
+hierarchy: 0
+weight: 0

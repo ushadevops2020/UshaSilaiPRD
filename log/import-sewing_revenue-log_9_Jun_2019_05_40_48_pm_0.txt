@@ -1,0 +1,4 @@
+1) UUPLBK17070001 - Admission Number does not exist. In excel file row number : 60
+2) UUPAAD17040003 - Admission Number does not exist. In excel file row number : 434
+3) UUPAAD17040002 - Admission Number does not exist. In excel file row number : 435
+4) UTNCAK18030004 - Admission Number does not exist. In excel file row number : 906

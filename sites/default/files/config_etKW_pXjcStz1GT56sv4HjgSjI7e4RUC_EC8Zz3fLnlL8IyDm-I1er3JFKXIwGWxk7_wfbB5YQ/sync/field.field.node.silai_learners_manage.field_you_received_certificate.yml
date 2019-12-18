@@ -1,0 +1,21 @@
+uuid: 50377d08-1a30-465f-9120-75da617dcd70
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_you_received_certificate
+    - node.type.silai_learners_manage
+  module:
+    - options
+id: node.silai_learners_manage.field_you_received_certificate
+field_name: field_you_received_certificate
+entity_type: node
+bundle: silai_learners_manage
+label: 'Have you received certificate?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

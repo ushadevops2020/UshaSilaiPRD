@@ -1,0 +1,18 @@
+uuid: 622216bc-ace8-4c39-a853-2f05e4450c0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:menu_link_content:35e4d7af-5a06-46b5-976d-30fe9e4dcc45'
+name: 'Silai Town'
+type: silai_town
+description: 'Silai Town'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

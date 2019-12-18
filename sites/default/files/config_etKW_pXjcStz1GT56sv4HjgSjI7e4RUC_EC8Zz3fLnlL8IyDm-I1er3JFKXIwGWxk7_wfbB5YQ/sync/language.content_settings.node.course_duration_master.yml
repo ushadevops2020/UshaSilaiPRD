@@ -1,0 +1,11 @@
+uuid: c952c82b-8dce-4c09-be10-448cbacf5204
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.course_duration_master
+id: node.course_duration_master
+target_entity_type_id: node
+target_bundle: course_duration_master
+default_langcode: site_default
+language_alterable: false

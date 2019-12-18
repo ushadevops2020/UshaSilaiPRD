@@ -1,0 +1,19 @@
+uuid: 56a1efbf-645b-4924-a9bb-a324cadb0796
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_number
+    - node.type.trainee
+id: node.trainee.field_contact_number
+field_name: field_contact_number
+entity_type: node
+bundle: trainee
+label: 'Contact Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

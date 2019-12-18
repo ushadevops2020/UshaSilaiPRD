@@ -1,0 +1,29 @@
+uuid: 4f51aff8-d63a-4c5c-84aa-f8cba4320db5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_item_group
+    - node.type.item_group
+    - node.type.items
+id: node.items.field_item_group
+field_name: field_item_group
+entity_type: node
+bundle: items
+label: 'Item Group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      item_group: item_group
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

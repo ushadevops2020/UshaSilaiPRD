@@ -1,0 +1,5 @@
+name: 'sewing School'
+type: module
+description: 'This Module is for managing Sewing school'
+core: 8.x
+package: 'Custom' 

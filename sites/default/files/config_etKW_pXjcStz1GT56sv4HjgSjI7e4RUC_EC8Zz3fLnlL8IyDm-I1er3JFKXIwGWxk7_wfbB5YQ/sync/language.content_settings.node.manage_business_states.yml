@@ -1,0 +1,11 @@
+uuid: ce5da565-a7d6-47c8-ad0b-2d7529ce1c5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_business_states
+id: node.manage_business_states
+target_entity_type_id: node
+target_bundle: manage_business_states
+default_langcode: site_default
+language_alterable: false

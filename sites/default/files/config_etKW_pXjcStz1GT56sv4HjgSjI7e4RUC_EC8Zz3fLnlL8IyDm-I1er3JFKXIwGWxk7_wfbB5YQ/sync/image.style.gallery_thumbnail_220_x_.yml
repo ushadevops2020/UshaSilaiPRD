@@ -1,0 +1,15 @@
+uuid: 2abb8529-659d-41f8-96d3-f0451de3f3bf
+langcode: en
+status: true
+dependencies: {  }
+name: gallery_thumbnail_220_x_
+label: 'gallery Thumbnail 220 x 270'
+effects:
+  ddd7e04b-6045-47b0-ad44-e92d433eb987:
+    uuid: ddd7e04b-6045-47b0-ad44-e92d433eb987
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 220
+      height: 270
+      anchor: center-center

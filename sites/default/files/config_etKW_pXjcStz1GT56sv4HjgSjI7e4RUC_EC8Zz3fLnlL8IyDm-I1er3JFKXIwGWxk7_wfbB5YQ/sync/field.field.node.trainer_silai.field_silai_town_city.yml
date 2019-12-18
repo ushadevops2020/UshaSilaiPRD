@@ -1,0 +1,29 @@
+uuid: 38ef8085-fdc9-4b23-abd1-252b432c883d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_town_city
+    - node.type.silai_town
+    - node.type.trainer_silai
+id: node.trainer_silai.field_silai_town_city
+field_name: field_silai_town_city
+entity_type: node
+bundle: trainer_silai
+label: Town/City
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_town: silai_town
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

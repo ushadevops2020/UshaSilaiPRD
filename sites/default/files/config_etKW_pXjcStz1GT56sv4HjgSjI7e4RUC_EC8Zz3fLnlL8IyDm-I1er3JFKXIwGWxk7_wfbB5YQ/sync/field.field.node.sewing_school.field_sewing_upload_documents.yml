@@ -1,0 +1,27 @@
+uuid: 3a381d6e-9b3f-42ee-9809-df9b9ac9c493
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_upload_documents
+    - node.type.sewing_school
+  module:
+    - file
+id: node.sewing_school.field_sewing_upload_documents
+field_name: field_sewing_upload_documents
+entity_type: node
+bundle: sewing_school
+label: 'PAN Attachment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt png jpg jpeg pdf doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

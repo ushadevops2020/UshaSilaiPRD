@@ -1,0 +1,20 @@
+uuid: 4f2880e4-7fef-4eed-9a54-360029e35db2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_no_of_trainees
+field_name: field_silai_no_of_trainees
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: aabdfa7c-ce57-4caf-8874-720b77ff1caa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_teacher_gender
+    - node.type.sewing_teacher_management
+  module:
+    - options
+id: node.sewing_teacher_management.field_sewing_teacher_gender
+field_name: field_sewing_teacher_gender
+entity_type: node
+bundle: sewing_teacher_management
+label: Gender
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

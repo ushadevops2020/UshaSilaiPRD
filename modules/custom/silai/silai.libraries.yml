@@ -1,0 +1,10 @@
+silai_form_alter:
+  version: 1.x
+  js:
+    js/silai_form_alter.js: {}
+    js/bootstrap-rating-input.min.js: {}
+  dependencies:
+   - core/jquery
+   - core/drupalSettings
+   - core/drupal.dialog.ajax
+   - core/jquery.form

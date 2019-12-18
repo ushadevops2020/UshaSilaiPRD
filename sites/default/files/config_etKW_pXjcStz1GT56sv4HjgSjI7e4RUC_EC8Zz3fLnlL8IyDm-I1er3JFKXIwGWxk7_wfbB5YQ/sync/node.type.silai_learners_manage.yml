@@ -1,0 +1,18 @@
+uuid: fcc4fdb5-e43a-4ec6-9a7c-1d0f41f40208
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:'
+name: 'Silai learners manage'
+type: silai_learners_manage
+description: 'Silai learners manage'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

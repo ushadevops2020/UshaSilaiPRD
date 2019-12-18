@@ -1,0 +1,4 @@
+services:
+ location_master.master_data:
+   class: Drupal\location_master\Services\MasterDataServices
+   arguments: []

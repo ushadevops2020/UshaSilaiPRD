@@ -1,0 +1,20 @@
+uuid: 6d20424b-a4d8-4add-9f04-71d74f5dd8d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_sewing_exit_code
+field_name: field_sewing_exit_code
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

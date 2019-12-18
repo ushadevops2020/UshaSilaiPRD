@@ -1,0 +1,18 @@
+uuid: ea4e9d6c-ccef-46be-a662-e070350823e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - sewing-menu
+    parent: 'sewing-menu:'
+name: 'Sewing School'
+type: sewing_school
+description: 'Sewing School Management'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

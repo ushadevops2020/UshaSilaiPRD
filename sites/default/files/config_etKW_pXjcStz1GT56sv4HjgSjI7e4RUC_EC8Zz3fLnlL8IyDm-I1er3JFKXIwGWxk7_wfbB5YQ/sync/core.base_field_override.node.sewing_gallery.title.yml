@@ -1,0 +1,18 @@
+uuid: 1d5fa1b7-9b06-4c10-bb95-78a4dee9aebc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_gallery
+id: node.sewing_gallery.title
+field_name: title
+entity_type: node
+bundle: sewing_gallery
+label: 'Event Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: b76bf7fb-175f-4339-85d7-1eacda2b043e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_training_pros_gen_for_sch
+field_name: field_training_pros_gen_for_sch
+entity_type: node
+type: string
+settings:
+  max_length: 8
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

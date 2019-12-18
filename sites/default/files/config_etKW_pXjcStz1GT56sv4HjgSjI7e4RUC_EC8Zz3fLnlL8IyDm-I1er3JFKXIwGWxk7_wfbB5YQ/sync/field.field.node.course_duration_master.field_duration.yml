@@ -1,0 +1,23 @@
+uuid: c6fb2b61-c627-4d62-b063-6da320348725
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_duration
+    - node.type.course_duration_master
+id: node.course_duration_master.field_duration
+field_name: field_duration
+entity_type: node
+bundle: course_duration_master
+label: 'Duration (In Months)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 60
+  prefix: ''
+  suffix: ''
+field_type: integer

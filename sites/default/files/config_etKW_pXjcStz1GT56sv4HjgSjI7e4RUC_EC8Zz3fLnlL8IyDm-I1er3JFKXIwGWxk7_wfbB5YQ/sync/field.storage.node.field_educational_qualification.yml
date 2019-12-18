@@ -1,0 +1,48 @@
+uuid: f97d58a2-5e17-4ca1-9d89-3fd80cfa91a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_educational_qualification
+field_name: field_educational_qualification
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '9'
+      label: 'Any other'
+    -
+      value: '4'
+      label: Diploma
+    -
+      value: '7'
+      label: Graduate
+    -
+      value: '5'
+      label: 'High School'
+    -
+      value: '6'
+      label: Intermediate
+    -
+      value: '1'
+      label: 'Non literate'
+    -
+      value: '8'
+      label: 'Post Graduate'
+    -
+      value: '2'
+      label: Primary
+    -
+      value: '3'
+      label: 'Upper Primary'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

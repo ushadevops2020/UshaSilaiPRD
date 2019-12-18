@@ -1,0 +1,5 @@
+name: 'custom_api'
+type: module
+description: 'This Module is for managing all custom Apis'
+core: 8.x
+package: 'Custom'

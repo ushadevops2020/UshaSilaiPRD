@@ -1,0 +1,11 @@
+uuid: 818fd21b-b4b3-45c9-b44c-59416a40ef46
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_dealer
+id: node.silai_dealer
+target_entity_type_id: node
+target_bundle: silai_dealer
+default_langcode: site_default
+language_alterable: false

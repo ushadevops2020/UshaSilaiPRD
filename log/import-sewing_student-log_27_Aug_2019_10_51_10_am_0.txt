@@ -1,0 +1,15 @@
+1) USHA - "Existing Sewing Machine Brand" is not valid in row number . 30.
+2) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 48.
+3) USHA - "Existing Sewing Machine Brand" is not valid in row number . 49.
+4) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 74.
+5) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 75.
+6) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 76.
+7) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 77.
+8) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 78.
+9) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 79.
+10) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 80.
+11) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 81.
+12) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 109.
+13) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 110.
+14) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 111.
+15) USHA  - "Existing Sewing Machine Brand" is not valid in row number . 112.

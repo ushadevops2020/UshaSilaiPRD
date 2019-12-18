@@ -1,0 +1,18 @@
+uuid: 61269373-9c3c-4beb-92b5-b0a80fc38b7e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - common-menu
+    parent: 'common-menu:'
+name: 'Sewing Course Master'
+type: course_master
+description: 'Sewing Course Master'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

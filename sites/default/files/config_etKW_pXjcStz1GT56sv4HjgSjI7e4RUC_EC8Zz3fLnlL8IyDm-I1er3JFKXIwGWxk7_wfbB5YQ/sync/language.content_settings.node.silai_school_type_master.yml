@@ -1,0 +1,11 @@
+uuid: 038c276b-e5ad-4a4b-bc02-193ef3b2c474
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_school_type_master
+id: node.silai_school_type_master
+target_entity_type_id: node
+target_bundle: silai_school_type_master
+default_langcode: site_default
+language_alterable: false

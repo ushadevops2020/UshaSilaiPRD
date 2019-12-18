@@ -1,0 +1,14 @@
+uuid: 209e435c-6787-472b-a0c6-495481387d45
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_ho_user
+  module:
+    - user
+id: user_add_role_action.sewing_ho_user
+label: 'Add the Sewing Ho User role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sewing_ho_user

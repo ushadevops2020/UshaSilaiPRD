@@ -1,0 +1,22 @@
+uuid: f3a008ac-8afb-47b6-b57a-a7b8115ee5e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trainer_silai
+id: node.trainer_silai.promote
+field_name: promote
+entity_type: node
+bundle: trainer_silai
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

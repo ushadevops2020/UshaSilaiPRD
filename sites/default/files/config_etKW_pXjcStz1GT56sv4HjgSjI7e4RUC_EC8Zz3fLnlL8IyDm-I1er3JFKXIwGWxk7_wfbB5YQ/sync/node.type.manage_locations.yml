@@ -1,0 +1,18 @@
+uuid: 6e95ba03-bc08-487d-858e-5e89042e08da
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - common-menu
+    parent: 'common-menu:'
+name: Location
+type: manage_locations
+description: 'Manage Locations'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

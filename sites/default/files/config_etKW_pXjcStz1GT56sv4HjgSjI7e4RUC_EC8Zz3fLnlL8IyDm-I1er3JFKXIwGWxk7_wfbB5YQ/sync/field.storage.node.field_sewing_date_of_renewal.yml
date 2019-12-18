@@ -1,0 +1,20 @@
+uuid: ef002d8b-1950-40c2-b810-a9bfb9391ba1
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_sewing_date_of_renewal
+field_name: field_sewing_date_of_renewal
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

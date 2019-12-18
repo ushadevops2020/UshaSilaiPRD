@@ -1,0 +1,21 @@
+uuid: 3cdcc74f-7db9-4725-af43-7d9cf0b9aaa8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_business_state_code
+field_name: field_business_state_code
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

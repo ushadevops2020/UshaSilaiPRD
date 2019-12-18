@@ -1,0 +1,11 @@
+uuid: 02a6d843-1ee1-4a7b-9374-ec73f6fd92e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_gallery
+id: node.sewing_gallery
+target_entity_type_id: node
+target_bundle: sewing_gallery
+default_langcode: site_default
+language_alterable: false

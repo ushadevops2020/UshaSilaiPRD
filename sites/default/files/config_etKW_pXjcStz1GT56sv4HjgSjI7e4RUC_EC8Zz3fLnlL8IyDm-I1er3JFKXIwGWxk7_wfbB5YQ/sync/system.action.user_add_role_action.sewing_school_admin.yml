@@ -1,0 +1,14 @@
+uuid: 739739e8-eb93-43e6-bb22-0d587dc82394
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_school_admin
+  module:
+    - user
+id: user_add_role_action.sewing_school_admin
+label: 'Add the Sewing School Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sewing_school_admin

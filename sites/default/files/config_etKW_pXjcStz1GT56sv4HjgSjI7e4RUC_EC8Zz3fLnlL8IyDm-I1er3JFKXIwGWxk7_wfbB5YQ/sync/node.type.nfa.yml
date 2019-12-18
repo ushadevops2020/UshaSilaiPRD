@@ -1,0 +1,18 @@
+uuid: 59fb5c21-b6c4-4332-9a51-b489810ff926
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:'
+name: NFA
+type: nfa
+description: NFA
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

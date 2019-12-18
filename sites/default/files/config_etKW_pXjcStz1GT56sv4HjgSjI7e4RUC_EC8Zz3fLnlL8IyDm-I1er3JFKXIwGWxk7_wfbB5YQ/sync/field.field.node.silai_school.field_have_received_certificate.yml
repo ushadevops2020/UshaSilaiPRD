@@ -1,0 +1,21 @@
+uuid: 0e9ecf6d-2070-4872-997c-df7708ac7f7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_have_received_certificate
+    - node.type.silai_school
+  module:
+    - options
+id: node.silai_school.field_have_received_certificate
+field_name: field_have_received_certificate
+entity_type: node
+bundle: silai_school
+label: 'Have you received certificate?'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

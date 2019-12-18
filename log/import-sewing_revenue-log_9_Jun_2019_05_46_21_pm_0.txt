@@ -1,0 +1,4 @@
+1) UTNCAK18020008 - Admission Number does not exist. In excel file row number : 524
+2) UTNCED18030006 - Admission Number does not exist. In excel file row number : 532
+3) UUPLC318020037 - Admission Number does not exist. In excel file row number : 680
+4) UWBCEC18020018 - Admission Number does not exist. In excel file row number : 780

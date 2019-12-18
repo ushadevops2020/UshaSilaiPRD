@@ -1,0 +1,8 @@
+uuid: 341ef9fd-7b6c-4e3b-8523-02628ebc155c
+langcode: en
+status: true
+dependencies: {  }
+id: common-menu
+label: 'Common Menu'
+description: 'Common Menu'
+locked: false

@@ -1,0 +1,18 @@
+uuid: 8756b388-e038-4f5a-9b44-11858db7f018
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.revenue
+id: node.revenue.title
+field_name: title
+entity_type: node
+bundle: revenue
+label: 'Revenue Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

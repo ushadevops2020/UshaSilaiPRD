@@ -1,0 +1,5 @@
+name: 'sewing'
+type: module
+description: 'This Module is for managing all master in Sewing'
+core: 8.x
+package: 'Custom'

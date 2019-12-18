@@ -1,0 +1,29 @@
+uuid: 07333264-fb70-444c-890a-eb8bca662a16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_business_state
+    - node.type.manage_business_states
+    - node.type.manage_towns
+id: node.manage_towns.field_business_state
+field_name: field_business_state
+entity_type: node
+bundle: manage_towns
+label: 'Assign State'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_business_states: manage_business_states
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

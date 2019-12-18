@@ -1,0 +1,108 @@
+uuid: 72662ff8-dc06-40ab-aa6e-f89739cfc617
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.manage_inventory.field_domain_access
+    - field.field.node.manage_inventory.field_domain_all_affiliates
+    - field.field.node.manage_inventory.field_inventory_courier
+    - field.field.node.manage_inventory.field_inventory_transaction_date
+    - field.field.node.manage_inventory.field_location
+    - field.field.node.manage_inventory.field_sewing_docket_no
+    - field.field.node.manage_inventory.field_sewing_inv_quantity
+    - field.field.node.manage_inventory.field_sewing_item_group
+    - field.field.node.manage_inventory.field_sewing_item_name
+    - field.field.node.manage_inventory.field_sewing_transaction_no
+    - node.type.manage_inventory
+  module:
+    - datetime
+    - user
+id: node.manage_inventory.default
+targetEntityType: node
+bundle: manage_inventory
+mode: default
+content:
+  field_inventory_courier:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_inventory_transaction_date:
+    weight: 108
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_location:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_docket_no:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_inv_quantity:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sewing_item_group:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_item_name:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sewing_transaction_no:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

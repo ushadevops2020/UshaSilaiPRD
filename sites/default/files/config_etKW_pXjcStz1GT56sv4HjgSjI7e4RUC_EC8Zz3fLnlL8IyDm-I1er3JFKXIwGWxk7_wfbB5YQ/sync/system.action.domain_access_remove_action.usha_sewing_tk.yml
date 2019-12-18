@@ -1,0 +1,14 @@
+uuid: 71bee1aa-c46d-4e60-aa0b-9b1a1f3e1c2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_sewing_tk
+  module:
+    - domain_access
+id: domain_access_remove_action.usha_sewing_tk
+label: 'Remove selected content from the Sewing domain'
+type: node
+plugin: domain_access_remove_action
+configuration:
+  domain_id: usha_sewing_tk

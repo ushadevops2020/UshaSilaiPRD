@@ -1,0 +1,19 @@
+uuid: 7a1dc55b-d3e0-4a65-8b1b-d9d0eb707ef3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field__trainee_address
+    - node.type.trainee
+id: node.trainee.field__trainee_address
+field_name: field__trainee_address
+entity_type: node
+bundle: trainee
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

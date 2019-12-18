@@ -1,0 +1,19 @@
+uuid: 8a3ed9f7-effb-47a0-b856-5105a34ae3ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_item_code
+    - node.type.items
+id: node.items.field_item_code
+field_name: field_item_code
+entity_type: node
+bundle: items
+label: 'Item Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

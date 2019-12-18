@@ -1,0 +1,21 @@
+uuid: be74d841-6710-4f38-9ba7-03d3affae27d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_association_social_group
+    - node.type.silai_learners_manage
+  module:
+    - options
+id: node.silai_learners_manage.field_association_social_group
+field_name: field_association_social_group
+entity_type: node
+bundle: silai_learners_manage
+label: 'Association with any social group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

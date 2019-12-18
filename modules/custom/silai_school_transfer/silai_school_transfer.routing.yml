@@ -1,0 +1,15 @@
+silai_school_transfer.silai_school_transfer:
+  path: '/silai-school-transfer/{nid}' 
+  defaults:
+    _title: 'School Transfer Form'
+    _controller: '\Drupal\silai_school_transfer\Controller\SilaiSchoolTransferController::silaiSchoolTransfer'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user' 
+    
+silai_school_transfer.silai_school_ngo_transfer:
+  path: '/silai-school-bulk-ngo-transfer' 
+  defaults:
+    _title: 'Bulk School NGO Transfer'
+    _controller: '\Drupal\silai_school_transfer\Controller\SilaiSchoolTransferController::silaiBulkSchoolNGOTransfer'
+  requirements:
+    _role: 'administrator+silai_ho_admin+silai_ho_user' 

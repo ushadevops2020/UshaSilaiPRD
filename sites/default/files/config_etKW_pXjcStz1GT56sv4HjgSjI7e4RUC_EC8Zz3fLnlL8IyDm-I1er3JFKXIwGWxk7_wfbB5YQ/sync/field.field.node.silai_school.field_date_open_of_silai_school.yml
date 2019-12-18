@@ -1,0 +1,24 @@
+uuid: d5eaa4df-5015-4347-93fb-7be4e205e345
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_open_of_silai_school
+    - node.type.silai_school
+  module:
+    - datetime
+id: node.silai_school.field_date_open_of_silai_school
+field_name: field_date_open_of_silai_school
+entity_type: node
+bundle: silai_school
+label: 'Date of opening of Silai School/Center'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

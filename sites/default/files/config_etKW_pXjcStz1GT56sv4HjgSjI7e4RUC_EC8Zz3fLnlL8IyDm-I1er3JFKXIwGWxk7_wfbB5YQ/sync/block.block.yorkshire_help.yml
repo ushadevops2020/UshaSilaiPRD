@@ -1,0 +1,22 @@
+uuid: 9b09ef2b-7433-4359-a392-d615382a1b6f
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - yorkshire
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: yorkshire_help
+theme: yorkshire
+region: content
+weight: -5
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,4 @@
+1) IND03131  - School Code is not exist. In Row Number : 2
+2) IND03131  - School Code is not exist. In Row Number : 3
+3) IND03131  - School Code is not exist. In Row Number : 4
+4) IND03131  - School Code is not exist. In Row Number : 5

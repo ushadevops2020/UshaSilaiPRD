@@ -1,0 +1,3 @@
+1)   - School Code is not exist. In Row Number : 18
+2)   - School Code is not exist. In Row Number : 19
+3)  - Course Code field is Blank. In Row Number : 307

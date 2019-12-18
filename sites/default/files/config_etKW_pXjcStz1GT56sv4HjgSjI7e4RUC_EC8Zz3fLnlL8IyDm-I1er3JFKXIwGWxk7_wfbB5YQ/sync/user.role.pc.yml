@@ -1,0 +1,24 @@
+uuid: 24c4451f-57e2-4e20-9604-ea50691b87fb
+langcode: en
+status: true
+dependencies: {  }
+id: pc
+label: 'Silai PC'
+weight: 6
+is_admin: null
+permissions:
+  - 'access content'
+  - 'add audit log entities'
+  - 'administer audit log entities'
+  - 'bypass node access'
+  - 'create content_workflow workflow_transition'
+  - 'create silai_school content'
+  - 'delete any silai_school content'
+  - 'delete own silai_school content'
+  - 'edit any silai_school content'
+  - 'edit own silai_school content'
+  - 'view any unpublished content'
+  - 'view audit log entities'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view unpublished domain content'

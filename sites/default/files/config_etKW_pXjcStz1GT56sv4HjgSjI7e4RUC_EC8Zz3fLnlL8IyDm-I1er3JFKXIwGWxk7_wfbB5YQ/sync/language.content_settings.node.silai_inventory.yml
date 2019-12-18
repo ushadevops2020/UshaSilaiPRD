@@ -1,0 +1,11 @@
+uuid: 700769d7-970d-422f-af8a-46d359a1108f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_inventory
+id: node.silai_inventory
+target_entity_type_id: node
+target_bundle: silai_inventory
+default_langcode: site_default
+language_alterable: false

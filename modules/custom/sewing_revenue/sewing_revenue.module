@@ -1,0 +1,218 @@
+<?php
+
+/**
+ * @file
+ * Contains sewing.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements sewing_revenue_help().
+ */
+function sewing_revenue_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sewing module.
+    case 'help.page.sewing':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements sewing_revenue_theme().
+ */
+function sewing_revenue_theme() {
+  return [
+    'print_fee_receipt_page' => array(
+        'variables' => array( 
+        'receiptNo' => NULL,
+        'receiptDate' => NULL,
+        'schoolCode' => NULL,
+        'address1' => NULL,
+        'address2' => NULL,
+        'address3' => NULL,
+        'schoolName' => NULL,
+        'type' => NULL,
+        'details' => NULL,
+        'bank' => NULL,
+        'revenueType' => NULL,
+        'revenueTypeName' => NULL,
+        'netAmount' => NULL,
+        'netAmountWords' => NULL,
+        'date' => NULL,
+        'sapCode' => NULL
+        ),
+    ),
+    'print_fee_receipt_page_for_company_run' => array(
+        'variables' => array( 
+        'dataArray' => NULL,
+        ),
+    ),
+  ];
+}
+
+function sewing_revenue_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'fee_receipt_list' && $view->current_display == 'page_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node_field_data_usha_generate_fee_receipt__node__field_location.field_location_target_id', $loactionId, 'IN');
+    }
+    if($query->where[1]['conditions'][0]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][0]['value']) {
+        $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+      }
+    }
+    if($query->where[1]['conditions'][1]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][1]['value']) {
+        $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+      }
+    }
+  }
+  if ($view->id() == 'fee_receipt_list' && $view->current_display == 'page_2') {
+    if($query->where[1]['conditions'][0]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][0]['value']) {
+        $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+      }
+    }
+    if($query->where[1]['conditions'][1]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][1]['value']) {
+        $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+      }
+    }
+  }
+  if ($view->id() == 'fee_receipt_list' && $view->current_display == 'data_export_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node_field_data_usha_generate_fee_receipt__node__field_location.field_location_target_id', $loactionId, 'IN');
+    }
+    if($query->where[1]['conditions'][0]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][0]['value']) {
+        $query->where[1]['conditions'][0]['value'] = strtotime($query->where[1]['conditions'][0]['value']);
+      }
+    }
+    if($query->where[1]['conditions'][1]['field'] == 'usha_generate_fee_receipt.created_date') {
+      if($query->where[1]['conditions'][1]['value']) {
+        $query->where[1]['conditions'][1]['value'] = strtotime($query->where[1]['conditions'][1]['value']);
+      }
+    }
+  }
+}
+function sewing_revenue_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  
+  /* if ($form['#id'] == 'views-exposed-form-fee-receipt-list-page-1') {
+    $schoolTypeOptions = get_option_list_for_view_revenue('school_type_master');
+    $fieldSchoolType = 'school_type';
+    $form[$fieldSchoolType][HASH_TYPE] = 'select';
+    $form[$fieldSchoolType]['#multiple'] = FALSE;
+    $form[$fieldSchoolType]['#empty_option'] = t('- Select a value -');
+    $form[$fieldSchoolType][HASH_OPTIONS] = $schoolTypeOptions;
+    unset($form[$fieldSchoolType]['#size']);  
+  }else if ($form['#id'] == 'views-exposed-form-fee-receipt-list-page-2') {
+    $schoolTypeOptions = get_option_list_for_view_revenue('school_type_master');
+    $fieldSchoolType = 'school_type';
+    $form[$fieldSchoolType][HASH_TYPE] = 'select';
+    $form[$fieldSchoolType]['#multiple'] = FALSE;
+    $form[$fieldSchoolType]['#empty_option'] = t('- Select a value -');
+    $form[$fieldSchoolType][HASH_OPTIONS] = $schoolTypeOptions;
+    unset($form[$fieldSchoolType]['#size']);  
+
+    $locationOptions = get_option_list_for_view_revenue('manage_locations');
+    $fieldLocation = 'location';
+    $form[$fieldLocation][HASH_TYPE] = 'select';
+    $form[$fieldLocation]['#multiple'] = FALSE;
+    $form[$fieldLocation]['#empty_option'] = t('- Select a value -');
+    $form[$fieldLocation][HASH_OPTIONS] = $locationOptions;
+    unset($form[$fieldLocation]['#size']);  
+  } */
+  if ($form['#id'] == 'views-exposed-form-fee-receipt-list-page-1' || $form['#id'] == 'views-exposed-form-fee-receipt-list-page-2') {
+    $form['created_date']['#type'] = 'date';
+    $form['created_date_1']['#type'] = 'date';
+  }
+}
+/**
+ * Function to return state list().
+ */
+function get_option_list_for_view_revenue($type) {
+  $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('node');
+  $nids = $storage->getQuery();
+  
+  // Gather published artist nodes and sort by title
+  $nids = $nids->condition('type', $type)
+    ->condition('status', 1)
+    ->sort('title')
+    ->execute();
+  // If there are no nodes, move on
+    if (!$nids) {
+     return [];
+    }
+  // Start building out the options for our select list
+    $options = [];
+    $nodes = $storage->loadMultiple($nids);
+  
+  // Push titles into select list
+    foreach ($nodes as $node) {
+     $options[$node->getTitle()] = $node->getTitle();
+    }
+  
+  return $options;
+}
+
+function sewing_revenue_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  
+	if($view->id() == 'fee_receipt_list') {
+    foreach ($view->result as $key => $row) {
+		//print_r($row->usha_generate_fee_receipt_revenue_head_type);
+		$revenueData = Node::load((int)$row->usha_generate_fee_receipt_revenue_head_type);
+		if((int)$row->usha_generate_fee_receipt_revenue_head_type == 97322 || empty($row->usha_generate_fee_receipt_revenue_head_type)){
+			$row->usha_generate_fee_receipt_revenue_head_type = 'Student Fees';
+			/* echo 'hello';
+			die; */
+		}else{
+			$row->usha_generate_fee_receipt_revenue_head_type = $revenueData->title->value;
+		}
+    }
+  }	
+  if($view->id() == 'sewing_student_fee_management') {
+    foreach ($view->result as $key => $row) {
+		
+		$conn = Database::getConnection();
+        $query = $conn->select('usha_generate_fee_receipt', 'f')
+            ->condition('id', $row->usha_student_fee_receipt_generate_fee_id)
+            ->fields('f');
+        $record = $query->execute()->fetchAssoc();
+		
+		$row->usha_student_fee_receipt_generate_fee_id = $record['receipt_number'];
+    }
+  }
+  #
+}
+

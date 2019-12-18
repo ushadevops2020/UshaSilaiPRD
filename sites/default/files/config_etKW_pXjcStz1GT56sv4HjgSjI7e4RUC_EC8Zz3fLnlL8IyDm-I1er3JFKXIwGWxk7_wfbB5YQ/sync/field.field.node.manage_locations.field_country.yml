@@ -1,0 +1,29 @@
+uuid: 592aa379-10ed-4d5c-ae76-30589e3a060e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.manage_countries
+    - node.type.manage_locations
+id: node.manage_locations.field_country
+field_name: field_country
+entity_type: node
+bundle: manage_locations
+label: 'Assign Country'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_countries: manage_countries
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

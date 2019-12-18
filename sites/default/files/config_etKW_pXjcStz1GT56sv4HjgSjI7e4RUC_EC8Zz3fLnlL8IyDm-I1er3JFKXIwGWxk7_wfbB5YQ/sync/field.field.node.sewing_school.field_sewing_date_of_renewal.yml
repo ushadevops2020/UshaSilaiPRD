@@ -1,0 +1,21 @@
+uuid: f034506d-b89d-4bfc-8caf-48250a5a1afe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_date_of_renewal
+    - node.type.sewing_school
+  module:
+    - datetime
+id: node.sewing_school.field_sewing_date_of_renewal
+field_name: field_sewing_date_of_renewal
+entity_type: node
+bundle: sewing_school
+label: 'Renewal Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

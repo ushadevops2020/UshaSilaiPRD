@@ -1,0 +1,901 @@
+<?php
+
+/**
+ * @file
+ * Contains location_master.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\OpenModalDialogCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements location_master_help().
+ */
+function location_master_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the location_master module.
+    case 'help.page.location_master':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements location_master_theme().
+ */
+function location_master_theme() {
+  return [
+    'location_master' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implementation of hook_form_node_manage_countries_alter
+ */
+function location_master_form_node_manage_countries_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Country');
+    $form[HASH_VALIDATE][] = 'custom_sewing_countries_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_country_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/countries-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements hook_form_node_manage_countries_edit_form_alter().
+ */
+function location_master_form_node_manage_countries_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_countries_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_country_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+     $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/countries-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_sewing_countries_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_countries_validate($form, FormStateInterface &$form_state) {
+    $countryCode = $form_state->getValue('field_country_code')[0]['value'];
+    
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $countryCode)) {
+        $form_state->setErrorByName('field_country_code', t('Country Code not valid'));    
+    }
+
+    #validate duplicate country code check
+    if($countryCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_countries', 'field_country_code', $countryCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_country_code', t('Country Code already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implementation of hook_form_node_manage_locations_alter
+ */
+function location_master_form_node_manage_locations_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Location');
+    $form[HASH_VALIDATE][] = 'custom_sewing_locations_validate'; 
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_location_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+     $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/locations-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements hook_form_node_manage_locations_edit_form_alter().
+ */
+function location_master_form_node_manage_locations_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_locations_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_location_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/locations-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_sewing_locations_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_locations_validate($form, FormStateInterface &$form_state) {
+    $locationCode = $form_state->getValue('field_location_code')[0]['value'];
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $locationCode)) {
+        $form_state->setErrorByName('field_location_code', t('Location Code not valid.'));   
+    } 
+    if(strlen($locationCode) != 4) {
+        $form_state->setErrorByName('field_location_code', t('Location Code must be 4 character long.'));   
+    }
+
+    #validate duplicate location code check
+    if($locationCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_locations', 'field_location_code', $locationCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_location_code', t('Location Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of hook_form_node_manage_states_alter
+ */
+function location_master_form_node_manage_states_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_sewing_ISstates_validate'; 
+}
+
+/**
+ * Implements hook_form_node_manage_states_edit_form_alter().
+ */
+function location_master_form_node_manage_states_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_ISstates_validate'; 
+}
+
+/**
+ * Implementatuion of custom_sewing_ISstates_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_ISstates_validate($form, FormStateInterface &$form_state) {
+    $isStateCode = $form_state->getValue('field_state_code')[0]['value'];
+    
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $isStateCode)) {
+        $form_state->setErrorByName('field_state_code', t('State Code not valid.'));   
+    }
+
+    #validate duplicate state code check
+    if($isStateCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_states', 'field_state_code', $isStateCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_state_code', t('State Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of hook_form_node_manage_business_states_form_alter
+ */
+function location_master_form_node_manage_business_states_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New State');
+    $form[HASH_VALIDATE][] = 'custom_sewing_business_state_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_business_state_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/business-states-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements hook_form_node_manage_business_states_edit_form_alter().
+ */
+function location_master_form_node_manage_business_states_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_business_state_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_business_state_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/business-states-list"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_sewing_business_state_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_business_state_validate($form, FormStateInterface &$form_state) {
+    $stateCode = $form_state->getValue('field_business_state_code')[0]['value'];
+    /*
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $stateCode)) {
+        $form_state->setErrorByName('field_business_state_code', t('State Code not valid.'));   
+    }
+    */
+   
+    #validate duplicate state code check
+    if($stateCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_business_states', 'field_business_state_code', $stateCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_business_state_code', t('State Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of hook_form_node_manage_districts_alter
+ */
+function location_master_form_node_manage_districts_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New District');
+    $form[HASH_VALIDATE][] = 'custom_sewing_districts_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_district_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/districts-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_manage_districts_edit_form_alter().
+ */
+function location_master_form_node_manage_districts_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_districts_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_district_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/districts-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_sewing_districts_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_districts_validate($form, FormStateInterface &$form_state) {
+    $districtCode = $form_state->getValue('field_district_code')[0]['value'];
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $districtCode)) {
+        $form_state->setErrorByName('field_district_code', t('District Code not valid.'));   
+    }
+
+    #validate duplicate district code check
+    if($districtCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_districts', 'field_district_code', $districtCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_district_code', t('District Code already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implementation of hook_form_node_grade_master_alter
+ */
+function location_master_form_node_course_duration_master_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Course Duration');
+    $form[TITLE]['#attributes'] = ['class' => [ALPHANUMERIC]];
+}
+
+/**
+ * Implementation of hook_form_node_grade_master_alter
+ */
+function location_master_form_node_course_duration_master_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Course Duration');
+    $form[TITLE]['#attributes'] = ['class' => [ALPHANUMERIC]];
+}
+
+/**
+ * Implementation of hook_form_node_grade_master_alter
+ */
+function location_master_form_node_grade_master_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form['title']['widget'][0]['value']['#default_value'] = t('Node Fee Config');
+    $form[HASH_TITLE] = t('Add New Fees Configuration');
+    $form['field_affiliation_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_renewal_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_payable_to_uil'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+
+function location_master_form_node_grade_master_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form['field_affiliation_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_renewal_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_payable_to_uil'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];  
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+/**
+ * Implementation of hook_form_node_grade_master_alter
+ */
+function location_master_form_node_silai_training_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form['title']['widget'][0]['value']['#default_value'] = t('Training detail');
+    $form[HASH_TITLE] = t('Add Training');
+    
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of hook_form_node_grade_master_alter
+ */
+function location_master_form_node_silai_training_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form['title']['widget'][0]['value']['#default_value'] = t('Training detail');
+    $form[HASH_TITLE] = t('Edit Training');
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of hook_node_insert
+ */
+function location_master_node_insert(\Drupal\Core\Entity\EntityInterface $node) {
+    if($node->bundle() == 'silai_inventory') {
+        $node->setTitle('Inventoy-'.$node->id());
+        $node->setNewRevision(FALSE);
+        $node->save();        
+    }
+    if($node->bundle() == 'grade_master') {
+        $node->setTitle('Fee Config-'.$node->id());
+        $node->setNewRevision(FALSE);
+        $node->save();
+    }
+
+    if($node->bundle() == 'silai_training') {
+        $node->setTitle('Training'.$node->id());
+        $node->setNewRevision(FALSE);
+        $node->save();        
+    }
+}
+
+
+
+/**
+ * Implementation of hook_form_node_manage_towns_alter
+ */
+function location_master_form_node_manage_towns_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Town');
+    $form[HASH_VALIDATE][] = 'custom_sewing_towns_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_town_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+    $form['field_town_pincode'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]]; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/towns-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_manage_towns_edit_form_alter().
+ */
+function location_master_form_node_manage_towns_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_VALIDATE][] = 'custom_sewing_towns_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_town_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_town_pincode'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]]; 
+
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => -1,
+    '#attributes' => array('onClick' => 'window.location.href = "/towns-list"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_sewing_towns_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_sewing_towns_validate($form, FormStateInterface &$form_state) {
+    $townCode = $form_state->getValue('field_town_code')[0]['value'];
+    /*
+    if(!preg_match('/^[a-zA-Z]+[a-zA-Z0-9._]+$/', $townCode)) {
+        $form_state->setErrorByName('field_town_code', t('Town Code not valid.'));   
+    }
+    */
+   
+   #validate duplicate town code check
+    if($townCode){
+        $masterDataService = \Drupal::service('sewing.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_towns', 'field_town_code', $townCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_town_code', t('Town Code already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implements location_master_form_alter().
+ */
+
+function location_master_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $destinationData = drupal_get_destination();
+    
+    if($form_id == 'user_pass') {
+        $form['status_messages'] = [
+            HASH_TYPE => 'status_messages',
+            '#weight' => -10,
+        ];
+        $form[HASH_PREFIX] = '<div id="wrapper_modal_forgot_password_form">';
+        $form[HASH_SUFFIX] = '</div>';
+        $form[ACTIONS]['submit']['#attributes'] = [ 'class' => ['use-ajax']];
+        $form[ACTIONS]['submit']['#ajax'] = [ 'callback' => 'forgetPasswordAjaxCallback','wrapper' => 'wrapper_modal_forgot_password_form','event' => 'click'];
+
+    } 
+
+    else if(in_array($form_id, POPUP_FORM_ARRAY)) {
+        $form['status_messages'] = [
+            HASH_TYPE => 'status_messages',
+            '#weight' => -10,
+        ];
+
+        $wrapperId = "wrapper_modal_".$form_id;
+
+        $form[HASH_PREFIX] = '<div id="'.$wrapperId.'">';
+        $form[HASH_SUFFIX] = '</div>';
+        $form[ACTIONS]['submit']['#attributes'] = [ 'class' => ['use-ajax']];
+        $form[ACTIONS]['submit']['#ajax'] = [ 'callback' => 'ManageMasterAjaxCallback','wrapper' => $wrapperId,'event' => 'click'];
+
+        $form['sewing_silai_redirect'] = $destinationData['destination'];
+        $form['wrapper'] = '#'.$wrapperId;
+        $form['formId'] = $form_id;
+
+    }
+
+    
+	$form['#attached']['library'][] = 'location_master/form_alter';
+}
+
+/**
+   * Implements hook_form_FORM_ID_alter().
+   *
+   * Alters the exposed filter forms.
+   */
+  function location_master_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+	// For state listing page.
+    if ($form['#id'] == 'views-exposed-form-business-states-list1-page-1') {
+		$options = get_location_master_list('manage_locations');
+		$field = 'title';
+    }
+	// For district listing page.
+	else if ($form['#id'] == 'views-exposed-form-district-listing-page-1') {
+		$options = get_location_master_list('manage_business_states');
+		$field = 'title_1';
+    }
+	// For town listing page.
+	else if ($form['#id'] == 'views-exposed-form-towns-listing-page-1') {
+		$options = get_location_master_list('manage_business_states');
+		$field = 'title_1';
+    }
+	// For dealer listing page.
+	else if ($form['#id'] == 'views-exposed-form-dealers-listing-page-1') {
+		$options = get_location_master_list('manage_business_states');
+		$field = 'title_1';
+    }
+	// For silai state listing page.
+    else if ($form['#id'] == 'views-exposed-form-silai-states-list-page-1') {
+		$options = get_location_master_list('manage_silai_locations');
+		$field = 'title_1';
+    }
+	// For silai district listing page.
+	else if ($form['#id'] == 'views-exposed-form-silai-districts-list-page-1') {
+		$options = get_location_master_list('silai_business_states');
+		$field = 'title_1';
+    }
+	// For silai town listing page.
+	else if ($form['#id'] == 'views-exposed-form-silai-towns-list-page-1') {
+		$options = get_location_master_list('silai_business_states');
+		$field = 'title_1';
+    }
+	// For silai dealer listing page.
+	else if ($form['#id'] == 'views-exposed-form-silai-dealers-listing-page-1') {
+		$options = get_location_master_list('silai_business_states');
+		$field = 'title_1';
+        $options1 = get_location_master_list('manage_silai_locations');
+        $field1 = 'title_3';
+    }
+	// For silai villages listing page.
+	else if ($form['#id'] == 'views-exposed-form-silai-villlages-list-page-1') {
+		$options = get_location_master_list('silai_district');
+		$field = 'title_1';
+    }
+	// For sewing manage training feedback page.
+	// else if ($form['#id'] == 'views-exposed-form-manage-training-feedback-page-1') {
+	// 	$options = get_location_master_list('manage_locations');
+	// 	$field = 'title_1';
+ //    }
+	// For silai manage training feedback page.
+    else if ($form['#id'] == 'views-exposed-form-silai-manage-training-feedback-page-1') {
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title_1';
+    }
+    // For NFA manage listing page.
+    else if ($form['#id'] == 'views-exposed-form-manage-nfa-page-1') {
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title';
+    } else if($form['#id'] == 'views-exposed-form-manage-silai-ngo-page-1') {
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title_2';        
+    } 
+    // For Inventory management
+    else if ($form['#id'] == 'views-exposed-form-silai-inventory-management-page-1') { 
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title';
+        $options1 = get_location_master_list('silai_items');
+        $field1 = 'title_1';
+        $field2 = 'status_1'; 
+        $options2 = INVENTORYSTATUSARRAY;
+    } else if ($form['#id'] == 'views-exposed-form-silai-inventory-management-page-2') { 
+        $options1 = get_location_master_list('silai_items');
+        $field1 = 'title';
+        $field2 = 'status_1';
+        $options2 = INVENTORYSTATUSARRAY;
+    } else if ($form['#id'] == 'views-exposed-form-silai-inventory-management-page-3') { 
+        $options1 = get_location_master_list('silai_items');
+        $field1 = 'title';
+        $field2 = 'status_2';
+        $options2 = INVENTORYSTATUSARRAY;
+    } else if ($form['#id'] == 'views-exposed-form-silai-manage-school-page-1') {
+        $options = get_location_master_list('silai_district');
+        $field = 'title_1'; 
+        $options1 = get_location_master_list('ngo');
+        $field1 = 'title_2';
+        $field2 = 'title_3';
+        $options2 = get_location_master_list('silai_school_type_master');
+    } else if ($form['#id'] == 'views-exposed-form-silai-manage-school-page-2') {
+        $options = get_location_master_list('silai_district');
+        $field = 'title_1'; 
+        $options1 = get_location_master_list('ngo');
+        $field1 = 'title_2';
+        $field2 = 'title_3';
+        $options2 = get_location_master_list('silai_school_type_master');
+    } else if ($form['#id'] == 'views-exposed-form-silai-training-listing-page-1') {
+        $options = get_location_master_list('silai_business_states');
+        $field = 'title_1';
+        $options1 = get_location_master_list('manage_silai_locations');
+        $field1 = 'title_2';    
+    } else if ($form['#id'] == 'views-exposed-form-manage-agreements-page-1') {
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title_3';    
+    } else if ($form['#id'] == 'views-exposed-form-silai-users-listing-page-1') {
+        $options = get_location_master_list('manage_silai_locations');
+        $field = 'title';    
+    } else if ($form['#id'] == 'views-exposed-form-manage-sewing-inventory-page-2') { 
+        // $options1 = get_location_master_list('silai_items');
+        // $field1 = 'title';
+        $field2 = 'status_3';
+        $options2 = INVENTORYSTATUSARRAY_SEWING2;
+    } else if ($form['#id'] == 'views-exposed-form-manage-sewing-inventory-page-1') { 
+        // $options1 = get_location_master_list('silai_items');
+        // $field1 = 'title';
+        $field2 = 'status_3';
+        $options2 = INVENTORYSTATUSARRAY_SEWING;
+    } else {
+		return FALSE;
+	}
+	
+	if (isset($field)){
+        
+		// Start building out our new form element
+		$form[$field][HASH_TYPE] = 'select';
+		$form[$field]['#multiple'] = FALSE;
+	 
+		// Specify the empty option for our select list
+		$form[$field]['#empty_option'] = t('--NONE--');
+	 
+		// Add the $options from above to our select list
+		$form[$field][HASH_OPTIONS] = $options;
+		unset($form[$field]['#size']); 	
+	} 
+
+    if (isset($field1)){
+        // Start building out our new form element
+        $form[$field1][HASH_TYPE] = 'select';
+        $form[$field1]['#multiple'] = FALSE;
+     
+        // Specify the empty option for our select list
+        $form[$field1]['#empty_option'] = t('--NONE--');
+     
+        // Add the $options from above to our select list
+        $form[$field1][HASH_OPTIONS] = $options1;
+        unset($form[$field1]['#size']);  
+    } 
+
+    if (isset($field2)){
+        // Start building out our new form element
+        $form[$field2][HASH_TYPE] = 'select';
+        $form[$field2]['#multiple'] = FALSE;
+     
+        // Specify the empty option for our select list
+        $form[$field2]['#empty_option'] = t('--NONE--');
+     
+        // Add the $options from above to our select list
+        $form[$field2][HASH_OPTIONS] = $options2;
+        unset($form[$field2]['#size']);  
+    }
+
+
+}
+
+/**
+ * Forgot password ajax callback function
+ *
+ */
+function forgetPasswordAjaxCallback(array $form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $doamin = _get_current_domain();
+     if ($form_state->hasAnyErrors()) {
+        $response->addCommand(new ReplaceCommand('#wrapper_modal_forgot_password_form', $form));
+    } else {
+      $command = new CloseModalDialogCommand();
+        $response->addCommand($command);
+        drupal_set_message(t('Further instructions have been sent to your email address.'), STATUS);
+        if($doamin == SEWING_DOMAIN) {
+          $response->addCommand(new RedirectCommand('/'));
+        } else if($doamin == SILAI_DOAMIN) {
+            $response->addCommand(new RedirectCommand('/'));
+        }
+    }  
+    return $response;
+}
+
+/**
+ * Ajax callback function for adding and editing countries
+ *
+ */
+function ManageMasterAjaxCallback(array $form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $doamin = _get_current_domain();
+    
+     if ($form_state->hasAnyErrors()) {
+        $response->addCommand(new ReplaceCommand($form['wrapper'], $form));
+    } else {
+        if($form['formId'] == AGREEMENT_EDIT_FORM_ID)
+        {
+             $entity = $form_state->getFormObject()->getEntity();
+ 
+            // update userid of created user in school node
+            $nid = $entity->id();
+            if(!empty($nid)) {
+
+                //update NFA Due balance on agrement amount update -- Start
+                $agreementAmount = $entity->field_agreement_amount->value;
+                $nfaId = $entity->field_agreement_nfa_number->target_id;
+                $masterDataService = \Drupal::service('silai.master_data');
+                $nfaAgreements = $masterDataService->getAgreementsByNfa($nfaId);
+
+                $totalAgreementsValue = 0;
+                foreach ($nfaAgreements as $key => $value) {
+                    if($key != $nid) {
+                        $totalAgreementsValue += $value['field_agreement_amount'];
+                    }
+                }
+
+                $totalAgreementsValue += $agreementAmount;
+                $nfaLoad = Node::load($nfaId);
+                $nfaNumber = $nfaLoad->title->value;
+                $nfaSanctionedAmt = $nfaLoad->field_sactioned_amount->value;
+                
+                $nfaDueBalance = $nfaSanctionedAmt - $totalAgreementsValue;
+
+                $nfaLoad->set('field_nfa_due_balance', $nfaDueBalance); 
+                $nfaLoad->save();
+  
+            }
+        }
+      $command = new CloseModalDialogCommand();
+        $response->addCommand($command);
+        $response->addCommand(new RedirectCommand($form['sewing_silai_redirect']));
+    }  
+    return $response;
+}
+
+
+/**
+ * Forgot password ajax callback function
+ *
+ */
+/*function ManageLocationAjaxCallback(array $form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $doamin = _get_current_domain();
+     if ($form_state->hasAnyErrors()) {
+        $response->addCommand(new ReplaceCommand('#wrapper_modal_add_edit_country', $form));
+    } else {
+      $command = new CloseModalDialogCommand();
+        $response->addCommand($command);
+        //drupal_set_message(t('Country added successfully.'), STATUS);
+        if($doamin == SEWING_DOMAIN) {
+          $response->addCommand(new RedirectCommand('/countries-list'));
+        } else if($doamin == SILAI_DOAMIN) {
+            $response->addCommand(new RedirectCommand('/silai-countries-list'));
+        }
+    }  
+    return $response;
+}
+*/
+
+
+/**
+ * Function to get current Domain
+ *
+ */
+function _get_current_domain() {
+    $loader = \Drupal::service('domain.negotiator');
+    $current_domain = $loader->getActiveDomain();
+    return $current_domain->getOriginalId();
+}
+
+/**
+ * Function to return state list().
+ */
+function get_location_master_list($type) {
+	
+    // Query nodes
+    $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('node');
+    $nids = $storage->getQuery();
+	
+	// Gather published artist nodes and sort by title
+    $nids = $nids->condition('type', $type)
+     ->condition('status', 1)
+     ->sort('title')
+     ->execute();
+	 
+	// If there are no nodes, move on
+    if (!$nids) {
+     return [];
+    }
+	
+	// Start building out the options for our select list
+    $options = [];
+    $nodes = $storage->loadMultiple($nids);
+	
+	// Push titles into select list
+    foreach ($nodes as $node) {
+     $options[$node->getTitle()] = $node->getTitle();
+    }
+	
+	return $options;
+}
+
+/**
+ * Implementation of hook_views_alter()
+ */
+function location_master_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+    if ($view->id() == 'silai_users_listing' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_2')) {
+        if($query->where[0]['conditions'][1]['value'][':user__roles_roles_target_id1'] == ROLE_SILAI_PC) {
+            unset($query->where[0]['conditions'][1]);
+            $query->where[0]['conditions'][0]['value'] = array(':user__roles_roles_target_id[]' => array(ROLE_SILAI_PC => ROLE_SILAI_PC));
+        }
+    }
+    
+    if ($view->id() == 'users_listing' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_2')) {
+        if($query->where[0]['conditions'][1]['value'][':user__roles_roles_target_id1'] == ROLE_SEWING_SSI) {
+            unset($query->where[0]['conditions'][1]);
+            $query->where[0]['conditions'][0]['value'] = array(':user__roles_roles_target_id[]' => array(ROLE_SEWING_SSI => ROLE_SEWING_SSI));
+        }
+    }
+
+    if ($view->id() == 'silai_ngo_user_list') {
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userId = \Drupal::currentUser()->id();
+        $userRoles = $user->getRoles();
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoData = $masterDataService->getLinkedNgoForUser($userId);
+        $nid = $ngoData[$userId];        
+        $definition = [
+            'table' => 'silai_ngo_associated_user',
+            'field' => 'user_id',
+            'left_table' => 'users_field_data',
+            'left_field' => 'uid',
+        ];
+        $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+        $query->addRelationship('ngo', $join, 'user'); 
+        $query->where[1]['conditions'][] = array(
+            'field' => 'ngo.nid',
+            'value' => $nid,
+            'operator' => '='
+        );              
+    }
+}
+
+/**
+ * Implementation of hook_views_pre_render
+ */
+function location_master_views_pre_render(\Drupal\views\ViewExecutable $view) {
+    if($view->id() == 'send_message_list') {
+        // foreach($view->result as $value) {
+        //     $value->send_message_filepath = '';
+        //     if($value->send_message_state) {
+        //         $nodeL = \Drupal\node\Entity\Node::load($value->send_message_state);
+        //         $stateName = $nodeL->getTitle();
+        //         $value->send_message_filepath = $stateName;
+        //     }
+            
+        // }
+    }
+
+
+    #Duplicate Row Remove
+    if($view->id() == 'manage_silai_ngo') {
+        $unique_uuids = $new_view_result = [];
+        foreach ($view->result as $row) {
+            $uuid = $row->_entity->uuid();
+            if (!in_array($uuid, $unique_uuids)) {
+                $new_view_result[] = $row;
+                $unique_uuids[] = $uuid;
+            }
+        }
+        $view->result = $new_view_result;        
+    }
+}
+

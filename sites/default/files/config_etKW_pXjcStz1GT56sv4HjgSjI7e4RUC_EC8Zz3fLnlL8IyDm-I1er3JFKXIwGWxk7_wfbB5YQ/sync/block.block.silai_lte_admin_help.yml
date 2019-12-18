@@ -1,0 +1,22 @@
+uuid: becb6eda-1784-4f05-afc0-b74bbffa8536
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: silai_lte_admin_help
+theme: silai_lte_admin
+region: content
+weight: -5
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

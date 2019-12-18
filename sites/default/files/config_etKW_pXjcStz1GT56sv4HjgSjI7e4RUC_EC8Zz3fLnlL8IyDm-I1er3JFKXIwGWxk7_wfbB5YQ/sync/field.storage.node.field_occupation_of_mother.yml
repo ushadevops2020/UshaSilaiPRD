@@ -1,0 +1,60 @@
+uuid: 8aa52734-d9ff-411c-93d6-a9cf27e7b25e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_occupation_of_mother
+field_name: field_occupation_of_mother
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '14'
+      label: 'Any Other'
+    -
+      value: '4'
+      label: 'Clerical Job'
+    -
+      value: '1'
+      label: Cultivator
+    -
+      value: '3'
+      label: 'Daily wage labourer'
+    -
+      value: '9'
+      label: 'Higher Job'
+    -
+      value: '13'
+      label: 'Home Maker'
+    -
+      value: '5'
+      label: 'Office Job'
+    -
+      value: '6'
+      label: 'Petty Business'
+    -
+      value: '2'
+      label: 'Skilled labourer'
+    -
+      value: '12'
+      label: Student
+    -
+      value: '8'
+      label: 'Traditional Services'
+    -
+      value: '10'
+      label: 'Unskilled Labourer'
+    -
+      value: '11'
+      label: 'Un employed'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

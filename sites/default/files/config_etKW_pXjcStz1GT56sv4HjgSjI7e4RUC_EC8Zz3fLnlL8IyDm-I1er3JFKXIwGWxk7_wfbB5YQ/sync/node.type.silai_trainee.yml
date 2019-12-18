@@ -1,0 +1,18 @@
+uuid: b13ed0ca-607d-4edd-b1e2-b019bf38d784
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:'
+name: 'Silai Trainee'
+type: silai_trainee
+description: 'Silai Trainee'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

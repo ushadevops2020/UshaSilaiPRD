@@ -1,0 +1,21 @@
+uuid: 2732d15e-3af2-400a-88a2-67b933e8ba32
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_training_conf_no_of_sch_ad
+field_name: field_training_conf_no_of_sch_ad
+entity_type: node
+type: string
+settings:
+  max_length: 8
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

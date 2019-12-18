@@ -1,0 +1,21 @@
+uuid: b164418b-57de-4db1-abc3-c8edd56b5b90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_affiliation_fee_receive_on
+    - node.type.sewing_school
+  module:
+    - datetime
+id: node.sewing_school.field_affiliation_fee_receive_on
+field_name: field_affiliation_fee_receive_on
+entity_type: node
+bundle: sewing_school
+label: 'Affiliation Fee Received On'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

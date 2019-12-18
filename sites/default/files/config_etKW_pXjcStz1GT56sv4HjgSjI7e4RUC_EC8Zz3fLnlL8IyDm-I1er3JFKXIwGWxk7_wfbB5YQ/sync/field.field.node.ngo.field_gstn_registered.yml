@@ -1,0 +1,23 @@
+uuid: ae92f50a-934a-4a55-b291-c13ed1fb3cc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gstn_registered
+    - node.type.ngo
+  module:
+    - options
+id: node.ngo.field_gstn_registered
+field_name: field_gstn_registered
+entity_type: node
+bundle: ngo
+label: 'GSTN Registered?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'No'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,26 @@
+<div style="height:400px; width:500px" class="forwarded-summary">
+<div id="item-detail">
+<p>Item Name: {{ sent_item }}</p>
+<p>Item Quantity Received: {{ sent_item_qty }}</p>
+</div>
+
+<div id="item-summary" class="forwarded-detail">
+{% if forwarded_items is not empty %}
+
+<table style="width:100%">
+  <tr>
+    <th>Forwarded To</th>
+    <th>Type</th> 
+    <th>Quantity</th>
+  </tr>
+  {% for key, item in forwarded_items %}
+  <tr>
+    <td>{{ item.title }}</td>
+    <td>School</td>
+    <td>{{ item.qty_send }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+</div>
+</div>

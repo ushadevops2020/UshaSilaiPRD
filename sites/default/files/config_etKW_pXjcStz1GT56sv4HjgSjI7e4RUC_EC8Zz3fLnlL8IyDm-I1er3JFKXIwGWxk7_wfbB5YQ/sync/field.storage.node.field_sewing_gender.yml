@@ -1,0 +1,27 @@
+uuid: 9527b4e2-3d04-47ca-9d35-7625747f9e51
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sewing_gender
+field_name: field_sewing_gender
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Male
+    -
+      value: '2'
+      label: Female
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

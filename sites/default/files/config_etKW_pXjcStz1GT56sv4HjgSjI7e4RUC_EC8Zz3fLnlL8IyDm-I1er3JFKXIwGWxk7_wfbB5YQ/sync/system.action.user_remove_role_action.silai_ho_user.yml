@@ -1,0 +1,14 @@
+uuid: b7553fcb-0aab-42bd-9950-585c62a73bf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_ho_user
+  module:
+    - user
+id: user_remove_role_action.silai_ho_user
+label: 'Remove the Silai HO User role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: silai_ho_user

@@ -1,0 +1,19 @@
+uuid: dfd187b7-5795-4409-9933-8e79921eb559
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_town_pincode
+    - node.type.manage_towns
+id: node.manage_towns.field_town_pincode
+field_name: field_town_pincode
+entity_type: node
+bundle: manage_towns
+label: Pincode
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

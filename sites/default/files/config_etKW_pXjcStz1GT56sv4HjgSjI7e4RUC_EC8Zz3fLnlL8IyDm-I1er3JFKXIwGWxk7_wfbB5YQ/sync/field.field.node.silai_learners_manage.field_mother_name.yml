@@ -1,0 +1,19 @@
+uuid: 883da2c8-fbc1-42cf-9e41-0352dce03784
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mother_name
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.field_mother_name
+field_name: field_mother_name
+entity_type: node
+bundle: silai_learners_manage
+label: 'Mother''s Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

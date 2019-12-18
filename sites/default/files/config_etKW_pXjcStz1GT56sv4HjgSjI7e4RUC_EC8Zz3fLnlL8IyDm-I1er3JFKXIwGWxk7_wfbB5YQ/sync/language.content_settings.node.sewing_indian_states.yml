@@ -1,0 +1,11 @@
+uuid: 30c0d6aa-e076-4160-a5b3-f881242f2ce5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_indian_states
+id: node.sewing_indian_states
+target_entity_type_id: node
+target_bundle: sewing_indian_states
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,8 @@
+<?php
+/**
+* Implements hook_rest_resource_alter
+*/
+
+function mobile_api_rest_resource_alter(&$definitions) {
+	//print_r($definitions);die;
+}

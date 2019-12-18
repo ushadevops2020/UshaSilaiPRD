@@ -1,0 +1,79 @@
+uuid: 8986463d-bb64-42e1-b608-78a252dc531d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.course_master.field_course_code
+    - field.field.node.course_master.field_course_duration
+    - field.field.node.course_master.field_course_fee
+    - field.field.node.course_master.field_domain_access
+    - field.field.node.course_master.field_domain_all_affiliates
+    - field.field.node.course_master.field_exam_fee
+    - field.field.node.course_master.field_grade
+    - node.type.course_master
+  module:
+    - user
+id: node.course_master.default
+targetEntityType: node
+bundle: course_master
+mode: default
+content:
+  field_course_code:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_course_duration:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_course_fee:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_exam_fee:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_grade:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

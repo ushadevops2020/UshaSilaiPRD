@@ -1,0 +1,19 @@
+uuid: fcb6e788-e174-4ab7-b42c-2bc88fe1f98f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_vilage_poplation
+    - node.type.silai_villages
+id: node.silai_villages.field_silai_vilage_poplation
+field_name: field_silai_vilage_poplation
+entity_type: node
+bundle: silai_villages
+label: Population
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

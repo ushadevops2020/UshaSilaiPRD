@@ -1,0 +1,29 @@
+uuid: 1cdfe8ab-418a-4e36-b399-753bb8fb1bba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.manage_locations
+    - node.type.manage_towns
+id: node.manage_towns.field_location
+field_name: field_location
+entity_type: node
+bundle: manage_towns
+label: 'Assign Location'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_locations: manage_locations
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: 3d02f20d-c539-43d9-bb39-e2f33fce4d8a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_village
+field_name: field_silai_village
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

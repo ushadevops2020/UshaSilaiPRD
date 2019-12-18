@@ -1,0 +1,19 @@
+uuid: 410a386d-1c63-4dfc-8c41-663b885c9621
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_email_id
+    - node.type.silai_trainee
+id: node.silai_trainee.field_silai_email_id
+field_name: field_silai_email_id
+entity_type: node
+bundle: silai_trainee
+label: 'Email Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

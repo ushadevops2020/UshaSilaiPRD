@@ -1,0 +1,28 @@
+uuid: 75213e96-c7de-4069-84a3-af8be026fbe3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_school_code
+    - node.type.silai_school
+    - node.type.silai_trainee
+id: node.silai_trainee.field_training_school_code
+field_name: field_training_school_code
+entity_type: node
+bundle: silai_trainee
+label: 'School Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      silai_school: silai_school
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,35 @@
+uuid: cdae9984-f929-476d-b1c3-dbc33fe7718e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.item_group.field_domain_access
+    - field.field.node.item_group.field_domain_all_affiliates
+    - node.type.item_group
+  module:
+    - user
+id: node.item_group.teaser
+targetEntityType: node
+bundle: item_group
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

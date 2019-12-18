@@ -1,0 +1,53 @@
+uuid: 7435ed1e-f687-4c08-b1a5-e405b3730130
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_sewing_students.field_address_1
+    - field.field.node.manage_sewing_students.field_address_2
+    - field.field.node.manage_sewing_students.field_address_3
+    - field.field.node.manage_sewing_students.field_domain_access
+    - field.field.node.manage_sewing_students.field_domain_all_affiliates
+    - field.field.node.manage_sewing_students.field_sewing_date_of_birth
+    - field.field.node.manage_sewing_students.field_sewing_father_name
+    - field.field.node.manage_sewing_students.field_sewing_gender
+    - field.field.node.manage_sewing_students.field_sewing_marital_status
+    - field.field.node.manage_sewing_students.field_student_admission_date
+    - field.field.node.manage_sewing_students.field_student_admission_no
+    - node.type.manage_sewing_students
+  module:
+    - user
+id: node.manage_sewing_students.teaser
+targetEntityType: node
+bundle: manage_sewing_students
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_address_1: true
+  field_address_2: true
+  field_address_3: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_sewing_date_of_birth: true
+  field_sewing_father_name: true
+  field_sewing_gender: true
+  field_sewing_marital_status: true
+  field_student_admission_date: true
+  field_student_admission_no: true
+  langcode: true

@@ -1,0 +1,11 @@
+uuid: 59b800c0-52ac-40b8-9f13-2b85d257e5a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_districts
+id: node.manage_districts
+target_entity_type_id: node
+target_bundle: manage_districts
+default_langcode: site_default
+language_alterable: false

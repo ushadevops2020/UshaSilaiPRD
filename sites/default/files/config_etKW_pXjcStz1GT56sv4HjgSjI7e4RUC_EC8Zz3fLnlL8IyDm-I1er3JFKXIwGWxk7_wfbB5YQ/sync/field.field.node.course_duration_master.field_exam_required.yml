@@ -1,0 +1,23 @@
+uuid: 1bdd6bd5-245e-4104-896a-5cb2d890b1e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exam_required
+    - node.type.course_duration_master
+  module:
+    - options
+id: node.course_duration_master.field_exam_required
+field_name: field_exam_required
+entity_type: node
+bundle: course_duration_master
+label: 'Exam Required'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

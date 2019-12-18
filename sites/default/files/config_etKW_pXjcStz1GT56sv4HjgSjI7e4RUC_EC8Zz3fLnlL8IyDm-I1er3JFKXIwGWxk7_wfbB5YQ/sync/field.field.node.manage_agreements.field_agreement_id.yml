@@ -1,0 +1,19 @@
+uuid: 6a3b843b-44ed-4fbc-8cee-549b1d6f9dc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agreement_id
+    - node.type.manage_agreements
+id: node.manage_agreements.field_agreement_id
+field_name: field_agreement_id
+entity_type: node
+bundle: manage_agreements
+label: 'AGREEMENT ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

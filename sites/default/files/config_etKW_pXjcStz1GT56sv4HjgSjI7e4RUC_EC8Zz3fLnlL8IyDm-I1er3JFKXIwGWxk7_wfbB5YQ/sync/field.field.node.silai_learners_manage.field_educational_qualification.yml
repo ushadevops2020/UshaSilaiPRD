@@ -1,0 +1,21 @@
+uuid: f81fc971-b5b8-4c36-bc88-ea967beb9bff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_educational_qualification
+    - node.type.silai_learners_manage
+  module:
+    - options
+id: node.silai_learners_manage.field_educational_qualification
+field_name: field_educational_qualification
+entity_type: node
+bundle: silai_learners_manage
+label: 'Educational Qualification'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

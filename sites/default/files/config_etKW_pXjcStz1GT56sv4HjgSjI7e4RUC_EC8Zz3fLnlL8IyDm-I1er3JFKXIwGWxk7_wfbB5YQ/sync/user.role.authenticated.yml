@@ -1,0 +1,46 @@
+uuid: a2430f8f-9a2c-4bda-ab40-ff391ae2c70b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access own consumers'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'access user profiles'
+  - 'add consumer entities'
+  - 'add simple_oauth entities'
+  - 'administer account settings'
+  - 'administer consumer entities'
+  - 'administer consumers'
+  - 'administer oauth'
+  - 'administer permissions'
+  - 'administer simple_oauth entities'
+  - 'administer users'
+  - 'cancel account'
+  - 'change own username'
+  - 'create content_workflow workflow_transition'
+  - 'delete own consumer entities'
+  - 'delete own simple_oauth entities'
+  - 'oauth register any consumers'
+  - 'post comments'
+  - 'restful get custom_resource'
+  - 'restful get user_profile'
+  - 'restful post custom_resource'
+  - 'restful post user_profile'
+  - 'restful post user_registration'
+  - 'search content'
+  - 'select account cancellation method'
+  - 'skip comment approval'
+  - 'update own consumer entities'
+  - 'update own simple_oauth entities'
+  - 'use text format basic_html'
+  - 'view own consumer entities'
+  - 'view own simple_oauth entities'

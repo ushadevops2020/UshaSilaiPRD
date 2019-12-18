@@ -1,0 +1,7 @@
+services:
+ silai_mis.monthly_quarterly_list:
+   class: Drupal\mis\Services\addImportContent
+   arguments: []
+ silai_mis.sewing_mis:
+   class: Drupal\mis\Services\sewingMIS
+   arguments: []  

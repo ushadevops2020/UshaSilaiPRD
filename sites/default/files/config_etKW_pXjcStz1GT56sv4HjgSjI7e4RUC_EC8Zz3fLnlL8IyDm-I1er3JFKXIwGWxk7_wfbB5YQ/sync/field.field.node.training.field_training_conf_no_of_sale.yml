@@ -1,0 +1,19 @@
+uuid: e07de1c6-fdb6-46d3-abf6-6f436150e482
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_conf_no_of_sale
+    - node.type.training
+id: node.training.field_training_conf_no_of_sale
+field_name: field_training_conf_no_of_sale
+entity_type: node
+bundle: training
+label: 'Confirmed no. of sale'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

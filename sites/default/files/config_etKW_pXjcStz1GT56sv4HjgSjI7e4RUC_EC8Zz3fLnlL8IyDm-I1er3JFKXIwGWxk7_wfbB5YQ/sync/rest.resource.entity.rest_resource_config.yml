@@ -1,0 +1,17 @@
+uuid: d78c3ec6-e4af-4ed2-9424-bc9a5d65ff7e
+langcode: en
+status: false
+dependencies:
+  module:
+    - serialization
+    - user
+id: entity.rest_resource_config
+plugin_id: 'entity:rest_resource_config'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

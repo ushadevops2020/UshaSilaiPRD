@@ -1,0 +1,5 @@
+name: 'Silai Reports'
+type: module
+description: 'This Module is for managing Silai Reports'
+core: 8.x
+package: 'Custom' 

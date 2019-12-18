@@ -1,0 +1,16 @@
+1) UKLCEK16030012 - Admission Number does not exist. In excel file row number : 97
+2) UTNCAK16040003 - Admission Number does not exist. In excel file row number : 171
+3) UTNCAK16030021 - Admission Number does not exist. In excel file row number : 195
+4) UUPLBD15090008 - Admission Number does not exist. In excel file row number : 316
+5) UKLCAK16030038 - Admission Number does not exist. In excel file row number : 936
+6) UKLCAK16030044 - Admission Number does not exist. In excel file row number : 994
+7) UKLCAK16030046 - Admission Number does not exist. In excel file row number : 996
+8) UKLCAK16050003 - Admission Number does not exist. In excel file row number : 1313
+9) UKLCAK16050009 - Admission Number does not exist. In excel file row number : 1319
+10) UUPLBK16050001 - Admission Number does not exist. In excel file row number : 1356
+11) UKLCAK16050015 - Admission Number does not exist. In excel file row number : 1537
+12) UKLCAK16060009 - Admission Number does not exist. In excel file row number : 1539
+13) UKLCAK16060005 - Admission Number does not exist. In excel file row number : 1543
+14) UPBJCT15100019 - Admission Number does not exist. In excel file row number : 1598
+15) UPBJCT15100020 - Admission Number does not exist. In excel file row number : 1599
+16) UPBJEM15100003 - Admission Number does not exist. In excel file row number : 1601

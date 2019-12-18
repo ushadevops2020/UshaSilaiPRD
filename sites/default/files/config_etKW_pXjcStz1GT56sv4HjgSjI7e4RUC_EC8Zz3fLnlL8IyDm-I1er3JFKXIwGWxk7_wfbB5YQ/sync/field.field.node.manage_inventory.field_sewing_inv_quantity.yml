@@ -1,0 +1,19 @@
+uuid: a36629c4-fd82-40a8-bcf0-0f2e0bb5a944
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_inv_quantity
+    - node.type.manage_inventory
+id: node.manage_inventory.field_sewing_inv_quantity
+field_name: field_sewing_inv_quantity
+entity_type: node
+bundle: manage_inventory
+label: Quantity
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

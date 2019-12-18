@@ -1,0 +1,20 @@
+uuid: 19e2f1df-56cd-42e7-96cd-68a71036b64c
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_silai_date_of_enrollment
+field_name: field_silai_date_of_enrollment
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

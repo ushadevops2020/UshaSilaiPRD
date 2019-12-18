@@ -1,0 +1,19 @@
+uuid: 6d06631c-c658-4d79-a244-ce712b8e9dbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_machine_at_home
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.field_sewing_machine_at_home
+field_name: field_sewing_machine_at_home
+entity_type: node
+bundle: silai_learners_manage
+label: 'Sewing Machine at home'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

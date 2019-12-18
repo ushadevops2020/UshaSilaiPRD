@@ -1,0 +1,50 @@
+location_master.location_master_controller_getlocationsbycountry:
+  path: '/get_locations_by_country/{country_id}'
+  defaults:
+    _title: 'Get locations by country'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::getLocationsByCountry'
+  requirements:
+    _permission: 'access content'
+    
+location_master.location_master_controller_getstatesbylocation:
+  path: '/get_states_by_location/{location_id}'
+  defaults:
+    _title: 'Get states by location'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::getStatesByLocation'
+  requirements:
+    _permission: 'access content'
+    
+location_master.location_master_controller_getdistrictsbystate:
+  path: '/get_districts_by_state/{state_id}'
+  defaults:
+    _title: 'Get districts by state'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::getDistrictsByState'
+  requirements:
+    _permission: 'access content'
+
+
+location_master.location_master_controller_gettownsbydistrict:
+  path: '/get_towns_by_district/{district_id}'
+  defaults:
+    _title: 'Get towns by district'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::getTownsByDistrict'
+  requirements:
+    _permission: 'access content'
+
+location_master.location_master_controller_deleteUser:
+  path: '/delete_user'
+  defaults:
+    _title: 'Delete User'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::deleteUser'
+  requirements:
+    _permission: 'access content'
+
+location_master.location_master_controller_getdistrictsbylocation:
+  path: '/get_districts_by_location/{locationId}'
+  defaults:
+    _title: 'Get districts by location'
+    _controller: '\Drupal\location_master\Controller\LocationMasterController::getDistrictsByLocation'
+  requirements:
+    _permission: 'access content'    
+
+ 

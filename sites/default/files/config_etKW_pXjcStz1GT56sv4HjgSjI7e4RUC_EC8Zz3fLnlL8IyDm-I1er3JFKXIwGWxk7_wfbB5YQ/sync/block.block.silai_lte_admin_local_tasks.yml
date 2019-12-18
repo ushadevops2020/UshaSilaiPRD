@@ -1,0 +1,31 @@
+uuid: ae52458b-34ad-4013-9a03-73ab4a2af475
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: silai_lte_admin_local_tasks
+theme: silai_lte_admin
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: false
+  secondary: true
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      sewing_ho_user: sewing_ho_user
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

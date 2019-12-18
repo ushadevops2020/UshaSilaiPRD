@@ -1,0 +1,28 @@
+uuid: f80dc244-1eb8-450e-86c8-1b148ba67f9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_gallery_location
+    - node.type.manage_locations
+    - node.type.sewing_gallery
+id: node.sewing_gallery.field_sewing_gallery_location
+field_name: field_sewing_gallery_location
+entity_type: node
+bundle: sewing_gallery
+label: Location
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_locations: manage_locations
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

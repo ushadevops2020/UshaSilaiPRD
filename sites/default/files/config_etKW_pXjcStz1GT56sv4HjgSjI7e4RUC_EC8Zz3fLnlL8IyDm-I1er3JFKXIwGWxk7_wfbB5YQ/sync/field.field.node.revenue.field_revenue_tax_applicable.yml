@@ -1,0 +1,23 @@
+uuid: 8d42cb1d-d56a-4cd3-ba1d-14210cf9fb45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_revenue_tax_applicable
+    - node.type.revenue
+id: node.revenue.field_revenue_tax_applicable
+field_name: field_revenue_tax_applicable
+entity_type: node
+bundle: revenue
+label: 'Tax Applicable (In %)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: ''
+field_type: decimal

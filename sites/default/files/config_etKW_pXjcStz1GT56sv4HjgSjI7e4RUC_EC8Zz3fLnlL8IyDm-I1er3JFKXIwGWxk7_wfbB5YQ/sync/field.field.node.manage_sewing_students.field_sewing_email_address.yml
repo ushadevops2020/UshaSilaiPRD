@@ -1,0 +1,19 @@
+uuid: aaa897ae-bea6-4e01-aabd-94dd2780bde1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_email_address
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_sewing_email_address
+field_name: field_sewing_email_address
+entity_type: node
+bundle: manage_sewing_students
+label: 'Email address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

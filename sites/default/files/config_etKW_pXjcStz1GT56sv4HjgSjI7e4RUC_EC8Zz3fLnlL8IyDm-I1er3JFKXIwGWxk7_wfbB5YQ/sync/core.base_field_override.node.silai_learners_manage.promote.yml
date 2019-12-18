@@ -1,0 +1,22 @@
+uuid: 63c8ac33-3da2-4876-9b08-1f7300cc3ffb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.promote
+field_name: promote
+entity_type: node
+bundle: silai_learners_manage
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

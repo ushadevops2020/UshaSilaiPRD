@@ -1,0 +1,20 @@
+uuid: 17938c35-4f10-4916-b10b-f6cc2f3ff54b
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_sewing_course_start_date
+field_name: field_sewing_course_start_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

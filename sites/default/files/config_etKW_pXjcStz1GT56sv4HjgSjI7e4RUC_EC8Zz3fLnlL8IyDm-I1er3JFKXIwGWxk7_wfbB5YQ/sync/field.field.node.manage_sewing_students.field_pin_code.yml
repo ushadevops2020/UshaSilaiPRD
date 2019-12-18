@@ -1,0 +1,19 @@
+uuid: a9ab286c-07af-47b5-8963-e8bcf80a8666
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pin_code
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_pin_code
+field_name: field_pin_code
+entity_type: node
+bundle: manage_sewing_students
+label: 'Pin Code'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

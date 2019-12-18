@@ -1,0 +1,48 @@
+uuid: 50eb3b61-378b-4edc-8390-6da98ae294a0
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.silai-menu
+  module:
+    - domain
+    - system
+    - user
+  theme:
+    - yorkshire
+id: yorkshire_yorkshiremenu
+theme: yorkshire
+region: sidebar
+weight: -5
+provider: null
+plugin: 'system_menu_block:silai-menu'
+settings:
+  id: 'system_menu_block:silai-menu'
+  label: 'Silai Menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility:
+  domain:
+    id: domain
+    domains:
+      usha_silai_tk: usha_silai_tk
+    negate: false
+    context_mapping:
+      'entity:domain': '@domain.current_domain_context:entity:domain'
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      silai_ho_admin: silai_ho_admin
+      silai_ho_user: silai_ho_user
+      ngo_admin: ngo_admin
+      pc: pc
+      silai_school_admin: silai_school_admin
+      silai_learner: silai_learner
+      silai_dealer: silai_dealer
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

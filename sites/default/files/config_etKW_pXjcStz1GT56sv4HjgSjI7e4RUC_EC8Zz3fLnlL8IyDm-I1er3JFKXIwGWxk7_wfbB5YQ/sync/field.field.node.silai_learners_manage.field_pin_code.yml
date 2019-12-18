@@ -1,0 +1,19 @@
+uuid: 43c0f1d9-c238-4266-87a9-985fa8234e45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pin_code
+    - node.type.silai_learners_manage
+id: node.silai_learners_manage.field_pin_code
+field_name: field_pin_code
+entity_type: node
+bundle: silai_learners_manage
+label: 'Pin Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

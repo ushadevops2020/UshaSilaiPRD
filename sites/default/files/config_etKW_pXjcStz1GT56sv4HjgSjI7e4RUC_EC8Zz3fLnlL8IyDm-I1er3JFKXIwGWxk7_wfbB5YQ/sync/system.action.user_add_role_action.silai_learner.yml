@@ -1,0 +1,14 @@
+uuid: f2b1b427-3ffd-4ff9-966e-6966ffda166a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.silai_learner
+  module:
+    - user
+id: user_add_role_action.silai_learner
+label: 'Add the Silai Learner role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: silai_learner

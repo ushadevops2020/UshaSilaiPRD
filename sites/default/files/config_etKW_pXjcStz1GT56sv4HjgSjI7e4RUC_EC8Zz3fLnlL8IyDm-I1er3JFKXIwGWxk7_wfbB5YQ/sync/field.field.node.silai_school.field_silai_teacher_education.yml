@@ -1,0 +1,21 @@
+uuid: def48103-ae14-4f40-9b9b-d6ac5b9a2577
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_teacher_education
+    - node.type.silai_school
+  module:
+    - options
+id: node.silai_school.field_silai_teacher_education
+field_name: field_silai_teacher_education
+entity_type: node
+bundle: silai_school
+label: 'Teacher''s Education'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

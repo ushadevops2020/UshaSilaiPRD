@@ -1,0 +1,29 @@
+uuid: 9f68f3e0-ef38-4fea-a916-fa30b2e1af15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_name_of_ngo
+    - node.type.ngo
+    - node.type.silai_school
+id: node.silai_school.field_name_of_ngo
+field_name: field_name_of_ngo
+entity_type: node
+bundle: silai_school
+label: 'Name of NGO'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      ngo: ngo
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

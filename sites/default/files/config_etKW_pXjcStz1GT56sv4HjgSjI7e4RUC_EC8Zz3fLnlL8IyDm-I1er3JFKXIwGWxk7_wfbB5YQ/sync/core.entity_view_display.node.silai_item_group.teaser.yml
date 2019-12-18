@@ -1,0 +1,35 @@
+uuid: 46ffc94d-0eeb-4c26-9fa3-e711e77585cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.silai_item_group.field_domain_access
+    - field.field.node.silai_item_group.field_domain_all_affiliates
+    - node.type.silai_item_group
+  module:
+    - user
+id: node.silai_item_group.teaser
+targetEntityType: node
+bundle: silai_item_group
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  langcode: true

@@ -1,0 +1,39 @@
+uuid: f7ca2835-c648-4d81-8107-2a05326ba097
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.school_type_master.field_domain_access
+    - field.field.node.school_type_master.field_domain_all_affiliates
+    - field.field.node.school_type_master.field_school_type_code
+    - field.field.node.school_type_master.field_school_type_description
+    - node.type.school_type_master
+  module:
+    - user
+id: node.school_type_master.teaser
+targetEntityType: node
+bundle: school_type_master
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_school_type_code: true
+  field_school_type_description: true
+  langcode: true

@@ -1,0 +1,43 @@
+uuid: b14de53b-02b8-474b-8464-a1f809109540
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.manage_districts.field_business_state
+    - field.field.node.manage_districts.field_country
+    - field.field.node.manage_districts.field_district_code
+    - field.field.node.manage_districts.field_domain_access
+    - field.field.node.manage_districts.field_domain_all_affiliates
+    - field.field.node.manage_districts.field_location
+    - node.type.manage_districts
+  module:
+    - user
+id: node.manage_districts.teaser
+targetEntityType: node
+bundle: manage_districts
+mode: teaser
+content:
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_business_state: true
+  field_country: true
+  field_district_code: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  field_location: true
+  langcode: true

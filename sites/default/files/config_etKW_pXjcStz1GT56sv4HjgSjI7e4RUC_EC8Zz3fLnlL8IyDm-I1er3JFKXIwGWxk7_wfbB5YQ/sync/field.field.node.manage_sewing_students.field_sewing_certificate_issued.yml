@@ -1,0 +1,21 @@
+uuid: ef1770eb-9f69-4d15-a71e-aaa9860ba237
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sewing_certificate_issued
+    - node.type.manage_sewing_students
+  module:
+    - options
+id: node.manage_sewing_students.field_sewing_certificate_issued
+field_name: field_sewing_certificate_issued
+entity_type: node
+bundle: manage_sewing_students
+label: 'Certificate Issued'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,6 @@
+1) UUPLBE15020001 - Admission Number does not exist. In excel file row number : 154
+2) UUPLBE15030001 - Admission Number does not exist. In excel file row number : 183
+3) UKLCS114090011 - Admission Number does not exist. In excel file row number : 851
+4) UKLCH214080015 - Admission Number does not exist. In excel file row number : 1128
+5) UPBJSD14090027 - Admission Number does not exist. In excel file row number : 1539
+6) UBHPSD14100045 - Admission Number does not exist. In excel file row number : 2974

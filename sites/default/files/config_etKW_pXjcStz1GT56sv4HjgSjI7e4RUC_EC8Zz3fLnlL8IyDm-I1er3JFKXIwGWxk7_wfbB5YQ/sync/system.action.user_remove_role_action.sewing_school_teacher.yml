@@ -1,0 +1,14 @@
+uuid: b1f5a990-2d0a-4515-b68f-754d26aff569
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_school_teacher
+  module:
+    - user
+id: user_remove_role_action.sewing_school_teacher
+label: 'Remove the Sewing School Teacher role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sewing_school_teacher

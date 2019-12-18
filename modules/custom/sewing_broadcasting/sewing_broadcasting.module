@@ -1,0 +1,104 @@
+<?php
+
+/**
+ * @file
+ * Contains sewing.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\user\Entity\User;
+use Drupal\views\Plugin\views\query;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Database\Query\AlterableInterface;
+
+/**
+ * Implements sewing_broadcasting_help().
+ */
+function sewing_broadcasting_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sewing module.
+    case 'help.page.sewing':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+/**
+ * Implements sewing_broadcasting_theme().
+ */
+function sewing_broadcasting_theme() {
+    return array(
+        'read_notification_board' => array(
+            'variables' => array( 
+                'subject'  => NULL,
+                'message'  => NULL,
+                'filepath' => NULL
+            ),
+        ),
+    );   
+}
+function sewing_broadcasting_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $userRoles = $user->getRoles();
+  $userId = $user->id();
+
+  // Altering sent notification List Views
+  if (($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'page_1')) || ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'page_3'))|| ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'block_1'))) {
+      if ($userId != 1) {
+        $query->addWhere('', 'sewing_broadcasting.sender_id', $userId, '=');
+      }
+  }  
+  // Altering receive notification List Views
+  if ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'page_2') || ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'page_4'))|| ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'block_2'))|| ($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'block_3'))) {
+      if ($userId != 1) {
+        $query->addWhere('', 'sewing_broadcasting.receiver_id_arr', '%,'.$userId.',%', 'LIKE');
+      }      
+  }
+}
+function sewing_broadcasting_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  
+}
+function sewing_broadcasting_query_alter(AlterableInterface $query) {
+
+}
+
+/**
+ * Implementation of hook_views_pre_render
+ */
+function sewing_broadcasting_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  if($view->id() == 'sewing_broadcast_notification' && ($view->current_display == 'page_2')) {
+
+  } 
+}
+/**
+ * Implements sewing_broadcasting_form_alter().
+ */
+
+function sewing_broadcasting_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if($form_id == 'send_notification_form'){
+      $messageId = $_GET['data'];
+      if (isset($messageId) && !empty($messageId)) {
+          # code...
+          $form[HASH_TITLE] = t('UPDATE NOTIFICATION');
+      }
+    } 
+}
+
+
+

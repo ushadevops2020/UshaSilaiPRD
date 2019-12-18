@@ -1,0 +1,22 @@
+uuid: 5b518a40-cc19-47d4-92ea-55988ea89f49
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - silai_lte_admin
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: silai_lte_admin_powered
+theme: silai_lte_admin
+region: brand
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

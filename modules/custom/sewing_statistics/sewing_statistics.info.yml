@@ -1,0 +1,5 @@
+name: 'Sewing Statistics'
+description: 'This Module is for managing all the statistics report of sewing.'
+core: 8.x
+package: Custom
+type: module

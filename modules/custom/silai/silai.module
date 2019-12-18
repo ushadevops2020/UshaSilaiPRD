@@ -1,0 +1,3474 @@
+<?php
+
+/**
+ * @file
+ * Contains silai.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+use Drupal\node\Entity\Node; 
+use Drupal\user\Entity\User;
+/**
+ * Implements silai_help().
+ */
+function silai_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the silai module.
+    case 'help.page.silai':
+    $output = '';
+    $output .= '<h3>' . t('About') . '</h3>';
+    $output .= '<p>' . t('My Awesome Module') . '</p>';
+    return $output;
+
+    default:
+}
+}
+
+/**
+ * Implements silai_theme().
+ */
+function silai_theme() {
+    return array(
+        'forwarded_inventory_detail' => array(
+            'variables' => array( 
+                'sent_item' => NULL, 
+                'sent_item_qty' => NULL, 
+                'forwarded_items' => NULL,
+                'ref_id' => NULL
+            ),
+        ),
+        'ho_admin_dashboard_page' => array(
+            'variables' => array( 
+                'role' => NULL,
+                //'viewSchoolRender' => NULL,
+                'SchoolCount' => NULL,
+                //'viewAgreementRender' => NULL,
+                'pendingAgreementamount' => NULL,
+                'noOfActiveLearners' => NULL,
+                'viewReceiveMsgRender' => NULL,
+                'viewSendMsgRender' => NULL,
+                'viewSliderGalleryRender' => NULL,
+                'totalPendingMIS' => NULL,
+                'outputScoolType' => NULL,
+                'totalVillage' => NULL,
+                'totalNgoPartners' => NULL,
+            ),
+        ),
+        'gallery_page' => array(
+            'variables' => array( 
+                'viewGalleryRender' => NULL,
+            ),
+        ),
+        'read_message_board' => array(
+            'variables' => array( 
+                'subject' => NULL,
+                'message' => NULL,
+                'filepath' => NULL
+            ),
+        ),
+        'notification_board' => array(
+            'variables' => array( 
+                'message' => NULL
+            ),
+        ),
+    );   
+}
+
+
+/**
+ * Implementation of hook_form_node_ngo()
+ */
+function silai_form_node_ngo_form_alter(&$form, FormStateInterface $form_state) {
+    $location = [UNDERSCORE_NONE => SELECT_VALUE];
+    $masterDataService = \Drupal::service('silai.master_data');
+    $locationArr = $masterDataService->getLocationByCountryId();
+    $destinationData = drupal_get_destination();
+    if(!empty($locationArr)) {
+        $location = array_merge($location, $locationArr);
+    }
+    $form[HASH_TITLE] = t('Add Partner');
+    $form[FIELD_NGO_USER_ID]['widget'][0]['value']['#type'] = 'hidden'; 
+    $form['field_ngo_secondry_mobile_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_ngo_vendor_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_gstn_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['field_ngo_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form[FIELD_FIRST_NAME] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('First Name'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+        HASH_MAXLENGTH => 30,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+    $form[FIELD_LAST_NAME] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('Last Name'),
+        HASH_DEFAULT_VALUE => ($lastName) ? $lastName : '',
+        HASH_MAXLENGTH => 30,
+        HASH_REQUIRED => TRUE,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+    $form['field_user_name'] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('User Name'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($fieldUserId) ? $fieldUserId : '',
+        HASH_MAXLENGTH => 15,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+
+    $form['field_user_password'] = [
+        HASH_TYPE => 'password',
+        HASH_TITLE => t('Password'),
+        HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+        HASH_MAXLENGTH => 20,
+    ];
+
+    $form[FIELD_USER_EMAIL] = [
+        HASH_TYPE => 'email',
+        HASH_TITLE => t('Email Id'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+        HASH_MAXLENGTH => 100,
+    ];
+
+    $form[FILED_USER_CONTACT_NO] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('Contact No.'),
+        HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+        HASH_MAXLENGTH => 11,
+        HASH_REQUIRED => TRUE,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+    ]; 
+    $form[HASH_VALIDATE][] = 'custom_ngo_user_validate'; 
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );   
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_ngo_submit';
+        }
+    }
+}
+
+function silai_form_node_ngo_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form[HASH_TITLE] = t('Edit Partner');
+    $node = $form_state->getFormObject()->getEntity();
+    $nid = $node->id();
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+    // Load a single node.
+    $node = $node_storage->load($nid);
+
+    $userId = $node->field_ngo_user_id->target_id;
+    if(!empty($userId)) {
+        $account = \Drupal\user\Entity\User::load($userId);
+        $accountRoles = $account->getRoles();
+        $firstName =  ($account->field_first_name->value) ? $account->field_first_name->value : '';
+        $lastName =  ($account->field_last_name->value) ? $account->field_last_name->value : '';
+        $emailId =  ($account->getEmail()) ? $account->getEmail() : '';
+        $contactNo =  ($account->field_user_contact_no->value) ? $account->field_user_contact_no->value : '';
+        $profileId =  ($accountRoles[1]) ? $accountRoles[1] : '';
+        $fieldUserId = $account->getUsername();
+        $userLocation =  ($account->field_user_location->target_id) ? $account->field_user_location->target_id : '';
+        $userStatus =  $account->status->value;
+    }
+    $form[FIELD_NGO_USER_ID]['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['field_ngo_secondry_mobile_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_ngo_vendor_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_gstn_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_ngo_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form[FIELD_FIRST_NAME] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('First Name'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+        HASH_MAXLENGTH => 30,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+    $form[FIELD_LAST_NAME] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('Last Name'),
+        HASH_DEFAULT_VALUE => ($lastName) ? $lastName : '',
+        HASH_MAXLENGTH => 30,
+        HASH_REQUIRED => TRUE,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+    $form['field_user_name'] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('User Name'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($fieldUserId) ? $fieldUserId : '',
+        HASH_MAXLENGTH => 15,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+    ];
+
+
+    $form['field_user_password'] = [
+        HASH_TYPE => 'password',
+        HASH_TITLE => t('Password'),
+        HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+        HASH_MAXLENGTH => 20,
+    ];
+
+    $form[FIELD_USER_EMAIL] = [
+        HASH_TYPE => 'email',
+        HASH_TITLE => t('Email Id'),
+        HASH_REQUIRED => TRUE,
+        HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+        HASH_MAXLENGTH => 100,
+    ];
+
+    $form[FILED_USER_CONTACT_NO] = [
+        HASH_TYPE => TEXTFIELD,
+        HASH_TITLE => t('Contact No.'),
+        HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+        HASH_MAXLENGTH => 11,
+        HASH_REQUIRED => TRUE,
+        HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+    ]; 
+    $form[HASH_VALIDATE][] = 'custom_ngo_user_validate'; 
+
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );  
+
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_ngo_submit';
+        }
+    } 
+}
+
+/**
+ * Implementation of Custom NGO Validate
+ * NGO User validation for Associated NGO
+ */
+function custom_ngo_user_validate($form, FormStateInterface &$form_state) {
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+    $userId = $form_state->getValue(FIELD_NGO_USER_ID)[0]['target_id'];
+    $ngoName = preg_replace('/\s+/', '', $form_state->getValue('title')[0]['value']);
+
+    if(!empty($ngoName) && strlen($ngoName) < 4) {
+      $form_state->setErrorByName('title', t('Ngo name must be atleast 4 characters')); 
+  }
+  if(!empty($uniqueId) && strlen($uniqueId) < 4) {
+      $form_state->setErrorByName('field_user_name', t('Username length must be atleast 4 characters')); 
+  }
+  if(!empty($password) && strlen($password) < 6) {
+      $form_state->setErrorByName('field_user_password', t('Password length must be atleast 6 characters')); 
+  }
+
+  $masterDataService = \Drupal::service('silai.master_data');
+    #validate duplicate user id check
+  if($uniqueId){
+    $validateStatus = $masterDataService->validateDuplicateUser('name', $uniqueId, $userId);
+    if(!$validateStatus) {
+        $form_state->setErrorByName('field_user_name', t('User Name already exist.'));
+    }
+}
+    #validate duplicate user email check
+if($emailId) {
+    $validateStatus = $masterDataService->validateDuplicateUser('mail', $emailId, $userId);
+    if(!$validateStatus) {
+        $form_state->setErrorByName(FIELD_USER_EMAIL, t('Email Id already exist.'));
+    }
+
+}
+}
+
+/**
+ * Implementation of Custom NGO Submit
+ * NGO User   creation for Associated NGO
+ */
+function custom_ngo_submit(array $form, FormStateInterface $form_state){
+    $firstName = $form_state->getValue(FIELD_FIRST_NAME);
+    $lastName = $form_state->getValue(FIELD_LAST_NAME);
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $contactNo = $form_state->getValue(FILED_USER_CONTACT_NO);
+    $userProfile = $form_state->getValue(FILED_PROFILE);
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+    $userId = $form_state->getValue(FIELD_NGO_USER_ID)[0]['target_id'];
+    $userStatus = $form_state->getValue('status')['value'];
+
+
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $currentUserid = $user->id();
+    $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+
+    $currentEntity = $form_state->getFormObject()->getEntity();
+    $locationArr = $currentEntity->get('field_ngo_location')->getValue();
+    foreach ($locationArr as $key => $value) {
+        $locations[] = $value['target_id'];   
+    }
+    
+    $masterDataService = \Drupal::service('silai.master_data');
+    $targetRoles = [ROLE_SILAI_PC];
+    $targetUsers = $masterDataService->getUsersByRole($targetRoles, $locations);
+
+    $data = [
+        'sender_role' => $userRoles[1],
+        'receiver_id' => '',
+        'receiver_role' => '',
+        'message' => '',
+        'location' => '',
+        'created_by' => $currentUserid
+    ];
+
+    if(!empty($userId)) {
+        $user = \Drupal\user\Entity\User::load($userId);
+        $accountRoles = $user->getRoles();
+
+        $user->setEmail($emailId);
+        $user->setUsername($uniqueId);
+        if(!empty($password)) {
+            $user->setPassword($password);
+        }
+        $user->set(FIELD_FIRST_NAME, $firstName);
+        $user->set(FIELD_LAST_NAME, $lastName);
+        $user->set(FILED_USER_CONTACT_NO, $contactNo);
+        $user->set(STATUS, $userStatus);
+        $user->save();
+
+        $entity = $form_state->getFormObject()->getEntity();
+        $ngoName = $entity->title->value; 
+        $message = preg_replace('/{.*}/', $ngoName, EDIT_NGO_MESSAGE);
+        $data['message'] = $message. $nameWithRole;
+
+    } else {
+        $user = \Drupal\user\Entity\User::create();
+        if(!empty($password)) {
+            $user->setPassword($password);
+        }
+        $user->setEmail($emailId);
+        $user->setUsername($uniqueId);
+        $user->set(FIELD_FIRST_NAME, $firstName);
+        $user->set(FIELD_LAST_NAME, $lastName);
+        $user->set(FILED_USER_CONTACT_NO, $contactNo);
+        $user->set(STATUS, $userStatus);
+        $user->addRole('ngo_admin');
+        $user->enforceIsNew();
+        $user->save();
+        $uid = $user->id();
+        
+        // getting entity reference while form custom submit
+        $entity = $form_state->getFormObject()->getEntity();
+        $ngoName = $entity->title->value; 
+        // update userid of created user in school node
+        $nid = $entity->id();
+        $entity->set(FIELD_NGO_USER_ID, $uid );
+        $entity->save();
+
+        ngo_map_user($nid, $uid);
+
+        $message = preg_replace('/{.*}/', $ngoName, ADD_NGO_MESSAGE);
+        $data['message'] = $message;
+    } 
+    
+    if(!empty($targetUsers)){
+        $masterDataService->notificationAlert($data, $targetUsers);
+    }   
+}
+
+/**
+ * Implementation of hook_form_node_manage_silai_countries_alter()
+ */
+function silai_form_node_manage_silai_countries_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Country');
+    $form[HASH_VALIDATE][] = 'custom_silai_countries_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_country_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-countries-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements silai_form_node_manage_silai_countries_edit_form_alter().
+ */
+function silai_form_node_manage_silai_countries_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit Country');
+    $form[HASH_VALIDATE][] = 'custom_silai_countries_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_country_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-countries-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_silai_countries_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_countries_validate($form, FormStateInterface &$form_state) {
+    $countryCode = $form_state->getValue('field_silai_country_code')[0]['value'];
+
+     #validate duplicate code check
+    if($countryCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_silai_countries', 'field_silai_country_code', $countryCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_country_code', t('Country Code already exist.'));
+        }
+    }
+
+    /*$query = \Drupal::entityQuery(NODE)
+        ->condition(TYPE, 'manage_silai_countries');
+
+    #For edit mode
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $nid = $node->id();
+      $query->condition(NID, $nid, '!=');
+    }
+
+    $nids = $query->execute();
+    $node_storage = \Drupal::entityManager()->getStorage(NODE);
+
+    #Load multiple nodes
+    $countries = $node_storage->loadMultiple($nids);
+    foreach ($countries as $n) {
+        $countryCodeArr[] = strtolower($n->field_silai_country_code->value);
+    }
+    if( in_array(strtolower($countryCode), $countryCodeArr)) {
+        $form_state->setErrorByName('field_silai_country_code', t('Country Code already exist.'));
+    }
+    */
+}
+
+/**
+ * Implementation of hook_form_node_manage_silai_locations_form_alter
+ */
+function silai_form_node_manage_silai_locations_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Location');
+    $form[HASH_VALIDATE][] = 'custom_silai_locations_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_location_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-locations-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements hook_form_node_manage_locations_edit_form_alter().
+ */
+function silai_form_node_manage_silai_locations_edit_form_alter(&$form, FormStateInterface $form_state) {$form[HASH_TITLE] = t('Edit Location');
+    $form[HASH_VALIDATE][] = 'custom_silai_locations_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_location_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-locations-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_silai_locations_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_locations_validate($form, FormStateInterface &$form_state) {
+    $locationCode = $form_state->getValue('field_silai_location_code')[0]['value'];
+
+    #validate duplicate location code check
+    if($locationCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('manage_silai_locations', 'field_silai_location_code', $locationCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_location_code', t('Location Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of hook_form_node_silai_business_states_alter()
+ */
+function silai_form_node_silai_business_states_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add State');
+    $form[HASH_VALIDATE][] = 'custom_silai_states_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_state_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_silai_state_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-states-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implements silai_form_node_silai_business_states_edit_form_alter().
+ */
+function silai_form_node_silai_business_states_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit State');
+    $form[HASH_VALIDATE][] = 'custom_silai_states_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_state_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_silai_state_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-states-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_silai_states_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_states_validate($form, FormStateInterface &$form_state) {
+    $stateCode = $form_state->getValue('field_silai_state_code')[0]['value'];
+
+    if(strlen($stateCode) != 4) {
+        $form_state->setErrorByName('field_silai_state_code', t('State Code must be of 4 characters.'));   
+    }
+
+    #validate duplicate state code check
+    if($stateCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_business_states', 'field_silai_state_code', $stateCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_state_code', t('State Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of hook_form_node_silai_district_form_alter()
+ */
+function silai_form_node_silai_district_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add District');
+    #$form[HASH_VALIDATE][] = 'custom_silai_districts_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    #$form['field_silai_district_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_district_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-districts-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_manage_districts_edit_form_alter().
+ */
+function silai_form_node_silai_district_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit District');
+    #$form[HASH_VALIDATE][] = 'custom_silai_districts_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    #$form['field_silai_district_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_district_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-districts-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of hook_form_node_silai_town_form_alter()
+ */
+function silai_form_node_silai_town_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Town');
+    $form[HASH_VALIDATE][] = 'custom_silai_towns_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_town_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-towns-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_silai_town_edit_form_alter().
+ */
+function silai_form_node_silai_town_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Town'); 
+    $form[HASH_VALIDATE][] = 'custom_silai_towns_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_town_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-towns-listing"; event.preventDefault();'),
+    ); 
+}
+
+/**
+ * Implementatuion of custom_silai_towns_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_towns_validate($form, FormStateInterface &$form_state) {
+    $townCode = $form_state->getValue('field_silai_town_code')[0]['value'];
+
+    #validate duplicate town code check
+    if($townCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_town', 'field_silai_town_code', $townCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_town_code', t('Town Code already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implementation of hook_form_node_silai_blocks_form_alter()
+ */
+function silai_form_node_silai_blocks_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Block');
+    #$form[HASH_VALIDATE][] = 'custom_silai_blocks_validate'; 
+
+    $form['field_silai_block_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-blocks-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_silai_blocks_edit_form_alter().
+ */
+function silai_form_node_silai_blocks_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    #$form[HASH_VALIDATE][] = 'custom_silai_blocks_validate'; 
+    $form[HASH_TITLE] = t('Edit Block');
+    $form['field_silai_block_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-blocks-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of hook_form_node_silai_villages_form_alter()
+ */
+function silai_form_node_silai_villages_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Village');
+    #$form[HASH_VALIDATE][] = 'custom_silai_village_validate';
+    $form['field_silai_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_vilage_poplation'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_no_of_households'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_vilage_poplation'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_near_by_place'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    
+
+    $form['field_silai_village_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-villages-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements hook_form_node_silai_villages_edit_form_alter().
+ */
+function silai_form_node_silai_villages_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit Village');
+    #$form[HASH_VALIDATE][] = 'custom_silai_village_validate';
+    $form['field_silai_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_vilage_poplation'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_no_of_households'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_vilage_poplation'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_near_by_place'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['field_silai_village_code']['widget'][0]['value']['#type'] = 'hidden';
+    $form['field_hidden_district_id'] = [
+      HASH_TYPE => FIELD_HIDDEN,
+      HASH_VALUE => $form['field_silai_district']['widget'][0]['target_id'][HASH_DEFAULT_VALUE]->get('nid')->getValue()[0]['value'],
+      HASH_ATTRIBUTES => array('id' => 'village-hidden-district-id')
+  ];
+
+  $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-villages-listing"; event.preventDefault();'),
+);
+}
+
+
+/**
+ * Implementation of silai_form_node_silai_school_type_master_edit_form_alter
+ */
+function silai_form_node_silai_school_type_master_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add School Type');
+    $form[HASH_VALIDATE][] = 'custom_silai_school_type_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_school_type_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-school-type-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of silai_form_node_silai_school_type_master_edit_form_alter
+ */
+function silai_form_node_silai_school_type_master_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit School Type');
+    $form[HASH_VALIDATE][] = 'custom_silai_school_type_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_school_type_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_school_type_description'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]]; 
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-school-type-listing"; event.preventDefault();'),
+    );
+}
+
+
+
+/**
+ * Implementatuion of custom_silai_school_type_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_school_type_validate($form, FormStateInterface &$form_state) {
+    $schoolTypeCode = $form_state->getValue('field_silai_school_type_code')[0]['value'];
+
+    #validate duplicate school type code check
+    if($schoolTypeCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_school_type_master', 'field_silai_school_type_code', $schoolTypeCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_school_type_code', t('School Type Code already exist.'));
+        }
+    }
+
+}
+
+
+/**
+ * Implementation of silai_form_node_silai_dealer_form_alter
+ */
+function silai_form_node_silai_dealer_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Dealer');
+    $form[HASH_VALIDATE][] = 'custom_silai_dealer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_street'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_locality'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_dealer_longitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_silai_dealer_latitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-dealers-listing"; event.preventDefault();'),
+    );
+
+}
+
+/**
+ * Implements silai_form_node_silai_dealer_edit_form_alter().
+ */
+function silai_form_node_silai_dealer_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Dealer'); 
+    $form[HASH_VALIDATE][] = 'custom_silai_dealer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_street'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_locality'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_dealer_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_silai_dealer_longitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+    $form['field_silai_dealer_latitude'][HASH_ATTRIBUTES] = [CLASS_CONST => [NUMERIC_WITH_DECIMAL]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-dealers-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_silai_dealer_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_dealer_master_validate($form, FormStateInterface &$form_state) {
+    $dealerCode = $form_state->getValue('field_silai_dealer_code')[0]['value'];
+    $contactNumber = $form_state->getValue('field_silai_dealer_contact_no')[0]['value'];
+
+    #validate duplicate dealer code check
+    if($dealerCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_dealer', 'field_silai_dealer_code', $dealerCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_dealer_code', t('Dealer Code already exist.'));
+        }
+    }
+
+    if(!empty($contactNumber) && (strlen($contactNumber) < 7 || strlen($contactNumber) > 11 || !is_numeric($contactNumber))) {
+        $form_state->setErrorByName('field_silai_dealer_contact_no', t('Invalid Contact Number.'));
+    }
+}
+
+/**
+ * Implements silai_form_alter().
+ */
+
+function silai_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form['#attached']['library'][] = 'silai_form_alter/silai_form_alter';
+    //print_r($form['#attached']);die;
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+	//print_r($current_user);die;
+    if(!in_array('administrator', $roles)) {
+      $form['revision_information']['#access'] = false;
+      $form[ACTIONS]['delete']['#access'] = false;
+      $form[ACTIONS]['preview']['#access'] = false;
+  }
+}
+
+/**
+ * Implementation of hook_form_node_silai_blocks_form_alter()
+ */
+function silai_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+    if(isset($form['status']) && !empty($form['status'])) {
+       $form['status']['#options'][0] = 'Inactive';
+       $form['status']['#options'][1] = 'Active'; 
+   }
+
+   if ($form['#id'] == 'views-exposed-form-silai-manage-school-page-1' || $form['#id'] == 'views-exposed-form-silai-manage-school-page-2' || $form['#id'] == 'views-exposed-form-silai-manage-school-page-3') {
+        // echo "test";die();
+      $statusOption = SILAI_SCHOOL_STATUS;
+      $fieldApprovalStatus = 'field_sil_school_approval_status_value';
+      $form[$fieldApprovalStatus][HASH_TYPE] = 'select';
+      $form[$fieldApprovalStatus]['#multiple'] = FALSE;
+      $form[$fieldApprovalStatus]['#empty_option'] = t('- Select a value -');
+      $form[$fieldApprovalStatus][HASH_OPTIONS] = $statusOption;
+      unset($form[$fieldApprovalStatus]['#size']);
+  }
+
+  $form['#attached']['library'][] = 'silai_form_alter/silai_form_alter';
+}
+/**
+ * Implementation of sewing_form_node_trainer_form_alter
+ */
+function silai_form_node_trainer_silai_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add New Trainer');
+    $form[HASH_VALIDATE][] = 'custom_silai_trainer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_basic_info'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_silai_trainer_email_id'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_trainer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['field_silai_trainer_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-silai-trainers"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implements sewing_form_node_trainer_edit_form_alter().
+ */
+function silai_form_node_trainer_silai_edit_form_alter(&$form, FormStateInterface $form_state) { 
+    $form[HASH_TITLE] = t('Edit Trainer');
+    $form[HASH_VALIDATE][] = 'custom_silai_trainer_master_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_basic_info'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    //$form['field_silai_trainer_email_id'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_trainer_contact_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['field_silai_trainer_code']['widget'][0]['value']['#type'] = 'hidden';
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-silai-trainers"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_trainer_master_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_trainer_master_validate($form, FormStateInterface &$form_state) {
+    $trainerCode = trim($form_state->getValue('field_silai_trainer_code')[0]['value']);
+    $contactNumber = $form_state->getValue('field_silai_trainer_contact_no')[0]['value'];
+    $emailId = $form_state->getValue('field_silai_trainer_email_id')[0]['value'];
+    $schoolCode = trim($form_state->getValue('field_teacher_id_school_code')[0]['value']);
+    if($schoolCode) {
+        $isSchoolCodeExist = isSchoolCodeExist($schoolCode);
+        if(!$isSchoolCodeExist){
+            $form_state->setErrorByName('field_teacher_id_school_code', t('Teacher Id / School code not exist.'));
+        }        
+    }
+
+    if(!empty($emailId) && !filter_var($emailId, FILTER_VALIDATE_EMAIL)) {
+       $form_state->setErrorByName('field_silai_trainer_email_id', t('Invalid Email Id.'));
+   }
+   if(!empty($contactNumber) && (strlen($contactNumber) > 11 || strlen($contactNumber) < 7 || !is_numeric($contactNumber))) {
+    $form_state->setErrorByName('field_silai_trainer_contact_no', t('Invalid Contact Number.'));
+}
+
+}
+
+
+/**
+ * Implementation of silai_form_node_silai_item_group_form_alter()
+ */
+function silai_form_node_silai_item_group_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Item Group');
+    $form[HASH_VALIDATE][] = 'custom_silai_item_group_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_item_group_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-manage-item-groups"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of silai_form_node_silai_item_group_edit_form_alter()
+ */
+function silai_form_node_silai_item_group_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Item Group');
+    $form[HASH_VALIDATE][] = 'custom_silai_item_group_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_item_group_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-manage-item-groups"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_silai_item_group_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_item_group_validate($form, FormStateInterface &$form_state) {
+    $itemGroupCode = $form_state->getValue('field_silai_item_group_code')[0]['value'];
+
+    #validate duplicate item group code check
+    if($itemGroupCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_item_group', 'field_silai_item_group_code', $itemGroupCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_item_group_code', t('Item group Code already exist.'));
+        }
+    }
+
+}
+
+/**
+ * Implementation of silai_form_node_silai_items_form_alter()
+ */
+function silai_form_node_silai_items_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Add Item');
+    $form[HASH_VALIDATE][] = 'custom_silai_items_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_item_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-manage-items"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of silai_form_node_silai_items_edit_form_alter()
+ */
+function silai_form_node_silai_items_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_TITLE] = t('Edit Item');
+    $form[HASH_VALIDATE][] = 'custom_silai_items_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_item_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/silai-manage-items"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_items_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_items_validate($form, FormStateInterface &$form_state) {
+    $itemCode = $form_state->getValue('field_silai_item_code')[0]['value'];
+
+    #validate duplicate item code check
+    if($itemCode){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('silai_items', 'field_silai_item_code', $itemCode);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('field_silai_item_code', t('Item Code already exist.'));
+        }
+    }
+
+}
+/**
+ * Implementation of edit trainee content type form
+ */
+function silai_form_node_silai_trainee_edit_form_alter(&$form, FormStateInterface $form_state) {
+	//$form['field_trainer_id']['widget'][0]['value']['#type'] = 'hidden';
+	//node-silai-trainee-edit-form
+    $form['field_silai_contact_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $destinationData = drupal_get_destination();
+
+    $node = \Drupal::routeMatch()->getParameter(NODE);
+    $nid = $node->id();
+    $connection = Database::getConnection();
+    $check_qry = $connection->select('silai_trainee_feedback', 'n')
+    ->fields('n', array(
+     'nid',
+     'silai_r_communication',
+     'silai_r_entrepreneurship',
+     'silai_r_creativity',
+     'silai_r_problem_solving',
+     'silai_r_confidence',
+     'silai_r_leadership_quality',
+     'silai_r_functional_numeracy',
+     'silai_r_measurement_skills',
+     'silai_r_drafting',
+     'silai_r_pattern_making',
+     'silai_r_cutting',
+     'silai_r_quality_of_stitching',
+     'silai_r_embroidery_skills',
+     'silai_r_willing_learn_new_things',
+     'silai_r_willingness_travel_within_district',
+     'silai_r_average_rating',
+ )
+)
+    ->condition('nid', $nid);
+    $check_data = $check_qry->execute();
+    $row = $check_data->fetchAll(\PDO::FETCH_OBJ);
+
+	#For rating field add in content type trainee
+    $form[GROUP_SKILLS] = array(
+        //HASH_TYPE => 'fieldset',
+        HASH_TITLE => t('Skills'),
+        '#open' => TRUE,
+        '#weight' => 5,
+        '#prefix' => '<div class="rating-parent-div">' 
+
+    );
+    $form[GROUP_SKILLS]['#suffix'] = '</div>';
+    $form[HASH_VALIDATE][] = 'custom_validate_training_feedback';
+    $form[GROUP_SKILLS]['communication'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Communication'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_communication) ? $row[0]->silai_r_communication : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'communication',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['entrepreneurship'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Entrepreneurship'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_entrepreneurship) ? $row[0]->silai_r_entrepreneurship : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'entrepreneurship',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['creativity'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Creativity'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_creativity) ? $row[0]->silai_r_creativity : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'creativity',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['problem_solving'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Problem Solving'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_problem_solving) ? $row[0]->silai_r_problem_solving : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'problem_solving',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['confidence'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Confidence'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_confidence) ? $row[0]->silai_r_confidence : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'confidence',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['leadership_quality'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Leadership Quality'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_leadership_quality) ? $row[0]->silai_r_leadership_quality : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'leadership_quality',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['functional_numeracy'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Functional Numeracy'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_functional_numeracy) ? $row[0]->silai_r_functional_numeracy : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'functional_numeracy',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['measurement_skills'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Measurement Skills'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_measurement_skills) ? $row[0]->silai_r_measurement_skills : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'measurement_skills',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['drafting'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Drafting'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_drafting) ? $row[0]->silai_r_drafting : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'drafting',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['pattern_making'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Pattern Making'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_pattern_making) ? $row[0]->silai_r_pattern_making : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'pattern_making',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['cutting'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Cutting'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_cutting) ? $row[0]->silai_r_cutting : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'cutting',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['quality_of_stitching'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Quality of Stitching'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_quality_of_stitching) ? $row[0]->silai_r_quality_of_stitching : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'quality_of_stitching',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['embroidery_skills'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Embroidery Skills'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_embroidery_skills) ? $row[0]->silai_r_embroidery_skills : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'embroidery_skills',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['willing_to_learn_new_things'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Willing to learn new things'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_willing_learn_new_things) ? $row[0]->silai_r_willing_learn_new_things : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'willing_to_learn_new_things',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['willingness_to_travel_within_district'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Willingness to travel within district'),
+      HASH_REQUIRED => TRUE,
+      HASH_DEFAULT_VALUE => ($row[0]->silai_r_willingness_travel_within_district) ? $row[0]->silai_r_willingness_travel_within_district : '',
+      HASH_ATTRIBUTES => [
+       'id' => 'willingness_to_travel_within_district',
+       'class' => array('rating'),
+   ],
+);
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+/**
+ * Implementation of add new trainee content type form
+ */
+function silai_form_node_silai_trainee_form_alter(&$form, FormStateInterface $form_state) {
+    $form['field_silai_contact_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $destinationData = drupal_get_destination();
+
+    $form['field_silai_trainer_id']['widget'][0]['value'][HASH_DEFAULT_VALUE] = $_REQUEST['stid'];
+	//$form['field_trainer_id']['widget'][0]['value']['#type'] = 'hidden';
+	#For rating field add in content type trainee
+    $form[GROUP_SKILLS] = array(
+		//HASH_TYPE => 'fieldset',
+      HASH_TITLE => t('Skills'),
+      '#open' => TRUE,
+      '#weight' => 5,
+      '#prefix' => '<div class="rating-parent-div">' 
+
+  );
+    $form[GROUP_SKILLS]['#suffix'] = '</div>';
+    $form[HASH_VALIDATE][] = 'custom_validate_training_feedback';
+    $form[GROUP_SKILLS]['communication'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Communication'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'communication',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['entrepreneurship'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Entrepreneurship'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'entrepreneurship',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['creativity'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Creativity'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'creativity',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['problem_solving'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Problem Solving'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'problem_solving',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['confidence'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Confidence'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'confidence',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['leadership_quality'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Leadership Quality'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'leadership_quality',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['functional_numeracy'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Functional Numeracy'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'functional_numeracy',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['measurement_skills'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Measurement Skills'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'measurement_skills',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['drafting'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Drafting'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'drafting',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['pattern_making'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Pattern Making'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'pattern_making',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['cutting'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Cutting'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'cutting',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['quality_of_stitching'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Quality of Stitching'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'quality_of_stitching',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['embroidery_skills'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Embroidery Skills'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'embroidery_skills',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['willing_to_learn_new_things'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Willing to learn new things'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'willing_to_learn_new_things',
+       'class' => array('rating'),
+   ],
+);
+    $form[GROUP_SKILLS]['willingness_to_travel_within_district'] = array(
+      HASH_TYPE => NUMBERFIELD,
+      HASH_TITLE => t('Willingness to travel within district'),
+      HASH_REQUIRED => TRUE,
+      HASH_ATTRIBUTES => [
+       'id' => 'willingness_to_travel_within_district',
+       'class' => array('rating'),
+   ],
+);
+
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_validate_training_feedback
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_validate_training_feedback($form, FormStateInterface &$form_state) {
+    $CustomFields = \Drupal::request()->request;
+    $schoolCode = trim($form_state->getValue('field_training_school_code')[0]['value']);
+
+    if($schoolCode) {
+        $isSchoolCodeExist = isSchoolCodeExist($schoolCode);
+        if(!$isSchoolCodeExist){
+            $form_state->setErrorByName('field_training_school_code', t('School Code not exist.'));
+        }        
+    }
+}
+
+function  silai_node_presave(\Drupal\Core\Entity\EntityInterface $node) {
+    $node_type = $node->bundle();
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      // You can get nid and anything else you need from the node object.
+      $editId = $urlEditId->id();
+  }
+    //if($node_type == 'manage_agreements' && $editId == 0) {
+    //    $agreementAmount = $node->get('field_agreement_amount')->value;
+        //$node->set('field_silai_agree_due_balance', $agreementAmount);
+    //}
+  if($node_type == 'manage_agreements' && !empty($editId)) {
+    $nid = $node->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+        // start insert Agreement ID on node insert
+    $ngoId = $node->get('field_agreement_ngo_name')->target_id;
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+    $ngoNodeData = $node_storage->load($ngoId);
+
+    $ngoCode = $ngoNodeData->field_ngo_code->value;
+
+    $currentAgreementId = $node->get('field_agreement_id')->value;
+
+    if($currentAgreementId) {
+        $prefix = strtoupper($ngoCode);
+        $checkPerNgoSequence = $masterDataService->checkCode($currentAgreementId, 'manage_agreements', $prefix);
+        if(!$checkPerNgoSequence) {
+           $prevAgreementId = $masterDataService->generate_code($nid, 'manage_agreements', 'field_agreement_id', $prefix);
+
+           if($prevAgreementId) {
+            $prevSeqNo = (int) substr($prevAgreementId, -3);
+            $seqNo = str_pad( $prevSeqNo + 1, 3, "0", STR_PAD_LEFT );   
+        } else {
+            $seqNo = '001';
+        }
+
+        $agreementId = strtoupper($ngoCode).$seqNo;
+                //$node = Node::load($nid);
+        $node->set('field_agreement_id', $agreementId);
+
+    } 
+} else {
+    $seqNo = '001';
+    $agreementId = strtoupper($ngoCode).$seqNo;
+            //$node = Node::load($nid);
+    $node->set('field_agreement_id', $agreementId);
+}
+
+
+} else if($node_type == 'trainer_silai'  && !empty($editId)) {
+    $nid = $node->id();
+        //$trainerName = $node->get('title')->value;
+    $masterDataService = \Drupal::service('silai.master_data');
+    $districtId = $node->get('field_silai_trainer_district')->target_id;
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+    $districtNode =  $node_storage->load($districtId);
+
+    $districtCode = $districtNode->field_silai_district_code->value;
+
+    $currentTrainerCode = $node->get('field_silai_trainer_code')->value;
+    if($currentTrainerCode) {
+        $prefix = strtoupper($districtCode);
+        $checkPerDistrictSequence = $masterDataService->checkCode($currentTrainerCode, 'trainer_silai', $prefix);
+        if(!$checkPerDistrictSequence) {
+            $prevTrainerCode = $masterDataService->generate_code($nid, 'trainer_silai', 'field_silai_trainer_code', $prefix);
+
+            if($prevTrainerCode) {
+                $prevSeqNo = (int) substr($prevTrainerCode, -4);
+                $seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );
+                
+            } else {
+                $seqNo = '0001';
+            }
+
+            $trainerCode = strtoupper($districtCode).$seqNo;
+
+            $node->set('field_silai_trainer_code', $trainerCode); 
+        }
+    } else {
+        $seqNo = '0001';
+        $trainerCode = strtoupper($districtCode).$seqNo;
+        $node->set('field_silai_trainer_code', $trainerCode); 
+    }
+
+
+} else if($node_type == 'silai_blocks'  && !empty($editId)) {
+    $nid = $node->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $districtId = $node->get('field_silai_district')->target_id;
+    $currentBlockCode = $node->get('field_silai_block_code')->value;
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+    $districtNodeData = $node_storage->load($districtId);
+    $districtCode = $districtNodeData->field_silai_district_code->value;
+
+    if($currentBlockCode) {
+        $prefix = strtoupper($districtCode);
+        $checkPerDistrictSequence = $masterDataService->checkCode($currentBlockCode, 'silai_blocks', $prefix);
+
+        if(!$checkPerDistrictSequence) {
+            $prevBlockCode = $masterDataService->generate_code($nid, 'silai_blocks', 'field_silai_block_code', $prefix);
+
+            if($prevBlockCode) {
+                $prevSeqNo = (int) substr($prevBlockCode, -2);
+                $seqNo = str_pad( $prevSeqNo + 1, 2, "0", STR_PAD_LEFT );
+
+            } else {
+                $seqNo = '01';
+            }
+
+            $blockCode = strtoupper($districtCode).$seqNo;
+            $node->set('field_silai_block_code', $blockCode);   
+        }
+    } else {
+        $seqNo = '01';
+        $blockCode = strtoupper($districtCode).$seqNo;
+        $node->set('field_silai_block_code', $blockCode);   
+    }
+
+
+} else if($node_type == 'silai_villages'  && !empty($editId)) {
+    $nid = $node->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $blockId = $node->get('field_silai_block')->target_id;
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+    $blockNodeData = $node_storage->load($blockId);
+
+    $blockCode = $blockNodeData->field_silai_block_code->value;
+
+    $currentVillageCode = $node->get('field_silai_village_code')->value;
+
+    if($currentVillageCode) {
+        $prefix = strtoupper($blockCode);
+        $checkPerBlockSequence = $masterDataService->checkCode($currentVillageCode, 'silai_villages', $prefix);
+
+        if(!$checkPerBlockSequence) {
+            $prevVillageCode = $masterDataService->generate_code($nid, 'silai_villages', 'field_silai_village_code', $prefix);
+            if($prevVillageCode) {
+                $prevSeqNo = (int) substr($prevVillageCode, -3);
+                $seqNo = str_pad( $prevSeqNo + 1, 3, "0", STR_PAD_LEFT );
+
+            } else {
+                $seqNo = '001';
+            }
+            $villageCode = strtoupper($blockCode).$seqNo;
+            $node->set('field_silai_village_code', $villageCode);
+
+        }  
+
+    } else {
+        $seqNo = '001';
+        $villageCode = strtoupper($blockCode).$seqNo;
+        $node->set('field_silai_village_code', $villageCode);
+    }
+
+} else if($node_type == 'ngo'  && !empty($editId)) {
+    $nid = $node->id();
+
+        //$ngoName = $node->get('title')->value;
+
+    $ngoName = preg_replace('/\s+/', '', $node->get('title')->value);
+    $yearOfCreation = date('Y', $node->get('created')->value);
+    $currentNgoCode = $node->get('field_ngo_code')->value;
+
+    if($currentNgoCode) {
+        $currentSeqNo = substr($currentNgoCode, -3);
+            //$seqNo = str_pad( $currentSeqNo, 4, "0", STR_PAD_LEFT );
+    } else {
+        $currentSeqNo = '001';
+    }
+
+    $ngoCode = strtoupper(substr($ngoName, 0, 4)).substr($yearOfCreation, -2).$currentSeqNo;
+    $node->set('field_ngo_code', $ngoCode);
+
+} else if($node_type == 'silai_district'  && !empty($editId)) {
+    $nid = $node->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $stateId = $node->get('field_silai_business_state')->target_id;
+
+    $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+    $stateNodeData = $node_storage->load($stateId);
+
+    $stateCode = $stateNodeData->field_silai_state_code->value;
+
+    $currentDistrictCode = $node->get('field_silai_district_code')->value;
+
+    if($currentDistrictCode) {
+        $prefix = strtoupper($stateCode);
+        $checkPerStateSequence = $masterDataService->checkCode($currentDistrictCode, 'silai_district', $prefix);
+        if(!$checkPerStateSequence) {
+            $prevDistrictCode = $masterDataService->generate_code($nid, 'silai_district', 'field_silai_district_code', $prefix);
+            if($prevDistrictCode) {
+                $prevSeqNo = (int) substr($prevDistrictCode, -2);
+                $seqNo = str_pad( $prevSeqNo + 1, 2, "0", STR_PAD_LEFT );
+                
+            } else {
+                $seqNo = '01';
+            }
+            $districtCode = strtoupper($stateCode).$seqNo;
+            $node->set('field_silai_district_code', $districtCode);
+        }
+
+    } else {
+        $seqNo = '001';
+        $districtCode = strtoupper($stateCode).$seqNo;
+        $node->set('field_silai_district_code', $districtCode);
+    }
+
+} else if($node_type == 'silai_learners_manage'  && !empty($editId)) {
+    $nid = $node->id();
+    $SchoolID = $node->get('field_silai_school')->getValue()[0]['target_id']; 
+    $node_storage = \Drupal::entityTypeManager()->getStorage(NODE);
+    $nodeSchool = $node_storage->load($SchoolID);
+    $schoolCode = $nodeSchool->get('field_school_code')->value;
+    $currentYear = date('y');
+    $masterDataService = \Drupal::service('silai.master_data');
+
+    $currentLearnerId = $node->get('field_learner_id')->value;
+	if(empty($currentLearnerId)){
+		if($currentLearnerId) {
+			$prefix = strtoupper($schoolCode).$currentYear;
+			$checkPerPrefixSequence = $masterDataService->checkCode($currentLearnerId, 'silai_learners_manage', $prefix);
+			if(!$checkPerPrefixSequence) {
+				$prevLearnerId = $masterDataService->generate_code($nid, 'silai_learners_manage', 'field_learner_id', $prefix);
+				if($prevLearnerId) {
+					$prevSeqNo = (int) substr($prevLearnerId, -4);
+					$seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );   
+				} else {
+					$seqNo = '0001';
+				}
+				$getlearnerID = strtoupper($schoolCode).$currentYear.$seqNo;
+				$node->set('field_learner_id', $getlearnerID);    
+			}
+		} else {
+		   $seqNo = '0001'; 
+		   $getlearnerID = strtoupper($schoolCode).$currentYear.$seqNo;
+		   $node->set('field_learner_id', $getlearnerID); 
+	   }
+   }
+
+}
+}
+
+/**
+ * trainee data save in custom table 
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ *   The node that is being inserted .
+ */
+function  silai_node_insert(\Drupal\Core\Entity\EntityInterface $node) {
+	$nid = $node->id();
+
+	$node_type = $node->bundle();
+	if($node_type == 'silai_trainee'){
+		$database = \Drupal::database();
+		#check feedback data by trainee id
+		$connection = Database::getConnection();
+		$check_qry = $connection->select('silai_trainee_feedback', 'n')->fields('n', array('nid'))->condition('nid', $nid);
+		$check_data = $check_qry->execute();
+		$check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+		$count = count($check_results);
+		if($count == 0){ #insert new data
+			//$nid = $node->id();
+			if(!empty($nid)){
+				$average_rating = ($_REQUEST['communication'] + $_REQUEST['entrepreneurship'] + $_REQUEST['creativity'] + 
+                 $_REQUEST['problem_solving'] + $_REQUEST['confidence'] + $_REQUEST['leadership_quality'] + 
+                 $_REQUEST['functional_numeracy'] + $_REQUEST['measurement_skills'] + $_REQUEST['drafting'] + 
+                 $_REQUEST['pattern_making'] + $_REQUEST['cutting'] + $_REQUEST['quality_of_stitching'] + 
+                 $_REQUEST['embroidery_skills'] + $_REQUEST['willing_to_learn_new_things'] + 
+                 $_REQUEST['willingness_to_travel_within_district'] ) / 15;
+				$data_ary = array(
+					'nid' 					=> $nid,
+					'silai_r_communication' 				=> $_REQUEST['communication'],
+					'silai_r_entrepreneurship' 				=> $_REQUEST['entrepreneurship'],
+					'silai_r_creativity' 					=> $_REQUEST['creativity'],
+					'silai_r_problem_solving' 				=> $_REQUEST['problem_solving'],
+					'silai_r_confidence' 					=> $_REQUEST['confidence'],
+					'silai_r_leadership_quality' 			=> $_REQUEST['leadership_quality'],
+					'silai_r_functional_numeracy' 			=> $_REQUEST['functional_numeracy'],
+					'silai_r_measurement_skills' 			=> $_REQUEST['measurement_skills'],
+					'silai_r_drafting' 						=> $_REQUEST['drafting'],
+					'silai_r_pattern_making' 				=> $_REQUEST['pattern_making'],
+					'silai_r_cutting' 						=> $_REQUEST['cutting'],
+					'silai_r_quality_of_stitching' 			=> $_REQUEST['quality_of_stitching'],
+					'silai_r_embroidery_skills' 			=> $_REQUEST['embroidery_skills'],
+					'silai_r_willing_learn_new_things' 		=> $_REQUEST['willing_to_learn_new_things'],
+					'silai_r_willingness_travel_within_district' => $_REQUEST['willingness_to_travel_within_district'],
+					'silai_r_average_rating' 				=> round($average_rating,1),
+				);
+				$query = $database->insert('silai_trainee_feedback')->fields($data_ary)->execute();
+                $trainnerId = $_REQUEST['stid'];
+                addNumberOfTrainee($trainnerId);
+            }
+        }
+    } else if($node_type == 'silai_inventory'){
+        $currentDomain = _get_current_domain();
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+
+        $location = $node->get('field_silai_location')->getValue()[0]['target_id'];
+        $quantitySent = $node->get('field_silai_quantity')->getValue()[0]['value'];
+        $masterDataService = \Drupal::service('silai.master_data');
+        $users = $masterDataService->getUsersByLocation($location, [ROLE_SILAI_PC]);
+        
+        //$receiverUser = \Drupal\user\Entity\User::load($users[0]);
+        //$receiverUserRoles = $receiverUser->getRoles();
+
+        $database = \Drupal::database();
+        #check feedback data by trainee id
+        $connection = Database::getConnection();
+        $check_qry = $connection->select('custom_manage_inventory', 'n')->fields('n', array('nid'))->condition('nid', $nid);
+        $check_data = $check_qry->execute();
+        $check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+        $count = count($check_results);
+        if($count == 0){ #insert new data
+            //$nid = $node->id();
+            if(!empty($nid)){
+
+                $data_ary = array(
+                    'nid'                   => $nid,
+                    'domain_id'             => ($currentDomain == SILAI_DOAMIN) ? SILAI_DOAMIN : SEWING_DOMAIN,
+                    'sender_id'             => $user->id(),
+                    'receiver_id'           => $users[0],
+                    'qty_send'              => $quantitySent,
+                    'qty_received'          => 0,
+                    'status'                => '1',
+                    'sent_date'             => time(),
+                    'received_date'         => '',
+                    'location_id'           => $location,
+                    'sender_role'           => $userRoles[1],
+                    'receiver_role'         => ROLE_SILAI_PC,//$receiverUserRoles[1],
+                    //'parent_ref_id'   => $user->id()
+                    
+                );
+
+                $query = $database->insert('custom_manage_inventory')->fields($data_ary)->execute(); 
+
+                // For Notification System
+                $targetUsers = $users;
+                $message = preg_replace('/{.*}/', $nameWithRole, SENT_INVENTORY_MESSAGE);
+                $data = [
+                    'sender_role' => $userRoles[1],
+                    'receiver_id' => '',
+                    'receiver_role' => '',
+                    'message' => $message,
+                    'location' => $location,
+                    'created_by' => $user->id()
+                ];
+                if(!empty($targetUsers)){ 
+                    $masterDataService->notificationAlert($data, $targetUsers);
+                }
+            }
+        }
+    } else if($node_type == 'silai_learners_manage') {
+        $nid = $node->id();
+        $SchoolID = $node->get('field_silai_school')->getValue()[0]['target_id']; 
+        $node_storage = \Drupal::entityTypeManager()->getStorage(NODE);
+        $nodeSchool = $node_storage->load($SchoolID);
+        $schoolCode = $nodeSchool->get('field_school_code')->value;
+        $currentYear = date('y');
+        $contentType = 'silai_learners_manage';
+        $masterDataService = \Drupal::service('silai.master_data');
+
+        $prefix = strtoupper($schoolCode).$currentYear;
+        $prevLearnerId = $masterDataService->generate_code($nid, 'silai_learners_manage', 'field_learner_id', $prefix);
+
+        
+        // $checkPerPrefixSequence = $masterDataService->checkCode($prevLearnerId, 'silai_learners_manage', $prefix);
+
+        if($prevLearnerId) {
+            $prevSeqNo = (int) substr($prevLearnerId, -4);
+            $seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );   
+        } else {
+            $seqNo = '0001';
+        }
+
+        $getlearnerID = strtoupper($schoolCode).$currentYear.$seqNo;
+        $node = Node::load($nid);
+        $node->set('field_learner_id', $getlearnerID);
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRoleAndSchool = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].') in '. $schoolCode ;
+
+        // if(in_array(ROLE_SILAI_PC, $user->getRoles())) {
+        //     $node->set('field_approve_status', 1);
+        // }
+
+        $node->save();
+        // For Notification System
+        if(in_array(ROLE_SILAI_NGO_ADMIN, $user->getRoles())) {
+            $ngoData = $masterDataService->getLinkedNgoForUser($user->id());
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+            $nodeNgo = $node_storage->load($ngoData[$user->id()]);
+            $currentUserLoc = $nodeNgo->get('field_ngo_location')->getValue()[0]['target_id'];           
+            $targetUsers = $masterDataService->getUsersByRole([ROLE_SILAI_PC], $currentUserLoc);
+            $message = preg_replace('/{.*}/', $nameWithRoleAndSchool, ADD_LEARNER_MESSAGE);
+            $data = [
+                'sender_role' => $userRoles[1],
+                'receiver_id' => '',
+                'receiver_role' => '',
+                'message' => $message,
+                'location' => $currentUserLoc,
+                'created_by' => $user->id()
+            ];
+            if(!empty($targetUsers)){  
+                $masterDataService->notificationAlert($data, $targetUsers);
+            }            
+        }
+
+    } else if($node_type == 'nfa') {
+        $nid = $node->id();
+        $nfaAmount = $node->get('field_sactioned_amount')->value;
+        $node = Node::load($nid);
+        $node->set('field_nfa_due_balance', $nfaAmount);  
+        $node->save();
+
+    } else if($node_type == 'manage_agreements') {
+        $nid = $node->id();
+        $agreementAmount = $node->field_agreement_amount->value;
+        $nfaId = $node->field_agreement_nfa_number->target_id;
+        // start insert Agreement ID on node insert
+        $ngoId = $node->get('field_agreement_ngo_name')->target_id;
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $ngoNodeData = $node_storage->load($ngoId);
+        $ngoCode = $ngoNodeData->field_ngo_code->value;
+        $masterDataService = \Drupal::service('silai.master_data');
+        $prefix = strtoupper($ngoCode);
+        $prevAgreementId = $masterDataService->generate_code($nid, 'manage_agreements', 'field_agreement_id', $prefix);
+
+        
+        // $checkPerNgoSequence = $masterDataService->checkCode($prevAgreementId, 'manage_agreements', $prefix);
+
+        if($prevAgreementId) {
+            $prevSeqNo = (int) substr($prevAgreementId, -3);
+            $seqNo = str_pad( $prevSeqNo + 1, 3, "0", STR_PAD_LEFT );   
+        } else {
+            $seqNo = '001';
+        }
+        $agreementId = strtoupper($ngoCode).$seqNo;
+        //$node = Node::load($nid);
+        $node->set('field_agreement_id', $agreementId);  
+        $node->set('field_silai_agree_due_balance', $agreementAmount);  
+        $node->save();
+        // end insert Agreement ID on node insert
+        $nfaLoad = Node::load($nfaId);
+        $nfaNumber = $nfaLoad->title->value;
+        $nfaDueBalance = $nfaLoad->field_nfa_due_balance->value;
+        $nfaDueBalance = $nfaDueBalance - $agreementAmount;
+        $nfaLoad->set('field_nfa_due_balance', $nfaDueBalance);  
+        $nfaLoad->save();
+        #update ngo status
+        $ngoLoad = Node::load($ngoId);
+        $ngoLoad->setNewRevision(FALSE);
+        $ngoLoad->status = 1;
+        $ngoLoad->save();
+        #Activate NGO User
+        $ngoUserID = $ngoLoad->field_ngo_user_id->target_id;
+        $userLoad = User::load($ngoUserID);
+        $userLoad->status = 1;
+        $userLoad->save();
+
+    } else if($node_type == 'trainer_silai') {
+        $nid = $node->id();
+        //$trainerName = $node->get('title')->value;
+        $districtId = $node->get('field_silai_trainer_district')->target_id;
+
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        $districtNode =  $node_storage->load($districtId);
+
+        $districtCode = $districtNode->field_silai_district_code->value;
+
+        $masterDataService = \Drupal::service('silai.master_data');
+        $prefix = strtoupper($districtCode);
+        $prevTrainerCode = $masterDataService->generate_code($nid, 'trainer_silai', 'field_silai_trainer_code', $prefix);
+
+        
+        // $checkPerDistrictSequence = $masterDataService->checkCode($prevTrainerCode, 'trainer_silai', $prefix);
+
+        if($prevTrainerCode) {
+            $prevSeqNo = (int) substr($prevTrainerCode, -4);
+            $seqNo = str_pad( $prevSeqNo + 1, 4, "0", STR_PAD_LEFT );
+            
+        } else {
+            $seqNo = '0001';
+        }
+
+        $trainerCode = strtoupper($districtCode).$seqNo;
+        //$node = Node::load($nid);
+        $node->set('field_silai_trainer_code', $trainerCode);  
+        $node->save();
+
+    } else if($node_type == 'silai_blocks') {
+        $nid = $node->id();
+        $districtId = $node->get('field_silai_district')->target_id;
+
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $districtNodeData = $node_storage->load($districtId);
+
+        $districtCode = $districtNodeData->field_silai_district_code->value;
+
+        $masterDataService = \Drupal::service('silai.master_data');
+        $prefix = strtoupper($districtCode);
+        $prevBlockCode = $masterDataService->generate_code($nid, 'silai_blocks', 'field_silai_block_code', $prefix);
+
+        
+        // $checkPerDistrictSequence = $masterDataService->checkCode($prevVillageCode, 'silai_blocks', $prefix);
+
+        if($prevBlockCode) {
+            $prevSeqNo = (int) substr($prevBlockCode, -2);
+            $seqNo = str_pad( $prevSeqNo + 1, 2, "0", STR_PAD_LEFT );
+            
+        } else {
+            $seqNo = '01';
+        }
+        $blockCode = strtoupper($districtCode).$seqNo;
+
+        $node = Node::load($nid);
+        $node->set('field_silai_block_code', $blockCode);  
+        $node->save();
+
+    } else if($node_type == 'silai_villages') {
+        $nid = $node->id();
+        $blockId = $node->get('field_silai_block')->target_id;
+
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $blockNodeData = $node_storage->load($blockId);
+
+        $blockCode = $blockNodeData->field_silai_block_code->value;
+
+        $masterDataService = \Drupal::service('silai.master_data');
+
+        $prefix = strtoupper($blockCode);
+        $prevVillageCode = $masterDataService->generate_code($nid, 'silai_villages', 'field_silai_village_code', $prefix);
+
+        if($prevVillageCode) {
+            $prevSeqNo = (int) substr($prevVillageCode, -3);
+            $seqNo = str_pad( $prevSeqNo + 1, 3, "0", STR_PAD_LEFT );
+            
+        } else {
+            $seqNo = '001';
+        }
+        $villageCode = strtoupper($blockCode).$seqNo;
+
+        $node = Node::load($nid);
+        $node->set('field_silai_village_code', $villageCode);  
+        $node->save();
+
+    } else if($node_type == 'ngo') {
+        $nid = $node->id();
+        // $ngoName = $node->get('title')->value;
+
+        $ngoName = preg_replace('/\s+/', '', $node->get('title')->value);
+        $yearOfCreation = date('Y', $node->get('created')->value);
+        $masterDataService = \Drupal::service('silai.master_data');
+        $prevNgoCode = $masterDataService->generate_code($nid, 'ngo', 'field_ngo_code');
+
+        if($prevNgoCode) {
+            $prevSeqNo = (int) substr($prevNgoCode, -3);
+            $seqNo = str_pad( $prevSeqNo + 1, 3, "0", STR_PAD_LEFT );
+            
+        } else {
+            $seqNo = '001';
+        }
+
+        $ngoCode = strtoupper(substr($ngoName, 0, 4)).substr($yearOfCreation, -2).$seqNo;
+
+        $node->set('field_ngo_code', $ngoCode); 
+
+        $node->save();
+
+    } else if($node_type == 'silai_district') {
+        $nid = $node->id();
+
+        $stateId = $node->get('field_silai_business_state')->target_id;
+
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+        // Load a single node.
+        $stateNodeData = $node_storage->load($stateId);
+
+        $stateCode = $stateNodeData->field_silai_state_code->value;
+
+        $masterDataService = \Drupal::service('silai.master_data');
+        $prefix = strtoupper($stateCode);
+        $prevDistrictCode = $masterDataService->generate_code($nid, 'silai_district', 'field_silai_district_code', $prefix);
+
+        if($prevDistrictCode) {
+            $prevSeqNo = (int) substr($prevDistrictCode, -2);
+            $seqNo = str_pad( $prevSeqNo + 1, 2, "0", STR_PAD_LEFT );
+            
+        } else {
+            $seqNo = '01';
+        }
+        
+        $districtCode = strtoupper($stateCode).$seqNo;
+        //print_r($ngoCode);die;
+        //$node = Node::load($nid);
+        $node->set('field_silai_district_code', $districtCode);  
+        $node->save();
+
+    }
+
+} 
+
+/**
+ * trainee data update in custom table
+ * custom table name - 'sewing_trainee_feedback'
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ */
+function silai_node_update(\Drupal\Core\Entity\EntityInterface $node) {
+	$nid = $node->id();
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      // You can get nid and anything else you need from the node object.
+      $editId = $urlEditId->id();
+  }	
+  $node_type = $node->bundle();
+  if($node_type == 'silai_trainee'){
+      $database = \Drupal::database();
+		#check feedback data by trainee id
+      $connection = Database::getConnection();
+      $check_qry = $connection->select('silai_trainee_feedback', 'n')->fields('n', array('nid'))->condition('nid', $nid);
+      $check_data = $check_qry->execute();
+      $check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+      $count = count($check_results);
+      $average_rating = ($_REQUEST['communication'] + $_REQUEST['entrepreneurship'] + $_REQUEST['creativity'] + 
+         $_REQUEST['problem_solving'] + $_REQUEST['confidence'] + $_REQUEST['leadership_quality'] + 
+         $_REQUEST['functional_numeracy'] + $_REQUEST['measurement_skills'] + $_REQUEST['drafting'] + 
+         $_REQUEST['pattern_making'] + $_REQUEST['cutting'] + $_REQUEST['quality_of_stitching'] + 
+         $_REQUEST['embroidery_skills'] + $_REQUEST['willing_to_learn_new_things'] + 
+         $_REQUEST['willingness_to_travel_within_district'] ) / 15;
+		#condition for insert and update
+
+		if($count == 1){ #update new data
+			if(!empty($nid)){
+                $data_ary = array(
+                   // 'nid'                                   => $nid,
+                    'silai_r_communication'                 => $_REQUEST['communication'],
+                    'silai_r_entrepreneurship'              => $_REQUEST['entrepreneurship'],
+                    'silai_r_creativity'                    => $_REQUEST['creativity'],
+                    'silai_r_problem_solving'               => $_REQUEST['problem_solving'],
+                    'silai_r_confidence'                    => $_REQUEST['confidence'],
+                    'silai_r_leadership_quality'            => $_REQUEST['leadership_quality'],
+                    'silai_r_functional_numeracy'           => $_REQUEST['functional_numeracy'],
+                    'silai_r_measurement_skills'            => $_REQUEST['measurement_skills'],
+                    'silai_r_drafting'                      => $_REQUEST['drafting'],
+                    'silai_r_pattern_making'                => $_REQUEST['pattern_making'],
+                    'silai_r_cutting'                       => $_REQUEST['cutting'],
+                    'silai_r_quality_of_stitching'          => $_REQUEST['quality_of_stitching'],
+                    'silai_r_embroidery_skills'             => $_REQUEST['embroidery_skills'],
+                    'silai_r_willing_learn_new_things'      => $_REQUEST['willing_to_learn_new_things'],
+                    'silai_r_willingness_travel_within_district' => $_REQUEST['willingness_to_travel_within_district'],
+                    'silai_r_average_rating'                => round($average_rating,1),
+                );
+
+                $query = $database->update('silai_trainee_feedback')->fields($data_ary)->condition('nid', $nid)->execute();
+                $trainnerId = $node->get('field_silai_trainer_id')->getValue()[0]['value'];
+                addNumberOfTrainee($trainnerId); 
+            }
+        }
+		if($count == 0){ #insert new data
+			if(!empty($nid)){
+				$data_ary = array(
+					'nid' 									=> $nid,
+					'silai_r_communication' 				=> $_REQUEST['communication'],
+					'silai_r_entrepreneurship' 				=> $_REQUEST['entrepreneurship'],
+					'silai_r_creativity' 					=> $_REQUEST['creativity'],
+					'silai_r_problem_solving' 				=> $_REQUEST['problem_solving'],
+					'silai_r_confidence' 					=> $_REQUEST['confidence'],
+					'silai_r_leadership_quality' 			=> $_REQUEST['leadership_quality'],
+					'silai_r_functional_numeracy' 			=> $_REQUEST['functional_numeracy'],
+					'silai_r_measurement_skills' 			=> $_REQUEST['measurement_skills'],
+					'silai_r_drafting' 						=> $_REQUEST['drafting'],
+					'silai_r_pattern_making' 				=> $_REQUEST['pattern_making'],
+					'silai_r_cutting' 						=> $_REQUEST['cutting'],
+					'silai_r_quality_of_stitching' 			=> $_REQUEST['quality_of_stitching'],
+					'silai_r_embroidery_skills' 			=> $_REQUEST['embroidery_skills'],
+					'silai_r_willing_learn_new_things' 		=> $_REQUEST['willing_to_learn_new_things'],
+					'silai_r_willingness_travel_within_district' => $_REQUEST['willingness_to_travel_within_district'],
+					'silai_r_average_rating' 				=> round($average_rating,1),
+				);
+				$query = $database->insert('silai_trainee_feedback')->fields($data_ary)->execute(); 
+			}
+		}
+	} else if($node_type == 'silai_inventory'){
+        $currentDomain = _get_current_domain();
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+        $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+
+        $location = $node->get('field_silai_location')->getValue()[0]['target_id'];
+        $quantitySent = $node->get('field_silai_quantity')->getValue()[0]['value'];
+        
+        $masterDataService = \Drupal::service('silai.master_data');
+        $users = $masterDataService->getUsersByLocation($location, [ROLE_SILAI_PC]);
+
+        
+        $database = \Drupal::database();
+        #check feedback data by trainee id
+        $connection = Database::getConnection();
+        $check_qry = $connection->select('custom_manage_inventory', 'n')->fields('n', array('nid'))->condition('nid', $nid);
+        $check_data = $check_qry->execute();
+        $check_results = $check_data->fetchAll(\PDO::FETCH_OBJ);
+        $count = count($check_results);
+        if($count == 1){ #update data
+            //$nid = $node->id();
+            if(!empty($nid)){
+
+                $data_ary = array(
+                    'nid'                   => $nid,
+                    'domain_id'             => ($currentDomain == SILAI_DOAMIN) ? SILAI_DOAMIN : SEWING_DOMAIN,
+                    'sender_id'             => $user->id(),
+                    'receiver_id'           => $users[0],
+                    'qty_send'              => $quantitySent,
+                    'qty_received'          => 0,
+                    'status'                => '1',
+                    'sent_date'             => time(),
+                    'received_date'         => '',
+                    'location_id'           => $location,
+                    'sender_role'           => $userRoles[1],
+                    'receiver_role'         => ROLE_SILAI_PC,//$receiverUserRoles[1],
+
+                    
+                );
+
+                $query = $database->update('custom_manage_inventory')->fields($data_ary)->condition('nid', $nid)->execute();
+
+                // For notification system
+                $targetUsers = $users;
+                $message = preg_replace('/{.*}/', $nameWithRole, UPDATE_INVENTORY_MESSAGE);
+                $data = [
+                    'sender_role' => $userRoles[1],
+                    'receiver_id' => '',
+                    'receiver_role' => '',
+                    'message' => $message,
+                    'location' => $location,
+                    'created_by' => $user->id()
+                ];
+                if(!empty($targetUsers)){  
+                    $masterDataService->notificationAlert($data, $targetUsers);
+                }
+            }
+        }
+    } else if($node_type == 'silai_learners_manage'  && !empty($editId)) {
+        $nid = $node->id();
+
+        $masterDataService = \Drupal::service('silai.master_data');
+        
+
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $userRoles = $user->getRoles();
+
+        $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+        // For Notification System
+        if(in_array(ROLE_SILAI_NGO_ADMIN, $user->getRoles())) {
+            $ngoData = $masterDataService->getLinkedNgoForUser($user->id());
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+            $nodeNgo = $node_storage->load($ngoData[$user->id()]);            
+            $currentUserLoc = $nodeNgo->get('field_ngo_location')->getValue()[0]['target_id'];
+            $targetUsers = $masterDataService->getUsersByRole([ROLE_SILAI_PC], $currentUserLoc);
+            $message = preg_replace('/{.*}/', $nameWithRole, EDIT_LEARNER_MESSAGE);
+
+            $data = [
+                'sender_role' => $userRoles[1],
+                'receiver_id' => '',
+                'receiver_role' => '',
+                'message' => $message,
+                'location' => $currentUserLoc,
+                'created_by' => $user->id()
+            ];
+            if(!empty($targetUsers)){ 
+                $masterDataService->notificationAlert($data, $targetUsers); 
+            }           
+        }
+
+
+    } else if($node_type == 'nfa' && !empty($editId)) {
+
+        $nfaAmount = $node->get('field_sactioned_amount')->value;
+
+        $masterDataService = \Drupal::service('silai.master_data');
+        $nfaAgreements = $masterDataService->getAgreementsByNfa($nid);
+
+        $totalAgreementsValue = 0;
+        foreach ($nfaAgreements as $key => $value) {
+            $totalAgreementsValue += $value['field_agreement_amount'];
+        }
+
+        $nfaDueBalance = $nfaAmount - $totalAgreementsValue; 
+        
+        db_update('node__field_nfa_due_balance')->fields(array('field_nfa_due_balance_value' => $nfaDueBalance))->condition('entity_id', $nid)->execute();
+    } 
+
+}
+
+/**
+ * NGO Map Use At NGO Creation
+ */
+function ngo_map_user($nid, $userId) {
+    if(!empty($nid) && !empty($userId)) {
+        $database = \Drupal::database();
+        $dataArr = array(
+            'nid' => $nid,
+            'user_id' => $userId,
+            'created' => time(),
+            
+        );        
+        $query = $database->insert('silai_ngo_associated_user')->fields($dataArr)->execute();
+        
+    }
+}
+
+/**
+ * trainee data delete in custom table
+ * custom table name - 'sewing_trainee_feedback'
+ * @param \Drupal\Core\Entity\EntityInterface $node
+ */
+function silai_node_delete(\Drupal\Core\Entity\EntityInterface $node) {
+	$database = \Drupal::database();
+	$nid = $node->id();	
+
+	$node_type = $node->bundle();
+	if($node_type == 'silai_trainee'){
+		$query = $database->delete('silai_trainee_feedback')->condition('nid', $nid)->execute();
+        $trainnerId = $node->get('field_silai_trainer_id')->getValue()[0]['value'];
+        addNumberOfTrainee($trainnerId);         
+    } else if($node_type == 'silai_inventory'){
+       $query = $database->delete('custom_manage_inventory')->condition('nid', $nid)->execute(); 
+   } else if($node_type == 'ngo'){
+    $userId = $node->field_ngo_user_id->target_id;
+    user_delete($userId);
+
+} else if($node_type == 'silai_school'){
+    $userId = $node->field_silai_teacher_user_id->value;
+        //user deletion
+    user_delete($userId);
+        //survey data deletion
+    $query = $database->delete('silai_add_school_data')->condition('nid', $nid)->execute(); 
+         //survey data deletion
+    $query = $database->delete('silai_add_school_children_data')->condition('nid', $nid)->execute(); 
+
+} else if($node_type == 'nfa') {
+
+    $query = $database->delete('silai_ngo_payment_detail')->condition('nid', $nid)->execute(); 
+
+    $result = \Drupal::entityQuery('node')
+    ->condition('type', 'manage_agreements')
+    ->condition('field_agreement_nfa_number', $nid)
+    ->execute();
+    entity_delete_multiple('node', $result);
+
+} else if($node_type == 'manage_agreements') {
+    $query = $database->delete('silai_ngo_payment_detail')->condition('nid', $nid)->execute();
+    $agreementAmount = $node->field_agreement_amount->value;
+    $nfaId = $node->field_agreement_nfa_number->target_id;
+
+    $nfaLoad = Node::load($nfaId);
+    $nfaDueBalance = $nfaLoad->field_nfa_due_balance->value;
+
+    $nfaDueBalance = $nfaDueBalance + $agreementAmount;
+
+    $nfaLoad->set('field_nfa_due_balance', $nfaDueBalance);  
+    $nfaLoad->save();
+
+}
+}
+
+/**
+ * Implementation of Update table silai_training for Numbe of Trainee
+ * @params: $nid as integer
+ */
+function addNumberOfTrainee($nid) {
+    $masterDataService = \Drupal::service('silai.master_data');
+    $numberOfTrainee = $masterDataService->getNumberOfTrainee($nid);
+    $node = \Drupal\node\Entity\Node::load($nid);
+    $node->set('field_silai_no_of_trainees', $numberOfTrainee);
+    $node->setNewRevision(FALSE);    
+    $node->save();
+}
+/**
+ * Implementation of hook silai_school_form_alter
+ */
+function silai_form_node_silai_school_form_alter(&$form, FormStateInterface $form_state) {
+
+    $optionsForState = [];
+    $optionsForNgo = [];
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $currentUserid = $user->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+    $destinationData = drupal_get_destination();
+    // Get current user location for different role based
+    if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+
+        // Load a single node.
+        $node = $node_storage->load($ngoData[$currentUserid]);
+
+        $currentUserLocArr = $node->get('field_ngo_location')->getValue();
+
+        foreach ($currentUserLocArr as $key => $value) {
+            $currentUserLoc[] = $value['target_id'];
+        }
+    } else {
+		$currentUserLoc = $user->field_user_location->target_id;  
+	}
+    //end
+	if($userRoles[1] != ROLE_SILAI_HO_ADMIN){
+		$form['field_silai_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	}
+  $optionsForState = $masterDataService->getStatesByLocationId($currentUserLoc);
+  $optionsForNgo = $masterDataService->getNgoByLocationId($currentUserLoc);
+
+    //get State listing for current user Location
+
+  $form['field_silai_teacher_user_id']['widget'][0]['value']['#type'] = 'hidden';
+    //$form['field_ngo_approval_status']['widget'][0]['value']['#type'] = 'hidden';
+  $form['field_sil_school_approval_status']['widget'][0]['value']['#type'] = 'hidden';
+  $form['field_sil_school_status_remarks']['widget'][0]['value']['#type'] = 'hidden';
+  $form['field_school_code']['widget'][0]['value']['#type'] = 'hidden';
+/******v****/
+	$form['field_silai_transferred_from'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	$form['field_silai_transferred_to'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	$form['field_silai_school_reason'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	/******v****/
+  $form[USER_GROUP] = array(
+        //HASH_TYPE => HASH_TYPE_DETAILS,
+    HASH_TITLE => t('Login Details'),
+    HASH_OPEN => TRUE, 
+    HASH_WEIGHT => 30, 
+);
+  $form[USER_GROUP][FIELD_USER_APPROVAL_STATUS] = [
+      HASH_TYPE => 'hidden',
+      HASH_VALUE => PENDING_STATUS,
+      
+  ];
+
+  $form[FIELD_FIRST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t("Teacher First Name"),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]],
+    HASH_WEIGHT => 10,
+];
+$form[FIELD_LAST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Teacher Last Name'),
+    HASH_DEFAULT_VALUE => ($lastName) ? $lastName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_REQUIRED => FALSE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]],
+    HASH_WEIGHT => 11,
+];
+$form[USER_GROUP]['field_user_name'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('User Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => 'user'.mt_rand(),
+    HASH_MAXLENGTH => 15,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC], 'readonly' => 'readonly'],
+    '#description' => t('*User Name is auto Generated (i.e. School Code).'),
+];
+$form[USER_GROUP]['field_user_password'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Password'),
+    HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+	HASH_DEFAULT_VALUE => '*******',
+	HASH_ATTRIBUTES => ['readonly' => 'readonly'],
+    HASH_MAXLENGTH => 20,
+    '#description' => t('* Default Password is auto Generated.'),
+];
+$form[USER_GROUP][FIELD_USER_EMAIL] = [
+    HASH_TYPE => 'email',
+    HASH_TITLE => t('Email Id'),
+    HASH_REQUIRED => FALSE,
+    HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+    HASH_MAXLENGTH => 100,
+];
+$form[USER_GROUP][FILED_USER_CONTACT_NO] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Contact No.'),
+    HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => TRUE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+];
+$emptyOption =  ['_none' => '- Select a value -'];
+if(!empty($optionsForState)) {
+    $optionsForState = $emptyOption + $optionsForState;
+} else {
+    $optionsForState = $emptyOption;
+}
+$form['field_silai_business_state']['widget'][HASH_OPTIONS] = $optionsForState;
+if(!empty($optionsForNgo)) {
+    $optionsForNgo = $emptyOption + $optionsForNgo;
+} else {
+    $optionsForNgo = $emptyOption;
+}
+
+$form['field_name_of_ngo']['widget'][HASH_OPTIONS] = $optionsForNgo;
+if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+    $form['field_name_of_ngo']['widget'][HASH_OPTIONS] = [$ngoData[$currentUserid] =>     $optionsForNgo[$ngoData[$currentUserid]]];
+    $form['field_name_of_ngo']['widget'][HASH_DEFAULT_VALUE] = [$ngoData[$currentUserid]];
+    $form['field_name_of_ngo']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+}
+
+
+
+$form[HASH_VALIDATE][] = 'silai_custom_school_validate';    
+foreach (array_keys($form['actions']) as $action) {
+    if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'silai_custom_school_submit';
+    }
+}
+$form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    HASH_WEIGHT => 100,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/'.$destinationData['destination'].'"; event.preventDefault();'),
+);
+}
+
+/**
+ * Implementation of hook silai_school_edit_form_alter
+ */
+function silai_form_node_silai_school_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $node = $form_state->getFormObject()->getEntity();
+    $nid = $node->id();
+    $destinationData = drupal_get_destination();
+    $optionsForState = [];
+    $optionsForNgo = [];
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $currentUserid = $user->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+    // Get current user location for different role based
+    if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+
+        // Load a single node.
+        $nodeLocation = $node_storage->load($ngoData[$currentUserid]);
+
+        $currentUserLocArr = $nodeLocation->get('field_ngo_location')->getValue();
+
+        foreach ($currentUserLocArr as $key => $value) {
+            $currentUserLoc[] = $value['target_id'];
+        }
+    } else {
+		$currentUserLoc = $user->field_user_location->target_id;  
+	}
+	if($userRoles[1] != ROLE_SILAI_HO_ADMIN){
+		$form['field_silai_location'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+	}
+    //end
+
+  $optionsForState = $masterDataService->getStatesByLocationId($currentUserLoc);
+  $optionsForNgo = $masterDataService->getNgoByLocationId($currentUserLoc);
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+    // Load a single node.
+  $nodeSchool = $node_storage->load($nid);
+
+  $userId = $nodeSchool->field_silai_teacher_user_id->value;
+  if(!empty($userId)) {
+    $account = \Drupal\user\Entity\User::load($userId);
+    $accountRoles = $account->getRoles();
+    $firstName =  ($account->field_first_name->value) ? $account->field_first_name->value : '';
+    $lastName =  ($account->field_last_name->value) ? $account->field_last_name->value : '';
+    $emailId =  ($account->getEmail()) ? $account->getEmail() : '';
+    $contactNo =  ($account->field_user_contact_no->value) ? $account->field_user_contact_no->value : '';
+    $profileId =  ($accountRoles[1]) ? $accountRoles[1] : '';
+    $fieldUserId = $account->getUsername();
+    $userLocation =  ($account->field_user_location->target_id) ? $account->field_user_location->target_id : '';
+    $userStatus =  $account->status->value;
+}
+
+
+$form['field_silai_teacher_user_id']['widget'][0]['value']['#type'] = 'hidden';
+        //$form['field_ngo_approval_status']['widget'][0]['value']['#type'] = 'hidden';
+$form['field_sil_school_approval_status']['widget'][0]['value']['#type'] = 'hidden';
+$form['field_sil_school_status_remarks']['widget'][0]['value']['#type'] = 'hidden'; 
+$form['field_school_code']['widget'][0]['value']['#type'] = 'hidden';
+
+/*****v*****/
+$schoolTransferredFrom = $nodeSchool->field_silai_transferred_from->target_id;
+$schoolTransferredTo = $nodeSchool->field_silai_transferred_to->target_id;
+if(empty($schoolTransferredFrom)){
+	$form['field_silai_transferred_from'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+}
+if(empty($schoolTransferredTo)){
+	$form['field_silai_transferred_to'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+}
+
+$form['field_silai_transferred_from']['widget'][0]['target_id'][HASH_ATTRIBUTES] = ['readonly' => true];
+$form['field_silai_transferred_to']['widget'][0]['target_id'][HASH_ATTRIBUTES] = ['readonly' => true];
+/******v****/
+
+$form['field_school_id'] = [
+  HASH_TYPE => 'hidden',
+  HASH_VALUE => $nid,
+
+];
+
+$form[USER_GROUP] = array(
+        //HASH_TYPE => HASH_TYPE_DETAILS,
+        //HASH_TITLE => t('Login Details'),
+    HASH_OPEN => TRUE, 
+    HASH_WEIGHT => 30, 
+);
+
+$form[FIELD_FIRST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Teacher First Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]],
+    HASH_WEIGHT => 10,
+];
+$form[FIELD_LAST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Teacher Last Name'),
+    HASH_DEFAULT_VALUE => ($lastName) ? $lastName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_REQUIRED => false,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]],
+    HASH_WEIGHT => 11,
+];
+$form[USER_GROUP]['field_user_name'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('User Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($fieldUserId) ? $fieldUserId : '',
+    HASH_MAXLENGTH => 15,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC], 'readonly' => 'readonly']
+];
+$form[USER_GROUP]['field_user_password'] = [
+    HASH_TYPE => 'password',
+    HASH_TITLE => t('Password'),
+    HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+    HASH_MAXLENGTH => 20,
+];
+$form[USER_GROUP][FIELD_USER_EMAIL] = [
+    HASH_TYPE => 'email',
+    HASH_TITLE => t('Email Id'),
+    HASH_REQUIRED => False,
+    HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+    HASH_MAXLENGTH => 100,
+];
+$form[USER_GROUP][FILED_USER_CONTACT_NO] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Contact No.'),
+    HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => TRUE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+];
+
+
+
+
+$emptyOption =  ['_none' => '- Select a value -'];
+if(!empty($optionsForState)) {
+    $optionsForState = $emptyOption + $optionsForState;
+} else {
+    $optionsForState = $emptyOption;
+}
+$form['field_silai_business_state']['widget'][HASH_OPTIONS] = $optionsForState;
+if(!empty($optionsForNgo)) {
+    $optionsForNgo = $emptyOption + $optionsForNgo;
+} else {
+    $optionsForNgo = $emptyOption;
+}
+if($userRoles[1] != ROLE_SILAI_HO_ADMIN){
+		$form['field_name_of_ngo']['widget'][HASH_OPTIONS] = $optionsForNgo;
+
+	if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+		$form['field_name_of_ngo']['widget'][HASH_OPTIONS] = [$ngoData[$currentUserid] =>     $optionsForNgo[$ngoData[$currentUserid]]];
+		$form['field_name_of_ngo']['widget'][HASH_DEFAULT_VALUE] = [$ngoData[$currentUserid]];
+		$form['field_name_of_ngo']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+	}
+}
+/* $form['field_name_of_ngo']['widget'][HASH_OPTIONS] = $optionsForNgo;
+if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+    $form['field_name_of_ngo']['widget'][HASH_OPTIONS] = [$ngoData[$currentUserid] =>     $optionsForNgo[$ngoData[$currentUserid]]];
+    $form['field_name_of_ngo']['widget'][HASH_DEFAULT_VALUE] = [$ngoData[$currentUserid]];
+    $form['field_name_of_ngo']['widget'][HASH_ATTRIBUTES] = ['readonly' => 'readonly'];
+} */
+$form[HASH_VALIDATE][] = 'silai_custom_school_validate';
+foreach (array_keys($form['actions']) as $action) {
+    if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'silai_custom_school_submit';
+    }
+}
+$form[ACTIONS]['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    '#weight' => 100,
+    '#attributes' => array('onClick' => 'window.location.href = "/'.$destinationData['destination'].'"; event.preventDefault();'),
+);
+}
+/**
+ * Implementation of hook_form_node_silai_school() custom hook validation
+ */
+function silai_custom_school_validate($form, FormStateInterface &$form_state) {
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+
+    $schoolType = $form_state->getValue('field_school_type')[0]['target_id'];
+    $LearnerId = $form_state->getValue('field_silai_learner_id')[0]['value'];
+    $userId = $form_state->getValue('field_silai_teacher_user_id')[0]['value'];
+
+    if($schoolType == 14338 && empty($LearnerId)){
+        $form_state->setErrorByName('field_silai_learner_id', t('Learner Id is Required for Satellite Type School'));
+    }
+
+    if(!empty($uniqueId) && strlen($uniqueId) < 4) {
+      $form_state->setErrorByName('field_user_name', t('Username length must be atleast 4 characters')); 
+  }
+  if(!empty($password) && strlen($password) < 6) {
+      $form_state->setErrorByName('field_user_password', t('Password length must be atleast 6 characters')); 
+  }
+
+  $masterDataService = \Drupal::service('silai.master_data');
+    #validate duplicate user id check
+  if($uniqueId){
+    $validateStatus = $masterDataService->validateDuplicateUser('name', $uniqueId, $userId);
+    if(!$validateStatus) {
+        $form_state->setErrorByName('field_user_name', t('User Name already exist.'));
+    }
+}
+    #validate duplicate user email check
+if($emailId) {
+    $validateStatus = $masterDataService->validateDuplicateUser('mail', $emailId, $userId);
+    if(!$validateStatus) {
+        $form_state->setErrorByName(FIELD_USER_EMAIL, t('Email Id already exist.'));
+    }
+
+}   
+
+}
+/**
+ * Implementation of hook_form_node_silai_school()
+ */
+function silai_custom_school_submit(array $form, FormStateInterface $form_state){
+
+    $firstName = $form_state->getValue(FIELD_FIRST_NAME);
+    $lastName = $form_state->getValue(FIELD_LAST_NAME);
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $contactNo = $form_state->getValue(FILED_USER_CONTACT_NO);
+    $userProfile = $form_state->getValue(FILED_PROFILE);
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+    $schoolId = ($form_state->getValue('field_school_id')) ? $form_state->getValue('field_school_id') : 0;
+
+
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+    $currentUserid = $user->id();
+    $masterDataService = \Drupal::service('silai.master_data');
+    $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+        // Get current user location for different role based
+    if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+        $node_storage = \Drupal::entityManager()->getStorage('node');
+            // Load a single node.
+        $node = $node_storage->load($ngoData[$currentUserid]);
+
+        $currentUserLoc = $node->get('field_ngo_location')->getValue()[0]['target_id'];
+    } else {
+      $currentUserLoc = $user->field_user_location->target_id; 
+  }
+
+  $targetRoles = [ROLE_SILAI_HO_ADMIN, SILAI_HO_USER];
+  $targetUsers = $masterDataService->getUsersByRole($targetRoles);
+  $message = preg_replace('/{.*}/', $nameWithRole, ADD_SCHOOL_MESSAGE);
+  $data = [
+    'sender_role' => $userRoles[1],
+    'receiver_id' => '',
+    'receiver_role' => '',
+    'message' => $message,
+    'location' => $currentUserLoc,
+    'created_by' => $currentUserid
+];
+
+if(!empty($schoolId)) {
+    $node = \Drupal\node\Entity\Node::load($schoolId);
+    $userId = $node->field_silai_teacher_user_id->value;
+    $schoolName = $node->title->value;
+    $approvalStatus = $node->field_sil_school_approval_status->value;
+            // generate School Code
+            // $masterDataService = \Drupal::service('silai.master_data');
+            // $schoolCode = $masterDataService->generate_code($schoolId, 'silai_school');
+
+            //Mark school Pending for approval on edit
+    if(!in_array($approvalStatus, [APPROVED_STATUS, PARTIALLY_CLOSED_STATUS, FULLY_CLOSED_STATUS])) {
+        $node->set('field_sil_school_approval_status', PENDING_STATUS);
+        $node->set("field_silai_location", $currentUserLoc );
+                //$node->set('field_school_code', $schoolCode);
+        $node->setNewRevision(FALSE);    
+        $node->save();
+    }
+            //approve user
+    $user = \Drupal\user\Entity\User::load($userId);
+    if(!empty($password)) {
+        $user->setPassword($password);
+    }
+    $user->setEmail($emailId);
+    $user->setUsername($uniqueId);
+    $user->set(FIELD_FIRST_NAME, $firstName);
+    $user->set(FIELD_LAST_NAME, $lastName);
+    $user->set(FILED_USER_CONTACT_NO, $contactNo);
+    $user->set(STATUS, 1);
+    $user->addRole('silai_school_admin');
+    if(!in_array($approvalStatus, [APPROVED_STATUS, PARTIALLY_CLOSED_STATUS, FULLY_CLOSED_STATUS])) {
+        $user->set(FIELD_USER_APPROVAL_STATUS, PENDING_STATUS);
+    }
+    $user->save();
+    $message = preg_replace('/{.*}/', $nameWithRole, UPDATE_SCHOOL_MESSAGE);
+    $data['message'] = $message;
+} else {
+    $approvalStatus = $form_state->getValue(FIELD_USER_APPROVAL_STATUS);
+    $user = \Drupal\user\Entity\User::create();
+    if(!empty($password)) {
+        $user->setPassword($password);
+    }
+    $user->setEmail($emailId);
+    $user->setUsername($uniqueId);
+    $user->set(FIELD_FIRST_NAME, $firstName);
+    $user->set(FIELD_LAST_NAME, $lastName);
+    $user->set(FILED_USER_CONTACT_NO, $contactNo);
+    $user->set(STATUS, 1);
+    $user->set(FIELD_USER_APPROVAL_STATUS, $approvalStatus);
+    $user->addRole('silai_school_admin');
+    $user->enforceIsNew();
+    $user->save();
+    $uid = $user->id();
+
+            //getting entity reference in custom form submit handler
+    $entity = $form_state->getFormObject()->getEntity();
+    $schoolName = $entity->title->value;
+            // update userid of created user in school node
+            //$nid = $entity->id();
+    $entity->set("field_silai_teacher_user_id", $uid );
+    $entity->set("field_silai_location", $currentUserLoc );
+    $entity->save();
+    $message = preg_replace('/{.*}/', $nameWithRole, ADD_SCHOOL_MESSAGE);
+    $data['message'] = $message;
+
+}
+if(!empty($targetUsers)){
+    $masterDataService->notificationAlert($data, $targetUsers);
+}
+
+
+}
+
+/**
+ * [silai_form_node_silai_inventory_form_alter description]
+ * @param  [type]             &$form      [description]
+ * @param  FormStateInterface $form_state [description]
+ * @return [type]                         [description]
+ */
+function silai_form_node_silai_inventory_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_silai_inventory_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+	$form['field_silai_docket_no']['widget'][0]['value']['#type'] = 'textarea';
+	//print_r($form['field_silai_docket_no']['widget'][0]['value']['#type']);
+	//die();
+    //$form['field_silai_docket_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_silai_quantity'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+
+    $form['actions']['cancel'] = array(
+        HASH_TYPE => 'button',
+        HASH_VALUE => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-inventory"; event.preventDefault();'),
+    );
+    $form[STATUS][HASH_ACCESS] = FALSE;
+    $form['title']['widget'][0]['value']['#value'] = 'Inventory';
+    $form[title][HASH_ACCESS] = FALSE;
+}
+
+
+function silai_form_node_silai_inventory_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[HASH_VALIDATE][] = 'custom_silai_inventory_validate';
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+	$form['field_silai_docket_no']['widget'][0]['value']['#type'] = 'textarea';
+    //$form['field_silai_docket_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+
+    $form['actions']['cancel'] = array(
+        HASH_TYPE => 'button',
+        HASH_VALUE => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/manage-inventory"; event.preventDefault();'),
+    );
+    $form[STATUS][HASH_ACCESS] = FALSE;
+}
+
+/**
+ * Implementatuion of custom_silai_inventory_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_silai_inventory_validate($form, FormStateInterface &$form_state) {
+    $docketNo = $form_state->getValue('field_silai_docket_no')[0]['value'];
+    $location = $form_state->getValue('field_silai_location')[0]['target_id'];
+    $masterDataService = \Drupal::service('silai.master_data');
+    $users = $masterDataService->getUsersByLocation($location, [ROLE_SILAI_PC]);
+
+    if(empty($users[0])) {
+      $form_state->setErrorByName('field_silai_location', t('No PC found Linked to the selected location.'));    
+  }
+
+    #validate duplicate docket number check
+  if($docketNo){
+    $masterDataService = \Drupal::service('silai.master_data');
+    $validateStatus = $masterDataService->validateDuplicate('silai_inventory', 'field_silai_docket_no', $docketNo);
+    if(!$validateStatus) {
+        $form_state->setErrorByName('field_silai_docket_no', t('Docket No. already exist.'));
+    }
+}
+
+}
+
+
+/**
+ * Implementation of hook_views_pre_render
+ */
+function silai_views_pre_render(ViewExecutable $view) {
+    if($view->id() == 'notifications' && $view->current_display == 'page_1') {
+        $currentDomain = _get_current_domain(); 
+        $account = \Drupal::currentUser();
+        $userID = $account->id();
+
+        $connection = Database::getConnection();
+
+      $status_update = \Drupal::database()->update('custom_notifications')->fields(['status' => '2'])
+      ->condition('receiver_id', $userID)->condition('status', '1')->execute();
+      
+    }
+    if($view->id() == 'silai_manage_school') {
+        foreach($view->result as $value) {
+            $userId = $value->_entity->get('field_silai_teacher_user_id')->value;
+            $user = \Drupal\user\Entity\User::load($userId);
+            $firstName = $user->field_first_name->value;
+            $lastName = $user->field_last_name->value;
+            $teacherName = $firstName .' '. $lastName;
+            $value->_entity->set('field_silai_teacher_user_id', $teacherName);
+        }
+    }
+
+    // if($view->id() == 'silai_manage_school' && $view->current_display == 'data_export_1') {
+    //     foreach ($view->result as $key => $row) {
+         
+    //       $row->_entity->set('field_silai_teacher_user_id', 'test title');
+    //     }
+    // } 
+}
+
+// function silai_query_alter( &$query) {
+//     if($query->alterMetaData['view']->name == "data_export_1"){
+//         $query->groupBy("node_field_data.nid");
+//      //also you can unset other group by critera by using, unset($query->getGroupBy());
+//   }
+// }
+
+/**
+ * [Altering Silai inventory Views] 
+ * @param  ViewExecutable  $view  [description]
+ * @param  QueryPluginBase $query [description]
+ * @return [type]                 [description]
+ */
+function silai_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userId = \Drupal::currentUser()->id();
+    $userRoles = $user->getRoles();
+    $currentUserid = $user->id();
+
+    if ($view->id() == 'silai_inventory_management' && ($view->current_display == 'page_3' || $view->current_display == 'data_export_3')) {
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoData = $masterDataService->getLinkedNgoForUser($userId);
+
+        $query->addWhere('', 'custom_manage_inventory.ref_id', $ngoData[$userId], '=');   
+    } else if ($view->id() == 'silai_inventory_management' && ($view->current_display == 'page_2'  || $view->current_display == 'data_export_2')) {
+        $query->addWhere('', 'custom_manage_inventory.receiver_id', $userId, '=');   
+    } else if ($view->id() == 'silai_inventory_management' && ($view->current_display == 'page_1'  || $view->current_display == 'data_export_4')) {
+        $role = [SILAI_HO_USER, ROLE_SILAI_HO_ADMIN];
+        $query->addWhere('', 'custom_manage_inventory.sender_role', $role, 'IN');   
+    } else if ($view->id() == 'silai_manage_school' && $view->current_display == 'page_2') {
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+        // Get current user location for different role based
+        if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+
+            // Load a single node.
+            $node = $node_storage->load($ngoData[$currentUserid]);
+
+            $currentUserLocArr = $node->get('field_ngo_location')->getValue();
+            foreach ($currentUserLocArr as $key => $value) {
+                $currentUserLoc[] = $value['target_id'];
+            }
+        } else {
+          $currentUserLoc = [$user->field_user_location->target_id];  
+      }
+
+      $definition = [
+        'table' => 'node__field_silai_location',
+        'field' => 'entity_id',
+        'left_table' => 'node_field_data',
+        'left_field' => 'nid',
+    ];
+    $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+    $query->addRelationship('location', $join, 'school'); 
+
+
+    $query->addWhere('', 'location.bundle', 'silai_school', '=');
+    $query->addWhere('', 'location.field_silai_location_target_id', $currentUserLoc, 'IN');   
+} else if ($view->id() == 'silai_manage_school' && $view->current_display == 'page_3') {
+    $masterDataService = \Drupal::service('silai.master_data');
+    $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+        // Get current user location for different role based
+        // if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+        //     $node_storage = \Drupal::entityManager()->getStorage('node');
+
+        //     // Load a single node.
+        //     $node = $node_storage->load($ngoData[$currentUserid]);
+
+        //     $currentUserLoc = $node->get('field_ngo_location')->getValue()[0]['target_id'];
+        // } else {
+        //   $currentUserLoc = $user->field_user_location->target_id;  
+        // }
+
+    $definition = [
+        'table' => 'node__field_name_of_ngo',
+        'field' => 'entity_id',
+        'left_table' => 'node_field_data',
+        'left_field' => 'nid',
+    ];
+    $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+    $query->addRelationship('ngo', $join, 'school'); 
+
+
+    $query->addWhere('', 'ngo.bundle', 'silai_school', '=');
+    $query->addWhere('', 'ngo.field_name_of_ngo_target_id', $ngoData[$currentUserid], '=');   
+} else if ($view->id() == 'silai_manage_school' && $view->current_display == 'data_export_1') {
+    if (in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+        $definition = [
+            'table' => 'node__field_name_of_ngo',
+            'field' => 'entity_id',
+            'left_table' => 'node_field_data',
+            'left_field' => 'nid',
+        ];
+        $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+        $query->addRelationship('ngo', $join, 'school'); 
+
+
+        $query->addWhere('', 'ngo.bundle', 'silai_school', '=');
+        $query->addWhere('', 'ngo.field_name_of_ngo_target_id', $ngoData[$currentUserid], '='); 
+    }
+    if (in_array($userRoles[1], [ROLE_SILAI_PC])) {
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoData = $masterDataService->getLinkedNgoForUser($currentUserid);
+
+            // Get current user location for different role based
+        if(in_array($userRoles[1], [ROLE_SILAI_NGO_ADMIN])) {
+            $node_storage = \Drupal::entityManager()->getStorage('node');
+
+                // Load a single node.
+            $node = $node_storage->load($ngoData[$currentUserid]);
+
+            $currentUserLoc = $node->get('field_ngo_location')->getValue()[0]['target_id'];
+        } else {
+          $currentUserLoc = $user->field_user_location->target_id;  
+      }
+
+      $definition = [
+        'table' => 'node__field_silai_location',
+        'field' => 'entity_id',
+        'left_table' => 'node_field_data',
+        'left_field' => 'nid',
+    ];
+    $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+    $query->addRelationship('location', $join, 'school'); 
+
+
+    $query->addWhere('', 'location.bundle', 'silai_school', '=');
+    $query->addWhere('', 'location.field_silai_location_target_id', $currentUserLoc, '=');
+}  
+} elseif ($view->id() == 'silai_ngo_user_list' && $view->current_display == 'page_1') {
+    $query->addWhere('', 'users_field_data.uid', $currentUserid, '!=');
+} elseif ($view->id() == 'silai_users_listing' && $view->current_display == 'page_1') {
+    $query->addWhere('', 'users_field_data.uid', $currentUserid, '!=');
+        //echo "<pre>";print_r($query->where);die;
+        //unset($query->where[1]);
+
+} elseif ($view->id() == 'notifications' && $view->current_display == 'page_1') {
+        // if(in_array($userRoles[1], [ROLE_SILAI_PC])) {
+        //     $currentUserLoc = $user->field_user_location->target_id;
+        //     $query->addWhere('', 'custom_notifications.location', $currentUserLoc, '='); 
+        // }
+    $query->addWhere('', 'custom_notifications.receiver_id', $userId, '=');
+} 
+elseif ($view->id() == 'manage_learners' && $view->current_display == 'data_export_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SILAI_PC,$roles)) {
+        $locationId = $user->field_user_location->target_id;
+        $query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationId, 'IN');
+    }else if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        $masterDataService = \Drupal::service('silai.master_data');
+        //$locationIds = $masterDataService->getNgoLocationIds($current_user->id());
+        //$query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationIds, 'IN');
+        $ngoData = $masterDataService->getLinkedNgoForUser($current_user->id());
+        $ngoId = [$ngoData[$current_user->id()]];
+        $query->addWhere('', 'node_field_data_node__field_name_of_ngo.nid', $ngoId, 'IN');
+    }
+}
+elseif ($view->id() == 'manage_learners' && $view->current_display == 'page_1') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SILAI_PC,$roles)) {
+        $locationId = $user->field_user_location->target_id;
+        $query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationId, 'IN');
+    }else if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        $masterDataService = \Drupal::service('silai.master_data');
+        //$locationIds = $masterDataService->getNgoLocationIds($current_user->id());
+        //$query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationIds, 'IN');
+        $ngoData = $masterDataService->getLinkedNgoForUser($current_user->id());
+        $ngoId = [$ngoData[$current_user->id()]];
+        $query->addWhere('', 'node_field_data_node__field_name_of_ngo.nid', $ngoId, 'IN');
+    }
+}
+elseif ($view->id() == 'manage_learners' && $view->current_display == 'page_2') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SILAI_PC,$roles)) {
+        $locationId = $user->field_user_location->target_id;
+        $query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationId, 'IN');
+    }else if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        $masterDataService = \Drupal::service('silai.master_data');
+        //$locationIds = $masterDataService->getNgoLocationIds($current_user->id());
+        //$query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationIds, 'IN');
+        $ngoData = $masterDataService->getLinkedNgoForUser($current_user->id());
+        $ngoId = [$ngoData[$current_user->id()]];
+        $query->addWhere('', 'node_field_data_node__field_name_of_ngo.nid', $ngoId, 'IN');
+    }
+}
+elseif ($view->id() == 'manage_learners' && $view->current_display == 'page_3') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SILAI_PC,$roles)) {
+        $locationId = $user->field_user_location->target_id;
+        $query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationId, 'IN');
+    }else if(in_array(ROLE_SILAI_NGO_ADMIN,$roles)){
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        $masterDataService = \Drupal::service('silai.master_data');
+        //$locationIds = $masterDataService->getNgoLocationIds($current_user->id());
+        //$query->addWhere('', 'node_field_data_node__field_silai_location.nid', $locationIds, 'IN');
+        $ngoData = $masterDataService->getLinkedNgoForUser($current_user->id());
+        $ngoId = [$ngoData[$current_user->id()]];
+        $query->addWhere('', 'node_field_data_node__field_name_of_ngo.nid', $ngoId, 'IN');
+    }
+    }else if($view->id() == 'manage_silai_ngo' && $view->current_display == 'page_1'){ 
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        if(in_array(ROLE_SILAI_PC,$roles)) {
+            $locationId = $user->field_user_location->target_id;
+            $query->addWhere('', 'node__field_ngo_location.field_ngo_location_target_id', $locationId, 'IN');
+        }
+    }else if($view->id() == 'manage_silai_ngo' && $view->current_display == 'data_export_1'){
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        if(in_array(ROLE_SILAI_PC,$roles)) { 
+            $locationId = $user->field_user_location->target_id; 
+            $query->addWhere('', 'node__field_ngo_location.field_ngo_location_target_id', $locationId, 'IN');
+            $query->addWhere('', 'field_name_of_ngo_node_field_data__node__field_silai_location.field_silai_location_target_id', $locationId, 'IN'); 
+        }
+    } else if($view->id() == 'gallery_view' && $view->current_display == 'page_4') {
+		$current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $user = User::load(\Drupal::currentUser()->id());
+        if(in_array(ROLE_SILAI_PC,$roles)) {
+			$query->addWhere('', 'node_field_data.uid', $currentUserid);
+		}
+    }
+    # For sorting entity refernce field in a view by its value alphabatically
+    if ($view->id() == 'silai_manage_school') { 
+        if($query->orderby[0]['field'] == "node__field_silai_teacher_user_id.field_silai_teacher_user_id_value") {
+
+            $definition = [
+                'table' => 'user__field_first_name',
+                'field' => 'entity_id',
+                'left_table' => 'node__field_silai_teacher_user_id',
+                'left_field' => 'field_silai_teacher_user_id_value',
+            ];
+            $join = Drupal::service('plugin.manager.views.join')->createInstance('standard', $definition); 
+            $query->addRelationship('users', $join, 'school'); 
+            $query->orderby[0]['field'] = 'field_first_name_value';
+            //dump($query->orderby[0]['field']);die;
+        }
+    }
+
+    # For sorting entity refernce field in a view by its value alphabatically
+    if ($view->id() == 'manage_agreements' && $query->orderby[0]['field'] == "node__field_agreement_ngo_name_field_agreement_ngo_name_targ") { 
+
+        $query->orderby[0]['field'] = 'node_field_data_node__field_agreement_ngo_name_title';
+        //dump($query->orderby[0]['field']);die; 
+    }
+}
+
+
+
+/**
+ * Implementation of silai_form_node_nfa_form_alter
+ */
+function silai_form_node_nfa_form_alter(&$form, FormStateInterface $form_state) {
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sactioned_amount'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    // $form['field_date_of_saction'][HASH_SUFFIX] = '<i class="fa fa-calendar" aria-hidden="true"></i>';
+    $form[HASH_VALIDATE][] = 'custom_nfa_validate';
+    $form['field_nfa_due_balance']['widget'][0]['value']['#type'] = 'hidden';
+    
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        '#weight' => -1,
+        '#attributes' => array('onClick' => 'window.location.href = "/nfa-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementation of silai_form_node_nfa_edit_form_alter
+ */
+function silai_form_node_nfa_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_sactioned_amount'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form[HASH_VALIDATE][] = 'custom_nfa_validate';
+    $form['field_nfa_due_balance']['widget'][0]['value']['#type'] = 'hidden';
+    
+    $form['actions']['cancel'] = array(
+        '#type' => 'button',
+        '#value' => t('Cancel'),
+        '#weight' => -1,
+        '#attributes' => array('onClick' => 'window.location.href = "/nfa-listing"; event.preventDefault();'),
+    );
+}
+
+/**
+ * Implementatuion of custom_nfa_validate
+ * @param: $form The form
+ * @param: \Drupal\Core\Form\FormStateInterface  $form_state  The form state
+ */
+function custom_nfa_validate($form, FormStateInterface &$form_state) {
+    $nfaNumber = $form_state->getValue('title')[0]['value'];
+    $nfaAmount = $form_state->getValue('field_sactioned_amount')[0]['value'];
+
+    #validate duplicate docket number check
+    if($nfaNumber){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $validateStatus = $masterDataService->validateDuplicate('nfa', 'title', $nfaNumber);
+        if(!$validateStatus) {
+            $form_state->setErrorByName('title', t('NFA No. already exist.'));
+        }
+    }
+
+    
+    if(!empty($nid)) {
+        $masterDataService = \Drupal::service('silai.master_data');
+        $nfaAgreements = $masterDataService->getAgreementsByNfa($nid);
+        $totalAgreementsValue = 0;
+        if(!empty($nfaAgreements)) {
+            foreach ($nfaAgreements as $key => $value) {
+                $totalAgreementsValue += $value['field_agreement_amount'];
+            }
+
+            if( $nfaAmount < $totalAgreementsValue) {
+                $form_state->setErrorByName('field_sactioned_amount', t("Sanctioned Amount can not be less than ". $totalAgreementsValue));
+            } 
+        }
+
+    }
+    
+}
+#Content type Learners manage add form alter
+function silai_form_node_silai_learners_manage_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $form[HASH_TITLE] = t('Add New Learner'); 
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_father_husband_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_mother_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_mobile_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_landline_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_age'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_monthly_income_of_househol'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_male_members_in_household'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_female_member_in_household'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_machine_at_home'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_monthly_fee_for_course'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_learner_id']['widget'][0][VALUE][HASH_ATTRIBUTES] = [DISABLED => true];
+    $form['field_silai_school_name']['widget'][0]['value'][HASH_ATTRIBUTES] = ['disabled' => true];
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $districtOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+    if($roles[1] == ROLE_SILAI_NGO_ADMIN){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoLocations = $masterDataService->getNgoLocationIds($current_user->id());
+        $ngoLocation = array_values($ngoLocations);
+        $districtIds = \Drupal::entityQuery('node')
+            ->condition('type', 'silai_district')
+            ->condition('field_silai_location', $ngoLocation, 'IN')
+            ->sort('title')
+            ->execute(); 
+        foreach ($districtIds as $districtId) {
+            $districtOption[$districtId] = Node::load($districtId)->getTitle();
+        }
+    }else if($roles[1] == 'pc'){
+        $user = User::load($current_user->id());
+        $locationId = $user->field_user_location->target_id;
+        $districtIds = \Drupal::entityQuery('node')
+            ->condition('type', 'silai_district')
+            ->condition('field_silai_location', $locationId)
+            ->sort('title')
+            ->execute(); 
+        foreach ($districtIds as $districtId) {
+            $districtOption[$districtId] = Node::load($districtId)->getTitle();
+        }
+    }
+    $form['field_silai_district']['widget'][HASH_OPTIONS] = $districtOption;
+    $form[ACTIONS]['cancel'] = array(
+        HASH_TYPE => 'button',
+        HASH_VALUE => t('Cancel'),
+        HASH_WEIGHT => -1,
+        HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+}
+#Content type Learners manage Edit form alter 
+function silai_form_node_silai_learners_manage_edit_form_alter(&$form, FormStateInterface $form_state) {
+    $destinationData = drupal_get_destination();
+    $node = $form_state->getFormObject()->getEntity();
+    $nid = $node->id();
+    $schoolId = $node->field_silai_school->target_id;
+    //$approvalStatus = $node->get('field_approve_status')->getValue()[0][VALUE];
+    # Approval recject condition for edit.
+    # Set value 0 for again start approval process.
+    // if($approvalStatus == 2){
+    //     $node->set('field_approve_status', 0); 
+    //     $node->save();
+    // }
+    $form[HASH_TITLE] = t('Edit Learner');
+    $form[TITLE][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_father_husband_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_mother_name'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+    $form['field_mobile_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_landline_number'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_age'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_monthly_income_of_househol'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_male_members_in_household'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_female_member_in_household'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_sewing_machine_at_home'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_monthly_fee_for_course'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+    $form['field_learner_id']['widget'][0][VALUE][HASH_ATTRIBUTES] = [DISABLED => true];
+    $editId = 0;
+    $urlEditId = \Drupal::routeMatch()->getParameter('node');
+    if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+      // You can get nid and anything else you need from the node object.
+      $editId = $urlEditId->id();
+    }
+    $learnerNodeData  = Node::load($editId);
+    $learnerDistrictId = $learnerNodeData->field_silai_district->target_id;
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $districtOption[UNDERSCORE_NONE] =  SELECT_VALUE;
+    if($roles[1] == ROLE_SILAI_NGO_ADMIN){
+        $masterDataService = \Drupal::service('silai.master_data');
+        $ngoLocations = $masterDataService->getNgoLocationIds($current_user->id());
+        $ngoLocation = array_values($ngoLocations);
+        $districtIds = \Drupal::entityQuery('node')
+            ->condition('type', 'silai_district')
+            ->condition('field_silai_location', $ngoLocation, 'IN')
+            ->sort('title')
+            ->execute(); 
+        foreach ($districtIds as $districtId) {
+            $districtOption[$districtId] = Node::load($districtId)->getTitle();
+        }
+    }else if($roles[1] == 'pc'){
+        $user = User::load($current_user->id());
+        $locationId = $user->field_user_location->target_id;
+        $districtIds = \Drupal::entityQuery('node')
+            ->condition('type', 'silai_district')
+            ->condition('field_silai_location', $locationId)
+            ->sort('title')
+            ->execute(); 
+        foreach ($districtIds as $districtId) {
+            $districtOption[$districtId] = Node::load($districtId)->getTitle();
+        }
+    }
+    
+    $form['field_silai_district']['widget'][HASH_OPTIONS] = $districtOption;
+    //$form['field_silai_district']['widget'][HASH_DEFAULT_VALUE] = $learnerDistrictId;
+    $form['field_hidden_learner_id'] = [
+      HASH_TYPE => 'hidden',
+      HASH_VALUE => $nid,
+      HASH_ATTRIBUTES =>['id' => 'field_hidden_learner_id'],
+
+  ];
+
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+    // Load a single node.
+  $schoolData = $node_storage->load($schoolId);
+  $schoolCode = $schoolData->field_school_code->value;
+
+  $schoolObject = clone $schoolData;
+  $schoolObject->title->value = $schoolCode; 
+
+  $form['field_silai_school']['widget'][0]['target_id'][HASH_DEFAULT_VALUE]= $schoolObject;
+
+
+
+  $form['field_silai_school_name']['widget'][0]['value'][HASH_ATTRIBUTES] = ['disabled' => true];
+  $form[ACTIONS]['cancel'] = array(
+    HASH_TYPE => 'button',
+    HASH_VALUE => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+);
+}
+
+/**
+ * function to check wheather the given school code exist in our system or not
+ * @param  [string]  $schoolCode 
+ * @return boolean             [description]
+ */
+function isSchoolCodeExist($schoolCode = '') {
+    $query = \Drupal::entityQuery(NODE)
+    ->condition(TYPE, 'silai_school')
+    ->condition('field_sil_school_approval_status', APPROVED_STATUS)
+    ->condition('field_school_code', $schoolCode);
+
+    $nids = $query->execute();
+    return count($nids);
+}

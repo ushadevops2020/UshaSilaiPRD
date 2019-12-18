@@ -1,0 +1,18 @@
+uuid: 3b81db55-485c-4caf-aad8-7d8b728b96fa
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - silai-menu
+    parent: 'silai-menu:'
+name: 'Silai School'
+type: silai_school
+description: 'Silai school manage '
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,21 @@
+uuid: 1cc66864-7c9a-4e79-b5fb-b9cceefe085b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_certificate_print
+    - node.type.manage_sewing_students
+  module:
+    - datetime
+id: node.manage_sewing_students.field_date_of_certificate_print
+field_name: field_date_of_certificate_print
+entity_type: node
+bundle: manage_sewing_students
+label: 'Date Of Certificate Print'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

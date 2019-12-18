@@ -1,0 +1,19 @@
+uuid: 3683d07f-baf8-4c8b-9e58-7f6e66e837f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_venue
+    - node.type.training
+id: node.training.field_venue
+field_name: field_venue
+entity_type: node
+bundle: training
+label: Venue
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

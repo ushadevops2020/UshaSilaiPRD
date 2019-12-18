@@ -1,0 +1,24 @@
+uuid: 131b65e2-7f27-4bf3-845a-fa773206ed07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inventory_transaction_date
+    - node.type.manage_inventory
+  module:
+    - datetime
+id: node.manage_inventory.field_inventory_transaction_date
+field_name: field_inventory_transaction_date
+entity_type: node
+bundle: manage_inventory
+label: 'Transaction Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,656 @@
+<?php
+/**
+ * @file
+ * Contains sewing.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Database\Database;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements sewing_help().
+ */
+function sewing_school_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the sewing module.
+    case 'help.page.sewing_school':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>'; 
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements sewing_theme().
+ */
+function sewing_school_theme() {
+  return [
+    'sewing_school' => [
+      'render element' => 'children',
+    ],
+    'sewing_dashboard_page' => array(
+        'variables' => array( 
+            'role' => NULL,
+            'sewingViewGalleryRender' => NULL,
+            'viewNoticeRender' => NULL,
+			'renewalSchoolCount' => NULL,
+        ),
+    ),
+    'sewing_dashboard_page_for_school_admin' => array(
+        'variables' => array( 
+            'role' => NULL,
+            'sewingViewGalleryRender' => NULL,
+            'viewNoticeRender' => NULL,
+            'schoolCode' => NULL,
+        ),
+    ),
+    'sewing_gallery_page' => array(
+        'variables' => array( 
+          'sewingViewGalleryRender' => NULL,
+        ),
+    ),
+    'sewing_school_affiliation_letter' => array(
+        'variables' => array( 
+          'dataArray' => NULL,
+        ),
+    ),
+    'sewing_school_renewal_letter' => array(
+        'variables' => array( 
+          'dataArray' => NULL,
+        ),
+    ),
+  ];
+}
+
+// function sewing_allowed_values_school(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+//   echo "Hi";die;
+//     $options = [
+//         1 => 'My new option 1',
+//         2 => 'My new option 2',
+//         3 => 'My new option 3'     
+//     ];
+//     return $options;
+// }
+
+/** 
+ * Implementation of School Hook Alter
+ */
+function sewing_school_form_node_sewing_school_form_alter(&$form, FormStateInterface $form_state) {
+  $destinationData = drupal_get_destination();
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  if($roles[1] == ROLE_SEWING_SSI){
+    $userData = User::load($current_user->id());
+    $loactionId = $userData->field_user_location->target_id;
+    $loactionData = Node::load($loactionId);
+    $locationOption =  [ $loactionId => $loactionData->getTitle()];
+    $form['field_location']['widget'][HASH_OPTIONS] = $locationOption;
+    $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $loactionId;
+    $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => true];
+  }
+  //$phoneNo = $form_state->getValue('field_sewing_phone_number')[0]['value'];
+  $form['field_school_creation_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_date_of_renewal']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_school_approval_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_affiliation_fee_receive_on']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_affiliation_received_fees']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_renewal_received_fees']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_renewal_fee_received_on']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_no_of_courses']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_dealer_details']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_school_code']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_no_of_teachers'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_sewing_area_in_sqft'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_affiliation_received_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_renewal_received_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_no_of_ss_machines'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_no_of_uj_machines'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_sewing_pan_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+  $form['field_termination_date'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+   $form['field_sew_school_edit_remark'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+  $form[GROUP] = [
+    HASH_TYPE => 'details',
+    HASH_REQUIRED => TRUE,
+    HASH_TITLE => t('School Admin Details'),
+    '#open' => FALSE,
+    '#weight' => 2,
+  ];
+  $form[GROUP][HASH_PREFIX] = '<div id="user_login_Form">';
+  $form[GROUP][HASH_SUFFIX] = '</div>';
+  $form[GROUP][FIELD_FIRST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Proprietor Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+  ];
+  $form[GROUP]['field_user_name'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('User Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => 'user'.mt_rand(),
+    HASH_MAXLENGTH => 15,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC], 'readonly' => 'readonly'],
+    '#description' => t('*User Name is auto Generated (i.e. School Code).'),
+  ];
+  $form[GROUP]['field_user_password'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Password'),
+    HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+    HASH_DEFAULT_VALUE => '********',
+    HASH_ATTRIBUTES => ['readonly' => 'readonly'],
+    HASH_MAXLENGTH => 20,
+    '#description' => t('* Default Password is auto Generated (i.e. School Code).'),
+  ];
+  $form[GROUP][FIELD_USER_EMAIL] = [
+    HASH_TYPE => 'email',
+    HASH_TITLE => t('Email Id'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+    HASH_MAXLENGTH => 100,
+  ];
+  $form[GROUP][FILED_USER_CONTACT_NO] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Mobile No.'),
+    HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => TRUE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+  ];
+  $form[GROUP]['user_phone_number'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Phone No.'),
+    HASH_DEFAULT_VALUE => ($phoneNo) ? $phoneNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => FALSE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+  ];
+  $form[HASH_VALIDATE][] = 'custom_sewing_school_validate'; 
+  $form['actions']['cancel'] = array(
+  '#type' => 'button',
+  '#value' => t('Cancel'),
+  HASH_WEIGHT => -1,
+  HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+  );   
+  foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+          $form['actions'][$action]['#submit'][] = 'custom_sewing_school_submit';
+      }
+  }
+}
+/** 
+ * Implementation of School Edit Hook Alter
+ */
+
+function sewing_school_form_node_sewing_school_edit_form_alter(&$form, FormStateInterface $form_state) {
+  $destinationData = drupal_get_destination();
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  if($roles[1] == ROLE_SEWING_SSI){
+    $userData = User::load($current_user->id());
+    $loactionId = $userData->field_user_location->target_id;
+    $loactionData = Node::load($loactionId);
+    $locationOption =  [ $loactionId => $loactionData->getTitle()];
+    $form['field_location']['widget'][HASH_OPTIONS] = $locationOption;
+    $form['field_location']['widget'][HASH_DEFAULT_VALUE] = $loactionId;
+    $form['field_location']['widget'][HASH_ATTRIBUTES] = ['readonly' => true];
+  }
+  $node = $form_state->getFormObject()->getEntity();
+  $nid = $node->id();
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+  // Load a single node.
+  $node = $node_storage->load($nid);
+  $userId = $node->field_sewing_user_id->target_id;
+  if(!empty($userId)) {
+      $account = \Drupal\user\Entity\User::load($userId);
+      $accountRoles = $account->getRoles();
+      $firstName =  ($account->field_first_name->value) ? $account->field_first_name->value : '';
+      $lastName =  ($account->field_last_name->value) ? $account->field_last_name->value : '';
+      $emailId =  ($account->getEmail()) ? $account->getEmail() : '';
+      $contactNo =  ($account->field_user_contact_no->value) ? $account->field_user_contact_no->value : '';
+      $profileId =  ($accountRoles[1]) ? $accountRoles[1] : '';
+      $fieldUserId = $account->getUsername();
+      $userLocation =  ($account->field_user_location->target_id) ? $account->field_user_location->target_id : '';
+      $userStatus =  $account->status->value;
+  }
+  $phoneNo = $node->get('field_sewing_phone_number')->getValue()[0]['value'];
+  $approvalStatusCheck = $node->get('field_sew_school_approval_status')->getValue()[0]['value'];
+  if($approvalStatusCheck != 0){
+    $form['field_sewing_affiliation_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  }
+  $form['field_school_creation_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_date_of_renewal']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_school_approval_date']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_affiliation_fee_receive_on']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_affiliation_received_fees']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_renewal_received_fees']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_renewal_fee_received_on']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_no_of_courses']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_dealer_details']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_school_code']['widget'][0][VALUE][HASH_ATTRIBUTES] = ['readonly' => true];
+  $form['field_sewing_no_of_teachers'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_sewing_area_in_sqft'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_pin_code'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_affiliation_received_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_renewal_received_fees'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_no_of_ss_machines'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_no_of_uj_machines'][HASH_ATTRIBUTES] = [CLASS_CONST => [ONLY_NUMERIC_VALUE]];
+  $form['field_sewing_pan_no'][HASH_ATTRIBUTES] = [CLASS_CONST => [ALPHANUMERIC]];
+  $form['field_termination_date'][HASH_ATTRIBUTES]['class'][] = 'global-hidden-field';
+  $form['field_sew_school_edit_remark']['widget'][0]['value']['#required'] = 1;
+  $form[GROUP] = [
+    HASH_TYPE => 'details',
+    HASH_TITLE => t('School Admin Details'),
+    HASH_REQUIRED => TRUE,
+    '#open' => FALSE,
+    '#weight' => 2,
+  ];
+  $form[GROUP][HASH_PREFIX] = '<div id="user_login_Form">';
+  $form[GROUP][HASH_SUFFIX] = '</div>';
+  $form[GROUP][FIELD_FIRST_NAME] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Proprietor Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($firstName) ? $firstName : '',
+    HASH_MAXLENGTH => 30,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC]]
+  ];
+  $form[GROUP]['field_user_name'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('User Name'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($fieldUserId) ? $fieldUserId : '',
+    HASH_MAXLENGTH => 15,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ALPHANUMERIC], 'readonly' => 'readonly'],
+  ];
+  $form[GROUP]['field_user_password'] = [
+    HASH_TYPE => 'password',
+    HASH_TITLE => t('Password'),
+    HASH_REQUIRED => ($userId) ? FALSE : TRUE,
+    HASH_MAXLENGTH => 20,
+  ];
+  $form[GROUP][FIELD_USER_EMAIL] = [
+    HASH_TYPE => 'email',
+    HASH_TITLE => t('Email Id'),
+    HASH_REQUIRED => TRUE,
+    HASH_DEFAULT_VALUE => ($emailId) ? $emailId : '',
+    HASH_MAXLENGTH => 100,
+  ];
+  $form[GROUP][FILED_USER_CONTACT_NO] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Contact No.'),
+    HASH_DEFAULT_VALUE => ($contactNo) ? $contactNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => TRUE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+  ]; 
+  $form[GROUP]['user_phone_number'] = [
+    HASH_TYPE => TEXTFIELD,
+    HASH_TITLE => t('Phone No.'),
+    HASH_DEFAULT_VALUE => ($phoneNo) ? $phoneNo : '',
+    HASH_MAXLENGTH => 11,
+    HASH_REQUIRED => FALSE,
+    HASH_ATTRIBUTES => [CLASS_CONST => [ONLY_NUMERIC_VALUE]]
+  ];
+  $form[HASH_VALIDATE][] = 'custom_sewing_school_validate';
+  // Validate Submit and Cancle button as per user role.
+  if($roles[1] != ROLE_SEWING_SSI){
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Close'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );
+    unset($form['actions']['submit']); 
+  }else{
+    $form['actions']['cancel'] = array(
+    '#type' => 'button',
+    '#value' => t('Cancel'),
+    HASH_WEIGHT => -1,
+    HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "'.$destinationData['destination'].'"; event.preventDefault();'),
+    );   
+    foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'custom_sewing_school_submit';
+        }
+    } 
+  }
+}
+/** 
+ * Implementation of Custom School Validate
+ * School User validation for Associated School
+ */
+function custom_sewing_school_validate($form, FormStateInterface &$form_state) {
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+    $userId = $form_state->getValue('field_sewing_user_id')[0]['target_id'];
+    //$ngoName = preg_replace('/\s+/', '', $form_state->getValue('title')[0]['value']);
+
+    //if(!empty($ngoName) && strlen($ngoName) < 4) {
+    //  $form_state->setErrorByName('title', t('Ngo name must be atleast 4 characters')); 
+    //}
+    if(!empty($uniqueId) && strlen($uniqueId) < 4) {
+      $form_state->setErrorByName('field_user_name', t('Username length must be atleast 4 characters')); 
+    }
+    if(!empty($password) && strlen($password) < 6) {
+      $form_state->setErrorByName('field_user_password', t('Password length must be atleast 6 characters')); 
+    }
+    #check unique username and email id
+    $query = \Drupal::entityQuery('user');
+    if ($uniqueId) {
+      $query->condition('name', $uniqueId);
+    }
+    $uids = $query->execute();
+    $user_storage = \Drupal::entityManager()->getStorage('user');
+    #Load multiple nodes
+    $users = $user_storage->loadMultiple($uids);
+    if(count($users) >= 1 &&  empty($users[$userId])) {
+        $form_state->setErrorByName('field_user_name', t('User Name already exist.'));
+    } 
+    if($emailId) {
+        $queryForMail = \Drupal::entityQuery('user');
+        if ($emailId) {
+          $queryForMail->condition('mail', $emailId);
+        }
+        $uidsMail = $query->execute();
+        $user_storage_mail = \Drupal::entityManager()->getStorage('user');
+        #Load multiple nodes
+        $usersMail = $user_storage_mail->loadMultiple($uidsMail);
+        if(count($usersMail) >= 1 &&  empty($usersMail[$userId])) {
+            $form_state->setErrorByName(FIELD_USER_EMAIL, t('Email Id already exist.'));
+        }
+    }
+}
+/**
+ * Implementation of Custom School Submit
+ * School User creation for Associated school
+ */
+function custom_sewing_school_submit(array $form, FormStateInterface $form_state){ 
+    $masterDataService = \Drupal::service('sewing.master_data');
+    $approvalStatus = $form_state->getValue('field_sew_school_approval_status')[0]['value'];
+    $firstName = $form_state->getValue(FIELD_FIRST_NAME);
+    $emailId = $form_state->getValue(FIELD_USER_EMAIL);
+    $contactNo = $form_state->getValue(FILED_USER_CONTACT_NO);
+    $phoneNo = $form_state->getValue('user_phone_number');
+   
+    $affiliationDate = $form_state->getValue('field_sewing_affiliation_date')[0]['value']->format('Y-m-d');
+    $approvalStatusCheck = $form_state->getValue('field_sew_school_approval_status')[0]['value'];
+    
+    $uniqueId = $form_state->getValue('field_user_name');
+    $password = $form_state->getValue('field_user_password');
+    $userId = $form_state->getValue('field_sewing_user_id')[0]['target_id'];
+    $townId = $form_state->getValue('field_town_city')[0]['target_id'];
+    $townData = Node::load($townId);
+    $districtId = $townData->field_district->target_id;
+    $userStatus = 0;
+
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $userRoles = $user->getRoles();
+    $nameWithRole = $user->get('field_first_name')->value.' '. $user->get('field_last_name')->value.' ('.$userRoles[1].')' ;
+    $currentUserid = $user->id();
+    $currentUserLoc = 0;
+    $targetRoles = [ROLE_SEWING_HO_USER, ROLE_SEWING_HO_ADMIN];
+    $targetUsers = $masterDataService->getUsersByRoleSewing($targetRoles);
+    $message = preg_replace('/{.*}/', $nameWithRole, ADD_SCHOOL_MESSAGE);
+    $data = [
+            'sender_role' => $userRoles[1],
+            'receiver_id' => '',
+            'receiver_role' => '',
+            'message' => $message,
+            'location' => $currentUserLoc,
+            'created_by' => $currentUserid
+        ];
+
+   if(!empty($userId)) {
+        $user = \Drupal\user\Entity\User::load($userId);
+        //$accountRoles = $user->getRoles();
+        $user->setEmail($emailId);
+        $user->setUsername($uniqueId);
+        if(!empty($password)) {
+            $user->setPassword($password);
+        }
+        $user->set(FIELD_FIRST_NAME, $firstName);
+        $user->set(FIELD_LAST_NAME, $lastName);
+        $user->set(FILED_USER_CONTACT_NO, $contactNo);
+        $user->set(STATUS, 1);
+        $user->save();
+        $entity = $form_state->getFormObject()->getEntity();
+        $editId = 0;
+        $urlEditId = \Drupal::routeMatch()->getParameter('node');
+        if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+          $editId = $urlEditId->id();
+        }
+        if($editId == 0){
+          $date = date('Y-m-d');
+          $entity->set('field_school_creation_date', $date );
+        }else{
+          //$renewalDate = strtotime ( '+1 year' , strtotime ( $affiliationDate ) ) ;
+          //$renewalDate = date ( 'Y-m-d' , $renewalDate );
+          //$entity->set('field_sewing_date_of_renewal', $renewalDate );
+          if($approvalStatus == 1){
+            $entity->set('field_sew_school_approval_status', 4 );
+          }else if($approvalStatus == 2){
+            $entity->set('field_sew_school_approval_status', 0 );
+          }
+        }
+        if($approvalStatusCheck == 0){
+          $renewalDate = strtotime ( '+1 year' , strtotime ( $affiliationDate ) ) ;
+          $renewalDate = date ( 'Y-m-d' , $renewalDate );
+          $entity->set('field_sewing_date_of_renewal', $renewalDate );
+        }
+        $entity->set('field_sewing_phone_number', $phoneNo );
+        $entity->set('field_district', $districtId );
+        $entity->save();
+
+        $message = preg_replace('/{.*}/', $nameWithRole, UPDATE_SCHOOL_MESSAGE);
+        $data['message'] = $message;
+    } else {
+        $user = \Drupal\user\Entity\User::create();
+        if(!empty($password)) {
+            $user->setPassword($password);
+        }
+        $user->setEmail($emailId);
+        $user->setUsername($uniqueId);
+        $user->set(FIELD_FIRST_NAME, $firstName);
+        $user->set(FIELD_LAST_NAME, $lastName);
+        $user->set(FILED_USER_CONTACT_NO, $contactNo); 
+        $user->set(STATUS, $userStatus);
+        $user->addRole(ROLE_SEWING_SCHOOL_ADMIN);
+        $user->enforceIsNew();
+        $user->save();
+        $uid = $user->id();
+        $entity = $form_state->getFormObject()->getEntity();
+        $nid = $entity->id();
+        $entity->set('field_sewing_user_id', $uid );
+        $editId = 0;
+        $urlEditId = \Drupal::routeMatch()->getParameter('node');
+        if ($urlEditId instanceof \Drupal\node\NodeInterface) {
+          $editId = $urlEditId->id();
+        }
+        if($editId == 0){
+          $date = date('Y-m-d');
+          $entity->set('field_school_creation_date', $date );
+        }else{
+          if($approvalStatus == 1){
+            $entity->set('field_sew_school_approval_status', 4 );
+          }else if($approvalStatus == 2){
+            $entity->set('field_sew_school_approval_status', 0 );
+          }
+        }
+        if($approvalStatusCheck == 0){
+          $renewalDate = strtotime ( '+1 year' , strtotime ( $affiliationDate ) ) ;
+          $renewalDate = date ( 'Y-m-d' , $renewalDate );
+          $entity->set('field_sewing_date_of_renewal', $renewalDate );
+        }
+        $entity->set('field_sewing_phone_number', $phoneNo );
+        $entity->set('field_district', $districtId );
+        $entity->save();
+        $message = preg_replace('/{.*}/', $nameWithRole, ADD_SCHOOL_MESSAGE);
+        $data['message'] = $message;
+    }
+    if(!empty($targetUsers)){
+      $masterDataService->sewingNotificationAlert($data, $targetUsers);
+    }
+
+} 
+function sewing_school_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'sewing_manage_school' && $view->current_display == 'page_2') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node__field_location.field_location_target_id', $loactionId, 'IN');
+    }
+  }else if ($view->id() == 'sewing_manage_school' && $view->current_display == 'data_export_3') {
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node__field_location.field_location_target_id', $loactionId, 'IN');
+    }
+  }
+  if($view->id() == 'manage_training_feedback' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_1')){
+    $current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node_field_data_node__field_location.nid', $loactionId, 'IN');
+    }
+  }
+  if($view->id() == 'sewing_school_pending_for_renewal_list' && ($view->current_display == 'page_1' || $view->current_display == 'data_export_1')){
+	$current_user = \Drupal::currentUser();
+    $roles = $current_user->getRoles();
+    $user = User::load(\Drupal::currentUser()->id());
+    if(in_array(ROLE_SEWING_SSI,$roles)) {
+      $userData = User::load($current_user->id());
+      $loactionId[] = $userData->field_user_location->target_id; 
+      $query->addWhere('', 'node_field_data_node__field_location.nid', $loactionId, 'IN');
+    }  
+  }
+  
+}
+ function sewing_school_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    if ($form['#id'] == 'views-exposed-form-sewing-manage-school-page-2') {
+      $schoolTypeOptions = get_option_list_for_view('school_type_master');
+      $fieldSchoolType = 'school_type';
+      $form[$fieldSchoolType][HASH_TYPE] = 'select';
+      $form[$fieldSchoolType]['#multiple'] = FALSE;
+      $form[$fieldSchoolType]['#empty_option'] = t('- Select a value -');
+      $form[$fieldSchoolType][HASH_OPTIONS] = $schoolTypeOptions;
+      unset($form[$fieldSchoolType]['#size']);  
+
+      $gradeOptions = get_option_list_for_view('grades');
+      $fieldGrade = 'grade';
+      $form[$fieldGrade][HASH_TYPE] = 'select';
+      $form[$fieldGrade]['#multiple'] = FALSE;
+      $form[$fieldGrade]['#empty_option'] = t('- Select a value -');
+      $form[$fieldGrade][HASH_OPTIONS] = $gradeOptions;
+      unset($form[$fieldGrade]['#size']);
+
+      $statusOption = SEWING_SCHOOL_STATUS;
+      $fieldApprovalStatus = 'approval_status';
+      $form[$fieldApprovalStatus][HASH_TYPE] = 'select';
+      $form[$fieldApprovalStatus]['#multiple'] = FALSE;
+      $form[$fieldApprovalStatus]['#empty_option'] = t('- Select a value -');
+      $form[$fieldApprovalStatus][HASH_OPTIONS] = $statusOption;
+      unset($form[$fieldApprovalStatus]['#size']);
+    }else if ($form['#id'] == 'views-exposed-form-sewing-manage-school-page-1') {
+      $schoolTypeOptions = get_option_list_for_view('school_type_master');
+      $fieldSchoolType = 'school_type';
+      $form[$fieldSchoolType][HASH_TYPE] = 'select';
+      $form[$fieldSchoolType]['#multiple'] = FALSE;
+      $form[$fieldSchoolType]['#empty_option'] = t('- Select a value -');
+      $form[$fieldSchoolType][HASH_OPTIONS] = $schoolTypeOptions;
+      unset($form[$fieldSchoolType]['#size']);  
+
+      $gradeOptions = get_option_list_for_view('grades');
+      $fieldGrade = 'grade';
+      $form[$fieldGrade][HASH_TYPE] = 'select';
+      $form[$fieldGrade]['#multiple'] = FALSE;
+      $form[$fieldGrade]['#empty_option'] = t('- Select a value -');
+      $form[$fieldGrade][HASH_OPTIONS] = $gradeOptions;
+      unset($form[$fieldGrade]['#size']);
+
+      $statusOption = SEWING_SCHOOL_STATUS;
+      $fieldApprovalStatus = 'approval_status';
+      $form[$fieldApprovalStatus][HASH_TYPE] = 'select';
+      $form[$fieldApprovalStatus]['#multiple'] = FALSE;
+      $form[$fieldApprovalStatus]['#empty_option'] = t('- Select a value -');
+      $form[$fieldApprovalStatus][HASH_OPTIONS] = $statusOption;
+      unset($form[$fieldApprovalStatus]['#size']);
+
+    }else if($form['#id'] == 'views-exposed-form-manage-students-page-4'){
+      $form['status_student'][HASH_OPTIONS][1] = 'On-Roll';
+      $form['status_student'][HASH_OPTIONS][0] = 'Not On-Roll';
+    }else if($form['#id'] == 'views-exposed-form-manage-monthly-quarterly-mis-page-2'){
+		$misTypeOption = MONTHLY_QUARTERLY_TYPE_OPTIONS_VIEW;
+		$misType = 'monthly_quarterly_type';
+		$form[$misType][HASH_TYPE] = 'select';
+		$form[$misType]['#multiple'] = FALSE;
+		$form[$misType]['#empty_option'] = t('- Select a value -');
+		$form[$misType][HASH_OPTIONS] = $misTypeOption;
+		unset($form[$misType]['#size']);
+	}else if($form['#id'] == 'views-exposed-form-manage-monthly-quarterly-mis-page-1'){
+		$misTypeOption = MONTHLY_QUARTERLY_TYPE_OPTIONS_VIEW;
+		$misType = 'monthly_quarterly_type';
+		$form[$misType][HASH_TYPE] = 'select';
+		$form[$misType]['#multiple'] = FALSE;
+		$form[$misType]['#empty_option'] = t('- Select a value -');
+		$form[$misType][HASH_OPTIONS] = $misTypeOption;
+		unset($form[$misType]['#size']);
+	}
+}
+
+/**
+ * Function to return state list().
+ */
+function get_option_list_for_view($type) {
+  $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('node');
+  $nids = $storage->getQuery();
+  
+  // Gather published artist nodes and sort by title
+  $nids = $nids->condition('type', $type)
+    ->condition('status', 1)
+    ->sort('title')
+    ->execute();
+  // If there are no nodes, move on
+    if (!$nids) {
+     return [];
+    }
+  // Start building out the options for our select list
+    $options = [];
+    $nodes = $storage->loadMultiple($nids);
+  
+  // Push titles into select list
+    foreach ($nodes as $node) {
+     $options[$node->getTitle()] = $node->getTitle();
+    }
+  
+  return $options;
+}

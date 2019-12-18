@@ -1,0 +1,18 @@
+uuid: 121ded6c-881d-478b-9c2c-449c433ed0a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - common-menu
+    parent: 'common-menu:'
+name: 'Sewing School Type Master'
+type: school_type_master
+description: 'Sewing School Type Master'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

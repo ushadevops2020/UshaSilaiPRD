@@ -1,0 +1,19 @@
+uuid: e9d8d94c-9429-4ada-a63e-c930882254dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trainee_father_name
+    - node.type.trainee
+id: node.trainee.field_trainee_father_name
+field_name: field_trainee_father_name
+entity_type: node
+bundle: trainee
+label: 'Father Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

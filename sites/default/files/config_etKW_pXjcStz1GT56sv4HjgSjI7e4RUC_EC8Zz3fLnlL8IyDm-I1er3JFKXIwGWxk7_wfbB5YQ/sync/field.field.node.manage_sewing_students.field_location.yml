@@ -1,0 +1,29 @@
+uuid: 9b971d0f-5dfa-4752-bc57-0dd928089da9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.manage_locations
+    - node.type.manage_sewing_students
+id: node.manage_sewing_students.field_location
+field_name: field_location
+entity_type: node
+bundle: manage_sewing_students
+label: Location
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      manage_locations: manage_locations
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

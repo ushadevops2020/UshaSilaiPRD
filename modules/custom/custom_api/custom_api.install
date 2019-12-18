@@ -1,0 +1,39 @@
+<?php
+use Drupal\Core\Database\Database;
+function custom_api_schema() {
+  # Silai NGO Associated User
+  $schema['silai_ngo_associated_user'] = [
+    'description' => 'Silai NGO User Map Information.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary key.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'description' => 'NGO Nid',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'user_id' => [
+        'description' => 'User id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],     
+      'created' => [
+        'description' => 'Created date',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],         
+    ],
+    'primary key' => ['id'],
+  ]; 
+  return $schema;
+}
+?>  

@@ -1,0 +1,19 @@
+uuid: cab1f03a-60df-4f81-be3a-aec215e1b32b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_head_budgeted
+    - node.type.nfa
+id: node.nfa.field_sub_head_budgeted
+field_name: field_sub_head_budgeted
+entity_type: node
+bundle: nfa
+label: 'NFA Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

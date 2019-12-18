@@ -1,0 +1,21 @@
+uuid: 4c79873c-df1f-4771-9e2e-c46628338ea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_silai_training_date
+    - node.type.silai_training
+  module:
+    - datetime
+id: node.silai_training.field_silai_training_date
+field_name: field_silai_training_date
+entity_type: node
+bundle: silai_training
+label: Date
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

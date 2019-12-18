@@ -1,0 +1,14 @@
+uuid: ade41b83-0372-42c4-b555-51575cafa1e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_ssi
+  module:
+    - user
+id: user_add_role_action.sewing_ssi
+label: 'Add the Sewing SSI role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: sewing_ssi

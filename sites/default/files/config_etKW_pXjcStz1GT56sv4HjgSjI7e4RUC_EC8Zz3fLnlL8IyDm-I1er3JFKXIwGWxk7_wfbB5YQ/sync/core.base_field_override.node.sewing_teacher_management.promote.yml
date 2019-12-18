@@ -1,0 +1,22 @@
+uuid: 87dad191-f6d2-446d-8df9-ec0888060fed
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.sewing_teacher_management
+id: node.sewing_teacher_management.promote
+field_name: promote
+entity_type: node
+bundle: sewing_teacher_management
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

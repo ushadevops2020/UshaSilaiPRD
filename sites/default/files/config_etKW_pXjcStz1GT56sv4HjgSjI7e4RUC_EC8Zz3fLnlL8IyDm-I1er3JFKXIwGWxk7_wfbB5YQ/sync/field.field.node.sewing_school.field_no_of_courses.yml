@@ -1,0 +1,19 @@
+uuid: f5a63625-c7a2-4a6d-9e55-8c2c0a7ff8ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_no_of_courses
+    - node.type.sewing_school
+id: node.sewing_school.field_no_of_courses
+field_name: field_no_of_courses
+entity_type: node
+bundle: sewing_school
+label: 'No of Courses'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

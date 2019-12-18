@@ -1,0 +1,11 @@
+uuid: 62be38b3-507d-42e5-9a56-2b532a79220f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.manage_towns
+id: node.manage_towns
+target_entity_type_id: node
+target_bundle: manage_towns
+default_langcode: site_default
+language_alterable: false

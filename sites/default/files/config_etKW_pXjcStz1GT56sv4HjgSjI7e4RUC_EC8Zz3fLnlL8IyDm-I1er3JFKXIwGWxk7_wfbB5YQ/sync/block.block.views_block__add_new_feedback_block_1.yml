@@ -1,0 +1,39 @@
+uuid: 6e343bd5-a13c-48b1-a753-87a90d269da1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.add_new_feedback
+  module:
+    - domain
+    - system
+    - views
+  theme:
+    - silai_lte_admin
+id: views_block__add_new_feedback_block_1
+theme: silai_lte_admin
+region: content
+weight: -7
+provider: null
+plugin: 'views_block:add_new_feedback-block_1'
+settings:
+  id: 'views_block:add_new_feedback-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: /add-new-feedback
+    negate: false
+    context_mapping: {  }
+  domain:
+    id: domain
+    domains:
+      usha_sewing_tk: usha_sewing_tk
+    negate: false
+    context_mapping:
+      'entity:domain': '@domain.current_domain_context:entity:domain'

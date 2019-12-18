@@ -1,0 +1,11 @@
+uuid: 7167f5b0-2d06-404d-9c88-bb08b324cdd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.financial_year
+id: taxonomy_term.financial_year
+target_entity_type_id: taxonomy_term
+target_bundle: financial_year
+default_langcode: site_default
+language_alterable: false

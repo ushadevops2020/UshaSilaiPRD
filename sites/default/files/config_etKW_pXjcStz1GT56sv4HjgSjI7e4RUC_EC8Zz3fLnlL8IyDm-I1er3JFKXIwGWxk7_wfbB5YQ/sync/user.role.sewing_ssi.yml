@@ -1,0 +1,35 @@
+uuid: ecf443a2-572d-4a47-b77b-fee725be8523
+langcode: en
+status: true
+dependencies: {  }
+id: sewing_ssi
+label: SSI
+weight: 12
+is_admin: null
+permissions:
+  - 'bypass node access'
+  - 'create content_workflow workflow_transition'
+  - 'create manage_inventory content'
+  - 'create manage_inventory content on assigned domains'
+  - 'create manage_school content'
+  - 'create manage_school content on assigned domains'
+  - 'create manage_sewing_students content'
+  - 'create manage_sewing_students content on assigned domains'
+  - 'delete any manage_inventory content'
+  - 'delete any manage_sewing_students content'
+  - 'delete manage_inventory content on assigned domains'
+  - 'delete manage_sewing_students content on assigned domains'
+  - 'delete own manage_inventory content'
+  - 'delete own manage_sewing_students content'
+  - 'edit any manage_inventory content'
+  - 'edit any manage_school content'
+  - 'edit any manage_sewing_students content'
+  - 'edit own manage_inventory content'
+  - 'edit own manage_school content'
+  - 'edit own manage_sewing_students content'
+  - 'update manage_inventory content on assigned domains'
+  - 'update manage_school content on assigned domains'
+  - 'update manage_sewing_students content on assigned domains'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition ready_for_review'

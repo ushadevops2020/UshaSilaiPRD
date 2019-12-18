@@ -1,0 +1,10 @@
+1) 0 - Service Tax amount Field is blank. In excel file row number : 2
+2) 0 - Service Tax amount Field is blank. In excel file row number : 3
+3) UAPSS111040016 - Admission Number does not exist. In excel file row number : 4
+4) UAPSS111040017 - Admission Number does not exist. In excel file row number : 5
+5) 0 - Service Tax amount Field is blank. In excel file row number : 6
+6) 0 - Service Tax amount Field is blank. In excel file row number : 8
+7) 0 - Service Tax amount Field is blank. In excel file row number : 10
+8) UAPSS111110001 - Admission Number does not exist. In excel file row number : 14
+9) UAPSS111110002 - Admission Number does not exist. In excel file row number : 15
+10) UAPSS111110003 - Admission Number does not exist. In excel file row number : 16

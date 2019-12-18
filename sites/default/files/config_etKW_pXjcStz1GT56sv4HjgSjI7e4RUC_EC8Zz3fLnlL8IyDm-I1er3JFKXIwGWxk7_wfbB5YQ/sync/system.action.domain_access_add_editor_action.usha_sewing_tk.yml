@@ -1,0 +1,14 @@
+uuid: 2d4324f9-87d7-4eb3-bd1e-46bd58c78e1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - domain.record.usha_sewing_tk
+  module:
+    - domain_access
+id: domain_access_add_editor_action.usha_sewing_tk
+label: 'Add editors to the Sewing domain'
+type: user
+plugin: domain_access_add_editor_action
+configuration:
+  domain_id: usha_sewing_tk

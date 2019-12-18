@@ -1,0 +1,19 @@
+uuid: 239e22c2-90e1-4580-b0e7-5ed1bbf26eaf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_silai_business_state
+field_name: field_silai_business_state
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

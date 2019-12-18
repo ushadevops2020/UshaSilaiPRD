@@ -1,0 +1,14 @@
+uuid: c0b18483-ac35-4450-8a4d-712ce81205c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.sewing_school_admin
+  module:
+    - user
+id: user_remove_role_action.sewing_school_admin
+label: 'Remove the Sewing School Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: sewing_school_admin

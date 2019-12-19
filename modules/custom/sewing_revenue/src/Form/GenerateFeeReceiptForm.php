@@ -421,10 +421,22 @@ class GenerateFeeReceiptForm extends FormBase {
       HASH_WEIGHT => -1,
       HASH_ATTRIBUTES => array('onClick' => 'window.location.href = "/fee-receipt-list"; event.preventDefault();')
     );
+	$form[ACTIONS]['send'] = [
+		HASH_TYPE => 'submit',
+		HASH_VALUE => t('Generate Receipt'),
+		//HASH_ATTRIBUTES => array('class' => 'generate-fee-send'),
+		'#attributes' => array('class' => array('generate-fee-btn alter-button')),
+		HASH_PREFIX => '<span class="wrp-btn"><span class="temp-button js-form-submit form-submit btn btn-primary">'.t('Generate Receipt').'</span>',
+		HASH_SUFFIX => '</span>'
+	];
+/*
     $form[ACTIONS]['send'] = [
       HASH_TYPE => 'submit',
       HASH_VALUE => t('Generate Receipt')
+	
+
     ];
+	*/
     return $form;
   }
 

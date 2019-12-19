@@ -1,3 +1,21 @@
+.form-actions span.wrp-btn{position: relative;display: inline-block;vertical-align: top;margin-left: 1em;}
+.form-actions .alter-button{
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                margin-left: 0px;
+                margin-right: 0px;
+}
+.form-actions span.wrp-btn span.temp-button{
+                padding: 8px 25px;
+    border-radius: 0;
+    background: #de1f23;
+    border-color: #de1f23;
+    text-transform: uppercase;
+                cursor: not-allowed;
+                
+}
+
 #logo img{
   /*max-height: 40px;
   position: absolute;

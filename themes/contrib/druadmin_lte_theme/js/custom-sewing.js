@@ -1,5 +1,10 @@
 jQuery(function ($) {
  // Start Code for Fix Point #1
+               
+                  $('.generate-fee-receipt-form').submit(function(){
+                                $('#edit-send').css('display', 'none');
+                  }); 
+
  /*
   $('.generate-fee-receipt-form').submit(function(){
     $("input[type='submit']", this)

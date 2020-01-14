@@ -1,0 +1,13 @@
+1)  - Course Code field is Blank. In Row Number : 2
+2) School Code - Districe Code is not exist. In Row Number : 3
+3) IND0132 - School Code is not exist. In Row Number : 7
+4) IND0132 - School Code is not exist. In Row Number : 8
+5) IND0132 - School Code is not exist. In Row Number : 9
+6) IND0132 - School Code is not exist. In Row Number : 10
+7) IND0132 - School Code is not exist. In Row Number : 11
+8) IND0132 - School Code is not exist. In Row Number : 12
+9) IND0132 - School Code is not exist. In Row Number : 13
+10) IND0132 - School Code is not exist. In Row Number : 14
+11) IND0132 - School Code is not exist. In Row Number : 15
+12) IND0132 - School Code is not exist. In Row Number : 16
+13) IND0132 - School Code is not exist. In Row Number : 17

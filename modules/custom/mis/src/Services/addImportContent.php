@@ -74,7 +74,7 @@ class addImportContent {
         }  
       }
       $fiscalYrArr = explode('-', $fiscalYr);
-      if(!empty($fiscalYrArr[1]) && $fiscalYrArr[1] == date("Y")) {
+      if(!empty($fiscalYrArr[1]) && $fiscalYrArr[0] == date("Y")) {
         for($i = $length; $i<= $range; $i++) {
           unset($results[$i]);
         }

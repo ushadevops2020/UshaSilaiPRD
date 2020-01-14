@@ -1,0 +1,2 @@
+1) IN003301 - School Code is not exist. In Row Number : 2
+2)  - Course Code field is Blank. In Row Number : 3

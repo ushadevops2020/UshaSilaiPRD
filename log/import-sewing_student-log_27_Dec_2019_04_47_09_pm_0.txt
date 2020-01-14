@@ -1,0 +1,4 @@
+1) Male - Gender is not valid in row number . 3.
+2) BD  - Course Code does not exist. In excel file row number : 4
+3) BD  - Course Code does not exist. In excel file row number : 5
+4) BD  - Course Code does not exist. In excel file row number : 6

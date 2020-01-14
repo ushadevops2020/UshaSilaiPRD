@@ -1,0 +1,5 @@
+1) Usha  - "Existing Sewing Machine Brand" is not valid in row number . 2.
+2) Male - Gender is not valid in row number . 5.
+3) BD  - Course Code does not exist. In excel file row number : 6
+4) BD  - Course Code does not exist. In excel file row number : 11
+5) BD  - Course Code does not exist. In excel file row number : 12

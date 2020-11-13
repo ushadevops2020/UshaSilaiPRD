@@ -780,11 +780,11 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 $databases['default']['default'] = array (
-  'database' => 'usha_prod_final_db',
-  'username' => 'root',
-  'password' => 'SSa@2019',
+  'database' => 'xxxxxxx',
+  'username' => 'xxxx',
+  'password' => 'xxxx',
   'prefix' => '',
-  'host' => '172.16.1.221',
+  'host' => 'xxxxxxx',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
